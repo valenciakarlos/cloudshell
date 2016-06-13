@@ -3,13 +3,10 @@ This repository holds all of the shells and orchestration drivers required for p
 
 Everything is private.
 
-Usage:
-Download the whole folder.
-Run the "create package.cmd" to create a CloudShell package zip file with all of the scripts and meta data.
-Some of the shells and drivers needs to be compiled inside the CloudShell Authoring tool to get the latest version of them copied to the package, such as:
-Drivers\Shells\vCD\vcd_setup
-Drivers\Shells\OnRack
-Drivers\Orchestration\NVF Environment Driver
+# Usage:
+1. Download the whole folder.
+2. Run the "create package.cmd" to create a CloudShell package zip file with all of the scripts and meta data.
+Note: Some of the projects are going to be compiled by the script, and for that, you'll need CloudShell Authoring installed and licensed.
 
 Another output of this cmd is the site-packages.zip, this is a file that needs to be extracted on tha CloudShell vm, under:
 C:\Program Files (x86)\QualiSystems\TestShell\ExecutionServer\python\2.7.10\Lib\site-packages
