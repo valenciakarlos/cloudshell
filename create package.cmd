@@ -1,6 +1,37 @@
+rem compile drivers
+del "drivers\shells\onrack.compilation\onrack.dll"
+"C:\Program Files (x86)\QualiSystems\CloudShell\Authoring\QsDriverStudio.exe" "drivers\shells\onrack\onrack.tsdrvproj" compile
+:while1
+    if exist "drivers\shells\onrack.compilation\onrack.dll" (
+        timeout 7 >nul
+    ) else (
+        sleep 3
+        goto :while1
+    )
+    
+del "drivers\orchestration\nfv environment driver.compilation\nfv environment driver.dll" 
+"C:\Program Files (x86)\QualiSystems\CloudShell\Authoring\QsDriverStudio.exe" "drivers\orchestration\nfv environment driver\nfv environment driver.tsdrvproj" compile
+:while2
+    if exist "drivers\orchestration\nfv environment driver.compilation\nfv environment driver.dll" (
+        timeout 7 >nul
+    ) else (
+        sleep 3
+        goto :while2
+    )
+
+del "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe"
+"C:\Program Files (x86)\QualiSystems\CloudShell\Authoring\QsDriverStudio.exe" "drivers\shells\vcd\vcd_setup\vcd_setup.tsdrvproj" compile
+:while3
+    if exist "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe" (
+        timeout 7 >nul
+    ) else (
+        sleep 3
+        goto :while3
+    )
+    
 rem copy compiled drivers
 copy drivers\shells\onrack.compilation\onrack.dll "nfvpackage\resource drivers\OnRack Driver.dll"
-copy drivers\orchestration\nfv environment driver.compilation\onrack.dll "nfvpackage\topology drivers\NFV Environment Driver.dll"
+copy drivers\orchestration\nfv environment driver.compilation\nfv environment driver.dll "nfvpackage\topology drivers\NFV Environment Driver.dll"
 
 rem create vcd script
 copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script"

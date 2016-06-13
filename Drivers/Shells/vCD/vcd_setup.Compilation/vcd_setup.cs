@@ -24,8 +24,8 @@ using Microsoft.Win32;
 using QualiSystems.Libraries;
 using QualiSystems.Driver;
 
-[assembly: AssemblyVersion("1.0.1255.41371")]
-[assembly: AssemblyFileVersion("1.0.1255.41371")]
+[assembly: AssemblyVersion("1.0.1259.14365")]
+[assembly: AssemblyFileVersion("1.0.1259.14365")]
 [assembly: AssemblyTitle("A project for creating a command-line application.\r\nExe applications require Runtime support.")]
 [assembly: AssemblyProduct("[<AssemblyName>] 6.4.0")]
 [assembly: Library(typeof(vcd_setup), "", IsolationLevel.PerLibrary)]

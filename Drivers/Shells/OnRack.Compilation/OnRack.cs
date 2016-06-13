@@ -24,11 +24,11 @@ using Microsoft.Win32;
 using QualiSystems.Libraries;
 using QualiSystems.Driver;
 
-[assembly: AssemblyVersion("1.0.1255.41291")]
-[assembly: AssemblyFileVersion("1.0.1255.41291")]
+[assembly: AssemblyVersion("1.0.1259.14344")]
+[assembly: AssemblyFileVersion("1.0.1259.14344")]
 [assembly: AssemblyTitle("A project for creating a service driver.\r\nThese drivers can be attached to services and used to execute the driver commands.\r\nService drivers are useful for exposing automation to end users.")]
 [assembly: AssemblyProduct("[<AssemblyName>] 6.4.0")]
-[assembly: Library(typeof(OnRack), "", IsolationLevel.PerLibrary)]
+[assembly: Library(typeof(onrack), "", IsolationLevel.PerLibrary)]
 
 
 
@@ -36,7 +36,7 @@ using QualiSystems.Driver;
 namespace QualiSystems.Driver
 {
 	[Description("A project for creating a service driver.\r\nThese drivers can be attached to services and used to execute the driver commands.\r\nService drivers are useful for exposing automation to end users.")]
-    public class OnRack : ICancelable, IDisposable
+    public class onrack : ICancelable, IDisposable
     {
         private static readonly Assembly DriverRuntimeAssembly;
         private static readonly string DriverRuntimeTypeName;
@@ -65,7 +65,7 @@ namespace QualiSystems.Driver
 		private object m_WaitForTaskFunctionInterpreterLock = new object();
 
 		
-		static OnRack()
+		static onrack()
 		{
 			DriverCodeBase = Assembly.GetExecutingAssembly().CodeBase;
 			TestShellRuntimeLocator runtimeLocator = new TestShellRuntimeLocator("6.4.0");
@@ -79,7 +79,7 @@ namespace QualiSystems.Driver
 			runtimeType.GetMethod("Shutdown").Invoke(null, BindingFlags.Public | BindingFlags.Static, null, new object[0], null);
 		}
 
-        public OnRack()
+        public onrack()
         {
 			m_DriverIdentifier = Guid.NewGuid();
 
@@ -88,18 +88,18 @@ namespace QualiSystems.Driver
 			if (!IsSupportedVersion)
 				throw TestShellRuntimeLocator.NoMatchingRuntimeException("6.4.0");
 
-			runtimeType.GetMethod("InitializeRuntime").Invoke(null, new object[]{Assembly.GetExecutingAssembly().CodeBase, "OnRack", m_DriverIdentifier.ToString()});
+			runtimeType.GetMethod("InitializeRuntime").Invoke(null, new object[]{Assembly.GetExecutingAssembly().CodeBase, "onrack", m_DriverIdentifier.ToString()});
                       
-			m_DeployESXsFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Commands\\DeployESXs.tsdrv");
-			m_PopulateResourcesFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Commands\\PopulateResources.tsdrv");
-			m_EndSessionFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Initialization\\EndSession.tsdrv");
-			m_InitFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Initialization\\Init.tsdrv");
-			m_ResetDriverFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Initialization\\ResetDriver.tsdrv");
-			m_DeployESXFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\DeployESX.tsdrv");
-			m_GetTasksFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\GetTasks.tsdrv");
-			m_GetTaskStatusFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\GetTaskStatus.tsdrv");
-			m_PopulateSystemFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\PopulateSystem.tsdrv");
-			m_WaitForTaskFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\WaitForTask.tsdrv");
+			m_DeployESXsFunctionInterpreter = CreateFunctionInterpreter("onrack\\Commands\\DeployESXs.tsdrv");
+			m_PopulateResourcesFunctionInterpreter = CreateFunctionInterpreter("onrack\\Commands\\PopulateResources.tsdrv");
+			m_EndSessionFunctionInterpreter = CreateFunctionInterpreter("onrack\\Initialization\\EndSession.tsdrv");
+			m_InitFunctionInterpreter = CreateFunctionInterpreter("onrack\\Initialization\\Init.tsdrv");
+			m_ResetDriverFunctionInterpreter = CreateFunctionInterpreter("onrack\\Initialization\\ResetDriver.tsdrv");
+			m_DeployESXFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\DeployESX.tsdrv");
+			m_GetTasksFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\GetTasks.tsdrv");
+			m_GetTaskStatusFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\GetTaskStatus.tsdrv");
+			m_PopulateSystemFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\PopulateSystem.tsdrv");
+			m_WaitForTaskFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\WaitForTask.tsdrv");
 
         }
         
@@ -139,7 +139,7 @@ namespace QualiSystems.Driver
 			lock(m_DeployESXsFunctionInterpreterLock)
 			{
 				if(m_DeployESXsFunctionInterpreter == null)
-					m_DeployESXsFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Commands\\DeployESXs.tsdrv");
+					m_DeployESXsFunctionInterpreter = CreateFunctionInterpreter("onrack\\Commands\\DeployESXs.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -163,7 +163,7 @@ namespace QualiSystems.Driver
 			lock(m_PopulateResourcesFunctionInterpreterLock)
 			{
 				if(m_PopulateResourcesFunctionInterpreter == null)
-					m_PopulateResourcesFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Commands\\PopulateResources.tsdrv");
+					m_PopulateResourcesFunctionInterpreter = CreateFunctionInterpreter("onrack\\Commands\\PopulateResources.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -188,7 +188,7 @@ namespace QualiSystems.Driver
 			lock(m_EndSessionFunctionInterpreterLock)
 			{
 				if(m_EndSessionFunctionInterpreter == null)
-					m_EndSessionFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Initialization\\EndSession.tsdrv");
+					m_EndSessionFunctionInterpreter = CreateFunctionInterpreter("onrack\\Initialization\\EndSession.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -207,7 +207,7 @@ namespace QualiSystems.Driver
 			lock(m_InitFunctionInterpreterLock)
 			{
 				if(m_InitFunctionInterpreter == null)
-					m_InitFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Initialization\\Init.tsdrv");
+					m_InitFunctionInterpreter = CreateFunctionInterpreter("onrack\\Initialization\\Init.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -227,7 +227,7 @@ namespace QualiSystems.Driver
 			lock(m_ResetDriverFunctionInterpreterLock)
 			{
 				if(m_ResetDriverFunctionInterpreter == null)
-					m_ResetDriverFunctionInterpreter = CreateFunctionInterpreter("OnRack\\Initialization\\ResetDriver.tsdrv");
+					m_ResetDriverFunctionInterpreter = CreateFunctionInterpreter("onrack\\Initialization\\ResetDriver.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -246,7 +246,7 @@ namespace QualiSystems.Driver
 			lock(m_DeployESXFunctionInterpreterLock)
 			{
 				if(m_DeployESXFunctionInterpreter == null)
-					m_DeployESXFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\DeployESX.tsdrv");
+					m_DeployESXFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\DeployESX.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -273,7 +273,7 @@ namespace QualiSystems.Driver
 			lock(m_GetTasksFunctionInterpreterLock)
 			{
 				if(m_GetTasksFunctionInterpreter == null)
-					m_GetTasksFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\GetTasks.tsdrv");
+					m_GetTasksFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\GetTasks.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -292,7 +292,7 @@ namespace QualiSystems.Driver
 			lock(m_GetTaskStatusFunctionInterpreterLock)
 			{
 				if(m_GetTaskStatusFunctionInterpreter == null)
-					m_GetTaskStatusFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\GetTaskStatus.tsdrv");
+					m_GetTaskStatusFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\GetTaskStatus.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -312,7 +312,7 @@ namespace QualiSystems.Driver
 			lock(m_PopulateSystemFunctionInterpreterLock)
 			{
 				if(m_PopulateSystemFunctionInterpreter == null)
-					m_PopulateSystemFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\PopulateSystem.tsdrv");
+					m_PopulateSystemFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\PopulateSystem.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -331,7 +331,7 @@ namespace QualiSystems.Driver
 			lock(m_WaitForTaskFunctionInterpreterLock)
 			{
 				if(m_WaitForTaskFunctionInterpreter == null)
-					m_WaitForTaskFunctionInterpreter = CreateFunctionInterpreter("OnRack\\OnRack Functions\\WaitForTask.tsdrv");
+					m_WaitForTaskFunctionInterpreter = CreateFunctionInterpreter("onrack\\OnRack Functions\\WaitForTask.tsdrv");
 			}
 			Guid callId = Guid.Empty;
 			if(CancellationContext.Current != null)
@@ -487,7 +487,7 @@ namespace QualiSystems.Driver
 				appDomainSetup.ApplicationBase = testShellRuntimeInfo.Path;
 				AppDomain appDomain = AppDomain.CreateDomain("LicenseValidationDomain", AppDomain.CurrentDomain.Evidence, appDomainSetup);
 				UnloadableLicenseValidator unloadableLicenseValidator = (UnloadableLicenseValidator)appDomain.CreateInstanceFromAndUnwrap(
-                Assembly.GetExecutingAssembly().CodeBase, "QualiSystems.Driver.OnRack+TestShellRuntimeLocator+UnloadableLicenseValidator");
+                Assembly.GetExecutingAssembly().CodeBase, "QualiSystems.Driver.onrack+TestShellRuntimeLocator+UnloadableLicenseValidator");
 				bool isRuntimeLicenseValid = unloadableLicenseValidator.IsLicenseValid(runtimeAssemblyPath, testShellRuntimeInfo.RuntimeLicenseValidatorTypeName);
 				AppDomain.Unload(appDomain);
 				Trace.WriteLine("Quali Runtime: Runtime at " +testShellRuntimeInfo.Path+ " is " + (isRuntimeLicenseValid ? "Licensed" : "Unlicenced"));
