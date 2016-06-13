@@ -2,27 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.dll" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.pdb" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/Project.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/Project.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/Project.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/Project.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.pdb" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.pdb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" afterPath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.dll" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.pdb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/Project.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/Project.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.exe.config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.exe.manifest" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.pdb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.cs" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.html" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack.Compilation/OnRack.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.cs" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.html" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup.Compilation/vcd_setup.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create package.cmd" afterPath="$PROJECT_DIR$/create package.cmd" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +58,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.084075175">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -396,7 +391,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.084075175">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
