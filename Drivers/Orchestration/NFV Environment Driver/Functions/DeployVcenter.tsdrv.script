@@ -1,0 +1,131 @@
+
+DeployVcenter()
+#region /* User defined variables */
+Session CommandShell_Session
+string deployJson = ""
+string vmName = ""
+/*true/false*/
+string isThin = "true"
+string appNetwork = "VM Network"
+string vcAddress = ""
+string vcPassword = ""
+string vcDatastore = ""
+string vcDatacenter = ""
+string vcCluster = ""
+string esxAddress = ""
+string esxRootPass = ""
+string esxDatastore = ""
+string netHostname = ""
+string netDNS1 = ""
+string netDNS2 = ""
+string netGateway = ""
+string netAddress = ""
+string ssoPassword = ""
+string osPassword = ""
+Session Dll_Session
+string vCenterInstallerPath = "VMware-VCSA-all-6.0.0-3040890\vcsa-cli-installer\win32"
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    {deployJson} = deployJson1()
+    /*Path: ..\Assets\FileSystem */
+    /*Dll: write file*/
+    {
+        /* Start2 (Start) */
+        /*SetSession: Set Session2*/
+        Set_Session2(SessionName: {Dll_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+        /*Writes to a file creating or overwriting it*/
+        WriteTextToFile1(Path: "c:\deploy\vcenter_deploy.json", Content: {deployJson}, Encoding: "Default")
+        /*EndSession: End Session1*/
+        End_Session1(SessionName: {Dll_Session}, Action: TerminateSelfStartedSession)
+    }
+    /*CommandShell: deploy*/
+    {
+        /* Start1 (Start) */
+        /*SetSession: Set Session1*/
+        Set_Session1(SessionName: {CommandShell_Session}, SessionType: PowerShell, ConnectAction: ContinueOrStartSession)
+        Command1(out Result /*[Create Variable]*/) // Timeout: 2.03 seconds
+        Command2(out Result /*[Create Variable]*/)
+    }
+#endregion /* ------- Thread End ------- */
+}
+
+/* Functions */
+deployJson1()
+{
+(((((((((((((((((((((((((((((((((((("{
+    "__version": "1.1",
+    "__comments": "Sample template to deploy a vCenter Server with an embedded Platform Services Controller to an ESXi host.",
+    "target.vcsa": {
+        "appliance": {
+            "deployment.network": "" + {appNetwork}) + "",
+            "deployment.option": "small",
+            "name": "") + {vmName}) + "",
+            "thin.disk.mode": ") + {isThin}) + "
+        },
+        "vc": {
+            "hostname": "") + {vcAddress}) + "",
+            "username": "administrator@vsphere.local",
+            "password": "") + {vcPassword}) + "",
+            "datastore": "") + {vcDatastore}) + "",
+            "datacenter": [
+                 "") + {vcDatacenter}) + ""
+            ],
+            "target": [
+                "") + {vcCluster}) + "",
+                "Resources"
+            ]
+         },
+         "_esx": {
+             "hostname": "") + {esxAddress}) + "",
+             "username": "root",
+             "password": "") + {esxRootPass}) + "",
+             "datastore": "") + {esxDatastore}) + ""
+         },
+         "network": {
+            "hostname": "") + {netHostname}) + "",
+            "dns.servers": [                
+                "") + {netDNS1}) + "",
+                "") + {netDNS2}) + ""
+            ],
+            "gateway": "") + {netGateway}) + "",
+            "ip": "") + {netAddress}) + "",
+            "ip.family": "ipv4",
+            "mode": "static",
+            "prefix": "24"
+        },
+        "os": {
+            "password": "") + {osPassword}) + "",
+            "ssh.enable": true
+        },
+        "sso": {
+            "password": "") + {ssoPassword}) + "",
+            "domain-name": "vsphere.local",
+            "site-name": "Default-First-Site"
+        }
+    }
+}")
+}
+Command1()
+{
+/* ------ CommandTool ------ */
+/* Command */
+"cd "{vCenterInstallerPath}
+/* Termination String */
+"> "
+
+/* Kill command on timeout: True */
+}
+Command2()
+{
+/* ------ CommandTool ------ */
+/* Command */
+"vcsa-deploy.exe --accept-eula -v c:\deploy\vcenter_deploy.json"
+/* Termination String */
+">"
+
+/* Kill command on timeout: True */
+}

@@ -1,0 +1,194 @@
+/// <param name="reservationId">
+/// </param>
+/// <param name="Resources">
+/// </param>
+/// <param name="buildInfoInputs">
+/// </param>
+FillResourcesAttributes(string reservationId, string [,] Resources, string [,] buildInfoInputs)
+#region /* User defined variables */
+string[,] buildInfoInputs = "["", "", ""; "", "", ""; "", "", ""; ]"
+string[,] resourceInputs = "["", "", ""; "", "", ""; "", "", ""; ]"
+string reservationId = ""
+string[,] Resources = "[;]"
+string[,] setAtt = "["ResourceName", "Name", "Value"; "", "", ""; "", "", ""; ]"
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*NOP: set_attributes_on_resources*/
+    filter_root_resources(Source1: {Resources}, out onlyRoot: {Resources})
+    /*Loop: resourceLoop*/
+    Loop (countrows({Resources}) - 1) times
+    {
+        /*Case: if nagios*/
+        if ({Resources(({resourceLoop.Index} + 1),"ResourceModelName")} == "Nagios Server Model")
+        {
+            {setAtt} = ["ResourceName", "Name", "Value"; "", "MappingFilePath", ""; "", "MonitoringCleanupInterval", ""; "", "NagiosAddress", ""; "", "NagiosPassword", ""; "", "NagiosSamplingInterval", ""; "", "NagiosUser", ""; ]
+            update_resource_name()
+            get_inputs_for_cur_service(Source1: {buildInfoInputs}, out serviceInputs: {resourceInputs})
+            /*Loop: inputsLoop*/
+            Loop (countrows({setAtt}) - 1) times
+            {
+                find_input_value1(Source1: {resourceInputs}, out Measurement1: {setAtt(({inputsLoop.Index} + 1),"Value")})
+            }
+            /*Path: ..\Assets\TestShellAPI */
+            /*Dll: set nagios attributes*/
+            {
+                /* Start2 (Start) */
+                /*SetSession: Set Session2*/
+                Set_Session2(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+                /*Case: if there are attributes*/
+                if (countrows({setAtt}) > 1)
+                {
+                    /*Sets new attribute values for the specified resources.*/
+                    SetAttributesValues1(Resources, Attributes, and Values: {setAtt(1:end,:)})
+                }
+            }
+        }
+        else
+        {
+            
+        }
+        /*Case: if brocade*/
+        if ({Resources(({resourceLoop.Index} + 1),"ResourceModelName")} == "Brocade NOS Switch")
+        {
+            {setAtt} = ["ResourceName", "Name", "Value"; "", "User", ""; "", "Password", ""; ]
+            update_resource_name1()
+            get_inputs_for_cur_service1(Source1: {buildInfoInputs}, out serviceInputs: {resourceInputs})
+            /*Loop: inputsLoop1*/
+            Loop (countrows({setAtt}) - 1) times
+            {
+                find_input_value2(Source1: {resourceInputs}, out Measurement1: {setAtt(({inputsLoop1.Index} + 1),"Value")})
+            }
+            /*Path: ..\Assets\TestShellAPI */
+            /*Dll: set brocade attributes*/
+            {
+                /* Start3 (Start) */
+                /*SetSession: Set Session3*/
+                Set_Session3(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+                /*Case: if there are attributes1*/
+                if (countrows({setAtt}) > 1)
+                {
+                    /*Sets new attribute values for the specified resources.*/
+                    SetAttributesValues2(Resources, Attributes, and Values: {setAtt(1:end,:)})
+                }
+            }
+            /*Path: ..\Assets\TestShellAPI */
+            /*Dll: set broacde address*/
+            {
+                /* Start4 (Start) */
+                /*SetSession: Set Session4*/
+                Set_Session4(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+                getAddress(Source1: {resourceInputs}, out Address /*[Create Variable]*/)
+                /*Modifies the address for a specified resource.*/
+                UpdateResourceAddress1(Resource Full Path: {Resources(({resourceLoop.Index} + 1),"Name")}, Resource Address: {getAddress.Address})
+            }
+        }
+        else
+        {
+            
+        }
+    }
+#endregion /* ------- Thread End ------- */
+}
+
+/* Functions */
+filter_root_resources()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: onlyRoot) */
+/* Step 0 */
+Table Filter(Column Header: "FullAddress", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: "/", Action: Remove Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+
+/*------ Transformation Flows End ------ */
+}
+
+update_resource_name()
+{
+/* ------ Matshell code ------ */
+setAtt(1:end,0) = Resources(resourceLoop.Index+1,'Name')
+
+/* ---- Matshell code end ---- */
+}
+get_inputs_for_cur_service()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: serviceInputs) */
+/* Step 0 */
+Table Filter(Column Header: "Component", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {Resources(({resourceLoop.Index} + 1),"Name")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Select Columns(Columns (Vector): ["Component", "Input", "Value"])
+
+/*------ Transformation Flows End ------ */
+}
+find_input_value1()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: Measurement1) */
+/* Step 0 */
+Table Filter_1(Column Header: "Input", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {setAtt(({inputsLoop.Index} + 1),"Name")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Custom - Advanced(Expression: if (countrows({input}) > 1)
+{output} = {input(1,"Value")}
+else
+{output} = ""
+end
+, Output Type: String, Output Dimension: Scalar)
+
+/*------ Transformation Flows End ------ */
+}
+
+
+update_resource_name1()
+{
+/* ------ Matshell code ------ */
+setAtt(1:end,0) = Resources(resourceLoop.Index+1,'Name')
+
+/* ---- Matshell code end ---- */
+}
+get_inputs_for_cur_service1()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: serviceInputs) */
+/* Step 0 */
+Table Filter(Column Header: "Component", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {Resources(({resourceLoop.Index} + 1),"Name")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Select Columns(Columns (Vector): ["Component", "Input", "Value"])
+
+/*------ Transformation Flows End ------ */
+}
+find_input_value2()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: Measurement1) */
+/* Step 0 */
+Table Filter_1(Column Header: "Input", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {setAtt(({inputsLoop1.Index} + 1),"Name")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Custom - Advanced(Expression: if (countrows({input}) > 1)
+{output} = {input(1,"Value")}
+else
+{output} = ""
+end
+, Output Type: String, Output Dimension: Scalar)
+
+/*------ Transformation Flows End ------ */
+}
+
+getAddress()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: Address) */
+/* Step 0 */
+Table Filter(Column Header: "Input", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: "Brocade IP", Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Custom - Advanced(Expression: if (countrows({input}) > 1)
+{output} = {input(1,"Value")}
+else
+{output} = "NA"
+end
+, Output Type: String, Output Dimension: Scalar)
+
+/*------ Transformation Flows End ------ */
+}

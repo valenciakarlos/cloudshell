@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CategoryList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.qualisystems.com/ResourceManagement/CategorySchema.xsd">
+  <Category Name="temp" Catalog="Service">
+    <ChildCategories />
+  </Category>
+  <Category Name="Virtualization" Catalog="Service" ImagePath="Virtualization(0ABGFD7U).png">
+    <ChildCategories>
+      <CategoryInfo Name="Automation Pod" Catalog="Service">
+        <ChildCategories />
+      </CategoryInfo>
+      <CategoryInfo Name="NEI Pod" Catalog="Service">
+        <ChildCategories />
+      </CategoryInfo>
+    </ChildCategories>
+  </Category>
+  <Category Name="Management" Catalog="Service">
+    <ChildCategories />
+  </Category>
+  <Category Name="Networking" Catalog="Service" ImagePath="Networking(MQY065SO).png">
+    <ChildCategories />
+  </Category>
+</CategoryList>

@@ -1,0 +1,45 @@
+/// <param name="Message">
+/// </param>
+/// <param name="Level">
+/// Debug/Info/Error
+/// </param>
+/// <param name="functionName">
+/// </param>
+PrintMessage(string Message, string Level, string functionName)
+#region /* User defined variables */
+/*Debug/Info/Error*/
+string Level = ""
+string Message = ""
+Session Dll_Session
+string functionName = ""
+#endregion
+
+/* Main flow/s */
+{
+    try
+    {
+    #region /* ------ Thread Start ------ */
+        /* Start (Start) */
+    
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: TestShellAPI1*/
+        {
+            /* Start1 (Start) */
+    
+            /*SetSession: Set Session1*/
+            Set_Session1(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+    
+            /*Allows sending output to the command output window in a reservation.*/
+            WriteMessageToReservationOutput1(Reservation ID: {Project.ReservationId}, Reservation Output Message: {Message})
+        }
+    
+        /*Path: AddToLog */
+        AddToLog1(Level: {Level}, LogMessage: {Message}, functionName: {functionName})
+    #endregion /* ------- Thread End ------- */
+    
+    }
+    catch (General) // End function if any error occurs
+    {
+        If step still fails: End Function with error and continue
+    }
+}

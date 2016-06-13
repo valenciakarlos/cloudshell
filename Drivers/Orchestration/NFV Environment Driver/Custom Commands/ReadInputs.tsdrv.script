@@ -1,0 +1,133 @@
+/// <param name="reservation">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="globalInputs">
+/// A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="requirementsInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="additionalInfoInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="connectivityInfo">
+/// Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="out">
+/// </param>
+ReadInputs(string [,] reservation, string [,] globalInputs, string [,] requirementsInputs, string [,] additionalInfoInputs, string [,] connectivityInfo, out string out)
+#region /* User defined variables */
+string out = ""
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] reservation = "["Username", "", ""; "Password", "", ""; "Domain", "", ""; "ReservationId", "", ""; "TopologyPath", "", ""; "AdminUsername", "", ""; "AdminPassword", "", ""; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.*/
+string[,] additionalInfoInputs = "["ResourceName", "ParameterName", "Value", "PossibleValues"; ]"
+/*A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.*/
+string[,] globalInputs = "["ParameterName", "Value", "PossibleValues"; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.*/
+string[,] requirementsInputs = "["ResourceName", "ParameterName", "Value", "InputType"; ]"
+/*Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] connectivityInfo = "["ServerAddress", "", ""; "TestShellApiPort", "", ""; "QualiApiPort", "", ""; ]"
+string vcdservice = ""
+Session FS_Session
+string inputsExcelPath = ""
+string[,] buildInfoInputs = "[""; ]"
+#endregion
+
+/* Main flow/s */
+{
+    try
+    {
+    #region /* ------ Thread Start ------ */
+        /* Start (Start) */
+    
+        /*NOP: Command_flow*/
+        default_excel_path()
+        init_variables()
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: init api*/
+        {
+            /* Start1 (Start) */
+    
+            /*SetSession: Set Session1*/
+            Set_Session1(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+            SetServerConnectionInfo1(username: {reservation("AdminUsername",2)}, password: {reservation("AdminPassword",2)}, domainName: {reservation("Domain",2)}, serverAddress: {connectivityInfo("ServerAddress",2)}, serverPort: str2num({connectivityInfo("TestShellApiPort",2)}))
+    
+            /*Logs in a user, with current user definitions.*/
+            Logon1()
+        }
+    
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: get reservation details*/
+        {
+            /* Start2 (Start) */
+    
+            /*SetSession: Set Session2*/
+            Set_Session2(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+    
+            /*Retrieves all details and parameters for a specified reservation, including its resources, routes and route segments, topologies, and reservation conflicts.*/
+            GetReservationDetails1(Reservation ID: {reservation("ReservationId",2)}, out Reservation Name, out Description, out Start Date Time, out End Date Time, out Reservation Status, out Provisioning Status, out Resources /*[Create Variable]*/, out Resource Conflicts, out Topologies, out Topology Resources, out Route, out Segments, out Instructions, out Connected Routes, out Connected Routes Segments, out Reservation Routes, out Reservation Route Segments, out Permitted Users, out Domain Name, out Topology Resources Attributes, out Connectors, out ConnectorAttributes, out Reservations Live Status, out Services /*[Create Variable]*/, out Service Attributes /*[Create Variable]*/, out Result XML)
+        }
+    
+        /*Path: ..\Assets\FileSystem */
+        /*Dll: read excel files*/
+        {
+            /* Start3 (Start) */
+    
+            /*SetSession: Set Session3*/
+            Set_Session3(SessionName: {FS_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+    
+            /*This function reads a sheet from an excel file using the provided sheet name.*/
+            read_build_info(Path: {inputsExcelPath}, Sheet Name: "Build Info", out Matrix: {buildInfoInputs})
+            filter_empty_rows(Source1: {buildInfoInputs}, out allInputs: {buildInfoInputs})
+            /*EndSession: End Session1*/
+            End_Session1(SessionName: {FS_Session}, Action: TerminateSelfStartedSession)
+        }
+    
+        /*Path: ..\Functions\FillServicesAttributes */
+        fill_services_attributes(reservationId: {reservation("ReservationId",2)}, Services: {GetReservationDetails1.services}, ServicesAttributes: {GetReservationDetails1.serviceAttributes}, buildInfoInputs: {buildInfoInputs})
+        /*Path: ..\Functions\FillResourcesAttributes */
+        fill_resources_attributes(reservationId: {Project.ReservationId}, Resources: {GetReservationDetails1.resources}, buildInfoInputs: {buildInfoInputs})
+    #endregion /* ------- Thread End ------- */
+    
+    }
+    catch (({lastError.Description} Contains "The API was not initialized properly and must be initialized")) // api not initialized
+    {
+        /* Action Type: PaWRunFunction */
+        API_Login(reservation: {reservation})
+        If action succeeds, retry Step in 1 seconds, a maximum of 1 times
+        If step still fails: End Step with error and continue
+    }
+    catch (General) // End test if any error occurs
+    {
+        If step still fails: End Function with error and continue
+    }
+}
+
+/* Functions */
+default_excel_path()
+{
+/* ------ Matshell code ------ */
+if (inputsExcelPath=='')
+	inputsExcelPath = 'C:\deploy\NFV Build Info.xls'
+end
+
+/* ---- Matshell code end ---- */
+}
+init_variables()
+{
+/* ------ Matshell code ------ */
+Project.connectivityInfo = connectivityInfo
+Project.ReservationId = reservation('ReservationId',2)
+
+/* ---- Matshell code end ---- */
+}
+filter_empty_rows()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: allInputs) */
+/* Step 0 */
+Remove Empty Rows or Columns(Options: Rows And Columns)
+
+/*------ Transformation Flows End ------ */
+}

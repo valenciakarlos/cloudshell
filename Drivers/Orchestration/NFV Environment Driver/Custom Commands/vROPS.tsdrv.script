@@ -1,0 +1,176 @@
+/// <param name="reservation">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="globalInputs">
+/// A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="requirementsInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="additionalInfoInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="connectivityInfo">
+/// Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="out">
+/// </param>
+vROPS(string [,] reservation, string [,] globalInputs, string [,] requirementsInputs, string [,] additionalInfoInputs, string [,] connectivityInfo, out string out)
+#region /* User defined variables */
+string out = ""
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] reservation = "["Username", "", ""; "Password", "", ""; "Domain", "", ""; "ReservationId", "", ""; "TopologyPath", "", ""; "AdminUsername", "", ""; "AdminPassword", "", ""; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.*/
+string[,] requirementsInputs = "["ResourceName", "ParameterName", "Value", "InputType"; ]"
+/*A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.*/
+string[,] globalInputs = "["ParameterName", "Value", "PossibleValues"; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.*/
+string[,] additionalInfoInputs = "["ResourceName", "ParameterName", "Value", "PossibleValues"; ]"
+/*Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] connectivityInfo = "["ServerAddress", "", ""; "TestShellApiPort", "", ""; "QualiApiPort", "", ""; ]"
+string[,] executionTable = "[;]"
+string targetComponent = ""
+string[] EventLog = "[]"
+string vropsservice = ""
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*NOP: Setup_flow*/
+    init_variables()
+    /*Path: ..\Assets\TestShellAPI */
+    /*Dll: get reservation details*/
+    {
+        /* Start5 (Start) */
+        /*SetSession: Set Session5*/
+        Set_Session5(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+        
+        /*Retrieves all details and parameters for a specified reservation, including its resources, routes and route segments, topologies, and reservation conflicts.*/
+        GetReservationDetails2(Reservation ID: {reservation("ReservationId",2)}, out Reservation Name, out Description, out Start Date Time, out End Date Time, out Reservation Status, out Provisioning Status, out Resources, out Resource Conflicts, out Topologies, out Topology Resources, out Route, out Segments, out Instructions, out Connected Routes, out Connected Routes Segments, out Reservation Routes, out Reservation Route Segments, out Permitted Users, out Domain Name, out Topology Resources Attributes, out Connectors, out ConnectorAttributes, out Reservations Live Status, out Services /*[Create Variable]*/, out Service Attributes, out Result XML)
+        
+        GetReservationDetails2_Transform1(services1: {GetReservationDetails2.services}, out sioservice: {vropsservice})
+    }
+    /*Path: ..\Assets\TestShellAPI */
+    /*Dll: set offline status*/
+    {
+        /* Start6 (Start) */
+        /*SetSession: Set Session6*/
+        Set_Session6(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+        /*Sets the live status of the service.*/
+        SetServiceLiveStatus2(Reservation ID: {reservation("ReservationId",2)}, Service Alias: {vropsservice}, Live Status Name: "Offline", Additional Info: null)
+    }
+    set_execution_table()
+    /*Loop: commandsLoop*/
+    Loop countrows({executionTable}) times
+    {
+        {targetComponent} = {vropsservice}
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: execute commands*/
+        {
+            /* Start4 (Start) */
+            /*SetSession: Set Session4*/
+            Set_Session4(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: , RuntimeVersion: Default, HostType: Out)
+            /*Case: Case2*/
+            if ({executionTable({commandsLoop.Index},0)} Contains "deploy")
+            {
+                /*Executes a command for the specified target.*/
+                ExecuteCommand1(Reservation ID: {reservation("ReservationId",2)}, Target Name: {targetComponent}, Target Type: "Service", Command Name: {executionTable({commandsLoop.Index},0)}, Command Inputs: null, Print Output: "Yes", out Command Output /*[Create Variable]*/, out Result XML /*[Create Variable]*/)
+                /*Case: Case3*/
+                if {OnError}
+                {
+                    {EventLog(countrows({EventLog}))} = "Command: ""{executionTable({commandsLoop.Index},0)}"" Failed."
+                }
+                else
+                {
+                    {EventLog(countrows({EventLog}))} = "Command: ""{executionTable({commandsLoop.Index},0)}"" Succeeded."
+                }
+                Delay1(Delay: 600 seconds)
+            }
+            else
+            {
+                /*Executes a command for the specified target.*/
+                ExecuteCommand2(Reservation ID: {reservation("ReservationId",2)}, Target Name: {targetComponent}, Target Type: "Service", Command Name: {executionTable({commandsLoop.Index},0)}, Command Inputs: null, Print Output: "Yes", out Command Output /*[Create Variable]*/, out Result XML /*[Create Variable]*/)
+                /*Case: Case4*/
+                if {OnError}
+                {
+                    {EventLog(countrows({EventLog}))} = "Command: ""{executionTable({commandsLoop.Index},0)}"" Failed. Retrying..."
+                    /*Executes a command for the specified target.*/
+                    ExecuteCommand3(Reservation ID: {reservation("ReservationId",2)}, Target Name: {targetComponent}, Target Type: "Service", Command Name: {executionTable({commandsLoop.Index},0)}, Command Inputs: null, Print Output: "Yes", out Command Output /*[Create Variable]*/, out Result XML /*[Create Variable]*/)
+                    /*Case: Case5*/
+                    if {OnError}
+                    {
+                        {EventLog(countrows({EventLog}))} = "Command: ""{executionTable({commandsLoop.Index},0)}"" Failed again"
+                    }
+                    else
+                    {
+                        {EventLog(countrows({EventLog}))} = "Command: ""{executionTable({commandsLoop.Index},0)}"" Succsess after retry"
+                    }
+                }
+                else
+                {
+                    {EventLog(countrows({EventLog}))} = "Command: ""{executionTable({commandsLoop.Index},0)}"" Succeeded."
+                }
+                Delay2(Delay: 5 seconds)
+            }
+            /*Allows sending output to the command output window in a reservation.*/
+            WriteMessageToReservationOutput1(Reservation ID: {reservation("ReservationId",2)}, Reservation Output Message: {EventLog((countrows({EventLog}) - 1))})
+            /*Executes a command for the specified service driver.*/
+            ExecuteServiceCommand2(Reservation ID: {reservation("ReservationId",2)}, Service Alias: {targetComponent}, Command Name: {executionTable({commandsLoop.Index},0)}, Command Parameters: null, Print Output: "Yes", out Command Output /*[Create Variable]*/, out Result XML /*[Create Variable]*/)
+        }
+    }
+    /*Path: ..\Assets\TestShellAPI */
+    /*Dll: set online status*/
+    {
+        /* Start3 (Start) */
+        /*SetSession: Set Session3*/
+        Set_Session3(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+        /*Sets the live status of the service.*/
+        SetServiceLiveStatus1(Reservation ID: {reservation("ReservationId",2)}, Service Alias: {vropsservice}, Live Status Name: "Online", Additional Info: null)
+    }
+#endregion /* ------- Thread End ------- */
+
+#region /* ------ Finalize Start ------ */
+    /* Finalize (Finalize) */
+    {out} = "vROPS step completed"
+#endregion /* ------- Finalize End ------- */
+
+}
+
+/* Functions */
+init_variables()
+{
+/* ------ Matshell code ------ */
+Project.connectivityInfo = connectivityInfo
+Project.ReservationId = reservation('ReservationId',2)
+
+/* ---- Matshell code end ---- */
+}
+GetReservationDetails2_Transform1()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: services1, Output: sioservice) */
+/* Step 0 */
+Table Filter(Column Header: "ServiceName", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: "vRealize Operations Manager", Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Custom - Simple(Output: {input(1,"Alias")}, Output Type: String, Output Dimension: Scalar)
+
+/*------ Transformation Flows End ------ */
+}
+set_execution_table()
+{
+/* ------ Matshell code ------ */
+executionTable(0,0) = 'vrops_01_deploy_vrops'
+/*podExecutionTable(1,0) = 'vrops_02_startup_wizard'
+podExecutionTable(2,0) = 'vrops_03_start_service'
+podExecutionTable(3,0) = 'vrops_04_license'
+podExecutionTable(4,0) = 'vrops_05_vcenter_registration'*/
+
+/* ---- Matshell code end ---- */
+}
+
+
+
+
+

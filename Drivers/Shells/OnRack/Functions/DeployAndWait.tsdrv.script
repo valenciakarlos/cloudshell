@@ -1,0 +1,126 @@
+/// <param name="resource">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="ESX_Hostname">
+/// </param>
+/// <param name="ESX_IP">
+/// </param>
+/// <param name="ESX_MAC">
+/// </param>
+/// <param name="resourcename">
+/// </param>
+/// <param name="reservation">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+DeployAndWait(string [,] resource, string ESX_Hostname, string ESX_IP, string ESX_MAC, string resourcename, string [,] reservation)
+#region /* User defined variables */
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] resource = "["ResourceName", "", ""; "ResourceFullName", "", ""; "ResourceFamily", "", ""; "ResourceModel", "", ""; "ResourceDescription", "", ""; "ESX Gateway", "", ""; "ESX Domain", "", ""; "ESX DNS1", "", ""; "ESX DNS2", "", ""; "ESX Root Password", "", ""; "OnRack Address", "", ""; "OnRack Username", "", ""; "OnRack Password", "", ""; ]"
+string resourcename = ""
+string ESX_MAC = ""
+string ESX_Hostname = ""
+string ESX_IP = ""
+string TaskID = ""
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] reservation = "["Username", "", ""; "Password", "", ""; "Domain", "", ""; "ReservationId", "", ""; ]"
+string errmsg = ""
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*Path: AddToLog */
+    AddToLog1(Level: "Debug", LogMessage: "Going to start deploy esx for host: "{ESX_Hostname}, functionName: "DeployAndWait")
+    /*Path: ..\OnRack Functions\GetApiToken */
+    GetApiToken1()
+    /*Path: ..\OnRack Functions\DeployESX */
+    try
+    {
+        DeployESX1(MAC: {ESX_MAC}, ESX_Hostname: {ESX_Hostname}, ESX_IP: {ESX_IP}, ESX_Gateway: {resource("ESX Gateway",2)}, ESX_RootPass: {resource("ESX Root Password",2)}, ESX_Domain: {resource("ESX Domain",2)}, ESX_DNS1: {resource("ESX DNS1",2)}, ESX_DNS2: {resource("ESX DNS2",2)}, out TaskID: {TaskID})
+    }
+    catch (General) // catch error
+    {
+        /* Action Type: RunCodeAction */
+        MatShell(Execute the code below.)
+        /***** Matshell code *****/
+        errmsg = lastError.Description
+        /*** Matshell code end ***/
+
+        If step still fails: End Step and continue
+    }
+    /*Case: if got task id*/
+    if ({TaskID} != "")
+    {
+        /*Path: ..\Functions\PrintMessage */
+        deploy_started_msg(Message: "ESX Deployment started on host: "{ESX_Hostname}", taskId: "{TaskID}, Level: "Info", functionName: "Deploy and Wait")
+        /*Path: ..\Functions\API Login.tsdrv */
+        /*Dll: set live status*/
+        {
+            try
+            {
+                /* Start5 (Start) */
+    
+                /*SetSession: Set Session5*/
+                Set_Session5(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+    
+                /*Sets the live status of the resource.*/
+                SetResourceLiveStatus1(Resource Full Path: {resourcename}, Live Status Name: "Installing", Additional Info: "Installing ESX", out Result XML /*[Create Variable]*/)
+    
+            }
+            catch (({lastError.Description} Contains "The API was not initialized properly")) // api not connected
+            {
+                /* Action Type: PaWRunFunction */
+                API_Login(reservation: {reservation})
+                If action succeeds, retry Step in 1 seconds, a maximum of 1 times
+                If step still fails: End Function with error and continue
+            }
+        }
+        /*Path: PrintMessage */
+        try
+        {
+            wait_until_taks_done(Message: "Failed to deploy ESX on "{ESX_IP}", trying again", Level: "Info", functionName: "", TaskID: {TaskID}, MaxWaitSeconds: 1800)
+        }
+        catch (General) // retry
+        {
+            /* Action Type: PaWRunFunction */
+            PrintMessage(Message: "Failed to deploy ESX on "{ESX_IP}", trying again", Level: "Info", functionName: "")
+            /* Action Type: RetryAction */
+            Retry(Retry Function in 5 seconds, a maximum of 3 times)
+            If step still fails: End Function with error and continue
+        }
+        /*Path: ..\Functions\PrintMessage */
+        deploy_complete_msg(Message: "ESX Deploy completed for host: "{ESX_Hostname}, Level: "Info", functionName: "Deploy and Wait")
+        /*Path: ..\Functions\API Login.tsdrv */
+        /*Dll: set new address and live status*/
+        {
+            try
+            {
+                /* Start4 (Start) */
+    
+                /*SetSession: Set Session4*/
+                Set_Session4(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+    
+                /*Modifies the address for a specified resource.*/
+                UpdateResourceAddress1(Resource Full Path: {resourcename}, Resource Address: {ESX_IP})
+    
+                /*Sets the live status of the resource.*/
+                SetResourceLiveStatus2(Resource Full Path: {resourcename}, Live Status Name: "Completed successfully", Additional Info: "ESX Intalled", out Result XML /*[Create Variable]*/)
+    
+            }
+            catch (({lastError.Description} Contains "The API was not initialized properly")) // api not connected
+            {
+                /* Action Type: PaWRunFunction */
+                API_Login(reservation: {reservation})
+                If action succeeds, retry Step in 1 seconds, a maximum of 1 times
+                If step still fails: End Function with error and continue
+            }
+        }
+    }
+    else
+    {
+        /*Path: ..\Functions\PrintMessage */
+        deploy_failed_to_start(Message: "ESX Deployment failed to start on host: "{ESX_Hostname}", error: "{errmsg}, Level: "Info", functionName: "Deploy and Wait")
+    }
+#endregion /* ------- Thread End ------- */
+}

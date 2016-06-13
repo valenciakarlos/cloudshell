@@ -1,0 +1,177 @@
+/// <summary>
+/// Set Brocade switch to allow management VDS creation
+/// </summary>
+/// <param name="reservation">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="globalInputs">
+/// A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="requirementsInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="additionalInfoInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="connectivityInfo">
+/// Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="out">
+/// </param>
+PreSet Brocade(string [,] reservation, string [,] globalInputs, string [,] requirementsInputs, string [,] additionalInfoInputs, string [,] connectivityInfo, out string out)
+#region /* User defined variables */
+string out = ""
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] reservation = "["Username", "", ""; "Password", "", ""; "Domain", "", ""; "ReservationId", "", ""; "TopologyPath", "", ""; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.*/
+string[,] additionalInfoInputs = "["ResourceName", "ParameterName", "Value", "PossibleValues"; ]"
+/*A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.*/
+string[,] globalInputs = "["ParameterName", "Value", "PossibleValues"; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.*/
+string[,] requirementsInputs = "["ResourceName", "ParameterName", "Value", "InputType"; ]"
+/*Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] connectivityInfo = "["ServerAddress", "", ""; "TestShellApiPort", "", ""; "QualiApiPort", "", ""; ]"
+string brocaderesource = ""
+string[,] setVlanInputs = "["", ""; "", ""; ]"
+string inputsExcelPath = ""
+Session FS_Session
+string[,] buildInfoInputs = "[""; ]"
+#endregion
+
+/* Main flow/s */
+{
+    try
+    {
+    #region /* ------ Thread Start ------ */
+        /* Start (Start) */
+    
+        /*NOP: Command_flow*/
+        init_variables()
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: get reservation details*/
+        {
+            /* Start2 (Start) */
+    
+            /*SetSession: Set Session2*/
+            Set_Session2(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+            
+    
+            /*Retrieves all details and parameters for a specified reservation, including its resources, routes and route segments, topologies, and reservation conflicts.*/
+            GetReservationDetails1(Reservation ID: {reservation("ReservationId",2)}, out Reservation Name, out Description, out Start Date Time, out End Date Time, out Reservation Status, out Provisioning Status, out Resources /*[Create Variable]*/, out Resource Conflicts, out Topologies, out Topology Resources, out Route, out Segments, out Instructions, out Connected Routes, out Connected Routes Segments, out Reservation Routes, out Reservation Route Segments, out Permitted Users, out Domain Name, out Topology Resources Attributes, out Connectors, out ConnectorAttributes, out Reservations Live Status, out Services, out Service Attributes, out Result XML)
+            
+            try
+            {
+                GetReservationDetails1_Transform1(services1: {GetReservationDetails1.resources}, out brocaderesource: {brocaderesource})
+            }
+            catch (General) // ignore error
+            {
+    
+                If step still fails: End Step and continue
+            }
+    
+        }
+    
+        /*Case: if service was found*/
+        if ({brocaderesource} != "")
+        {
+            default_excel_path()
+            /*Path: ..\Assets\FileSystem */
+            /*Dll: read excel files*/
+            {
+                /* Start3 (Start) */
+    
+                /*SetSession: Set Session3*/
+                Set_Session3(SessionName: {FS_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+    
+                /*This function reads a sheet from an excel file using the provided sheet name.*/
+                read_build_info(Path: {inputsExcelPath}, Sheet Name: "Build Info", out Matrix: {buildInfoInputs})
+                get_brocade_inputs(Source1: {buildInfoInputs}, out allInputs: {buildInfoInputs})
+                /*EndSession: End Session1*/
+                End_Session1(SessionName: {FS_Session}, Action: TerminateSelfStartedSession)
+            }
+    
+            set_command_inputs()
+            /*Path: ..\Functions\ExecuteCommand */
+            set_vlan(Target: {brocaderesource}, TargetType: "Resource", CommandName: "set_access_vlan", CommandInputs: {setVlanInputs}, PrintOutput: "No", out out)
+        }
+        else
+        {
+            
+        }
+    #endregion /* ------- Thread End ------- */
+    
+    
+    
+    #region /* ------ Finalize Start ------ */
+        /* Finalize1 (Finalize) */
+    
+        {out} = "success"
+    #endregion /* ------- Finalize End ------- */
+    
+    
+    
+    }
+    catch (({lastError.Description} Contains "The API was not initialized properly and must be initialized")) // api not initialized
+    {
+        /* Action Type: PaWRunFunction */
+        API_Login(reservation: {reservation})
+        If action succeeds, retry Step in 1 seconds, a maximum of 1 times
+        If step still fails: End Step with error and continue
+    }
+    catch (General) // End test if any error occurs
+    {
+        If step still fails: End Function with error and continue
+    }
+}
+
+/* Functions */
+init_variables()
+{
+/* ------ Matshell code ------ */
+Project.connectivityInfo = connectivityInfo
+Project.ReservationId = reservation('ReservationId',2)
+
+/* ---- Matshell code end ---- */
+}
+GetReservationDetails1_Transform1()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: services1, Output: brocaderesource) */
+/* Step 0 */
+Table Filter(Column Header: "ResourceModelName", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: "Brocade NOS Switch", Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Custom - Simple(Output: {input(1,"Name")}, Output Type: String, Output Dimension: Scalar)
+
+/*------ Transformation Flows End ------ */
+}
+default_excel_path()
+{
+/* ------ Matshell code ------ */
+if (inputsExcelPath=='')
+	inputsExcelPath = 'C:\deploy\NFV Build Info.xls'
+end
+
+/* ---- Matshell code end ---- */
+}
+get_brocade_inputs()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: allInputs) */
+/* Step 0 */
+Table Filter(Column Header: "Component", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {brocaderesource}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Select Columns(Columns (Vector): ["Input", "Value"])
+
+/*------ Transformation Flows End ------ */
+}
+set_command_inputs()
+{
+/* ------ Matshell code ------ */
+setVlanInputs(0,0) = 'InterfaceNames'
+setVlanInputs(0,1) = buildInfoInputs('Interface Names For Migration','Value')
+
+setVlanInputs(1,0) = 'VLAN_ID'
+setVlanInputs(1,1) = buildInfoInputs('Management VLAN','Value')
+
+/* ---- Matshell code end ---- */
+}

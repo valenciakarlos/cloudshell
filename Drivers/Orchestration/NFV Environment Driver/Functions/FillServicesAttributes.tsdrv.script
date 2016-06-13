@@ -1,0 +1,91 @@
+/// <param name="reservationId">
+/// </param>
+/// <param name="Services">
+/// </param>
+/// <param name="ServicesAttributes">
+/// </param>
+/// <param name="buildInfoInputs">
+/// </param>
+FillServicesAttributes(string reservationId, string [,] Services, string [,] ServicesAttributes, string [,] buildInfoInputs)
+#region /* User defined variables */
+string[,] Services = "["", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; ]"
+string[,] ServicesAttributes = "["", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; "", "", "", "", "", "", "", "", "", ""; ]"
+string inputsExcelPath = ""
+string[,] buildInfoInputs = "["", "", ""; "", "", ""; "", "", ""; ]"
+string[,] curServAttr = "["", "", ""; "", "", ""; "", "", ""; ]"
+string[,] serviceInputs = "["", "", ""; "", "", ""; "", "", ""; ]"
+string reservationId = ""
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*NOP: set_attributes_on_services*/
+    /*Loop: servicesLoop*/
+    Loop (countrows({Services}) - 1) times
+    {
+        get_cur_service_attributes(Source1: {ServicesAttributes}, out curServiceAttributes: {curServAttr})
+        get_inputs_for_cur_service(Source1: {buildInfoInputs}, out serviceInputs: {serviceInputs})
+        /*Loop: inputsLoop*/
+        Loop (countrows({curServAttr}) - 1) times
+        {
+            find_input_value1(Source1: {serviceInputs}, out Measurement1: {curServAttr(({inputsLoop.Index} + 1),"Value")})
+        }
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: set service attributes*/
+        {
+            /* Start2 (Start) */
+            /*SetSession: Set Session2*/
+            Set_Session2(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+            /*Case: if there are attributes*/
+            if (countrows({curServAttr}) > 1)
+            {
+                /*Allows sending output to the command output window in a reservation.*/
+                WriteMessageToReservationOutput1(Reservation ID: {reservationId}, Reservation Output Message: "Setting values for: "{Services(({servicesLoop.Index} + 1),"Alias")})
+                /*Sets attributes and associated values for a service specified via its alias and reservation id.*/
+                set_current_service_attributes(Reservation ID: {reservationId}, Service Alias: {Services(({servicesLoop.Index} + 1),"Alias")}, Attribute Requests: {curServAttr(1:end,:)})
+            }
+        }
+    }
+#endregion /* ------- Thread End ------- */
+}
+
+/* Functions */
+
+get_cur_service_attributes()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: curServiceAttributes) */
+/* Step 0 */
+Table Filter(Column Header: "ServiceInstanceIndex", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {Services(({servicesLoop.Index} + 1),"Index")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Remove Column from Matrix By Index(Column Index: 0)
+
+/*------ Transformation Flows End ------ */
+}
+get_inputs_for_cur_service()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: serviceInputs) */
+/* Step 0 */
+Table Filter(Column Header: "Component", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {Services(({servicesLoop.Index} + 1),"Alias")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+
+/*------ Transformation Flows End ------ */
+}
+find_input_value1()
+{
+/* ------ Transformation Flows ------ */
+/* Flow 0 (Input: Source1, Output: Measurement1) */
+/* Step 0 */
+Table Filter_1(Column Header: "Input", Column Header Regular Expression: False, Ignore Column Case: False, Filter Value: {curServAttr(({inputsLoop.Index} + 1),"Name")}, Action: Keep Matched, Filter Value Regular Expression: False, Ignore Filter Case: False, Return Header: True)
+/* Step 1 */
+Custom - Advanced(Expression: if (countrows({input}) > 1)
+{output} = {input(1,"Value")}
+else
+{output} = ""
+end
+, Output Type: String, Output Dimension: Scalar)
+
+/*------ Transformation Flows End ------ */
+}

@@ -1,0 +1,50 @@
+/// <summary>
+/// This function is called (automatically by the server) only once when the driver is being loaded for the first time.
+/// This function will not get information on a specific reservation so make sure to only do initialization tasks in this function that are cross reservations.
+/// When several resources are using the same driver, the Init function will be called for each one of them when the driver will be used for the first time or after an idle time.
+/// </summary>
+/// <param name="resource">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="connectivityInfo">
+/// A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+Init(string [,] resource, string [,] connectivityInfo)
+#region /* User defined variables */
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] resource = "["ResourceName", "", ""; "ResourceFullName", "", ""; "ResourceFamily", "", ""; "ResourceModel", "", ""; "ResourceDescription", "", ""; "OnRack Address", "", ""; "OnRack Username", "", ""; "OnRack Password", "", ""; ]"
+/*A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] connectivityInfo = "["ServerAddress", "", ""; "TestShellApiPort", "", ""; "QualiApiPort", "", ""; "AdminUsername", "", ""; "AdminPassword", "", ""; ]"
+string json = ""
+string response = ""
+Session s_json
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    Init_Project_Variables()
+#endregion /* ------- Thread End ------- */
+}
+
+/* Functions */
+Init_Project_Variables()
+{
+/* ------ Matshell code ------ */
+Project.ServerAddress = connectivityInfo('ServerAddress',2)
+Project.TestShellApiPort = str2num(connectivityInfo('TestShellApiPort',2))
+Project.QualiApiPort = str2num(connectivityInfo('QualiApiPort',2))
+Project.connectivityInfo = connectivityInfo
+
+Project.OnRackServer = resource('OnRack Address',2)
+Project.OnRackUsername = resource('OnRack Username',2)
+Project.OnRackPassword = resource('OnRack Password',2)
+
+if (anyequals(resource(:,0),'LogPath')==1)
+  Project.LogPath = resource('LogPath',2)
+else
+  Project.LogPath = 'C:\ProgramData\QualiSystems\Shells.log'
+end
+/* ---- Matshell code end ---- */
+}

@@ -1,0 +1,38 @@
+/// <param name="Level">
+/// </param>
+/// <param name="LogMessage">
+/// </param>
+/// <param name="functionName">
+/// </param>
+AddToLog(string Level, string LogMessage, string functionName)
+#region /* User defined variables */
+string LogMessage = ""
+string Level = ""
+Session Dll_Session
+string functionName = ""
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*Path: ..\Assets\FileSystems */
+    /*Dll: FileSystems1*/
+    {
+        /* Start2 (Start) */
+        /*SetSession: Set Session2*/
+        Set_Session2(SessionName: {Project.FS_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+        /*Appends to a file creating it if the file doesn't exist*/
+        try
+        {
+            AppendTextToFile1(Path: {Project.LogPath}, Content: {currenttime2str}": "{functionName}": ["{Level}"]: "{(({LogMessage} + crlf) + crlf)}, Encoding: "Default")
+        }
+        catch (General) // retry
+        {
+            /* Action Type: RetryAction */
+            Retry(Retry Step in 1 seconds, a maximum of 2 times)
+            If step still fails: End Step and continue
+        }
+    }
+#endregion /* ------- Thread End ------- */
+}

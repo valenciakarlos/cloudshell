@@ -1,0 +1,81 @@
+/// <param name="reservation">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="globalInputs">
+/// A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="requirementsInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="additionalInfoInputs">
+/// A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.
+/// </param>
+/// <param name="connectivityInfo">
+/// Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+/// <param name="out">
+/// </param>
+Setup(string [,] reservation, string [,] globalInputs, string [,] requirementsInputs, string [,] additionalInfoInputs, string [,] connectivityInfo, out string out)
+#region /* User defined variables */
+string out = ""
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] reservation = "["Username", "", ""; "Password", "", ""; "Domain", "", ""; "ReservationId", "", ""; "TopologyPath", "", ""; "AdminUsername", "", ""; "AdminPassword", "", ""; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, InputType. It contains the requirements inputs provided by the user for the current reservation. This input is optional.*/
+string[,] requirementsInputs = "["ResourceName", "ParameterName", "Value", "InputType"; ]"
+/*A predefined matrix with the following columns: ParameterName, Value, PossibleValues (seperated by new lines). It contains the global inputs provided by the user for the current reservation. This input is optional.*/
+string[,] globalInputs = "["ParameterName", "Value", "PossibleValues"; ]"
+/*A predefined matrix with the following columns: ResourceName, ParameterName, Value, PossibleValues (seperated by new lines). It contains the additional info inputs provided by the user for the current reservation. This input is optional.*/
+string[,] additionalInfoInputs = "["ResourceName", "ParameterName", "Value", "PossibleValues"; ]"
+/*Quali Server connectivity information. A predefined matrix with the following columns: parameter, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] connectivityInfo = "["ServerAddress", "", ""; "TestShellApiPort", "", ""; "QualiApiPort", "", ""; ]"
+Session Dll_Session
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*NOP: Setup_flow*/
+    /*Path: ..\Custom Commands\ReadInputs */
+    ReadInputs1(reservation: {reservation}, globalInputs: {globalInputs}, requirementsInputs: {requirementsInputs}, additionalInfoInputs: {additionalInfoInputs}, connectivityInfo: {connectivityInfo}, out out)
+    /*NOP: OnRack*/
+    /*Path: ..\Functions\OnRackWrapper */
+    //OnRack1(reservation: {reservation}, connectivityInfo: {connectivityInfo}, out AllResources /*[Create Variable]*/)
+    /*NOP: Pre_set_brocade*/
+    /*Path: ..\Custom Commands\PreSet Brocade */
+    //PreSet_Brocade1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out)
+    /*NOP: vCenter*/
+    /*Path: ..\Custom Commands\vCenter */
+    //vCenter1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: Post_set_brocade*/
+    /*Path: ..\Custom Commands\PostSet Brocade */
+    //PostSet_Brocade1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out)
+    /*NOP: SIO*/
+    /*Path: ..\Custom Commands\ScaleIO */
+    //ScaleIO1(reservation: {reservation}, globalInputs: {globalInputs}, requirementsInputs: {requirementsInputs}, additionalInfoInputs: {additionalInfoInputs}, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: NSX*/
+    /*Path: ..\Custom Commands\NSX */
+    //NSX1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: vROPS*/
+    /*Path: ..\Custom Commands\vROPS */
+    //vROPS1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: VIO_and_vCD*/
+    /*Path: ..\Custom Commands\vCD */
+    //vCD1(reservation: {reservation}, globalInputs: {globalInputs}, requirementsInputs: {requirementsInputs}, additionalInfoInputs: {additionalInfoInputs}, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: vLog*/
+    /*Path: ..\Custom Commands\vLogs */
+    //vLogs1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: Versa*/
+    /*Path: ..\Custom Commands\Versa */
+    //Versa1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+    /*NOP: Deploy_Nagios*/
+    /*Path: ..\Custom Commands\Nagios */
+    //Nagios1(reservation: {reservation}, globalInputs: null, requirementsInputs: null, additionalInfoInputs: null, connectivityInfo: {connectivityInfo}, out out /*[Create Variable]*/)
+#endregion /* ------- Thread End ------- */
+
+#region /* ------ Finalize Start ------ */
+    /* Finalize (Finalize) */
+    {out} = "success"
+#endregion /* ------- Finalize End ------- */
+
+}

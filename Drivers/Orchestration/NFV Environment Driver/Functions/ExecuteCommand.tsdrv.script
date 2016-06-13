@@ -1,0 +1,69 @@
+/// <param name="Target">
+/// </param>
+/// <param name="TargetType">
+/// Resource/Service/Environment
+/// </param>
+/// <param name="CommandName">
+/// </param>
+/// <param name="CommandInputs">
+/// Name/Value matrix
+/// </param>
+/// <param name="PrintOutput">
+/// Yes/No (default=yes)
+/// </param>
+/// <param name="out">
+/// </param>
+ExecuteCommand(string Target, string TargetType, string CommandName, string [,] CommandInputs, string PrintOutput, out string out)
+#region /* User defined variables */
+/*Resource/Service/Environment*/
+string TargetType = ""
+string Target = ""
+string CommandName = ""
+/*Name/Value matrix*/
+string[,] CommandInputs = "[;]"
+/*Yes/No (default=yes)*/
+string PrintOutput = "Yes"
+string out = ""
+#endregion
+
+/* Main flow/s */
+{
+    try
+    {
+    #region /* ------ Thread Start ------ */
+        /* Start (Start) */
+    
+        /*Path: PrintMessage */
+        notify_user(Message: {Target}" - Starting command: "{CommandName}, Level: "Info")
+        /*Path: ..\Assets\TestShellAPI */
+        /*Dll: execute command*/
+        {
+            /* Start2 (Start) */
+    
+            /*SetSession: Set Session2*/
+            Set_Session2(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+            /*Case: check target type*/
+            if ((((lower({TargetType}) == "resource") || (lower({TargetType}) == "service")) || (lower({TargetType}) StartsWith "serv")) || (lower({TargetType}) StartsWith "res"))
+            {
+                /*Executes a command for the specified target.*/
+                ExecuteCommand1(Reservation ID: {Project.ReservationId}, Target Name: {Target}, Target Type: {TargetType}, Command Name: {CommandName}, Command Inputs: {CommandInputs}, Print Output: {PrintOutput}, out Command Output: {out}, out Result XML)
+            }
+            else if (lower({TargetType}) StartsWith "env")
+            {
+                /*Executes a command for the specified reservation.*/
+                ExecuteEnvironmentCommand1(Reservation ID: {Project.ReservationId}, Command Name: {CommandName}, Command Inputs: {CommandInputs}, Print Output: {PrintOutput}, out Command Output: {out}, out Result XML)
+            }
+            else
+            {
+                
+            }
+        }
+    
+    #endregion /* ------- Thread End ------- */
+    
+    }
+    catch (General) // End function if any error occurs
+    {
+        If step still fails: End Function with error and continue
+    }
+}

@@ -1,0 +1,240 @@
+﻿<html xmlns:dd="http://schemas.qualisystems.com/DriverDocumentation.xsd"><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><style type="text/css">
+        body
+        {
+        font-family: 'Segoe UI';
+        font-size: .813em;
+        color: rgb(0,60,105);
+        font-style: normal;
+        }
+
+        p
+        {
+        text-transform: none;
+        text-indent: 5px;
+        }
+
+        a.cmd_link:visited, a.cmd_link:link, a.cmd_link:hover, a.cmd_link:active
+        {
+        padding-left: 10px;
+        color: rgb(0,60,105);
+        font-family: Arial;
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+        font-weight: normal;
+        }
+
+        h1, h2, h3, h4, h5, h6
+        {
+        background-color: rgb(221,221,221);
+        color: rgb(0,60,105);
+        font-family: Arial;
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+        font-weight: normal;
+        }
+
+        h3
+        {
+        font-weight: Bold;
+        font-size: x-large;
+        }
+
+        .commandTitle
+        {
+        font-weight: normal;
+        font-size: medium;
+        padding-left: 25px;
+        }
+
+
+        a.iref
+        {
+        background-color: rgb(230,230,230);
+        color: rgb(60,60,60);
+        font-family: Arial;
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none; /*font-size: 80%;*/
+        }
+
+        .tableOfContent
+        {
+        -moz-column-count: 1; /* Firefox */
+        -webkit-column-count: 1; /* Safari and Chrome */
+        column-count: 1;
+        }
+
+        .description
+        {
+        white-space: pre-line;
+        }
+
+        .moreDescription
+        {
+        white-space: pre-line;
+        }
+
+        .syntax
+        {
+        white-space: pre-line;
+        }
+
+        .mainBody
+        {
+        }
+
+        .out
+        {
+        font-weight: bold;
+        }
+
+        .header
+        {
+        color: #898989;
+        font-size: xx-large;
+        text-align: center;
+        }
+
+        .folderFirst
+        {
+        font-weight: bold;
+        padding-top: 10px;
+        }
+
+        .commandTOC
+        {
+        color: #003C69;
+        text-indent: 20px;
+        }
+
+        li
+        {
+        margin-left: 0;
+        margin-bottom: 0;
+        padding: 2px 15px 5px;
+        list-style-type: circle;
+
+        }
+
+        table
+        {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #BBB;
+        border-collapse: collapse; /* 'cellspacing' equivalent */
+        width: 100%;
+        }
+
+        table th
+        {
+        background-color: #E5E5E5;
+        height: 21px;
+        font-family: 'Segoe UI';
+        font-size: .813em;
+        color: black;
+        font-style: normal;
+        font-weight: normal;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #BBB;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: .2pt;
+        font-weight: bold;
+        text-align: left;
+        border-style: solid;
+        border-color: rgb(153, 153, 153) silver silver;
+        border-width: 1pt 1pt 1pt;
+        padding: 0.7pt 1.45pt 0.7pt 2.9pt;
+        background: rgb(0, 60, 105) none repeat scroll 0%;
+        -moz-background-clip: initial;
+        -moz-background-origin: initial;
+        -moz-background-inline-policy: initial;
+        height: 18pt;
+        }
+
+        table td
+        {
+        border-style: solid;
+        border-width: 1px;
+        border-color: #BBB;
+        font-size: .813em;
+        padding-right: 4px;
+        padding-left: 4px;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        text-align: left;
+        }
+
+        table td, table th
+        {
+        padding-left: 4px; /* 'cellpadding' equivalent */
+        padding-right: 4px;
+        padding-bottom: 4px;
+        padding-top: 4px;
+        text-align: left;
+        white-space: nowrap;
+        }
+
+        .mandatory
+        {
+        }
+
+        .command
+        {
+        padding-top: 15px;
+        padding-bottom: 25px;
+        }
+
+        .preStyle
+        {
+        font-family: 'Segoe UI';
+        font-size: .813em;
+        color: black;
+        }
+
+        .codeSnippetContainerCodeContainer
+        {
+        /*border-left: solid 1px #939393;
+        border-bottom: solid 1px #939393;
+        border-right: solid 1px #939393;
+        border-top: solid 1px #939393;
+        clear: both;
+        margin-bottom: 12px;
+        position: relative;
+        top: -1px;*/
+        }
+
+        .codeSnippetContainerCode
+        {
+        border-left: solid 1px #939393;
+        border-bottom: solid 1px #939393;
+        border-right: solid 1px #939393;
+        border-top: solid 1px #939393;
+        clear: both;
+        margin-bottom: 12px;
+        position: relative;
+        top: -1px;
+        overflow: auto;
+        margin: 1;
+        padding-right: 21px;
+        padding-left: 21px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color:Black;
+
+        }
+
+	
+	
+      </style><head><title>vcd_setup API Reference
+        </title></head><body><a name="TOC" /><div class="header">vcd_setup API Reference
+        </div><div>API Version 1.0.1255.41371</div><HR /><h2><a name="TOC"><p class="indented">Table Of Content</p></a></h2><p>Functions:</p><li><a class="cmd_link" href="&#xA;                #EntryPoint">EntryPoint</a></li><HR /><div class="mainBody"><div class="command"><a name="EntryPoint" /><h3>EntryPoint</h3><p /><p><b>
+				  Syntax
+				</b></p><div class="codeSnippetContainerCodeContainer"><div class="codeSnippetContainerCode" dir="ltr"><div style="color:Black;"><pre>Returnparam = EntryPoint(argsparam)</pre></div></div></div><p><b>
+        Parameters
+      </b></p><table><tr><th style="width: 60pt;">Type</th><th style="width: 50pt;">Direction</th><th style="width: 150pt;">Name</th><th>Description</th></tr><tr><td>
+            String Vector
+          </td><td>In</td><td><b>argsparam</b></td><td><span class="description" /></td></tr></table></div><a class="iref" href="#TOC">back to TOC</a><HR /></div></body></html>

@@ -1,0 +1,23 @@
+/// <summary>
+/// This function is called (automatically by the server) only once when the driver is going to be unloaded.
+/// Use this function to close any open sessions, saving states and any information that might be needed for the next executions of the driver commands (these can be loaded again in the Init function).
+/// </summary>
+EndSession()
+#region /* User defined variables */
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] resource = "["ResourceName", "", ""; "ResourceFullName", "", ""; "ResourceFamily", "", ""; "ResourceModel", "", ""; "ResourceDescription", "", ""; ]"
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    /*NOP: Close_any_open_sessions*/
+    /*NOP: Save_any_needed_state*/
+    /*NOP: Driver_is_going_to_be_closed*/
+    /*EndSession: End Session1*/
+    End_Session1(SessionName: {Project.TSAPI_Session}, Action: TerminateSession)
+    /*EndSession: End Session2*/
+    End_Session2(SessionName: {Project.FS_Session}, Action: TerminateSession)
+#endregion /* ------- Thread End ------- */
+}

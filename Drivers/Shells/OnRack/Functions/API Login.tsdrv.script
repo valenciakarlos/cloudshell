@@ -1,0 +1,26 @@
+/// <param name="reservation">
+/// A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.
+/// </param>
+API Login(string [,] reservation)
+#region /* User defined variables */
+/*A predefined matrix with the following columns: attribute, mandatory / optional (empty is mandatory), value - this column will be automatically populated when executing the command.*/
+string[,] reservation = "["Username", "", ""; "Password", "", ""; "Domain", "", ""; "ReservationId", "", ""; ]"
+#endregion
+
+/* Main flow/s */
+{
+#region /* ------ Thread Start ------ */
+    /* Start (Start) */
+    {Project.ReservationId} = {reservation("ReservationId",2)}
+    /*Path: ..\Assets\TestShellAPI */
+    /*Dll: API Login*/
+    {
+        /* Start1 (Start) */
+        /*SetSession: Set Session1*/
+        Set_Session1(SessionName: {Project.TSAPI_Session}, SessionType: Dll, ConnectAction: ContinueOrStartSession, ExecutionFolder: SessionExecutionFolder, RuntimeVersion: Default, HostType: Out)
+        SetServerConnectionInfo1(username: {reservation("Username",2)}, password: {reservation("Password",2)}, domainName: {reservation("Domain",2)}, serverAddress: {Project.ServerAddress}, serverPort: {Project.TestShellApiPort})
+        /*Logs in a user, with current user definitions.*/
+        Logon1()
+    }
+#endregion /* ------- Thread End ------- */
+}

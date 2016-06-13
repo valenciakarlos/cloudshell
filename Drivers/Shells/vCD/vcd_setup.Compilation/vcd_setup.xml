@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DriverDocumentation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="vcd_setup" Version="1.0.1255.41371" Description="A project for creating a command-line application.&#xD;&#xA;Exe applications require Runtime support." OutputType="EXE" DriverBuilderVersion="6.4.0" xmlns="http://schemas.qualisystems.com/DriverDocumentation.xsd">
+  <Function Name="EntryPoint" Description="Main entry point for an executable" IsImplemented="true" IsEntryPoint="true" ReturnValueName="Returnparam" ReturnValueType="int" ReturnValueDescription="">
+    <Parameter Name="argsparam" Type="string[]" Direction="In" />
+  </Function>
+</DriverDocumentation>
