@@ -1,4 +1,3 @@
-Output
 *.Compilation/
 *refactoring.cache*
 site-packages.zip
