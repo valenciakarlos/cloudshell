@@ -1,0 +1,6 @@
+Output
+*.Compilation/
+*refactoring.cache*
+site-packages.zip
+NFV Build Environment.zip
+.idea/
