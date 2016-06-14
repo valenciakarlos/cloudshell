@@ -143,8 +143,8 @@ for esx in esxs:
 # Remove duplicate ESXs (if there's any)
 sdclist = []
 for i in _sdclist:
-       if i not in sdclist:
-           sdclist.append(i)
+    if i not in sdclist:
+        sdclist.append(i)
 
 
 try:
@@ -154,7 +154,7 @@ try:
         try:
             deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"')
         except Exception, e:
-            if "already exists" in e.output:
+            if "already exists" in e:
                 cleanup(_vm_name, vcenter_ip, vcenter_user, vcenter_password)
                 deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"')
     # Deploy Gateway
@@ -162,7 +162,7 @@ try:
     try:
         deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"')
     except Exception, e:
-        if "already exists" in e.output:
+        if "already exists" in e:
             cleanup(_vm_name, vcenter_ip, vcenter_user, vcenter_password)
             deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"')
 
