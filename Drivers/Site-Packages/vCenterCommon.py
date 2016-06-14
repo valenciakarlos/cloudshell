@@ -356,7 +356,7 @@ def deployVM_basic(string):
 
 def deployVM(string, vm_name=None, vc_ip=None, vc_user=None, vc_pass=None, retry_deploy=False):
     output = _deployVM(string)
-    if retry_deploy and ('vim.fault.DuplicateName' in output):
+    if retry_deploy and ('already exists' in output):
         try:
             vmPower(vm_name, 'stop', vc_ip, vc_user, vc_pass)
         except:
@@ -364,7 +364,10 @@ def deployVM(string, vm_name=None, vc_ip=None, vc_user=None, vc_pass=None, retry
         deleteVMs(vm_name, vc_ip, vc_user, vc_pass)
         time.sleep(3)
         output = _deployVM(string)
-    return output
+    if 'error' in output.lower():
+        raise Exception(output)
+    else:
+        return output
 
 
 def _deployVM(string):
