@@ -151,21 +151,13 @@ try:
     # Deploy SVM
     for name in siodic:
         _vm_name = vm_name + '-' + name
-        try:
-            deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"')
-        except Exception, e:
-            if "already exists" in e:
-                cleanup(_vm_name, vcenter_ip, vcenter_user, vcenter_password)
-                deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"')
+        command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"'
+        deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
+
     # Deploy Gateway
     _vm_name = vm_name + "-Gateway"
-    try:
-        deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"')
-    except Exception, e:
-        if "already exists" in e:
-            cleanup(_vm_name, vcenter_ip, vcenter_user, vcenter_password)
-            deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"')
-
+    command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"'
+    deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
 
 except Exception, e:
     print e
