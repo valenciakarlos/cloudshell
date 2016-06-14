@@ -490,7 +490,7 @@ foreach ($esx in $a.Split(",")){
         foreach ($disk in $free.split(';')){
             $size = $disk.split(',')[3]
             $size = $size -as [float]
-            if ($size -ge 100){
+            if ($size -ge 100 -and $size -lt 6000){
                 $freediskcount += 1
             }
         }
