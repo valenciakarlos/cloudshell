@@ -177,7 +177,7 @@ try:
     subprocess.check_output(r'c:\deploy\vcsa\vcsa-cli-installer\win32\vcsa-deploy.exe --no-esx-ssl-verify c:\deploy\vcsaparams.json', shell=True)
 except Exception as e:
     print e
-	with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
         f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcenter deploy error: ' + e + '\r\n')
     sys.exit(1)
 

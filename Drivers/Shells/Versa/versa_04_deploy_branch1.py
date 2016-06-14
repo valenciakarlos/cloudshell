@@ -69,13 +69,13 @@ except:
     pass
 #Deploy Branch1
 try:
-    subprocess.check_output(
-        'C:\Program Files\VMware\VMware OVF Tool\ovftool.exe --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + branch1_portgroup + '" --name="' + branch1_vmname + '" "' + controller_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    )
+    command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + branch1_portgroup + '" --name="' + branch1_vmname + '" "' + controller_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
+    deployVM(command, branch1_vmname, vcenter_ip, vcenter_user, vcenter_password, True)
+    time.sleep(5)
     vmPower(branch1_vmname, 'start', vcenter_ip, vcenter_user, vcenter_password)
-except subprocess.CalledProcessError as e:
-    print '\r\n' + e.output
-    exit(1)
+except Exception, e:
+    print '\r\n' + str(e)
+    sys.exit(1)
 
 loop = 10
 script = '\'cat /etc/network/interfaces\''
