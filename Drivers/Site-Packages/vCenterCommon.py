@@ -346,12 +346,64 @@ def getAdapterMac(vmname, vcenter_ip, vcenter_user, vcenter_password):
     macs = powershell(script).split('<%<%')[1].strip().split(' ')
     return macs
 
-def deployVM(string):
+def deployVM_basic(string):
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
         f.write("Deploying VM using OVFTools with: " + string + '\r\n')
     subprocess.check_output(
         'C:\Program Files\VMware\VMware OVF Tool\ovftool.exe ' + string
     )
+
+
+def deployVM(string, vm_name=None, vc_ip=None, vc_user=None, vc_pass=None, retry_deploy=False):
+    output = _deployVM(string)
+    if retry_deploy and ('already exists' in output):
+        try:
+            vmPower(vm_name, 'stop', vc_ip, vc_user, vc_pass)
+        except:
+            pass
+        deleteVMs(vm_name, vc_ip, vc_user, vc_pass)
+        time.sleep(3)
+        output = _deployVM(string)
+    if 'error' in output.lower():
+        raise Exception(output)
+    else:
+        return output
+
+
+def _deployVM(string):
+    stdin_text = '''
+        '''
+    try:
+        string = 'C:\Program Files\VMware\VMware OVF Tool\ovftool.exe ' + string
+        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploying VM using OVFTool: ' + str(string) + '\n')
+
+        from subprocess import Popen, PIPE, STDOUT
+        p = Popen(string, stdout=PIPE, stdin=PIPE, stderr=PIPE)
+        stdout_data, stderr_data = p.communicate(input=stdin_text)
+        rv = ''
+        if stdout_data:
+            rv += stdout_data + '''
+'''
+        if stderr_data:
+            rv += stderr_data + '''
+'''
+
+        # rv = subprocess.check_output(command_array, stderr=subprocess.STDOUT)
+        if rv is not None:
+            rv = rv.strip()
+        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploy VM result: ' + str(rv) + '\n')
+
+        return rv
+    except Exception as e:
+        if hasattr(e, 'output'):
+            ou = str(e.output)
+        else:
+            ou = 'no output'
+        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploy VM failed: ' + str(e) + ': ' + ou + '\n')
+        raise e
 
 def changeVMadapter(vmname, nics, networks, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core\n
