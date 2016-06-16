@@ -70,7 +70,7 @@ except:
 #Deploy Branch1
 try:
     command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + branch1_portgroup + '" --name="' + branch1_vmname + '" "' + controller_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, branch1_vmname, vcenter_ip, vcenter_user, vcenter_password, True)
+    deployVM(command, branch1_vmname, vcenter_ip, vcenter_user, vcenter_password, False)
     time.sleep(5)
     vmPower(branch1_vmname, 'start', vcenter_ip, vcenter_user, vcenter_password)
 except Exception, e:

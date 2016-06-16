@@ -44,7 +44,7 @@ cluster = attrs['Cluster']
 
 try:
     command = ' --machineOutput --noSSLVerify --allowExtraConfig --powerOn --acceptAllEulas --datastore="' + datastore + "\" --diskMode=\"" + thick_thin +"\" --prop:vsm_hostname=\"" + nsx_hostname + "\" --prop:vsm_ip_0=" + nsx_ip + " --prop:vsm_netmask_0=" + netmask + " --prop:vsm_gateway_0=" + gateway + " --prop:vsm_dns1_0=" + dns_csv + " --prop:vsm_domain_0=" + nsx_domain +" --prop:vsm_ntp_0=" + ntp + " --prop:vsm_isSSHEnabled=True" + " --net:VSMgmt=\"" + portgroup + "\" --prop:vsm_cli_passwd_0=" + nsx_password + " --prop:vsm_cli_en_passwd_0=" + nsx_password + " --name=" + name +" " + ova_path + ' "vi://''' + vcenter_user + ''':''' + '"' + vcenter_password + '"' + '''@''' + vcenter_ip + '''/''' + datacenter + '''/host/''' + cluster + '/Resources"'
-    deployVM(command, name, vcenter_ip, vcenter_user, vcenter_password, True)
+    deployVM(command, name, vcenter_ip, vcenter_user, vcenter_password, False)
 except Exception as e:
     print '\r\n' + str(e)
     sys.exit(1)
