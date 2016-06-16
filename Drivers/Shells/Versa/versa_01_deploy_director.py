@@ -67,7 +67,7 @@ except:
 #Deploy Director
 try:
     command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + versa_sb_portgroup + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
+    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 except Exception, e:
     print '\r\n' + str(e)
     sys.exit(1)
