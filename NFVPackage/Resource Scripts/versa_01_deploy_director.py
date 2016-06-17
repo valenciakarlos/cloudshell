@@ -1,6 +1,6 @@
 
 from Versa_Common import *
-
+import sys
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
@@ -63,14 +63,16 @@ try:
 
 except:
     pass
+
 #Deploy Director
 try:
-    deployVM('--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + versa_sb_portgroup + '" --name="' +vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"')
-except subprocess.CalledProcessError as e:
-    print '\r\n' + e.output
-    exit(1)
+    command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + versa_sb_portgroup + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
+    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
+except Exception, e:
+    print '\r\n' + str(e)
+    sys.exit(1)
 
-time.sleep(30)
+time.sleep(5)
 try:
     vmPower(vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
     addAdapter(vm_name, versa, vcenter_ip, vcenter_user, vcenter_password)

@@ -62,5 +62,5 @@ cd ..\
 
 rem create site-package zip
 cd drivers\site-packages
-"c:\Program Files\7-Zip\7z.exe" a ..\..\"site-packages.zip" *
+"c:\Program Files\7-Zip\7z.exe" a ..\..\"Python site packages.zip" *
 cd ..\..\
