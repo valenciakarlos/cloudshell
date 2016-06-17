@@ -1931,7 +1931,7 @@
     </AttributeInfo>
   </Attributes>
   <ResourceFamilies>
-    <ResourceFamily Name="Compute" IsLockedByDefault="true" ImagePath="Compute_Family.png" Description="" SupportsLoopbackMapping="true" IsSearchable="true">
+    <ResourceFamily Name="Compute" IsLockedByDefault="true" ImagePath="Compute_Family.png" Description="" SupportsMulticastMapping="true" SupportsLoopbackMapping="true" IsSearchable="true">
       <AttachedAttributes>
         <AttachedAttribute Name="Nagios Host Group" IsOverridable="true" IsLocal="true">
           <AllowedValues />
