@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" afterPath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/vLogs.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/vLogs.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_01_deploy_nagios.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_01_deploy_nagios.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_01_deploy_nsx.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_01_deploy_nsx.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_01_deploy_vcd.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_01_deploy_vcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_01_deploy_vcenter.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_01_deploy_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_01_deploy_director.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_01_deploy_director.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_02_deploy_analytics.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_02_deploy_analytics.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_03_deploy_controller.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_03_deploy_controller.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_04_deploy_branch1.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_04_deploy_branch1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_05_deploy_branch2.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_05_deploy_branch2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_06_post_deployment_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_06_post_deployment_configurations.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_16_branches_startup_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_16_branches_startup_configurations.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_01_deploy_vlog.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_01_deploy_vlog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_01_deploy_vrops.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_01_deploy_vrops.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create package.cmd" afterPath="$PROJECT_DIR$/create package.cmd" />
-    </list>
+    <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="" />
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,8 +34,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12463343">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.1744868">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -206,6 +180,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Drivers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Drivers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Shells" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -398,9 +390,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="998" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17083333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17083333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -643,8 +635,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12463343">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.1744868">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
