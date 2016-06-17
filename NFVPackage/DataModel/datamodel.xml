@@ -3264,6 +3264,7 @@
             <ScriptName>vcd_02_create_sql_db</ScriptName>
             <ScriptName>vcd_04_install_and_configure</ScriptName>
             <ScriptName>vcd_01_deploy_vcd</ScriptName>
+			<ScriptName>vcd_drop_db</ScriptName>
           </Scripts>
         </ResourceModel>
       </Models>
@@ -4580,6 +4581,9 @@
       <ScriptInputs />
     </ScriptDescriptor>
     <ScriptDescriptor Name="nsx_02_set_sso" Description="Connect to vCenter SSO server" Version="1" Alias="02 Set NSX SSO">
+      <ScriptInputs />
+    </ScriptDescriptor>
+	<ScriptDescriptor Name="vcd_drop_db" Description="Drops the db that was created for vCD" CategoryName="Uninstall" Version="1" Alias="Drop DB">
       <ScriptInputs />
     </ScriptDescriptor>
     <ScriptDescriptor Name="vcd_03_create_certificates" Description="Creates ssl certificates for vCD" CategoryName="Install" Version="1" Alias="03 Create SSL Certificates For vCD">

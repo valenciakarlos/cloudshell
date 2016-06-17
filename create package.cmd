@@ -30,28 +30,28 @@ del "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe"
     )
     
 rem copy compiled drivers
-copy drivers\shells\onrack.compilation\onrack.dll "nfvpackage\resource drivers\OnRack Driver.dll"
-copy drivers\orchestration\nfv environment driver.compilation\nfv environment driver.dll "nfvpackage\topology drivers\NFV Environment Driver.dll"
+copy "drivers\shells\onrack.compilation\onrack.dll" "nfvpackage\resource drivers\OnRack Driver.dll" /y
+copy "Drivers\Orchestration\nfv environment driver.Compilation\nfv environment driver.dll" "nfvpackage\topology drivers\NFV Environment Driver.dll" /y
 
 rem create vcd script
-copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script"
+copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script" /y
 cd drivers\shells\vcd\vcd_setup_script
 "c:\Program Files\7-Zip\7z.exe" a ..\"vcd_05_setup.zip" *
 cd ..\..\..\..\
 
 
 rem copy script files
-copy drivers\shells\brocade\*.py "nfvpackage\resource scripts"
-copy drivers\shells\nagios\*.py "nfvpackage\resource scripts"
-copy drivers\shells\nsx\*.py "nfvpackage\resource scripts"
-copy drivers\shells\scaleio\*.py "nfvpackage\resource scripts"
-copy drivers\shells\vcd\*.py "nfvpackage\resource scripts"
-copy drivers\shells\vcd\*.zip "nfvpackage\resource scripts"
-copy drivers\shells\vcenter\*.py "nfvpackage\resource scripts"
-copy drivers\shells\versa\*.py "nfvpackage\resource scripts"
-copy drivers\shells\vcd\*.py "nfvpackage\resource scripts"
-copy drivers\shells\vloginsight\*.py "nfvpackage\resource scripts"
-copy drivers\shells\vrops\*.py "nfvpackage\resource scripts"
+copy drivers\shells\brocade\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\nagios\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\nsx\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\scaleio\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\vcd\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\vcd\*.zip "nfvpackage\resource scripts" /y
+copy drivers\shells\vcenter\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\versa\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\vcd\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\vloginsight\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\vrops\*.py "nfvpackage\resource scripts" /y
 
 
 rem create package
