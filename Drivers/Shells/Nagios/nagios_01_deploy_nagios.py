@@ -33,7 +33,7 @@ cluster = attrs['Nagios Cluster']
 
 try:
     command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:DNS1=' + dns1 + ' --prop:DNS2=' + dns2 + ' --prop:Gateway=' + gateway + ' --prop:Hostname="' + hostname + '"  --prop:IP=' + nagios_ip + ' --prop:Netmask=' + netmask + ' --prop:Root_Password="' + rootpass + '" --prop:Search_Domains="' + search_domains + '" --net:"Anetwork"="' + portgroup +  '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
+    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 except Exception, e:
     print e
     sys.exit(1)

@@ -63,7 +63,7 @@ except:
 #Deploy Analytics
 try:
     command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + analytics_1_portgroup + '" --name="' + analytics_vm_name + '" "' + analytics_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, analytics_vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
+    deployVM(command, analytics_vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
     time.sleep(5)
     vmPower(analytics_vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
 except Exception, e:

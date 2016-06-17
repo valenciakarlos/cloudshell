@@ -152,12 +152,12 @@ try:
     for name in siodic:
         _vm_name = vm_name + '-' + name
         command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"'
-        deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
+        deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 
     # Deploy Gateway
     _vm_name = vm_name + "-Gateway"
     command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"'
-    deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, True)
+    deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 
 except Exception, e:
     print e
