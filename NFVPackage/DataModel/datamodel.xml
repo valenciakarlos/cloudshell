@@ -1941,7 +1941,7 @@
         </AttachedAttribute>
       </AttachedAttributes>
       <AttributeValues>
-        <AttributeValue Name="Nagios Host Group" Value="quali-esx" />
+        <AttributeValue Name="Nagios Host Group" Value="quali-esxi" />
         <AttributeValue Name="Memory usage" Value="0" />
       </AttributeValues>
       <Models />        
