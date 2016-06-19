@@ -200,7 +200,7 @@ def CPU(host, warn, crit):
         exitcode = 1
     else:
         exitcode = 2
-    print ('CPU usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
+    print (str(percent) + ' | CPU Usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
     exit(int(exitcode))
 
 def Memory(host, warn, crit):
@@ -211,7 +211,7 @@ def Memory(host, warn, crit):
         exitcode = 1
     else:
         exitcode = 2
-    print ('Memory usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
+    print (str(percent) + ' | Memory Usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
     exit(int(exitcode))
 
 def Storage(host, exclude, storage, warn, crit):
@@ -233,7 +233,7 @@ def Storage(host, exclude, storage, warn, crit):
         exitcode = 1
     else:
         exitcode = 2
-    print ('Storage usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
+    print (str(percent) + ' | Storage Usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
     exit(int(exitcode))
 
 
