@@ -95,7 +95,7 @@ def do_command_and_wait(chan, command, expect):
     while not re.search(expect, buff, 0):
         resp = chan.recv(9999)
         buff += resp
-        print resp
+        #print resp
     g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': replay : ' + buff + ' : wait for : ' + expect + '\r\n')
     time.sleep(1)
