@@ -12,6 +12,12 @@
         <Rule Name="Monitor Modifications" />
       </Rules>
     </AttributeInfo>
+	    <AttributeInfo Name="CPU usage" Type="Numeric" DefaultValue="0" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Setting" />
+        <Rule Name="Monitor Modifications" />
+      </Rules>
+    </AttributeInfo>
     <AttributeInfo Name="MappingFilePath" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
         <Rule Name="Configuration" />
@@ -1939,10 +1945,14 @@
         <AttachedAttribute Name="Memory usage" IsOverridable="true" IsLocal="true">
           <AllowedValues />
         </AttachedAttribute>
+		<AttachedAttribute Name="CPU usage" IsOverridable="true" IsLocal="true">
+          <AllowedValues />
+        </AttachedAttribute>
       </AttachedAttributes>
       <AttributeValues>
         <AttributeValue Name="Nagios Host Group" Value="quali-esxi" />
         <AttributeValue Name="Memory usage" Value="0" />
+		<AttributeValue Name="CPU usage" Value="0" />
       </AttributeValues>
       <Models />        
       <Categories />
