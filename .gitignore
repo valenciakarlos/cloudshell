@@ -5,3 +5,4 @@ NFV Build Environment.zip
 .#refactoring.cache
 *.cache
 .idea/workspace.xml
+*.cache

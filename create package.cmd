@@ -5,7 +5,7 @@ del "drivers\shells\onrack.compilation\onrack.dll"
     if exist "drivers\shells\onrack.compilation\onrack.dll" (
         timeout 7 >nul
     ) else (
-        sleep 3
+        timeout /t 3 /nobreak > NUL
         goto :while1
     )
     
@@ -15,7 +15,7 @@ del "drivers\orchestration\nfv environment driver.compilation\nfv environment dr
     if exist "drivers\orchestration\nfv environment driver.compilation\nfv environment driver.dll" (
         timeout 7 >nul
     ) else (
-        sleep 3
+        timeout /t 3 /nobreak > NUL
         goto :while2
     )
 
@@ -25,7 +25,7 @@ del "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe"
     if exist "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe" (
         timeout 7 >nul
     ) else (
-        sleep 3
+        timeout /t 3 /nobreak > NUL
         goto :while3
     )
     
