@@ -53,7 +53,8 @@ db_instance = ".\qualisystems2008"
 dbexist = subprocess.check_output('sqlcmd -S ' + db_instance + ' -Q "select name from master.sys.databases where name=\"vcloud\""')
 
 if "vcloud" in dbexist:
-    print 'vcloud db already exists'
+    print 'vcloud db already exists, you should drop it first'
+    sys.exit(1)
 else:
     out = subprocess.check_output('sqlcmd -S ' + db_instance + ' -i c:\\deploy\\vcd.sql')
     if "does not exist" in out:
