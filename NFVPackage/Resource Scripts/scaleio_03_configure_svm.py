@@ -150,7 +150,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 
@@ -182,7 +182,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Configure SIO MDM Cluster
@@ -208,7 +208,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Install vCenter Plugin
@@ -239,7 +239,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 endtime = datetime.datetime.now()

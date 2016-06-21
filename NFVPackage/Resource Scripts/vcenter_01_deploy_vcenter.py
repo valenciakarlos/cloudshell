@@ -178,6 +178,6 @@ try:
 except Exception as e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcenter deploy error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcenter deploy error: ' + str(e) + '\r\n')
     sys.exit(1)
 

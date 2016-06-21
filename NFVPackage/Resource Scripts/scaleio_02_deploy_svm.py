@@ -164,7 +164,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Add Gateway to the dictionary
@@ -185,7 +185,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 time.sleep(60)
@@ -207,7 +207,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Add RDM to SVMs
@@ -235,7 +235,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 try:
@@ -247,7 +247,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Add AutoStart to the ESXs and SVMs
@@ -262,7 +262,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 endtime = datetime.datetime.now()

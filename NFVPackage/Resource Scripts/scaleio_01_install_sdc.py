@@ -72,10 +72,11 @@ try:
     for esx in esxs:
         esx_name = esx.split(",")[0]
         configureSDC(esx_name, esx_password, ipstring)
+    # After configuring the SDC another reboot to the ESX is required
     rebootESX(esx_list[:-1], vcenter_ip, vcenter_user, vcenter_password)
 
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
