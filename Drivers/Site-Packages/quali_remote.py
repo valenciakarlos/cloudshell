@@ -111,11 +111,21 @@ def pspath():
 
 
 def exe(command_array):
-    return subprocess.check_output(command_array, stderr=subprocess.STDOUT)
+    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': exe: ' + str(command_array) + '\r\n')
+    g.close()
+    rv = subprocess.check_output(command_array, stderr=subprocess.STDOUT)
+    if rv is not None:
+        rv = rv.strip()
+
+    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': exe result: ' + str(rv) + '\r\n')
+    g.close()
+    return rv
 
 
 def bat(script_text):
-    g=open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': bat: ' + script_text + '\r\n')
     g.close()
 
