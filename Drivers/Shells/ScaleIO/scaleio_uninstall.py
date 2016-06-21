@@ -1,4 +1,4 @@
-# service "Nagios"
+# service "ScaleIO"
 
 import os
 import time

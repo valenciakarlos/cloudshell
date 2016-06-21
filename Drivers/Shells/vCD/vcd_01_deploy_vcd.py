@@ -3,7 +3,6 @@
 import json
 import os
 import time
-import subprocess
 import sys
 from vCenterCommon import deployVM
 

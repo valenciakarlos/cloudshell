@@ -7,11 +7,12 @@
 # print 'Executed ' + __file__.split('\\')[-1].replace('.py', '')
 # exit()
 # # /demo
-from quali_remote import *
-import os
+
+from NSX_Common import rest_api_query_with_retry
 import json
 import time
-from NSX_Common import *
+import os
+
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 

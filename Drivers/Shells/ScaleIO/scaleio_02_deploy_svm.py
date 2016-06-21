@@ -1,4 +1,6 @@
-from vCenterCommon import deployVM, changeVMadapter, cleanup, vmPower
+# service "ScaleIO"
+
+from vCenterCommon import deployVM, changeVMadapter, vmPower
 from SIOCommon import *
 from quali_remote import powershell
 import datetime
