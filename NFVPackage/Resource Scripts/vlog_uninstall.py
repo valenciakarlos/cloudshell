@@ -1,4 +1,4 @@
-# service "vLog Insight"
+# service "vRealize Log Insight"
 
 import os
 import time

@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Brocade/set_access_vlan.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Brocade/set_access_vlan.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_02_configure_nagios.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_02_configure_nagios.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_03_create_certificates.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_03_create_certificates.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_04_install_and_configure.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_04_install_and_configure.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_drop_db.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_drop_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_uninstall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_04_license.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_04_license.py" />
-    </list>
+    <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="" />
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
