@@ -35,9 +35,18 @@ copy "Drivers\Orchestration\nfv environment driver.Compilation\nfv environment d
 
 rem create vcd script
 copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script" /y
-cd drivers\shells\vcd\vcd_setup_script
+cd "drivers\shells\vcd\vcd_setup_script"
 "c:\Program Files\7-Zip\7z.exe" a ..\"vcd_05_setup.zip" *
 cd ..\..\..\..\
+
+rem create environment site-package deploy script
+cd "drivers\site-packages"
+"c:\Program Files\7-Zip\7z.exe" a "..\orchestration\copy prerequisites\sitepack.zip" *
+cd ..\..\
+cd "drivers\orchestration\copy prerequisites"
+"c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\copy_prereq.zip" *
+del *.zip
+cd ..\..\..\
 
 
 rem copy script files
