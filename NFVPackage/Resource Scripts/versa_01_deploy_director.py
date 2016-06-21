@@ -1,6 +1,10 @@
+# service "Versa"
 
 from Versa_Common import *
 import sys
+import time
+import os
+
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 

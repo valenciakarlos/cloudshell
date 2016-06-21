@@ -1,9 +1,7 @@
-#service ScaleIO
+# service "vCloud Director"
 import os
 import subprocess
-import time
 import json
-import pkgutil
 import zipfile
 import shutil
 

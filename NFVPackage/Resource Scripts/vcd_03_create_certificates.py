@@ -40,6 +40,7 @@ httpExt = attrs['vCD HTTP Service Cert ext dns']
 proxyDname = attrs['vCD Proxy Service Cert dname']
 proxyExt = attrs['vCD HTTP Service Cert ext dns']
 
+#value examples
 #vcdAddress = "10.10.111.152"
 #vcdVMAddress = "10.10.110.152"
 #rootPassword = "dangerous2"

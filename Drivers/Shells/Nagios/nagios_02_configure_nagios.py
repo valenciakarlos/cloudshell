@@ -3,8 +3,8 @@
 import json
 import os
 import time
-import subprocess
 import paramiko
+
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
@@ -200,7 +200,7 @@ def CPU(host, warn, crit):
         exitcode = 1
     else:
         exitcode = 2
-    print (str(percent) + ' | CPU Usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
+    print (str(round(percent,3)) + ' | CPU Usage=' + str(round(percent,3)) + ';' + warn + ';' + crit + ';0;100')
     exit(int(exitcode))
 
 def Memory(host, warn, crit):
@@ -211,7 +211,7 @@ def Memory(host, warn, crit):
         exitcode = 1
     else:
         exitcode = 2
-    print (str(percent) + ' | Memory Usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
+    print (str(round(percent,3)) + ' | Memory Usage=' + str(round(percent,3)) + ';' + warn + ';' + crit + ';0;100')
     exit(int(exitcode))
 
 def Storage(host, exclude, storage, warn, crit):
@@ -233,7 +233,7 @@ def Storage(host, exclude, storage, warn, crit):
         exitcode = 1
     else:
         exitcode = 2
-    print (str(percent) + ' | Storage Usage=' + str(int(percent)) + ';' + warn + ';' + crit + ';0;100')
+    print (str(round(percent,3)) + ' | Storage Usage=' + str(round(percent,3)) + ';' + warn + ';' + crit + ';0;100')
     exit(int(exitcode))
 
 

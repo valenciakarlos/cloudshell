@@ -1,3 +1,4 @@
+# service "ScaleIO"
 
 from SIOCommon import getSIOesxs, configureSDC, installSDC
 from vCenterCommon import rebootESX

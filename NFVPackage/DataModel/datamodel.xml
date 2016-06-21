@@ -2193,6 +2193,7 @@
             <ScriptName>vlog_04_vcenter_registration</ScriptName>
             <ScriptName>vlog_01_deploy_vlog</ScriptName>
             <ScriptName>vlog_03_apply_pak_patch</ScriptName>
+            <ScriptName>vlog_uninstall</ScriptName>
           </Scripts>
         </ResourceModel>
         <ResourceModel Name="vRealize Operations Manager" ImagePath="vRealize Operations Manager_Model.png" Description="" SupportsConcurrentCommands="false">
@@ -2424,6 +2425,7 @@
             <ScriptName>vrops_04_license</ScriptName>
             <ScriptName>vrops_03_start_service</ScriptName>
             <ScriptName>vrops_01_deploy_vrops</ScriptName>
+            <ScriptName>vrops_uninstall</ScriptName>
           </Scripts>
         </ResourceModel>
       </Models>
@@ -2624,6 +2626,7 @@
           <Scripts>
             <ScriptName>nagios_01_deploy_nagios</ScriptName>
             <ScriptName>nagios_02_configure_nagios</ScriptName>
+            <ScriptName>nagios_uninstall</ScriptName>
           </Scripts>
         </ResourceModel>
       </Models>
@@ -3058,6 +3061,7 @@
             <ScriptName>nsx_08_install_host_vibs</ScriptName>
             <ScriptName>nsx_11_create_logical_switch</ScriptName>
             <ScriptName>nsx_02_set_sso</ScriptName>
+            <ScriptName>nsx_uninstall</ScriptName>  
           </Scripts>
         </ResourceModel>
       </Models>
@@ -3275,6 +3279,7 @@
             <ScriptName>vcd_04_install_and_configure</ScriptName>
             <ScriptName>vcd_01_deploy_vcd</ScriptName>
 			<ScriptName>vcd_drop_db</ScriptName>
+            <ScriptName>vcd_uninstall</ScriptName>
           </Scripts>
         </ResourceModel>
       </Models>
@@ -4152,6 +4157,7 @@
             <ScriptName>versa_06_post_deployment_configurations</ScriptName>
             <ScriptName>versa_08_create_controller</ScriptName>
             <ScriptName>versa_12_ipsec_profiles</ScriptName>
+            <ScriptName>versa_uninstall</ScriptName>
           </Scripts>
         </ResourceModel>
       </Models>
@@ -4518,6 +4524,9 @@
     <DriverDescriptor Name="NFV Environment Driver" DriverType="TestShellDriver" />
   </DriverDescriptors>
   <ScriptDescriptors>
+    <ScriptDescriptor Name="copy_prereq" Description="Copies script prerequisites to their target folder" CategoryName="Hidden Commands" Version="1" Alias="Copy Prerequisites">
+      <ScriptInputs />
+    </ScriptDescriptor>
     <ScriptDescriptor Name="set_access_vlan" Description="Set the desire interfaces of the Brocade switch to the desired VLAN ID with access mode." Version="1" Alias="Set Access VLAN On Interfaces">
       <ScriptInputs>
         <ScriptInput Name="InterfaceNames" Description="List of interfaces to set the access vlan on. Separated by colons." />
@@ -4594,6 +4603,24 @@
       <ScriptInputs />
     </ScriptDescriptor>
 	<ScriptDescriptor Name="vcd_drop_db" Description="Drops the db that was created for vCD" CategoryName="Uninstall" Version="1" Alias="Drop DB">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="vcd_uninstall" Description="Removes the vCD VM" CategoryName="Uninstall" Version="1" Alias="Remove vCD">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="versa_uninstall" Description="Removes the Versa VMs" CategoryName="Uninstall" Version="1" Alias="Remove Versa">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="vlog_uninstall" Description="Removes the vLog Insight VM" CategoryName="Uninstall" Version="1" Alias="Remove vLog Insight">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="vrops_uninstall" Description="Removes the vROPS VM" CategoryName="Uninstall" Version="1" Alias="Remove vROPS">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="nsx_uninstall" Description="Removes the NSX VMs" CategoryName="Uninstall" Version="1" Alias="Remove NSX">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="nagios_uninstall" Description="Removes the Nagios VM" CategoryName="Uninstall" Version="1" Alias="Remove Nagios">
       <ScriptInputs />
     </ScriptDescriptor>
     <ScriptDescriptor Name="vcd_03_create_certificates" Description="Creates ssl certificates for vCD" CategoryName="Install" Version="1" Alias="03 Create SSL Certificates For vCD">

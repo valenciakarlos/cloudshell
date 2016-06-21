@@ -39,7 +39,7 @@ def do_command_and_wait(chan, command, expect):
     
     buff = ''
     #while buff.find(expect) < 0:
-    while not re.search(expect, buff, 0):   
+    while not re.search(expect, buff, 0):
         resp = chan.recv(9999)
         buff += resp
         #print resp

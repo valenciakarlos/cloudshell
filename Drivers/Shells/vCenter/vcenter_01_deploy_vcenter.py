@@ -1,4 +1,4 @@
-#vCenter service
+# service "vCenter"
 
 import os
 import json

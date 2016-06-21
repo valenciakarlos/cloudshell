@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TopologyInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.qualisystems.com/ResourceManagement/TopologySchema.xsd">
-  <Details Name="SIO VCD NSX" Alias="SIO VCD NSX" Driver="NFV Environment Driver" Public="false" ImageName="SIO VCD NSX.jpg" DefaultDuration="600">
+  <Details Name="SIO VCD NSX" Alias="SIO VCD NSX" Driver="NFV Environment Driver" Public="false" ImageName="SIO VCD NSX.jpg" DefaultDuration="10080">
     <Instructions>&lt;p&gt;&lt;br&gt;&lt;/p&gt;</Instructions>
     <Categories />
+    <Scripts>
+      <Script Name="copy_prereq" />
+    </Scripts>
     <Diagram Zoom="0.8" />
   </Details>
   <Resources>

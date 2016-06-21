@@ -1,3 +1,5 @@
+# service "vCenter"
+
 from vCenterCommon import *
 import json
 import time
