@@ -2,32 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup/.#refactoring.cache" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup/.#refactoring.cache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" afterPath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Drivers/NFV Environment Driver.dll" afterPath="$PROJECT_DIR$/NFVPackage/Topology Drivers/NFV Environment Driver.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/.manifest" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/.manifest" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/PreSet Brocade.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/PreSet Brocade.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/ReadInputs.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Custom Commands/ReadInputs.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Debug.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Debug.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Functions/ExecuteCommand.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Functions/ExecuteCommand.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Initialization/EndSession.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/Initialization/EndSession.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/NFV Environment Driver.tsdrvproj" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/NFV Environment Driver.tsdrvproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/System Commands/Setup.tsdrv" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/System Commands/Setup.tsdrv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_01_deploy_nagios.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_01_deploy_nagios.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_02_configure_nagios.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_02_configure_nagios.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_02_create_sql_db.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_02_create_sql_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_06_post_deployment_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_06_post_deployment_configurations.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_16_branches_startup_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_16_branches_startup_configurations.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/SIO VCD NSX.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/SIO VCD NSX.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create package.cmd" afterPath="$PROJECT_DIR$/create package.cmd" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
@@ -53,16 +28,32 @@
         <entry file="file://$PROJECT_DIR$/create package.cmd">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+              <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datamodel.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider editor-type-id="MarkdownFxPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+            <state split_layout="FIRST">
+              <first_editor vertical-scroll-proportion="0.46822035">
+                <caret line="13" column="69" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datamodel.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4750499">
+            <state vertical-scroll-proportion="-9.153846">
               <caret line="4526" column="135" selection-start-line="4526" selection-start-column="135" selection-end-line="4526" selection-end-column="135" />
               <folding />
             </state>
@@ -74,16 +65,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-5.230769">
               <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scaleio_uninstall.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -172,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py" />
@@ -186,10 +166,11 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-        <option value="$PROJECT_DIR$/create package.cmd" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/Copy Prerequisites/__main__.py" />
         <option value="$PROJECT_DIR$/NFVPackage/Topologies/SIO VCD NSX.xml" />
         <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
+        <option value="$PROJECT_DIR$/create package.cmd" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -744,6 +725,7 @@
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
             <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -773,6 +755,7 @@
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
             <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -802,6 +785,7 @@
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
             <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -815,6 +799,7 @@
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
             <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -844,6 +829,7 @@
         <state split_layout="FIRST">
           <first_editor vertical-scroll-proportion="0.0">
             <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -854,24 +840,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownFxPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="0.1900621">
-            <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1143,14 +1111,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/create package.cmd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/SIO VCD NSX.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.230769">
@@ -1161,8 +1121,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4750499">
+        <state vertical-scroll-proportion="-9.153846">
           <caret line="4526" column="135" selection-start-line="4526" selection-start-column="135" selection-end-line="4526" selection-end-column="135" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/create package.cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownFxPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor vertical-scroll-proportion="0.46822035">
+            <caret line="13" column="69" selection-start-line="13" selection-start-column="69" selection-end-line="13" selection-end-column="69" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
