@@ -1,6 +1,5 @@
 # service "vCloud Director"
 
-import json
 import os
 import time
 import subprocess

@@ -54,7 +54,7 @@ smtpPassword = attrs['Log Insight SMTP Password']
 
 #driver = webdriver.PhantomJS(executable_path=qualiroot() + '/phantomjs.exe', service_args=['--ignore-ssl-errors=true'])
 driver = webdriver.Chrome(executable_path=qualiroot() + '/chromedriver.exe', service_args=['--ignore-certificate-errors'])
-driver.set_window_size(1440,990)
+driver.set_window_size(1440, 990)
 driver.implicitly_wait(20)
 wait = WebDriverWait(driver, 60)
 

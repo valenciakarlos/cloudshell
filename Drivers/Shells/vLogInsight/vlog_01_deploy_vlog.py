@@ -1,4 +1,4 @@
-# service "vRealize Operations Manager"
+# service "vRealize Log Insight"
 
 #
 # # demo
