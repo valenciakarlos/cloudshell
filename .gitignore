@@ -1,8 +1,5 @@
 *.Compilation/
 Python site packages.zip
 NFV Build Environment.zip
-.idea/
-.#refactoring.cache
-*.cache
-.idea/workspace.xml
+.idea/*
 *.cache
