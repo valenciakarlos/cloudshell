@@ -302,5 +302,8 @@ if __name__ == '__main__':
 
 '''
 
+ssh.exec_command("rm /usr/local/nagios/etc/pynag/hosts/*.cfg -f")
 ssh.exec_command("echo \"" + script + "\"> /usr/local/nagios/libexec/QualiChecks.py")
-ssh.exec_command("chmod +x /usr/local/nagios/libexec/QualiChecks.py")
+stdin, stdout, ssh_stderr = ssh.exec_command("chmod +x /usr/local/nagios/libexec/QualiChecks.py")
+out = stdout.read()
+print out
