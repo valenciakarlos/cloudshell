@@ -3,8 +3,6 @@ Python site packages.zip
 NFV Build Environment.zip
 .idea/*
 *.cache
-*.rxlog
-Drivers/Shells/vCD/vcd_setup/RanorexReport5.xsl
-*.data_tmp
-Drivers/Shells/vCD/vcd_setup/RanorexReport5.css
-Drivers/Shells/vCD/vcd_setup/RanorexReport5.png
+RanorexReport*
+TestSuite_*
+
