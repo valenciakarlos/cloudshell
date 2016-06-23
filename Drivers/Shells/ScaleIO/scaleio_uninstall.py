@@ -16,8 +16,8 @@ resource_name = resource['name']
 attrs = resource['attributes']
 
 vcenter_ip = attrs['vCenter IP']
-vcenter_user = attrs['vCenter Administrator User']
-vcenter_password = attrs['vCenter Administrator Password']
+vcenter_user = attrs['vCenter Username']
+vcenter_password = attrs['vCenter Password']
 
 
 #delete scale io datastore
