@@ -4,6 +4,7 @@ import json
 import os
 import time
 import paramiko
+import sys
 
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
@@ -304,6 +305,13 @@ if __name__ == '__main__':
 
 ssh.exec_command("rm /usr/local/nagios/etc/pynag/hosts/*.cfg -f")
 ssh.exec_command("echo \"" + script + "\"> /usr/local/nagios/libexec/QualiChecks.py")
-stdin, stdout, ssh_stderr = ssh.exec_command("chmod +x /usr/local/nagios/libexec/QualiChecks.py")
+time.sleep(2)
+ssh.exec_command("chmod +x /usr/local/nagios/libexec/QualiChecks.py")
+stdin, stdout, ssh_stderr = ssh.exec_command("ls -l /usr/local/nagios/libexec/QualiChecks.py")
 out = stdout.read()
-print out
+if 'rw-r--r--' in out:
+    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': failed to change chmod, chmod output: ' + out + '\r\n')
+    print out
+    sys.exit(1)
+
