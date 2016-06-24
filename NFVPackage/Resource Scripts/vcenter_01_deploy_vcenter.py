@@ -57,7 +57,7 @@ $storMgr = Get-View $VMHost.ExtensionData.ConfigManager.DatastoreSystem
 
 $i = 2
 $storMgr.QueryAvailableDisksForVmfs($null) | %{
-  New-Datastore -name '''+vcenter_datastore+''' -vmfs -path $_.CanonicalName
+  New-Datastore -name "'''+vcenter_datastore+'''" -vmfs -path $_.CanonicalName
   #$i = $i+1
   break
 }

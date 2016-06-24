@@ -3,6 +3,7 @@
 import os
 import time
 import json
+import sys
 from vCenterCommon import deleteVMs, vmPower
 from SIOCommon import getSIOesxs
 from quali_remote import powershell
@@ -16,8 +17,8 @@ resource_name = resource['name']
 attrs = resource['attributes']
 
 vcenter_ip = attrs['vCenter IP']
-vcenter_user = attrs['vCenter Administrator User']
-vcenter_password = attrs['vCenter Administrator Password']
+vcenter_user = attrs['vCenter Username']
+vcenter_password = attrs['vCenter Password']
 
 
 #delete scale io datastore
@@ -32,10 +33,13 @@ script = '''Add-PSSnapin VMware.VimAutomation.Core\n
         Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue\n
         Remove-Datastore -Datastore ''' + sio_storage_name + ''' -VMHost ''' + esx_for_Storage + ''' -Confirm:$false
         '''
-powershell(script)
+out = powershell(script)
+if 'not' in out:
+    print out
+    sys.exit(1)
 
 
 #delete vms
-vm_name_prefix = attrs['ScaleIO SVM Name PreFix'] + '*'
-vmPower(vm_name_prefix, 'stop', vcenter_ip, vcenter_user, vcenter_password)
-deleteVMs(vm_name_prefix, vcenter_ip, vcenter_user, vcenter_password)
+#vm_name_prefix = attrs['ScaleIO SVM Name PreFix'] + '*'
+#vmPower(vm_name_prefix, 'stop', vcenter_ip, vcenter_user, vcenter_password)
+#deleteVMs(vm_name_prefix, vcenter_ip, vcenter_user, vcenter_password)

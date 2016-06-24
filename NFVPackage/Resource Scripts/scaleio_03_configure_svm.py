@@ -2,10 +2,13 @@
 
 from SIOCommon import *
 import datetime
+from qualipy.api.cloudshell_api import CloudShellAPISession
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
+from quali_remote import notify_user
 import os
 import json
+import sys
 
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
@@ -13,6 +16,8 @@ with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
 starttime = datetime.datetime.now()
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
+reservation_details = json.loads(os.environ['RESERVATIONCONTEXT'])
+connectivity_details = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])
 resource_name = resource['name']
 attrs = resource['attributes']
 
@@ -111,6 +116,9 @@ _siodic = {
     'SDS-4': [sds4_mgmt_ip, sds4_data1_ip, sds4_data2_ip],
 }
 
+#connect to api
+api = CloudShellAPISession(connectivity_details["serverAddress"], reservation_details["ownerUser"], reservation_details["ownerPass"], reservation_details["domain"])
+reservationId = reservation_details["id"]
 
 
 svms = getSIOSvms(vcenter_ip, vcenter_user, vcenter_password, datacenter, esx_excludes, vm_name)
@@ -155,10 +163,10 @@ except Exception, e:
 
 
 # Install SVM role
-
 try:
     for name in siodic:
         _vm_name = vm_name + '-' + name
+        notify_user(api, reservationId, "Install SVM role on " + _vm_name)
         # Install PGP Key
         installKey(siodic[name][0])
         if "Gateway" in name:
@@ -186,6 +194,7 @@ except Exception, e:
     exit(1)
 
 # Configure SIO MDM Cluster
+notify_user(api, reservationId, "Configure ScaleIO MDM Cluster")
 svmlist = []
 try:
     configureSDS(svm1_mgmt_ip, svm2_mgmt_ip, svm3_mgmt_ip, adminpassword=sio_admin_password, password=svm_password)
@@ -212,6 +221,7 @@ except Exception, e:
     exit(1)
 
 # Install vCenter Plugin
+notify_user(api, reservationId, "Install vCenter Plugin")
 try:
     installvCenterplugin(svm4_mgmt_ip, sio_version.replace('-', '.'), vcenter_ip, vcenter_user, vcenter_password)
     driver = webdriver.Firefox()
@@ -240,7 +250,7 @@ except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
         f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
+    sys.exit(1)
 
 endtime = datetime.datetime.now()
 print "Total Configuration time: " + str(endtime - starttime)
