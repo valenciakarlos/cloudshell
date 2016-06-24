@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/vcd_setup.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" afterPath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Drivers/NFV Environment Driver.dll" afterPath="$PROJECT_DIR$/NFVPackage/Topology Drivers/NFV Environment Driver.dll" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_02_configure_nagios.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_02_configure_nagios.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_uninstall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_01_install_sdc.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_01_install_sdc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_uninstall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_drop_db.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_drop_db.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_01_deploy_vcenter.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_01_deploy_vcenter.py" />
-    </list>
+    <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="" />
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
