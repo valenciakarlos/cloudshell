@@ -1,8 +1,9 @@
 # service "ScaleIO"
 
 from vCenterCommon import deployVM, changeVMadapter, vmPower
+from qualipy.api.cloudshell_api import CloudShellAPISession
 from SIOCommon import *
-from quali_remote import powershell
+from quali_remote import powershell, notify_user
 import datetime
 import os
 import json
@@ -13,6 +14,8 @@ with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
 starttime = datetime.datetime.now()
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
+reservation_details = json.loads(os.environ['RESERVATIONCONTEXT'])
+connectivity_details = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])
 resource_name = resource['name']
 attrs = resource['attributes']
 
@@ -88,6 +91,11 @@ sdsippool = {
 
 }
 
+#connect to api
+api = CloudShellAPISession(connectivity_details["serverAddress"], reservation_details["ownerUser"], reservation_details["ownerPass"], reservation_details["domain"])
+reservationId = reservation_details["id"]
+
+
 script = '''Add-PSSnapin VMware.VimAutomation.Core\n
         Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue \n
 $store = (Get-Datastore -VMhost "''' + gateway_esx + '''" | Where-Object {$_.Name -like 'datastore*'}).Name\n
@@ -154,24 +162,26 @@ try:
     for name in siodic:
         _vm_name = vm_name + '-' + name
         command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"'
+        notify_user(api, reservationId, "Deploying " + _vm_name)
         deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 
     # Deploy Gateway
     _vm_name = vm_name + "-Gateway"
     command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"'
+    notify_user(api, reservationId, "Deploying " + _vm_name)
     deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Add Gateway to the dictionary
 siodic['Gateway'] = [svm4_mgmt_ip, svm4_data1_ip, svm4_data2_ip, gatewayesx[1], gatewayesx[0]]
 
 # Add UUID attribute to the VMs
-
+notify_user(api, reservationId, "Power on VMs")
 try:
     for name in siodic:
         _vm_name = vm_name + '-' + name
@@ -185,10 +195,11 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 time.sleep(60)
+notify_user(api, reservationId, "Configure VMs network")
 try:
     for name in siodic:
         _vm_name = vm_name + '-' + name
@@ -207,10 +218,11 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Add RDM to SVMs
+notify_user(api, reservationId, "Add RDM to SVMs")
 diskdic = {}
 try:
     for name in siodic:
@@ -235,7 +247,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 try:
@@ -247,7 +259,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 # Add AutoStart to the ESXs and SVMs
@@ -262,7 +274,7 @@ try:
 except Exception, e:
     print e
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + e + '\r\n')
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
 endtime = datetime.datetime.now()

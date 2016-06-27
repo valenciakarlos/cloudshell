@@ -3590,6 +3590,7 @@
             <ScriptName>scaleio_02_deploy_svm</ScriptName>
             <ScriptName>scaleio_01_install_sdc</ScriptName>
             <ScriptName>scaleio_03_configure_svm</ScriptName>
+            <ScriptName>scaleio_uninstall</ScriptName>
           </Scripts>
         </ResourceModel>
       </Models>
@@ -4606,6 +4607,9 @@
       <ScriptInputs />
     </ScriptDescriptor>
     <ScriptDescriptor Name="vcd_uninstall" Description="Removes the vCD VM" CategoryName="Uninstall" Version="1" Alias="Remove vCD">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="scaleio_uninstall" Description="Removes the ScaleIO Datastore and VMs" CategoryName="Uninstall" Version="1" Alias="Remove ScaleIO">
       <ScriptInputs />
     </ScriptDescriptor>
     <ScriptDescriptor Name="versa_uninstall" Description="Removes the Versa VMs" CategoryName="Uninstall" Version="1" Alias="Remove Versa">

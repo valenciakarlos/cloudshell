@@ -1,8 +1,8 @@
 *.Compilation/
 Python site packages.zip
 NFV Build Environment.zip
-.idea/
-.#refactoring.cache
+.idea/*
 *.cache
-.idea/workspace.xml
-*.cache
+RanorexReport*
+TestSuite_*
+

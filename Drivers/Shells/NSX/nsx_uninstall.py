@@ -14,7 +14,7 @@ resource_name = resource['name']
 attrs = resource['attributes']
 
 vcenter_ip = attrs['vCenter IP']
-vcenter_user = attrs['vCenter Administrator User']
+vcenter_user = attrs['vCenter Administrator Username']
 vcenter_password = attrs['vCenter Administrator Password']
 
 

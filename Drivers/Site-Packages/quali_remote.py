@@ -311,9 +311,6 @@ def ssh_download(host, username, password, source_file, local_file):
     s.close()
 
 
-
-
-
 def rest_api_query(url, user, password, method, body, is_body_json=False, return_xml=False):
     from requests.packages.urllib3.exceptions import InsecureRequestWarning
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -342,5 +339,11 @@ def rest_api_query(url, user, password, method, body, is_body_json=False, return
         return a.text
     raise Exception('Error: ' + str(a.status_code) + ': ' + a.text)
 
+
+def notify_user(api, reservationid, message):
+    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + message + '\r\n')
+    g.close()
+    api.WriteMessageToReservationOutput(reservationid, message)
 
 
