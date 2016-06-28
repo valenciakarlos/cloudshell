@@ -4534,73 +4534,73 @@
         <ScriptInput Name="VLAN_ID" Description="ID of the vlan to set on the interface" />
       </ScriptInputs>
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vlog_02_startup_wizard" Description="Configure DNS, SMTP, license, NTP" Version="1" Alias="02 Run Start-up Configuration Wizard">
+    <ScriptDescriptor Name="vlog_02_startup_wizard" Description="Configure DNS, SMTP, license, NTP" Version="1" CategoryName="Install" Alias="02 Run Start-up Configuration Wizard">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vlog_05_vrops_registration" Description="Register vRealize Operations Manager server" Version="1" Alias="05 vROPS Registration">
+    <ScriptDescriptor Name="vlog_05_vrops_registration" Description="Register vRealize Operations Manager server" CategoryName="Install" Version="1" Alias="05 vROPS Registration">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vlog_04_vcenter_registration" Description="Register vCenter server" Version="1" Alias="04 vCenter Registration">
+    <ScriptDescriptor Name="vlog_04_vcenter_registration" Description="Register vCenter server" Version="1" CategoryName="Install" Alias="04 vCenter Registration">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vlog_01_deploy_vlog" Description="Deploy vLog Insight OVA" Version="1" Alias="01 Deploy vLog">
+    <ScriptDescriptor Name="vlog_01_deploy_vlog" Description="Deploy vLog Insight OVA" Version="1" CategoryName="Install" Alias="01 Deploy vLog">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vlog_03_apply_pak_patch" Description="Apply patch PAK file" Version="1" Alias="03 Install vLog Patch PAK file">
+    <ScriptDescriptor Name="vlog_03_apply_pak_patch" Description="Apply patch PAK file" Version="1" CategoryName="Install" Alias="03 Install vLog Patch PAK file">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vrops_02_startup_wizard" Description="New installation, set admin password, set license mode, set NTP" Version="1" Alias="02 Run Start-up Configuration Wizard">
+    <ScriptDescriptor Name="vrops_02_startup_wizard" Description="New installation, set admin password, set license mode, set NTP" Version="1" CategoryName="Install" Alias="02 Run Start-up Configuration Wizard">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vrops_05_vcenter_registration" Description="Register vCenter server, enter vCenter monitoring settings" Version="1" Alias="05 Register vROPS With vCenter">
+    <ScriptDescriptor Name="vrops_05_vcenter_registration" Description="Register vCenter server, enter vCenter monitoring settings" Version="1" CategoryName="Install" Alias="05 Register vROPS With vCenter">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vrops_04_license" Description="Accept EULA and enter license" Version="1" Alias="04 Enter vROPS License">
+    <ScriptDescriptor Name="vrops_04_license" Description="Accept EULA and enter license" Version="1" CategoryName="Install" Alias="04 Enter vROPS License">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vrops_03_start_service" Description="Start service" Version="1" Alias="03 Start vROPS Service">
+    <ScriptDescriptor Name="vrops_03_start_service" Description="Start service" Version="1" CategoryName="Install" Alias="03 Start vROPS Service">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vrops_01_deploy_vrops" Description="Deploy vRealize Operations Manager OVA" Version="1" Alias="01 Deploy vROPS">
+    <ScriptDescriptor Name="vrops_01_deploy_vrops" Description="Deploy vRealize Operations Manager OVA" Version="1" CategoryName="Install" Alias="01 Deploy vROPS">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nagios_01_deploy_nagios" Description="Deploy Nagios OVA" Version="1" Alias="01 Deploy Nagios">
+    <ScriptDescriptor Name="nagios_01_deploy_nagios" Description="Deploy Nagios OVA" Version="1" CategoryName="Install" Alias="01 Deploy Nagios">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nagios_02_configure_nagios" Description="Configures Nagios to support ESX monitoring" Version="1" Alias="02 Configure Nagios">
+    <ScriptDescriptor Name="nagios_02_configure_nagios" Description="Configures Nagios to support ESX monitoring" Version="1" CategoryName="Install" Alias="02 Configure Nagios">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_10_create_transport_zone" Description="Create transport zone, aka scope" Version="1" Alias="10 Create Transport Zone">
+    <ScriptDescriptor Name="nsx_10_create_transport_zone" Description="Create transport zone, aka scope" Version="1" CategoryName="Install" Alias="10 Create Transport Zone">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_04_add_nsx_admin" Description="Add enterprise admin role" Version="1" Alias="04 Add NSX Admin User">
+    <ScriptDescriptor Name="nsx_04_add_nsx_admin" Description="Add enterprise admin role" Version="1" CategoryName="Install" Alias="04 Add NSX Admin User">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_06_deploy_controller" Description="Deploy NSX controller" Version="1" Alias="06 Deploy NSX Controller">
+    <ScriptDescriptor Name="nsx_06_deploy_controller" Description="Deploy NSX controller" Version="1" CategoryName="Install" Alias="06 Deploy NSX Controller">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_07_create_vxlan_segment" Description="Create a range of VXLAN segment" Version="1" Alias="07 Create VXLAN Segment">
+    <ScriptDescriptor Name="nsx_07_create_vxlan_segment" Description="Create a range of VXLAN segment" Version="1" CategoryName="Install" Alias="07 Create VXLAN Segment">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_05_create_ip_pools" Description="Define a pool of IP addresses for use by appliances deployed by NSX" Version="1" Alias="05 Create IP Pools">
+    <ScriptDescriptor Name="nsx_05_create_ip_pools" Description="Define a pool of IP addresses for use by appliances deployed by NSX" Version="1" CategoryName="Install" Alias="05 Create IP Pools">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_03_set_vcenter" Description="Connect to vCenter" Version="1" Alias="03 Set vCenter Details in NSX">
+    <ScriptDescriptor Name="nsx_03_set_vcenter" Description="Connect to vCenter" Version="1" CategoryName="Install" Alias="03 Set vCenter Details in NSX">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_01_deploy_nsx" Description="Deploy VMware NSX appliance from OVA" Version="1" Alias="01 Deploy NSX">
+    <ScriptDescriptor Name="nsx_01_deploy_nsx" Description="Deploy VMware NSX appliance from OVA" Version="1" CategoryName="Install" Alias="01 Deploy NSX">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_09_configure_host_vteps" Description="Configure VXLAN tunnel endpoints on ESXi hosts" Version="1" Alias="09 Configure Host VTEP">
+    <ScriptDescriptor Name="nsx_09_configure_host_vteps" Description="Configure VXLAN tunnel endpoints on ESXi hosts" Version="1" CategoryName="Install" Alias="09 Configure Host VTEP">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_08_install_host_vibs" Description="Install VXLAN VIB drivers on ESXi hosts" Version="1" Alias="08 Install VIBs on ESXi Servers">
+    <ScriptDescriptor Name="nsx_08_install_host_vibs" Description="Install VXLAN VIB drivers on ESXi hosts" Version="1" CategoryName="Install" Alias="08 Install VIBs on ESXi Servers">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_11_create_logical_switch" Description="Create logical switch, aka virtual wire" Version="1" Alias="11 Create Logical Switch">
+    <ScriptDescriptor Name="nsx_11_create_logical_switch" Description="Create logical switch, aka virtual wire" Version="1" CategoryName="Install" Alias="11 Create Logical Switch">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nsx_02_set_sso" Description="Connect to vCenter SSO server" Version="1" Alias="02 Set NSX SSO">
+    <ScriptDescriptor Name="nsx_02_set_sso" Description="Connect to vCenter SSO server" Version="1" CategoryName="Install" Alias="02 Set NSX SSO">
       <ScriptInputs />
     </ScriptDescriptor>
 	<ScriptDescriptor Name="vcd_drop_db" Description="Drops the db that was created for vCD" CategoryName="Uninstall" Version="1" Alias="Drop DB">
@@ -4642,70 +4642,70 @@
     <ScriptDescriptor Name="vcd_01_deploy_vcd" Description="Deploy CentOS for vCD" CategoryName="Install" Version="1" Alias="01 Deploy vCD">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="scaleio_02_deploy_svm" Description="Deploy SVM (ScaleIO VM) on each ESX that will contribute storage for the SIO system." Version="1" Alias="02 Deploy ScaleIOVMs">
+    <ScriptDescriptor Name="scaleio_02_deploy_svm" Description="Deploy SVM (ScaleIO VM) on each ESX that will contribute storage for the SIO system." Version="1" CategoryName="Install" Alias="02 Deploy ScaleIOVMs">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="scaleio_01_install_sdc" Description="Install the SDC component on all ESXs that will be part of SIO deployment and reboots them." Version="1" Alias="01 Install SDC">
+    <ScriptDescriptor Name="scaleio_01_install_sdc" Description="Install the SDC component on all ESXs that will be part of SIO deployment and reboots them." Version="1" CategoryName="Install" Alias="01 Install SDC">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="scaleio_03_configure_svm" Description="Configure each SVM to its specific role, configure the SIO system and create a ESX Storage." Version="1" Alias="03 Configure ScaleIOVMs">
+    <ScriptDescriptor Name="scaleio_03_configure_svm" Description="Configure each SVM to its specific role, configure the SIO system and create a ESX Storage." Version="1" CategoryName="Install" Alias="03 Configure ScaleIOVMs">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_03_deploy_controller" Description="Deploy Versa Controller OVA" Version="1" Alias="03 Deploy Controller">
+    <ScriptDescriptor Name="versa_03_deploy_controller" Description="Deploy Versa Controller OVA" Version="1" CategoryName="Install" Alias="03 Deploy Controller">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_14_template_configurations_1" Description="Adding Branch Staging templates" Version="1" Alias="14 Creating Branch Template">
+    <ScriptDescriptor Name="versa_14_template_configurations_1" Description="Adding Branch Staging templates" Version="1" CategoryName="Install" Alias="14 Creating Branch Template">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_11_create_analytics" Description="Adding the Analytics to the Director context" Version="1" Alias="11 Create Analytics Profile">
+    <ScriptDescriptor Name="versa_11_create_analytics" Description="Adding the Analytics to the Director context" Version="1" CategoryName="Install" Alias="11 Create Analytics Profile">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_15_template_configurations_2" Description="Adding Branch PostStaging templates" Version="1" Alias="15 Updating Branch Templates">
+    <ScriptDescriptor Name="versa_15_template_configurations_2" Description="Adding Branch PostStaging templates" Version="1" CategoryName="Install" Alias="15 Updating Branch Templates">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_10_organization_configurations" Description="Create Organization specific profiles" Version="1" Alias="10 Organization Configurations">
+    <ScriptDescriptor Name="versa_10_organization_configurations" Description="Create Organization specific profiles" Version="1" CategoryName="Install" Alias="10 Organization Configurations">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_07_organization_administration" Description="Create Provider and Customer Organizations" Version="1" Alias="07 Organization Administration">
+    <ScriptDescriptor Name="versa_07_organization_administration" Description="Create Provider and Customer Organizations" Version="1" CategoryName="Install" Alias="07 Organization Administration">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_16_branches_startup_configurations" Description="Config the Branch VMs with basic IPSec setting to begin Versa Director flow" Version="1" Alias="16 Branches Startup Configurations">
+    <ScriptDescriptor Name="versa_16_branches_startup_configurations" Description="Config the Branch VMs with basic IPSec setting to begin Versa Director flow" Version="1" CategoryName="Install" Alias="16 Branches Startup Configurations">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_01_deploy_director" Description="Deploy Versa Director OVA" Version="1" Alias="01 Deploy Director">
+    <ScriptDescriptor Name="versa_01_deploy_director" Description="Deploy Versa Director OVA" Version="1" CategoryName="Install" Alias="01 Deploy Director">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_13_bracnh_administration" Description="Adding Branch VMs to the inventory" Version="1" Alias="13 Branch Administration">
+    <ScriptDescriptor Name="versa_13_bracnh_administration" Description="Adding Branch VMs to the inventory" Version="1" CategoryName="Install" Alias="13 Branch Administration">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_02_deploy_analytics" Description="Deploy Versa Analytics OVA" Version="1" Alias="02 Deploy Analytics">
+    <ScriptDescriptor Name="versa_02_deploy_analytics" Description="Deploy Versa Analytics OVA" Version="1" CategoryName="Install" Alias="02 Deploy Analytics">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_04_deploy_branch1" Description="Deploy Versa Branch OVA" Version="1" Alias="04 Deploy Branch 1">
+    <ScriptDescriptor Name="versa_04_deploy_branch1" Description="Deploy Versa Branch OVA" Version="1" CategoryName="Install" Alias="04 Deploy Branch 1">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_05_deploy_branch2" Description="Deploy Versa Branch OVA" Version="1" Alias="05 Deploy Branch 2">
+    <ScriptDescriptor Name="versa_05_deploy_branch2" Description="Deploy Versa Branch OVA" Version="1" CategoryName="Install" Alias="05 Deploy Branch 2">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_09_controller_administration" Description="Assigning the Controller to the Customer" Version="1" Alias="09 Controller Administration">
+    <ScriptDescriptor Name="versa_09_controller_administration" Description="Assigning the Controller to the Customer" Version="1" CategoryName="Install" Alias="09 Controller Administration">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_06_post_deployment_configurations" Description="Configures network for the different versa components and basic cli commands" Version="1" Alias="06 Post-deployment Configurations">
+    <ScriptDescriptor Name="versa_06_post_deployment_configurations" Description="Configures network for the different versa components and basic cli commands" Version="1" CategoryName="Install" Alias="06 Post-deployment Configurations">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_08_create_controller" Description="Create the Controller profile" Version="1" Alias="08 Create Controller Profile">
+    <ScriptDescriptor Name="versa_08_create_controller" Description="Create the Controller profile" Version="1" CategoryName="Install" Alias="08 Create Controller Profile">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="versa_12_ipsec_profiles" Description="Create IPSec profiles" Version="1" Alias="12 Create IPSec Profiles">
+    <ScriptDescriptor Name="versa_12_ipsec_profiles" Description="Create IPSec profiles" Version="1" CategoryName="Install" Alias="12 Create IPSec Profiles">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vcenter_01_deploy_vcenter" Description="Deploys a vCenter appliance on a predefined host" Version="1" Alias="01 Deploy vCenter">
+    <ScriptDescriptor Name="vcenter_01_deploy_vcenter" Description="Deploys a vCenter appliance on a predefined host" Version="1" CategoryName="Install" Alias="01 Deploy vCenter">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vcenter_03_create_vds" Description="Create all the required vds and assigns the vmnics as well as vmkernel IPs" Version="1" Alias="03 Create VDS">
+    <ScriptDescriptor Name="vcenter_03_create_vds" Description="Create all the required vds and assigns the vmnics as well as vmkernel IPs" Version="1" CategoryName="Install" Alias="03 Create VDS">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vcenter_02_create_infrastructure" Description="Create datacenter, clusters, assign hosts" Version="1" Alias="02 Create Infrastructure">
+    <ScriptDescriptor Name="vcenter_02_create_infrastructure" Description="Create datacenter, clusters, assign hosts" Version="1" CategoryName="Install" Alias="02 Create Infrastructure">
       <ScriptInputs />
     </ScriptDescriptor>
   </ScriptDescriptors>
