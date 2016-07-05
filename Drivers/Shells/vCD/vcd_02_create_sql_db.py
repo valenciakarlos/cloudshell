@@ -47,6 +47,33 @@ GO
 
 '''.format(folder=db_folder)
 
+# Add "NT AUTHORITY\NETWORK" to Folder Permission. (Both c:\Deploy && db_folder)
+def change_permission(folder):
+    from quali_remote import powershell
+    script = '''
+    $folder = \'''' + folder + '''\'
+    $perm = ((Get-Item $folder).GetAccessControl('Access')).Access
+    $found = ''
+    foreach($_ in $perm){
+        if($_.IdentityReference -like '*network*'){
+            #$_
+            $found = $_
+            }
+        }
+    if (-Not $found){
+        $Ar = New-Object System.Security.AccessControl.FileSystemAccessRule('NT AUTHORITY\NETWORK', 'Fullcontrol', 'ContainerInherit,ObjectInherit', 'None', 'Allow')
+        $rule = (Get-Item $folder).GetAccessControl('Access')
+        $rule.SetAccessRule($Ar)
+        Set-Acl -Path $folder -AclObject $rule
+    }'''
+    powershell(script)
+
+change_permission(db_folder)
+change_permission('c:\deploy')
+
+
+
+
 with open(r'c:\deploy\vcd.sql', 'w') as file_:
     file_.write(sqlscript)
 
