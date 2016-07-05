@@ -47,7 +47,7 @@ GO
 
 '''.format(folder=db_folder)
 
-# Add "NT AUTHORITY\NETWORK" to Folder Permission. (Both c:\Deploy && db_folder)
+# Add "NT AUTHORITY\NETWORK SERVICE" to Folder Permission. (Both c:\Deploy && db_folder)
 def change_permission(folder):
     from quali_remote import powershell
     script = '''
@@ -55,13 +55,13 @@ def change_permission(folder):
     $perm = ((Get-Item $folder).GetAccessControl('Access')).Access
     $found = ''
     foreach($_ in $perm){
-        if($_.IdentityReference -like '*network*'){
+        if($_.IdentityReference -like '*network service*'){
             #$_
             $found = $_
             }
         }
     if (-Not $found){
-        $Ar = New-Object System.Security.AccessControl.FileSystemAccessRule('NT AUTHORITY\NETWORK', 'Fullcontrol', 'ContainerInherit,ObjectInherit', 'None', 'Allow')
+        $Ar = New-Object System.Security.AccessControl.FileSystemAccessRule('NT AUTHORITY\NETWORK SERVICE', 'Fullcontrol', 'ContainerInherit,ObjectInherit', 'None', 'Allow')
         $rule = (Get-Item $folder).GetAccessControl('Access')
         $rule.SetAccessRule($Ar)
         Set-Acl -Path $folder -AclObject $rule
@@ -69,19 +69,26 @@ def change_permission(folder):
     powershell(script)
 
 change_permission(db_folder)
-change_permission('c:\deploy')
+if not db_folder == r'c:\deploy':
+    change_permission('c:\deploy')
 
 
+#write sql file
+try:
+    with open(r'c:\deploy\vcd.sql', 'w') as f:
+        f.write(sqlscript)
+except Exception as e:
+    print e
+    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcd write to file error: ' + str(e) + '\r\n')
+    sys.exit(1)
 
-
-with open(r'c:\deploy\vcd.sql', 'w') as file_:
-    file_.write(sqlscript)
 
 db_instance = ".\qualisystems2008"
 dbexist = subprocess.check_output('sqlcmd -S ' + db_instance + ' -Q "select name from master.sys.databases where name=\"vcloud\""')
 
 if "vcloud" in dbexist:
-    print 'vcloud db already exists, for new deployments run the "drop db" it first'
+    print 'vcloud db already exists, for new deployments run the "drop db" first'
     sys.exit(1)
 else:
     out = subprocess.check_output('sqlcmd -S ' + db_instance + ' -i c:\\deploy\\vcd.sql')
