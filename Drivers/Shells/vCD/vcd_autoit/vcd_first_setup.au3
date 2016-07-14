@@ -7,7 +7,7 @@
 #include "plugin_functions_lib.au3"
 #include <MsgBoxConstants.au3>
 
-# 81486-5Z752-J8H7R-0X9R4-9MZ74 administrator dangerous MyName me@work.com vcd 10.10.111.34
+# 81x86-5Z752-J8H7R-0X9R4-9MZ74 administrator dangerous MyName me@work.com vcd 10.10.111.34
 AutoItSetOption('MouseCoordMode', 1)
 
 $start_step = 1
@@ -19,7 +19,7 @@ Global $skip = False
 #Global $window_name = "VMware vCloud Director - Mozilla Firefox"
 Global $window_name = "VMware vCloud Director"
 
-#Local $license_key = "81486-5Z752-J8H7R-0X9R4-9MZ74"
+#Local $license_key = ""
 #Local $admin_username = ""
 #Local $admin_password = ""
 #Local $full_name = ""
@@ -33,7 +33,7 @@ $full_name = $CmdLine[4]
 $email = $CmdLine[5]
 $system_name = $CmdLine[6]
 $vcd_address = $CmdLine[7]
-
+$full_name = StringReplace($full_name, "###", " ")
 
 Func step1()
 	$step_name = " Welcome"
