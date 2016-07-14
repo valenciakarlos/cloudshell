@@ -166,13 +166,22 @@ Func click_image($image)
    $x1 = 0
    $y1 = 0
    wSleep()
-   $result = _ImageSearch($image,1,$x1,$y1,50)
-   If $result=1 Then
-	  MouseClick("primary",$x1,$y1+2,1)
-	  Return 1
-   Else
+   $image_retries = 10
+   $retry_delay = 2000
+   $found = "0"
+   For $i = $image_retries To 0 Step -1
+	  $result = _ImageSearch($image,1,$x1,$y1,50)
+	  If $result=1 Then
+		 MouseClick("primary",$x1,$y1+2,1)
+		 $found = "1"
+		 Return 1
+	  Else
+		 wsleep($retry_delay)
+	  EndIf
+   Next
+   if $found = "0" Then
 	  log_write("[click_image] image '" & $image & "' not found")
-	  Return 0
+	  return 0
    EndIf
 EndFunc
 

@@ -10,7 +10,7 @@
 AutoItSetOption('MouseCoordMode', 1)
 
 $start_step = 1
-$end_step = 4
+$end_step = 5
 Global $step_name = ""
 # 10.10.111.232 administrator@vsphere.local Welcome1! vCenter6-nfv http://10.10.111.232/vsphere-client 10.10.111.33 admin Welcome1! 10.10.111.34 administrator dangerous
 ; input file handling variables
@@ -43,35 +43,20 @@ $admin_password = $CmdLine[11]
 Func step1()
 	$step_name = " Login"
 	#Send("{TAB 1}")
-	Send($admin_username,1)
+	Send($admin_username)
 	Send("{TAB 1}")
-	Send($admin_password,1)
+	Send($admin_password)
 	Send("{TAB 1}")
 	Send("{SPACE}")
-	wsleep(5000)
+	wsleep(2000)
+	Send("{SPACE}")
 EndFunc   ;==>step1
 
 Func step2()
 	$step_name = " Attach vCenter"
-	#click_image("attachvc.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	click_image("system.png")
-	Send("{TAB 2}")
-	Send("{SPACE}")
-    wsleep(2000)
+	click_image("attach.bmp")
+
+    wsleep(20000)
 EndFunc   ;==>step2
 
 Func step3()
@@ -87,9 +72,12 @@ Func step3()
 	Send($vc_name,1)
 	Send("{TAB 2}")
 	Send($vc_webclient,1)
-	click_image("useurl.png")
+	click_image("url.bmp")
+	wsleep(10000)
+    Send("{TAB 1}")
+	Send("{SPACE}")
 
-	click_next_button()
+	#click_next_button()
 EndFunc   ;==>step3
 
 Func step4()
@@ -101,13 +89,17 @@ Func step4()
 	Send($nsx_username,1)
 	Send("{TAB 1}")
 	Send($nsx_password,1)
-
-	click_next_button()
+    Send("{TAB 2}")
+	Send("{SPACE}")
+	wsleep(2000)
+	#click_next_button()
 EndFunc   ;==>step4
 
 Func step5()
 	$step_name = " Ready to Complete"
-	click_image("finishbtn.png")
+	#Send("{TAB 7}")
+	Send("{SPACE}")
+	#click_image("finishbtn.png")
     wSleep(10000)
 
 EndFunc   ;==>step5
@@ -146,7 +138,7 @@ EndFunc   ;==>wizard_autofill
 
 #wsleep(10000)
 ShellExecute("C:\Program Files\Mozilla Firefox\firefox.exe",  "https://" & $CmdLine[9] & "/cloud")
-wsleep(20000)
+wsleep(10000)
 wizard_autofill()
-wsleep(150000)
+wsleep(10000)
 WinClose($window_name)
