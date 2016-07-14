@@ -9,23 +9,14 @@
 
 AutoItSetOption('MouseCoordMode', 1)
 
+;example: 10.10.111.232 administrator@vsphere.local Welcome1! vCenter6-nfv http://10.10.111.232/vsphere-client 10.10.111.33 admin Welcome1! 10.10.111.34 administrator dangerous
+
 $start_step = 1
 $end_step = 5
 Global $step_name = ""
-# 10.10.111.232 administrator@vsphere.local Welcome1! vCenter6-nfv http://10.10.111.232/vsphere-client 10.10.111.33 admin Welcome1! 10.10.111.34 administrator dangerous
 ; input file handling variables
 Global $skip = False
-#Global $window_name = "VMware vCloud Director - Mozilla Firefox"
 Global $window_name = "VMware vCloud Director"
-
-#Local $vchostname = "10.10.111.232"
-#Local $vc_username = "administrator@vsphere.local"
-#Local $vc_password = "Welcome1!"
-#Local $vc_name = "vCenter6-nfv"
-#Local $vc_webclient = "http://10.10.111.232/vsphere-client"
-#Local $nsx_address = "10.10.111.33"
-#Local $nsx_username = "admin"
-#Local $nsx_password = "Welcome1!"
 
 
 $vchostname = $CmdLine[1]
@@ -42,7 +33,6 @@ $admin_password = $CmdLine[11]
 
 Func step1()
 	$step_name = " Login"
-	#Send("{TAB 1}")
 	Send($admin_username)
 	Send("{TAB 1}")
 	Send($admin_password)
@@ -77,7 +67,6 @@ Func step3()
     Send("{TAB 1}")
 	Send("{SPACE}")
 
-	#click_next_button()
 EndFunc   ;==>step3
 
 Func step4()
@@ -92,14 +81,12 @@ Func step4()
     Send("{TAB 2}")
 	Send("{SPACE}")
 	wsleep(2000)
-	#click_next_button()
+
 EndFunc   ;==>step4
 
 Func step5()
 	$step_name = " Ready to Complete"
-	#Send("{TAB 7}")
 	Send("{SPACE}")
-	#click_image("finishbtn.png")
     wSleep(10000)
 
 EndFunc   ;==>step5
@@ -136,9 +123,10 @@ Func wizard_autofill()
 
 EndFunc   ;==>wizard_autofill
 
-#wsleep(10000)
+ShellExecute("taskkill.exe","/IM firefox.* /F")
+wsleep(2000)
 ShellExecute("C:\Program Files\Mozilla Firefox\firefox.exe",  "https://" & $CmdLine[9] & "/cloud")
 wsleep(10000)
 wizard_autofill()
 wsleep(10000)
-WinClose($window_name)
+ShellExecute("taskkill.exe","/IM firefox.* /F")

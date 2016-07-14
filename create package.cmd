@@ -25,10 +25,34 @@ copy "drivers\shells\onrack.compilation\onrack.dll" "nfvpackage\resource drivers
 copy "Drivers\Orchestration\nfv environment driver.Compilation\nfv environment driver.dll" "nfvpackage\topology drivers\NFV Environment Driver.dll" /y
 
 rem create vcd script
-rem copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script" /y
-cd "drivers\shells\vcd\vcd_setup_script"
-"c:\Program Files\7-Zip\7z.exe" a ..\"vcd_05_setup.zip" *
+cd "drivers\shells\vcd\vcd_autoit"
+"C:\Program Files (x86)\AutoIt3\Aut2Exe\Aut2exe_x64.exe" /in vcd_first_setup.au3 /out vcd_first_setup.exe /comp 4 /x64
+"C:\Program Files (x86)\AutoIt3\Aut2Exe\Aut2exe_x64.exe" /in vcd_attach_vcenter.au3 /out vcd_attach_vcenter.exe /comp 4 /x64
+:while3
+    if exist "vcd_first_setup.exe" (
+        if exist "vcd_attach_vcenter.exe" (
+			timeout 3 >nul
+		) else (
+			timeout /t 3 /nobreak > NUL
+			goto :while3
+		)
+    ) else (
+        timeout /t 3 /nobreak > NUL
+        goto :while3
+    )
+
 cd ..\..\..\..\
+copy "drivers\shells\vcd\vcd_autoit\*.exe" "drivers\shells\vcd\vcd_setup_script"
+copy "drivers\shells\vcd\vcd_autoit\*.bmp" "drivers\shells\vcd\vcd_setup_script"
+copy "drivers\shells\vcd\vcd_autoit\*.dll" "drivers\shells\vcd\vcd_setup_script"
+cd "drivers\shells\vcd\vcd_setup_script"
+del ..\"vcd_05_setup.zip" /q
+"c:\Program Files\7-Zip\7z.exe" a ..\"vcd_05_setup.zip" *
+del *.exe /q
+del *.bmp /q
+del *.dll /q
+cd ..\..\..\..\
+
 
 rem create environment site-package deploy script
 cd "drivers\site-packages"

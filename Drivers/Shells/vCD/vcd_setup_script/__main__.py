@@ -11,8 +11,6 @@ import zipfile
 import shutil
 
 
-
-
 def exe(command_array):
     g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': exe: ' + str(command_array) + '\r\n')
@@ -73,7 +71,6 @@ error = True
 for x in xrange(3):
     ans = first()
     if 'not found' not in ans.lower():
-        print ans
         error = False
         break
 
@@ -90,7 +87,6 @@ error = True
 for n in xrange(3):
     ans = second()
     if 'not found' not in ans.lower():
-        print ans
         error = False
         break
 
@@ -102,3 +98,4 @@ if error:
     exit(1)
 
 shutil.rmtree(default_dir, ignore_errors=True)
+print "vCD setup completed successfully"

@@ -14,8 +14,8 @@ $SLEEP_TIME = 500
 Global $WIN_WAIT_TIME = 6
 
 ; Logging
-$log_file = "c:\autoit.log"
-$hFile = FileOpen($log_file, 2)
+$log_file = "c:\ProgramData\QualiSystems\Shells.log"
+$hFile = FileOpen($log_file, 1)
 
 ; Input File handling Variables
 Global $CSVFILE = "";"C:\temp\mgmt_ips_conf_10.76.61.14-16.csv";"C:\temp\test2.csv";
@@ -100,49 +100,6 @@ Func search_color_in_range($x_start, $x_end, $y, $color, $interval = 2)
 	Return $isFound
 EndFunc   ;==>search_color_in_range
 
-; TBD Func ConsoleWrite_concat_with_spaces($list)
-
-Func serial_mouse_click($x, $y, $delta, $times)
-	ConsoleWrite('>' & '[serial_mouse_click] ' & " x: " & $x & " y: " & $y & " delta: " & $delta & " times: " & $times & @CRLF)
-	$i = 1
-	While $i <= $times
-		MouseClick("primary", $x, $y, 1)
-		Sleep(500)
-		;Local $iColor = PixelGetColor($x, $y)
-		ConsoleWrite('>' & '[serial_mouse_click] [ ' & $x & ',' & $y & ']' & @CRLF)
-		;dbg_check_proceed()
-		;if $iColor <> $grayed_out_color Then
-		;	$i = $i + 1
-		;	ContinueLoop
-		;EndIf
-		$i = $i + 1
-		$y = $y + $delta
-	WEnd
-EndFunc   ;==>serial_mouse_click
-
-Func serial_click_and_send($x, $y, $delta, $times, $array, $col_num)
-	log_write('>' & '[serial_click_and_send] ' & " x: " & $x & " y: " & $y & " delta: " & $delta & " times: " & $times & @CRLF)
-	$i = 2
-	$times = $times + $i - 1
-	While $i <= $times
-		MouseClick("primary", $x, $y, 1)
-		$cur_val = $array[$i][$col_num]
-		send_with_sleep("^a" & $cur_val, 50)
-		log_write('>' & '[serial_click_and_send] [ ' & $x & ',' & $y & '] array[' & $i & '][' & $col_num & '] ==>' & $cur_val & @CRLF)
-		$i = $i + 1
-		$y = $y + $delta
-	WEnd
-EndFunc   ;==>serial_click_and_send
-
-
-Func dbg_check_proceed()
-	; ******* DEBUGGING proceed or abort Condition **************
-	Sleep(4000)
-	$verify = MsgBox(4, "Proceed?", "Yes or No?")
-	If $verify = $IDNO Then
-		Exit
-	EndIf
-EndFunc   ;==>dbg_check_proceed
 
 Func click_button($x, $y)
 	log_write("[click_button] (" & $x & "," & $y & ")" & @CRLF)
@@ -153,6 +110,7 @@ Func click_button($x, $y)
 	MouseClick("primary", $aPos[0], $aPos[1], 1)
 EndFunc   ;==>click_button
 
+#cs
 Func click_next_button()
    log_write("[click_next_button] click_next_button()" & @CRLF)
 
@@ -161,6 +119,7 @@ Func click_next_button()
    EndIf
 
 EndFunc   ;==>click_next_button
+#ce
 
 Func click_image($image)
    $x1 = 0
@@ -176,6 +135,7 @@ Func click_image($image)
 		 $found = "1"
 		 Return 1
 	  Else
+		 log_write("[click_image] image '" & $image & "' could not be located, trying again..")
 		 wsleep($retry_delay)
 	  EndIf
    Next
@@ -185,21 +145,8 @@ Func click_image($image)
    EndIf
 EndFunc
 
-Func point_image($image)
-   $x1 = 0
-   $y1 = 0
-   wSleep()
-   $result = _ImageSearch($image,1,$x1,$y1,50)
-   If $result=1 Then
-	  MouseClick("right",$x1,$y1+2,1)
-	  Return 1
-   Else
-	  log_write("[click_image] image '" & $image & "' not found")
-	  Return 0
-   EndIf
-EndFunc
 
-Func log_write($msg,$withDate=False)
+Func log_write($msg, $withDate=False)
    ConsoleWrite('>' & $msg & @CRLF)
    If $withDate = True Then
 	  _FileWriteLog($hFile, @CRLF & $msg)
@@ -224,56 +171,6 @@ Func wSleep($time = 500) ; sleep wraping
 	ConsoleWrite('>' & '[wSleep] sleeping for: ' & $time & '...' & @CRLF)
 	Sleep($time)
 EndFunc   ;==>wSleep
-
-
-; _ParseCSV Usage:
-;$CSVFILE = "C:\temp\test2.csv"
-;$skip = False
-;$error = "parsing error!"
-;$Dchar = ","
-;$myArr = _ParseCSV($CSVFILE,$Dchar,$error,$skip)
-
-Func _ParseCSV($f, $Dchar, $error, $skip)
-	log_write("[_ParseCSV] input params: " & " file: " & $f & " delimeter: " & $Dchar & " msg: " & $error & " skip: " & $skip)
-
-	Local $array[500][500]
-	Local $line = ""
-
-	$i = 0
-	$file = FileOpen($f, 0)
-	If $file = -1 Then
-		MsgBox(0, "Error", $error)
-		Return False
-	EndIf
-
-	;skip 1st line
-	If $skip Then $line = FileReadLine($file)
-
-	While 1
-		$i = $i + 1
-		Local $line = FileReadLine($file)
-		If @error = -1 Then ExitLoop
-		$row_array = StringSplit($line, $Dchar)
-		If $i == 1 Then $row_size = UBound($row_array)
-		If $row_size <> UBound($row_array) Then MsgBox(0, "Error", "Row: " & $i & " has different size ")
-		$row_size = UBound($row_array)
-		$array = _arrayAdd_2d($array, $i, $row_array, $row_size)
-
-	WEnd
-	FileClose($file)
-	$array[0][0] = $i - 1 ;stores number of lines
-	$array[0][1] = $row_size - 1 ; stores number of data in a row (data corresponding to index 0 is the number of data in a row actually that's way the -1)
-	Return $array
-
-EndFunc   ;==>_ParseCSV
-
-
-Func _arrayAdd_2d($array, $inwhich, $row_array, $row_size)
-	For $i = 1 To $row_size - 1 Step 1
-		$array[$inwhich][$i] = $row_array[$i]
-	Next
-	Return $array
-EndFunc   ;==>_arrayAdd_2d
 
 Func get_window_by_title($title)
 	log_write("[get_window_by_title] Activating Window with Title: " & $title)
