@@ -3,14 +3,10 @@
 import json
 import os
 import time
-import paramiko
-import socket
-import re
 import subprocess
 import zipfile
 import shutil
-
-
+import sys
 
 
 def exe(command_array):
@@ -73,16 +69,17 @@ error = True
 for x in xrange(3):
     ans = first()
     if 'not found' not in ans.lower():
-        print ans
         error = False
         break
+    else:
+        time.sleep(30)
 
 if error:
     print "failed to run first setup on vCD " + '\n' + ans
     g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vCD Error: ' + str(ans) + '\r\n')
     shutil.rmtree(default_dir, ignore_errors=True)
-    exit(1)
+    sys.exit(1)
 
 time.sleep(5)
 ans = ''
@@ -90,15 +87,17 @@ error = True
 for n in xrange(3):
     ans = second()
     if 'not found' not in ans.lower():
-        print ans
         error = False
         break
+    else:
+        time.sleep(30)
 
 if error:
     print "failed to attach vCenter to vCD " + '\n' + ans
     g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vCD Error: ' + str(ans) + '\r\n')
     shutil.rmtree(default_dir, ignore_errors=True)
-    exit(1)
+    sys.exit(1)
 
 shutil.rmtree(default_dir, ignore_errors=True)
+print "vCD setup completed successfully"
