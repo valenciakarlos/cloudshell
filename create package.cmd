@@ -19,22 +19,13 @@ del "drivers\orchestration\nfv environment driver.compilation\nfv environment dr
         goto :while2
     )
 
-del "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe"
-"C:\Program Files (x86)\QualiSystems\CloudShell\Authoring\QsDriverStudio.exe" "drivers\shells\vcd\vcd_setup\vcd_setup.tsdrvproj" compile
-:while3
-    if exist "drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe" (
-        timeout 7 >nul
-    ) else (
-        timeout /t 3 /nobreak > NUL
-        goto :while3
-    )
-    
+   
 rem copy compiled drivers
 copy "drivers\shells\onrack.compilation\onrack.dll" "nfvpackage\resource drivers\OnRack Driver.dll" /y
 copy "Drivers\Orchestration\nfv environment driver.Compilation\nfv environment driver.dll" "nfvpackage\topology drivers\NFV Environment Driver.dll" /y
 
 rem create vcd script
-copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script" /y
+rem copy drivers\shells\vcd\vcd_setup.compilation\vcd_setup.exe "drivers\shells\vcd\vcd_setup_script" /y
 cd "drivers\shells\vcd\vcd_setup_script"
 "c:\Program Files\7-Zip\7z.exe" a ..\"vcd_05_setup.zip" *
 cd ..\..\..\..\
