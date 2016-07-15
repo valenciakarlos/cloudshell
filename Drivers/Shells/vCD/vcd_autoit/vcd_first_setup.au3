@@ -4,8 +4,13 @@
 ;	(2) Firefox browser in Full Screen mode.
 #AutoIt3Wrapper_UseX64=Y
 
+
 #include "plugin_functions_lib.au3"
 #include <MsgBoxConstants.au3>
+
+$destination = @WorkingDir & "\agree_4.bmp"
+FileInstall("agree_4.bmp", $destination)
+
 
 ; example: 81x86-5Z752-J8H7R-0X9R4-9MZ74 administrator dangerous MyName me@work.com vcd 10.10.111.34
 AutoItSetOption('MouseCoordMode', 1)
@@ -110,15 +115,17 @@ EndFunc   ;==>fill_step
 
 Func wizard_autofill()
 
-    get_window_by_title($window_name)
-
-	For $cur_step = $start_step To $end_step Step 1
-		ConsoleWrite('>' & '[wizard_autofill] current step is: ' & $cur_step & @CRLF)
-		fill_step($cur_step)
-	Next
+    If get_window_by_title($window_name)=0 Then
+		log_write("Firefox window '" & $window_name & "' not found" & @CRLF)
+	Else
+		For $cur_step = $start_step To $end_step Step 1
+			log_write('>' & '[wizard_autofill] current step is: ' & $cur_step & @CRLF)
+			fill_step($cur_step)
+		Next
+	EndIf
 
 EndFunc   ;==>wizard_autofill
-#wsleep(10000)
+
 
 ShellExecute("taskkill.exe","/IM firefox.* /F")
 wsleep(2000)

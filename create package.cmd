@@ -26,8 +26,8 @@ copy "Drivers\Orchestration\nfv environment driver.Compilation\nfv environment d
 
 rem create vcd script
 cd "drivers\shells\vcd\vcd_autoit"
-"C:\Program Files (x86)\AutoIt3\Aut2Exe\Aut2exe_x64.exe" /in vcd_first_setup.au3 /out vcd_first_setup.exe /comp 4 /x64
-"C:\Program Files (x86)\AutoIt3\Aut2Exe\Aut2exe_x64.exe" /in vcd_attach_vcenter.au3 /out vcd_attach_vcenter.exe /comp 4 /x64
+"C:\Program Files (x86)\AutoIt3\Aut2Exe\Aut2exe_x64.exe" /in vcd_first_setup.au3 /out vcd_first_setup.exe /comp 4 /x64 /pack
+"C:\Program Files (x86)\AutoIt3\Aut2Exe\Aut2exe_x64.exe" /in vcd_attach_vcenter.au3 /out vcd_attach_vcenter.exe /comp 4 /x64 /pack
 :while3
     if exist "vcd_first_setup.exe" (
         if exist "vcd_attach_vcenter.exe" (
@@ -43,14 +43,14 @@ cd "drivers\shells\vcd\vcd_autoit"
 
 cd ..\..\..\..\
 copy "drivers\shells\vcd\vcd_autoit\*.exe" "drivers\shells\vcd\vcd_setup_script"
-copy "drivers\shells\vcd\vcd_autoit\*.bmp" "drivers\shells\vcd\vcd_setup_script"
-copy "drivers\shells\vcd\vcd_autoit\*.dll" "drivers\shells\vcd\vcd_setup_script"
+rem copy "drivers\shells\vcd\vcd_autoit\*.bmp" "drivers\shells\vcd\vcd_setup_script"
+rem copy "drivers\shells\vcd\vcd_autoit\*.dll" "drivers\shells\vcd\vcd_setup_script"
 cd "drivers\shells\vcd\vcd_setup_script"
 del ..\"vcd_05_setup.zip" /q
 "c:\Program Files\7-Zip\7z.exe" a ..\"vcd_05_setup.zip" *
 del *.exe /q
-del *.bmp /q
-del *.dll /q
+rem del *.bmp /q
+rem del *.dll /q
 cd ..\..\..\..\
 
 

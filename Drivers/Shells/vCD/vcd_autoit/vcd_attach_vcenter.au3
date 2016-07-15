@@ -1,11 +1,16 @@
 ; Auto-Fill ScaleIO Plugin Deployment Wizard
 ; Pre-Conditions for execution:
 ;	(1) English in language bar.
-;	(2) Chrome browser in Full Screen mode.
+;	(2) Firefox browser in Full Screen mode.
 #AutoIt3Wrapper_UseX64=Y
 
 #include "plugin_functions_lib.au3"
 #include <MsgBoxConstants.au3>
+
+$destination = @WorkingDir & "\attach.bmp"
+FileInstall("attach.bmp", $destination)
+$destination = @WorkingDir & "\url.bmp"
+FileInstall("url.bmp", $destination)
 
 AutoItSetOption('MouseCoordMode', 1)
 
@@ -114,12 +119,14 @@ EndFunc   ;==>fill_step
 
 Func wizard_autofill()
 
-    get_window_by_title($window_name)
-
-	For $cur_step = $start_step To $end_step Step 1
-		ConsoleWrite('>' & '[wizard_autofill] current step is: ' & $cur_step & @CRLF)
-		fill_step($cur_step)
-	Next
+    If get_window_by_title($window_name)=0 Then
+		log_write("Firefox window '" & $window_name & "' not found" & @CRLF)
+	Else
+		For $cur_step = $start_step To $end_step Step 1
+			log_write('>' & '[wizard_autofill] current step is: ' & $cur_step & @CRLF)
+			fill_step($cur_step)
+		Next
+	EndIf
 
 EndFunc   ;==>wizard_autofill
 

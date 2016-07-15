@@ -8,6 +8,12 @@
 ;
 ; ------------------------------------------------------------------------------
 
+$destination = @WorkingDir & "\ImageSearchDLL_x64.dll"
+FileInstall("ImageSearchDLL_x64.dll", $destination)
+$destination = @WorkingDir & "\msvcr110d.dll"
+FileInstall("msvcr110d.dll", $destination)
+
+
 ;===============================================================================
 ;
 ; Description:      Find the position of an image on the desktop
@@ -27,11 +33,11 @@
 ;       a desktop region to search
 ;
 ;===============================================================================
-Func _ImageSearch($findImage,$resultPosition,ByRef $x, ByRef $y,$tolerance)
+Func _ImageSearch($findImage,$resultPosition, ByRef $x, ByRef $y,$tolerance)
    return _ImageSearchArea($findImage,$resultPosition,0,0,@DesktopWidth,@DesktopHeight,$x,$y,$tolerance)
 EndFunc
 
-Func _ImageSearchArea($findImage,$resultPosition,$x1,$y1,$right,$bottom,ByRef $x, ByRef $y, $tolerance)
+Func _ImageSearchArea($findImage,$resultPosition,$x1,$y1,$right,$bottom, ByRef $x, ByRef $y, $tolerance)
 	If $tolerance>0 Then $findImage = "*" & $tolerance & " " & $findImage
 
 	If @AutoItX64 Then
@@ -73,7 +79,7 @@ EndFunc
 ;
 ;
 ;===============================================================================
-Func _WaitForImageSearch($findImage,$waitSecs,$resultPosition,ByRef $x, ByRef $y,$tolerance)
+Func _WaitForImageSearch($findImage,$waitSecs,$resultPosition, ByRef $x, ByRef $y,$tolerance)
 	$waitSecs = $waitSecs * 1000
 	$startTime=TimerInit()
 	While TimerDiff($startTime) < $waitSecs
@@ -108,7 +114,7 @@ EndFunc
 ;
 ;
 ;===============================================================================
-Func _WaitForImagesSearch($findImage,$waitSecs,$resultPosition,ByRef $x, ByRef $y,$tolerance)
+Func _WaitForImagesSearch($findImage,$waitSecs,$resultPosition, ByRef $x, ByRef $y,$tolerance)
 	$waitSecs = $waitSecs * 1000
 	$startTime=TimerInit()
 	While TimerDiff($startTime) < $waitSecs
