@@ -6,10 +6,10 @@ from quali_remote import rest_api_query
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.context import InitCommandContext, ResourceCommandContext
 from cloudshell.api.cloudshell_api import CloudShellAPISession as cs_api
+from quali_utils.quali_packaging import PackageEditor
 
 
-class OnRack (ResourceDriverInterface):
-
+class OnRack(ResourceDriverInterface):
     def populate_resource(self, context):
         """
         :param ResourceCommandContext context: the context the command runs on
@@ -19,6 +19,18 @@ class OnRack (ResourceDriverInterface):
         token = self._get_onrack_api_token(self.address, self.user, self.password)
         systemlist = self._list_all_systems(self.address, token)
         nodelist = self._list_all_nodes(self.address)
+        resources_to_create = {}
+        for system in systemlist:
+            sys_info, id = self._get_system_info(self.address, token, system)
+            if sys_info:
+                resources_to_create[sys_info['Hostname']] = nodelist[id]
+                resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
+
+        families_to_create = ['Compute']  # TODO Add Network Family
+        models_to_create = {}
+        for res in resources_to_create:
+            if resources_to_create[res]['Attrs']['Model'] not in models_to_create:
+                models_to_create[resources_to_create[res]['Attrs']['Model']] = 'Compute'  # TODO For Network, need better logic
 
     def deploy_esxs(self, context):
         """
@@ -92,7 +104,7 @@ class OnRack (ResourceDriverInterface):
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
-                         return_xml=True, header=token_header)
+                                 return_xml=True, header=token_header)
         except Exception, e:
             self._logger("Got Error while trying to get all OnRack Systems: " + str(e))
             self._WriteMessage("Got Error while trying to get all OnRack Systems: " + str(e))
@@ -151,13 +163,22 @@ class OnRack (ResourceDriverInterface):
         return system_info, id
 
 
-
-
 a = OnRack()
 # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
 list = a._list_all_systems('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'))
 dict = a._list_all_nodes('10.10.111.90')
-for l in list:
-    sys_info, id = a._get_system_info('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'), l)
-    dict[id]['Attrs'] = sys_info
+
+families_to_create = ['Compute']  # TODO Add Network Family
+models_to_create = {}
+resources_to_create = {}
+for system in list:
+    sys_info, id = a._get_system_info('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'),
+                                      system)
+    if sys_info:
+        resources_to_create[sys_info['Hostname']] = dict[id]
+        resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
+
+for res in resources_to_create:
+    if resources_to_create[res]['Attrs']['Model'] not in models_to_create:
+        models_to_create[resources_to_create[res]['Attrs']['Model']] = 'Compute'  # TODO For Network, need better logic
 pass
