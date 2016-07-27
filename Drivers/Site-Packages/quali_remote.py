@@ -311,7 +311,7 @@ def ssh_download(host, username, password, source_file, local_file):
     s.close()
 
 
-def rest_api_query(url, user, password, method, body, is_body_json=False, return_xml=False):
+def rest_api_query(url, user, password, method, body, is_body_json=False, return_xml=False, header=None):
     from requests.packages.urllib3.exceptions import InsecureRequestWarning
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
@@ -326,6 +326,9 @@ def rest_api_query(url, user, password, method, body, is_body_json=False, return
         h['Content-Type'] = 'application/json'
     else:
         h['Content-Type'] = 'application/xml'
+    if header:
+        for head in header:
+            h[head] = header[head]
     if body:
         if not is_body_json and '<?xml' not in body:
             body = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>\n' + body.strip()
