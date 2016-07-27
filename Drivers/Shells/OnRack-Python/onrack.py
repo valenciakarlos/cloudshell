@@ -11,7 +11,7 @@ from quali_utils.quali_packaging import PackageEditor
 
 
 class OnRack(ResourceDriverInterface):
-    def populate_resource(self, context):
+    def populate_resources(self, context):
         """
         :param ResourceCommandContext context: the context the command runs on
         """
