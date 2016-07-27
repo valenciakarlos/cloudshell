@@ -1,8 +1,8 @@
 import time
 import json
-import re
-import tempfile
-from distutils.version import LooseVersion
+import zipfile
+import os
+import requests
 from quali_remote import rest_api_query
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.context import InitCommandContext, ResourceCommandContext
@@ -39,6 +39,8 @@ class OnRack(ResourceDriverInterface):
             if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
                 models_to_create[resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
 
+        pack_loc = self._create_qualli_package(families_to_create, models_to_create, resources_to_create, self.address)
+        self._import_package(pack_loc)
 
     def deploy_esxs(self, context):
         """
@@ -180,19 +182,60 @@ class OnRack(ResourceDriverInterface):
                             admin_only=False, shared_by_default=False, service_family=False, searchable=True)
         for model in models:
             pack.add_model_to_family(family_name=models[model], model_name=model, description='Created via OnRack')
-
+        attributes = []
         for resource in resources:
             for att in resources[resource]['Attrs']:
                 if att not in ['Hostname', 'IP Address', 'Name', 'System']:
                     pack.add_or_update_attribute(attribute_name=att, default_value='', description='Created via onRack',
                                                  attribute_type='String', lookup_values='',
                                                  rules=['Configuration', 'Setting'])
+                    if att not in attributes:
+                        attributes.append(att)
+        pack.add_or_update_attribute(attribute_name='OnRackIP', default_value='',
+                                     description='Created via onRack', attribute_type='String', lookup_values='',
+                                     rules=['Configuration', 'Setting'])
+        attributes.append('OnRackIP')
 
+        for family in families:
+            for att in attributes:
+                pack.attach_attribute_to_family(family_name=family, attribute_name=att, user_input=False,
+                                                allowed_values='')
 
+        zip_hack = zipfile.ZipFile(zip_location, 'a')
+        for resource in resources:
+            res_name = resources[resource]['Attrs']['System']
+            res_model = resources[resource]['Attrs']['Model Name']
+            res_add = resources[resource]['Attrs']['IP Address']
+            res_attrs = resources[resource]['Attrs']
+            folder = 'OnRackImport'
+            xml = '<?xml version="1.0" encoding="utf-8"?> \n'
+            xml += '''<ResourceInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="''' + res_name + '''"  Address="''' + \
+                   res_add + '''" ModelName="''' + res_model + '" FolderFullPath="' + folder + \
+                   '''" xmlns="http://schemas.qualisystems.com/ResourceManagement/ResourceSchema.xsd"> \n'''
+            xml += '<Attributes> \n'
+            for att in attributes:
+                if att == 'OnRackIP':
+                    xml += '<Attribute Name="' + att + '" Value="' + onrack_ip + '" /> \n'
+                else:
+                    xml += '<Attribute Name="' + att + '" Value="' + res_attrs[att] + '" /> \n'
+            xml += ' </Attributes> \n'
+            xml += '</ResourceInfo>'
 
+            with open('''c:\\deploy\\''' + res_name + '.xml', 'w') as file_:
+                file_.write(xml)
+                file_.close()
+            zip_hack.write('''c:\\deploy\\''' + res_name + '.xml', "Resources/" + res_name + '.xml')
+            os.remove('''c:\\deploy\\''' + res_name + '.xml')
+        return zip_location
 
-
-
+    def _import_package(self, pack_path):
+        r = requests.put('http://localhost:9000/Api/Auth/Login',
+                         {"username": "admin", "password": "admin", "domain": "Global"})
+        authcode = "Basic " + r._content[1:-1]
+        fileobj = open(pack_path, 'rb')
+        r = requests.post('http://localhost:9000/API/Package/ImportPackage', headers={"Authorization": authcode},
+                        files={"file": fileobj})
+        fileobj.close()
 
 a = OnRack()
 # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
