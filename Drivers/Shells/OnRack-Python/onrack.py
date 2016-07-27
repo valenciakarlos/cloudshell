@@ -17,6 +17,8 @@ class OnRack (ResourceDriverInterface):
         self.reservationid = context.reservation.reservation_id
         self._cs_session(context=context)
         token = self._get_onrack_api_token(self.address, self.user, self.password)
+        systemlist = self._list_all_systems(self.address, token)
+        nodelist = self._list_all_nodes(self.address)
 
     def deploy_esxs(self, context):
         """
@@ -36,16 +38,8 @@ class OnRack (ResourceDriverInterface):
             f.write(message)
         f.close()
 
-    def cleanup(self, chan=None):
-        if chan:
-            try:
-                chan.close()
-            except:
-                pass
-            try:
-                chan.keep_this.close()
-            except:
-                pass
+    def cleanup(self):
+        pass
 
     def __init__(self):
         pass
@@ -82,7 +76,8 @@ class OnRack (ResourceDriverInterface):
         '''
         url = 'https://' + address + '/login'
         try:
-            out = rest_api_query(url=url, user='', password='', method='post', body=data, is_body_json=True, return_xml=True)
+            out = rest_api_query(url=url, user='', password='', method='post', body=data, is_body_json=True,
+                                 return_xml=True)
         except Exception, e:
             self._logger("Got Error while trying to get API token: " + str(e))
             self._WriteMessage("Got Error while trying to get API token: " + str(e))
@@ -92,7 +87,77 @@ class OnRack (ResourceDriverInterface):
         auth_token = out['response']['user']['authentication_token']
         return auth_token
 
+    def _list_all_systems(self, address, api_token):
+        url = 'https://' + address + '/rest/v1/ManagedSystems/Systems'
+        token_header = {'Authentication-Token': api_token}
+        try:
+            out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
+                         return_xml=True, header=token_header)
+        except Exception, e:
+            self._logger("Got Error while trying to get all OnRack Systems: " + str(e))
+            self._WriteMessage("Got Error while trying to get all OnRack Systems: " + str(e))
+            raise Exception("Got Error while trying to get all OnRack Systems: " + str(e))
+        out = json.loads(out)
+        members = out['Links']['Members']
+        system_list = []
+        for member in members:
+            system_list.append(member['href'])
+        return system_list
+
+    def _list_all_nodes(self, address):
+        url = 'http://' + address + ':8080/api/1.1/nodes'
+        try:
+            out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
+                                 return_xml=True)
+        except Exception, e:
+            self._logger("Got Error while trying to get all OnRack Nodes: " + str(e))
+            self._WriteMessage("Got Error while trying to get all OnRack Nodes: " + str(e))
+            raise Exception("Got Error while trying to get all OnRack Nodes: " + str(e))
+        out = json.loads(out)
+        node_dict = {}
+        for node in out:
+            if node['type'] == 'compute':
+                node_dict[node['id']] = {}
+                num = 0
+                for id in node['identifiers']:
+                    node_dict[node['id']]["eth" + str(num)] = id
+                    num += 1
+        return node_dict
+
+    def _get_system_info(self, address, api_token, system_url):
+        url = 'https://' + address + '/' + system_url
+        token_header = {'Authentication-Token': api_token}
+        try:
+            out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
+                                 return_xml=True, header=token_header)
+        except Exception, e:
+            self._logger("Got Error while trying to get all OnRack Systems: " + str(e))
+            self._WriteMessage("Got Error while trying to get all OnRack Systems: " + str(e))
+            raise Exception("Got Error while trying to get all OnRack Systems: " + str(e))
+
+        out = json.loads(out)
+        id = out['Id']
+        if out['Oem'] == {}:
+            return None, id
+        system_info = {
+            'Hostname': out['Oem']['EMC']['VisionID_Chassis'],
+            'id': out['Id'],
+            'Serial': out['SerialNumber'],
+            'Model': out['Model'],
+            'IP Address': out['Oem']['EMC']['VisionID_Ip'],
+            'System': out['Oem']['EMC']['VisionID_System'],
+            'Name': out['Name'],
+        }
+        return system_info, id
+
+
 
 
 a = OnRack()
-print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
+# print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
+list = a._list_all_systems('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'))
+dict = a._list_all_nodes('10.10.111.90')
+for l in list:
+    sys_info, id = a._get_system_info('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'), l)
+    dict[id]['Attrs'] = sys_info
+pass
