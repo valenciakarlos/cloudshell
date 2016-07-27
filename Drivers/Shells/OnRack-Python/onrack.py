@@ -1,6 +1,7 @@
 import time
 import json
 import re
+import tempfile
 from distutils.version import LooseVersion
 from quali_remote import rest_api_query
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
@@ -28,9 +29,16 @@ class OnRack(ResourceDriverInterface):
 
         families_to_create = ['Compute']  # TODO Add Network Family
         models_to_create = {}
+        if resources_to_create == {}:
+            message = "No Usable Resources Found, check the logs for more information"
+            self._logger(message + '\r\n' + "System List: " + str(systemlist) + '\r\n' + "Node List: " + str(nodelist))
+            self._WriteMessage(message)
+            raise Exception(message)
+
         for res in resources_to_create:
-            if resources_to_create[res]['Attrs']['Model'] not in models_to_create:
-                models_to_create[resources_to_create[res]['Attrs']['Model']] = 'Compute'  # TODO For Network, need better logic
+            if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
+                models_to_create[resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
+
 
     def deploy_esxs(self, context):
         """
@@ -153,14 +161,37 @@ class OnRack(ResourceDriverInterface):
             return None, id
         system_info = {
             'Hostname': out['Oem']['EMC']['VisionID_Chassis'],
-            'id': out['Id'],
-            'Serial': out['SerialNumber'],
-            'Model': out['Model'],
+            'OnRackID': out['Id'],
+            'Serial Number': out['SerialNumber'],
+            'Model Name': out['Model'],
             'IP Address': out['Oem']['EMC']['VisionID_Ip'],
             'System': out['Oem']['EMC']['VisionID_System'],
             'Name': out['Name'],
         }
         return system_info, id
+
+    def _create_qualli_package(self, families, models, resources, onrack_ip):
+        zip_location = 'c:\\deploy\\OnRackImport.zip'
+        pack = PackageEditor()
+        pack.create(zip_location)
+        pack.load(zip_location)
+        for family in families:
+            pack.add_family(family_name=family, description='Created via OnRack', categories='', connectable=False,
+                            admin_only=False, shared_by_default=False, service_family=False, searchable=True)
+        for model in models:
+            pack.add_model_to_family(family_name=models[model], model_name=model, description='Created via OnRack')
+
+        for resource in resources:
+            for att in resources[resource]['Attrs']:
+                if att not in ['Hostname', 'IP Address', 'Name', 'System']:
+                    pack.add_or_update_attribute(attribute_name=att, default_value='', description='Created via onRack',
+                                                 attribute_type='String', lookup_values='',
+                                                 rules=['Configuration', 'Setting'])
+
+
+
+
+
 
 
 a = OnRack()
@@ -179,6 +210,8 @@ for system in list:
         resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
 
 for res in resources_to_create:
-    if resources_to_create[res]['Attrs']['Model'] not in models_to_create:
-        models_to_create[resources_to_create[res]['Attrs']['Model']] = 'Compute'  # TODO For Network, need better logic
+    if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
+        models_to_create[resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
+a._create_qualli_package(families_to_create, models_to_create, resources_to_create, '10.10.111.90')
+
 pass
