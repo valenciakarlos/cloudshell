@@ -80,7 +80,8 @@ class OnRack(ResourceDriverInterface):
         :param InitCommandContext context: the context the command runs on
         """
         self._cs_session(context=context)
-        self.address = context.resource.address
+        # self.address = context.resource.address
+        self.address = context.resource.attributes["OnRack Address"]
         self.attrs = context.resource.attributes
         self.user = context.resource.attributes["OnRack Username"]
         self.password = context.resource.attributes["OnRack Password"]
