@@ -94,11 +94,19 @@ class OnRack(ResourceDriverInterface):
         task_ids =[]
         for esx in deploy_dict:
             task_id = self._deploy_esx(onrack_address=self.address, api_token=token, onrack_res_id=deploy_dict[esx][7],
-                             esx_ip=deploy_dict[esx][1], esx_dns1=deploy_dict[esx][3], esx_dns2=deploy_dict[esx][4],
-                             esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6], esx_hostname=esx,
-                             esx_password=deploy_dict[esx][2])
+                                       esx_ip=deploy_dict[esx][1], esx_dns1=deploy_dict[esx][3],
+                                       esx_dns2=deploy_dict[esx][4], esx_gateway=deploy_dict[esx][5],
+                                       esx_domain=deploy_dict[esx][6], esx_hostname=esx,
+                                       esx_password=deploy_dict[esx][2])
             task_ids.append(task_id)
         self._logger("Task IDs for Deployment: " + str(task_ids))
+
+        for x in[1,2]:
+            deplyed = self._wait_fo_tasks_to_complete(task_ids, 100, 15)
+            if deplyed:
+                exit(0)
+        exit(1)
+
 
     def _logger(self, message, path=r'c:\ProgramData\QualiSystems\OnRack.log'):
         try:
@@ -357,6 +365,41 @@ class OnRack(ResourceDriverInterface):
         task_id = out['Id']
         return task_id
 
+    def _check_onrack_job_status(self, onrack_address, api_token, job_id):
+        url = 'https://' + onrack_address + '/rest/v1/ManagedSystems/TaskService/Tasks/' + job_id
+        token_header = {'Authentication-Token': api_token}
+        try:
+            out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=True,
+                                 return_xml=True, header=token_header)
+        except Exception, e:
+            messgae = "Got Error while trying to get job status from onrack: " + str(e)
+            self._logger(messgae)
+            self._WriteMessage(messgae)
+            raise Exception(messgae)
+        self._logger("Job Status response: " + out)
+        out = json.loads(out)
+        task_state = out['TaskState']
+        return task_state
+
+    def _wait_fo_tasks_to_complete(self, task_ids, retires, retry_delay):
+        completed = {}
+        for x in xrange(retires):
+            for job in task_ids:
+                if not completed.has_key(job):
+                    token = self._get_onrack_api_token(self.address, self.user, self.password)
+                    state = self._check_onrack_job_status(self.address, token, job)
+                    if state == 'Completed':
+                        completed[job] = state
+                    elif state == 'Exception':
+                        messgae = "Failed to Deploy ESXs, check the logs"
+                        self._logger(messgae + " Completed Dict: " + str(completed))
+                        self._WriteMessage(messgae)
+                        return False
+
+            if len(completed) == len(task_ids):
+                return True
+            else:
+                time.sleep(retry_delay)
 
 # a = OnRack()
 # # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
