@@ -37,10 +37,15 @@ class OnRack(ResourceDriverInterface):
 
         for res in resources_to_create:
             if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
-                models_to_create[resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
+                models_to_create[
+                    resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
 
         pack_loc = self._create_qualli_package(families_to_create, models_to_create, resources_to_create, self.address)
         self._import_package(pack_loc)
+        resource_to_add = []
+        for res in resources_to_create:
+            resource_to_add.append(resources_to_create[res]['Attrs']['System'])
+        self._add_resource_to_reservation(resources_to_create, 'OnRackImport')
 
     def deploy_esxs(self, context):
         """
@@ -105,12 +110,13 @@ class OnRack(ResourceDriverInterface):
             self._logger("Got Error while trying to get API token: " + str(e))
             self._WriteMessage("Got Error while trying to get API token: " + str(e))
             raise Exception("Got Error while trying to get API token: " + str(e))
-        self._logger("Response is: " + out)
+        self._logger("Response From Getting OnRack API Token is: " + out)
         out = json.loads(out)
         auth_token = out['response']['user']['authentication_token']
         return auth_token
 
     def _list_all_systems(self, address, api_token):
+        self._logger("Getting all OnRack Registered Systems...")
         url = 'https://' + address + '/rest/v1/ManagedSystems/Systems'
         token_header = {'Authentication-Token': api_token}
         try:
@@ -125,9 +131,11 @@ class OnRack(ResourceDriverInterface):
         system_list = []
         for member in members:
             system_list.append(member['href'])
+        self._logger("All OnRack Registered Systems: " + str(system_list))
         return system_list
 
     def _list_all_nodes(self, address):
+        self._logger("Getting All OnRack Nodes....")
         url = 'http://' + address + ':8080/api/1.1/nodes'
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
@@ -145,6 +153,7 @@ class OnRack(ResourceDriverInterface):
                 for id in node['identifiers']:
                     node_dict[node['id']]["eth" + str(num)] = id
                     num += 1
+        self._logger("All OnRack Nodes: " + str(node_dict))
         return node_dict
 
     def _get_system_info(self, address, api_token, system_url):
@@ -154,9 +163,9 @@ class OnRack(ResourceDriverInterface):
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
                                  return_xml=True, header=token_header)
         except Exception, e:
-            self._logger("Got Error while trying to get all OnRack Systems: " + str(e))
-            self._WriteMessage("Got Error while trying to get all OnRack Systems: " + str(e))
-            raise Exception("Got Error while trying to get all OnRack Systems: " + str(e))
+            self._logger("Got Error while trying to get OnRack System: " + str(e))
+            self._WriteMessage("Got Error while trying to get OnRack System: " + str(e))
+            raise Exception("Got Error while trying to get OnRack System: " + str(e))
 
         out = json.loads(out)
         id = out['Id']
@@ -171,9 +180,11 @@ class OnRack(ResourceDriverInterface):
             'System': out['Oem']['EMC']['VisionID_System'],
             'Name': out['Name'],
         }
+        self._logger("OnRack System Info: " + str(system_info))
         return system_info, id
 
     def _create_qualli_package(self, families, models, resources, onrack_ip):
+        self._logger("Creating Package for Import")
         zip_location = 'c:\\deploy\\OnRackImport.zip'
         pack = PackageEditor()
         pack.create(zip_location)
@@ -227,16 +238,29 @@ class OnRack(ResourceDriverInterface):
                 file_.close()
             zip_hack.write('''c:\\deploy\\''' + res_name + '.xml', "Resources/" + res_name + '.xml')
             os.remove('''c:\\deploy\\''' + res_name + '.xml')
+        self._logger("Package Created And Can Be Found At: " + zip_location)
         return zip_location
 
     def _import_package(self, pack_path):
+        self._logger("Starting to Import Package From: " + pack_path)
         r = requests.put('http://localhost:9000/Api/Auth/Login',
                          {"username": "admin", "password": "admin", "domain": "Global"})
         authcode = "Basic " + r._content[1:-1]
         fileobj = open(pack_path, 'rb')
         r = requests.post('http://localhost:9000/API/Package/ImportPackage', headers={"Authorization": authcode},
-                        files={"file": fileobj})
+                          files={"file": fileobj})
         fileobj.close()
+        self._logger("Finishing Importing Package")
+
+    def _add_resource_to_reservation(self, resources, folder=None):
+        for resource in resources:
+            res_name = resources[resource]['Attrs']['System']
+            if folder:
+                res_name = folder + '/' + res_name
+            self.session.AddResourcesToReservation(reservationId=self.reservationid, resourcesFullPath=[res_name],
+                                                   shared=False)
+            self._logger("Added Resource \"" + res_name + "\" To Reservation " + self.reservationid)
+
 
 a = OnRack()
 # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
@@ -255,7 +279,8 @@ for system in list:
 
 for res in resources_to_create:
     if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
-        models_to_create[resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
+        models_to_create[
+            resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
 a._create_qualli_package(families_to_create, models_to_create, resources_to_create, '10.10.111.90')
 
 pass
