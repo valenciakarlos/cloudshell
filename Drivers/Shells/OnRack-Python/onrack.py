@@ -253,6 +253,7 @@ class OnRack(ResourceDriverInterface):
         self._logger("Finishing Importing Package")
 
     def _add_resource_to_reservation(self, resources, folder=None):
+        num = 1
         for resource in resources:
             res_name = resources[resource]['Attrs']['System']
             if folder:
@@ -260,7 +261,12 @@ class OnRack(ResourceDriverInterface):
             self.session.AddResourcesToReservation(reservationId=self.reservationid, resourcesFullPath=[res_name],
                                                    shared=False)
             self._logger("Added Resource \"" + res_name + "\" To Reservation " + self.reservationid)
+            self._set_resource_position(res_name, 100, 110 * num)
+            num += 1
 
+    def _set_resource_position(self, resource, x, y):
+        self.session.SetReservationResourcePosition(self.reservationid, resource, int(x), int(y))
+        self._logger("Setting Resource Position To: " + str(x) + '/' + str(y) + " For Resource: " + resource)
 
 a = OnRack()
 # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
