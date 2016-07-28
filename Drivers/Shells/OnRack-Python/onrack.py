@@ -15,8 +15,10 @@ class OnRack(ResourceDriverInterface):
         """
         :param ResourceCommandContext context: the context the command runs on
         """
+        self._logger("Starting to Populate OnRack Resources")
         self.reservationid = context.reservation.reservation_id
         self._cs_session(context=context)
+        self._WriteMessage("starting to Populate OnRack Resources")
         token = self._get_onrack_api_token(self.address, self.user, self.password)
         systemlist = self._list_all_systems(self.address, token)
         nodelist = self._list_all_nodes(self.address)
@@ -46,11 +48,57 @@ class OnRack(ResourceDriverInterface):
         for res in resources_to_create:
             resource_to_add.append(resources_to_create[res]['Attrs']['System'])
         self._add_resource_to_reservation(resources_to_create, 'OnRackImport')
+        self._WriteMessage("OnRack Populate Resources Finished")
+        self._logger("OnRack Populate Resources Finished")
 
     def deploy_esxs(self, context):
         """
         :param ResourceCommandContext context: the context the command runs on
         """
+        self._logger("Starting to Deploy ESXis on OnRack Resources")
+        self.reservationid = context.reservation.reservation_id
+        self._cs_session(context=context)
+        self._WriteMessage("Starting to Deploy ESXis on OnRack Resources")
+        token = self._get_onrack_api_token(self.address, self.user, self.password)
+        systemlist = self._list_all_systems(self.address, token)
+        nodelist = self._list_all_nodes(self.address)
+        resources_to_create = {}
+        for system in systemlist:
+            sys_info, id = self._get_system_info(self.address, token, system)
+            if sys_info:
+                resources_to_create[sys_info['Hostname']] = nodelist[id]
+                resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
+        esx_info_matrix = context.resource.attributes['DeployTable']
+        esx_gateway = context.resource.attributes['ESX Gateway']
+        esx_dns1 = context.resource.attributes['ESX DNS1']
+        esx_dns2 = context.resource.attributes['ESX DNS2']
+        esx_root_password = context.resource.attributes['ESX Root Password']
+        esx_domain = context.resource.attributes['ESX Domain']
+
+        deploy_dict = {}
+        for esx in esx_info_matrix.split(';'):
+            mac = esx.split(',')[0]
+            if (mac != 'MAC') and (mac != ''):
+                hostname = esx.split(',')[1]
+                ip = esx.split(',')[2]
+                for resource in resources_to_create:
+                    for eth in resources_to_create[resource]:
+                        if type(resources_to_create[resource][eth]) is dict:
+                            continue
+
+                        if str(resources_to_create[resource][eth]) == str(mac):
+                            deploy_dict[hostname] = [mac, ip, esx_root_password, esx_dns1, esx_dns2, esx_gateway,
+                                                     esx_domain, resources_to_create[resource]['Attrs']['OnRackID']]
+                            break
+        self._logger("Deploy ESX Dict: " + str(deploy_dict))
+        task_ids =[]
+        for esx in deploy_dict:
+            task_id = self._deploy_esx(onrack_address=self.address, api_token=token, onrack_res_id=deploy_dict[esx][7],
+                             esx_ip=deploy_dict[esx][1], esx_dns1=deploy_dict[esx][3], esx_dns2=deploy_dict[esx][4],
+                             esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6], esx_hostname=esx,
+                             esx_password=deploy_dict[esx][2])
+            task_ids.append(task_id)
+        self._logger("Task IDs for Deployment: " + str(task_ids))
 
     def _logger(self, message, path=r'c:\ProgramData\QualiSystems\OnRack.log'):
         try:
@@ -84,7 +132,7 @@ class OnRack(ResourceDriverInterface):
         This is a good place to load and cache the driver configuration, initiate sessions etc.
         :param InitCommandContext context: the context the command runs on
         """
-        self._cs_session(context=context)
+        # self._cs_session(context=context)
         # self.address = context.resource.address
         self.address = context.resource.attributes["OnRack Address"]
         self.attrs = context.resource.attributes
@@ -268,25 +316,67 @@ class OnRack(ResourceDriverInterface):
         self.session.SetReservationResourcePosition(self.reservationid, resource, int(x), int(y))
         self._logger("Setting Resource Position To: " + str(x) + '/' + str(y) + " For Resource: " + resource)
 
-a = OnRack()
-# print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
-list = a._list_all_systems('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'))
-dict = a._list_all_nodes('10.10.111.90')
+    def _deploy_esx(self, onrack_address, api_token, onrack_res_id, esx_ip, esx_dns1, esx_dns2, esx_gateway, esx_domain,
+                    esx_hostname, esx_password):
+        deploy_request = '''
+{
+	"domain": "''' + esx_domain + '''",
+	"hostname": "''' + esx_hostname + '''",
+    "repo": "http://172.31.128.1:8080/esxi/6.0",
+    "version": "6.0",
+    "networkDevices": [
+        {
+            "device": "eth0",
+            "ipv4": {
+                "netmask": "255.255.255.0",
+				"ipAddr": "''' + esx_ip + '''",
+				"gateway": "''' + esx_gateway + '''"
+            }
+        }
+    ],
+	"rootPassword": "''' + esx_password + '''",
+    "dnsServers": [
+		"''' + esx_dns1 + '''",
+        "''' + esx_dns2 + '''"
+    ]
+}'''
+        self._logger("Deploy Request: " + deploy_request)
+        url = 'https://' + onrack_address + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + \
+              '/OEM/OnRack/Actions/BootImage/ESXi'
+        token_header = {'Authentication-Token': api_token}
+        try:
+            out = rest_api_query(url=url, user='', password='', method='post', body=deploy_request, is_body_json=True,
+                                 return_xml=True, header=token_header)
+        except Exception, e:
+            messgae = "Got Error while trying to deploy from OnRack: " + str(e)
+            self._logger(messgae)
+            self._WriteMessage(messgae)
+            raise Exception(messgae)
+        self._logger("Deploy response: " + out)
+        out = json.loads(out)
+        task_id = out['Id']
+        return task_id
 
-families_to_create = ['Compute']  # TODO Add Network Family
-models_to_create = {}
-resources_to_create = {}
-for system in list:
-    sys_info, id = a._get_system_info('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'),
-                                      system)
-    if sys_info:
-        resources_to_create[sys_info['Hostname']] = dict[id]
-        resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
 
-for res in resources_to_create:
-    if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
-        models_to_create[
-            resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
-a._create_qualli_package(families_to_create, models_to_create, resources_to_create, '10.10.111.90')
+# a = OnRack()
+# # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
+# list = a._list_all_systems('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'))
+# dict = a._list_all_nodes('10.10.111.90')
+#
+# families_to_create = ['Compute']  # TODO Add Network Family
+# models_to_create = {}
+# resources_to_create = {}
+# for system in list:
+#     sys_info, id = a._get_system_info('10.10.111.90', a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123'),
+#                                       system)
+#     if sys_info:
+#         resources_to_create[sys_info['Hostname']] = dict[id]
+#         resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
+#
+# for res in resources_to_create:
+#     if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
+#         models_to_create[
+#             resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
+# a._create_qualli_package(families_to_create, models_to_create, resources_to_create, '10.10.111.90')
 
 pass

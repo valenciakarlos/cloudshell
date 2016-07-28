@@ -1,11 +1,7 @@
 <Driver Description="Describe the purpose of your CloudShell shell" MainClass="onrack.OnRack" Name="OnRack" Version="1.0.0">
     <Layout>
         <Command Description="" DisplayName="Populate Resources" Name="populate_resources" />
-        <!--<Command Description="" DisplayName="Get Firmware" Name="get_firmware" >-->
-            <!--<Parameters>-->
-			    <!--<Parameter Name="firmware_type" Type="String" Mandatory = "True" DefaultValue="" DisplayName="Firmware Type" Description="Firmware type to update. can be BIOS, iDRAC or LifeCycle"/>-->
-            <!--</Parameters>-->
-        <!--</Command>-->
+        <Command Description="" DisplayName="Deploy ESXs" Name="deploy_esxs" />
         <!--<Command Description="" DisplayName="Update Firmware" Name="update_firmware" >-->
             <!--<Parameters>-->
 			    <!--<Parameter Name="firmware_type" Type="String" Mandatory = "True" DefaultValue="" DisplayName="Firmware Type" Description="Firmware type to update. can be BIOS, iDRAC or LifeCycle"/>-->
