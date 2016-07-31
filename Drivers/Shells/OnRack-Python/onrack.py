@@ -79,9 +79,12 @@ class OnRack(ResourceDriverInterface):
         esx_domain = context.resource.attributes['ESX Domain']
 
         deploy_dict = {}
+        found_mac = []
+        length = 0
         for esx in esx_info_matrix.split(';'):
             mac = esx.split(',')[0]
             if (mac != 'MAC') and (mac != ''):
+                length += 1
                 hostname = esx.split(',')[1]
                 ip = esx.split(',')[2]
                 for resource in resources_to_create:
@@ -93,8 +96,22 @@ class OnRack(ResourceDriverInterface):
                             deploy_dict[hostname] = [mac, ip, esx_root_password, esx_dns1, esx_dns2, esx_gateway,
                                                      esx_domain, resources_to_create[resource]['Attrs']['OnRackID'],
                                                      resources_to_create[resource]['Attrs']['System']]
+                            found_mac.append(mac)
                             break
         self._logger("Deploy ESX Dict: " + str(deploy_dict))
+        unsolved = ''
+        if len(found_mac) != length:
+            for esx in esx_info_matrix.split(';'):
+                mac = esx.split(',')[0]
+                if (mac != 'MAC') and (mac != ''):
+                    hostname = esx.split(',')[1]
+                    if mac not in found_mac:
+                        unsolved += "Was not able to find Hardware for: " + hostname + " MAC: " + mac + '\n'
+
+        if unsolved:
+            message = str(unsolved)
+            self._logger(message)
+            self._WriteMessage(message)
         duplicate_deploy = deploy_dict
         for x in [1, 2, 3]:  # Number of retires
             task_ids = []
@@ -445,12 +462,11 @@ class OnRack(ResourceDriverInterface):
     def _update_esx_resource(self, old_resource, new_name, new_address, folder=None):
         if folder:
             old_resource = folder + "/" + old_resource
-            #new_name = folder + "/" + new_name
+            # new_name = folder + "/" + new_name
         self._logger("Updating Resource: \"" + old_resource + "\" To new name: \"" + new_name +
                      "\"  And new address: \"" + new_address + "\"")
         self.session.UpdateResourceAddress(old_resource, new_address)
         self.session.RenameResource(old_resource, new_name)
-
 
 
 # a = OnRack()
