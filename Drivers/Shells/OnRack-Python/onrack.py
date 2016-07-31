@@ -95,7 +95,8 @@ class OnRack(ResourceDriverInterface):
                                                      resources_to_create[resource]['Attrs']['System']]
                             break
         self._logger("Deploy ESX Dict: " + str(deploy_dict))
-        for x in [1, 2]:  # Number of retires
+        duplicate_deploy = deploy_dict
+        for x in [1, 2, 3]:  # Number of retires
             task_ids = []
             for esx in deploy_dict:
                 task_id = self._deploy_esx(onrack_address=self.address, api_token=token,
@@ -104,20 +105,31 @@ class OnRack(ResourceDriverInterface):
                                            esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6],
                                            esx_hostname=esx, esx_password=deploy_dict[esx][2])
                 task_ids.append(task_id)
+                deploy_dict[esx].append(task_id)
                 self._set_resource_livestatus(deploy_dict[esx][8], 'Installing', 'Installing ESX', folder)
+                # OnRack VooDoo if commands being sent too fast.
+                time.sleep(1)
             self._logger("Task IDs for Deployment: " + str(task_ids))
-            deployed = self._wait_fo_tasks_to_complete(task_ids, 100, 15)
+            deployed, esx_states = self._wait_fo_tasks_to_complete(task_ids, 100, 15)
             if deployed:
                 esx_list = []
-                for esx in deploy_dict:
-                    self._set_resource_livestatus(deploy_dict[esx][8], 'Completed successfully', 'ESX Installed',
+                for esx in duplicate_deploy:
+                    self._set_resource_livestatus(duplicate_deploy[esx][8], 'Completed successfully', 'ESX Installed',
                                                   folder)
-                    self._update_esx_resource(deploy_dict[esx][8], esx, deploy_dict[esx][1], folder)
+                    self._update_esx_resource(duplicate_deploy[esx][8], esx, duplicate_deploy[esx][1], folder)
                     esx_list.append(esx)
                 message = "Successfully deployed all ESXis: " + str(esx_list)
                 self._WriteMessage(message)
                 self._logger(message + " on retry number: " + str(x))
                 exit(0)
+            else:
+                for esx_state in esx_states:
+                    if esx_states[esx_state] == 'Completed':
+                        for esx in deploy_dict:
+                            if esx_state == deploy_dict[esx][9]:
+                                deploy_dict.pop(esx)
+                                break
+
         message = "Failed to deployed all ESXis"
         self._WriteMessage(message)
         self._logger(message)
@@ -404,19 +416,25 @@ class OnRack(ResourceDriverInterface):
                     state = self._check_onrack_job_status(self.address, token, job)
                     if state == 'Completed':
                         completed[job] = state
+                        message = "Successfully Deploy ESX with task id of: " + job
+                        self._logger(message)
+                        # self._WriteMessage(message)
                     elif state == 'Running':
                         message = "Deploy is still running for task: " + job
                         self._logger(message)
-                    elif state == 'Exception':
-                        message = "Failed to Deploy ESXs, check the logs"
+                    elif (state == 'Exception') or (state == 'Killed'):
+                        completed[job] = state
+                        message = "Failed to Deploy ESX, with job id: " + job
                         self._logger(message + " Completed Dict: " + str(completed))
                         self._WriteMessage(message)
-                        return False
-
             if len(completed) == len(task_ids):
-                return True
+                for task in completed:
+                    if completed[task] != 'Completed':
+                        return False, completed
+                return True, completed
             else:
                 time.sleep(retry_delay)
+        return False, completed
 
     def _set_resource_livestatus(self, resource, status, add_info, folder=None):
         if folder:
@@ -427,11 +445,12 @@ class OnRack(ResourceDriverInterface):
     def _update_esx_resource(self, old_resource, new_name, new_address, folder=None):
         if folder:
             old_resource = folder + "/" + old_resource
-            new_name = folder + "/" + new_name
+            #new_name = folder + "/" + new_name
         self._logger("Updating Resource: \"" + old_resource + "\" To new name: \"" + new_name +
                      "\"  And new address: \"" + new_address + "\"")
+        self.session.UpdateResourceAddress(old_resource, new_address)
         self.session.RenameResource(old_resource, new_name)
-        self.session.UpdateResourceAddress(new_name, new_address)
+
 
 
 # a = OnRack()
