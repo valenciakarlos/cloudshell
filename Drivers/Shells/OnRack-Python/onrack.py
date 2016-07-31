@@ -113,14 +113,15 @@ class OnRack(ResourceDriverInterface):
             self._logger(message)
             self._WriteMessage(message)
         duplicate_deploy = deploy_dict
-        for x in [1, 2, 3]:  # Number of retires
+        num_retries = 3
+        for x in xrange(num_retries):  # Number of retires
             task_ids = []
             for esx in deploy_dict:
-                task_id = self._deploy_esx(onrack_address=self.address, api_token=token,
-                                           onrack_res_id=deploy_dict[esx][7], esx_ip=deploy_dict[esx][1],
-                                           esx_dns1=deploy_dict[esx][3], esx_dns2=deploy_dict[esx][4],
-                                           esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6],
-                                           esx_hostname=esx, esx_password=deploy_dict[esx][2])
+                task_id = self._deploy_image(onrack_address=self.address, api_token=token,
+                                             onrack_res_id=deploy_dict[esx][7], esx_ip=deploy_dict[esx][1],
+                                             esx_dns1=deploy_dict[esx][3], esx_dns2=deploy_dict[esx][4],
+                                             esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6],
+                                             esx_hostname=esx, esx_password=deploy_dict[esx][2])
                 task_ids.append(task_id)
                 deploy_dict[esx].append(task_id)
                 self._set_resource_livestatus(deploy_dict[esx][8], 'Installing', 'Installing ESX', folder)
@@ -147,7 +148,7 @@ class OnRack(ResourceDriverInterface):
                                 deploy_dict.pop(esx)
                                 break
 
-        message = "Failed to deployed all ESXis"
+        message = "Failed to deployed all ESXis after " + str(num_retries) + " retries"
         self._WriteMessage(message)
         self._logger(message)
         raise Exception(message)
@@ -217,7 +218,7 @@ class OnRack(ResourceDriverInterface):
 
     def _list_all_systems(self, address, api_token):
         self._logger("Getting all OnRack Registered Systems...")
-        url = 'https://' + address + '/rest/v1/ManagedSystems/Systems'
+        url = 'https://' + address + '/redfish/v1/Systems'
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
@@ -227,10 +228,10 @@ class OnRack(ResourceDriverInterface):
             self._WriteMessage("Got Error while trying to get all OnRack Systems: " + str(e))
             raise Exception("Got Error while trying to get all OnRack Systems: " + str(e))
         out = json.loads(out)
-        members = out['Links']['Members']
+        members = out['Members']
         system_list = []
         for member in members:
-            system_list.append(member['href'])
+            system_list.append(member['@odata.id'])
         self._logger("All OnRack Registered Systems: " + str(system_list))
         return system_list
 
@@ -257,6 +258,7 @@ class OnRack(ResourceDriverInterface):
         return node_dict
 
     def _get_system_info(self, address, api_token, system_url):
+        # 'new' RESP API /redfish/v1/System/{ID} doesnt have full details as the below
         url = 'https://' + address + '/' + system_url
         token_header = {'Authentication-Token': api_token}
         try:
@@ -367,14 +369,15 @@ class OnRack(ResourceDriverInterface):
         self.session.SetReservationResourcePosition(self.reservationid, resource, int(x), int(y))
         self._logger("Setting Resource Position To: " + str(x) + '/' + str(y) + " For Resource: " + resource)
 
-    def _deploy_esx(self, onrack_address, api_token, onrack_res_id, esx_ip, esx_dns1, esx_dns2, esx_gateway, esx_domain,
-                    esx_hostname, esx_password):
+    def _deploy_image(self, onrack_address, api_token, onrack_res_id, esx_ip, esx_dns1, esx_dns2, esx_gateway, esx_domain,
+                      esx_hostname, esx_password, image_type='ESXi'):
         deploy_request = '''
 {
 	"domain": "''' + esx_domain + '''",
 	"hostname": "''' + esx_hostname + '''",
     "repo": "http://172.31.128.1:8080/esxi/6.0",
     "version": "6.0",
+    "osName": "''' + image_type + '''",
     "networkDevices": [
         {
             "device": "eth0",
@@ -392,8 +395,7 @@ class OnRack(ResourceDriverInterface):
     ]
 }'''
         self._logger("Deploy Request: " + deploy_request)
-        url = 'https://' + onrack_address + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + \
-              '/OEM/OnRack/Actions/BootImage/ESXi'
+        url = 'https://' + onrack_address + '/redfish/v1/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage'
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='post', body=deploy_request, is_body_json=True,
@@ -409,7 +411,7 @@ class OnRack(ResourceDriverInterface):
         return task_id
 
     def _check_onrack_job_status(self, onrack_address, api_token, job_id):
-        url = 'https://' + onrack_address + '/rest/v1/ManagedSystems/TaskService/Tasks/' + job_id
+        url = 'https://' + onrack_address + '/redfish/v1/TaskService/Tasks/' + job_id
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=True,
