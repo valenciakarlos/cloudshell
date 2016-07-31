@@ -115,14 +115,14 @@ class OnRack(ResourceDriverInterface):
         duplicate_deploy = deploy_dict
         num_retries = 3
         for x in xrange(num_retries):  # Number of retires
-            task_ids = []
+            task_ids = {}
             for esx in deploy_dict:
                 task_id = self._deploy_image(onrack_address=self.address, api_token=token,
                                              onrack_res_id=deploy_dict[esx][7], esx_ip=deploy_dict[esx][1],
                                              esx_dns1=deploy_dict[esx][3], esx_dns2=deploy_dict[esx][4],
                                              esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6],
                                              esx_hostname=esx, esx_password=deploy_dict[esx][2])
-                task_ids.append(task_id)
+                task_ids[task_id] = esx
                 deploy_dict[esx].append(task_id)
                 self._set_resource_livestatus(deploy_dict[esx][8], 'Installing', 'Installing ESX', folder)
                 # OnRack VooDoo if commands being sent too fast.
@@ -435,15 +435,15 @@ class OnRack(ResourceDriverInterface):
                     state = self._check_onrack_job_status(self.address, token, job)
                     if state == 'Completed':
                         completed[job] = state
-                        message = "Successfully Deploy ESX with task id of: " + job
+                        message = "Successfully Deploy ESX: \"" + task_ids[job] + "\""
                         self._logger(message)
                         # self._WriteMessage(message)
                     elif state == 'Running':
-                        message = "Deploy is still running for task: " + job
+                        message = "Deploy is still running for: \"" + task_ids[job] + "\""
                         self._logger(message)
                     elif (state == 'Exception') or (state == 'Killed'):
                         completed[job] = state
-                        message = "Failed to Deploy ESX, with job id: " + job
+                        message = "Failed to Deploy ESX, \"" + task_ids[job] + "\"" + " Job ID: " + job
                         self._logger(message + " Completed Dict: " + str(completed))
                         self._WriteMessage(message)
             if len(completed) == len(task_ids):
