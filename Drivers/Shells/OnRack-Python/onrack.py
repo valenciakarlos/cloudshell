@@ -22,12 +22,6 @@ class OnRack(ResourceDriverInterface):
         folder = "OnRackImport"
         token = self._get_onrack_api_token(self.address, self.user, self.password)
         resources_to_create = self._get_onrack_info(self.address, token)
-        if resources_to_create == {}:
-            message = "No Usable Resources Found, check the logs for more information"
-            self._logger(message)
-            self._WriteMessage(message)
-            raise Exception(message)
-
         families_to_create = ['Compute']  # TODO Add Network Family when needed
         models_to_create = {}
         for res in resources_to_create:
@@ -41,7 +35,7 @@ class OnRack(ResourceDriverInterface):
         for res in resources_to_create:
             resource_to_add.append(resources_to_create[res]['Attrs']['System'])
         self._add_resource_to_reservation(resources_to_create, folder)
-        self._WriteMessage("OnRack Populate Resources Finished")
+        self._WriteMessage("OnRack Populate Resources Finished, Found these Resources: " + str(resource_to_add))
         self._logger("OnRack Populate Resources Finished")
 
     def deploy_esxs(self, context):
@@ -54,14 +48,8 @@ class OnRack(ResourceDriverInterface):
         self._WriteMessage("Starting to Deploy ESXis on OnRack Resources")
         folder = "OnRackImport"
         token = self._get_onrack_api_token(self.address, self.user, self.password)
-        systemlist = self._list_all_systems(self.address, token)
-        nodelist = self._list_all_nodes(self.address)
-        resources_to_create = {}
-        for system in systemlist:
-            sys_info, id = self._get_system_info(self.address, token, system)
-            if sys_info:
-                resources_to_create[sys_info['Hostname']] = nodelist[id]
-                resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
+        resources_to_create = self._get_onrack_info(self.address, token)
+
         esx_info_matrix = context.resource.attributes['DeployTable']
         esx_gateway = context.resource.attributes['ESX Gateway']
         esx_dns1 = context.resource.attributes['ESX DNS1']
@@ -505,7 +493,11 @@ class OnRack(ResourceDriverInterface):
                 onrack_resources[sys_info['Hostname']]['Interfaces'] = nodelist[id]
                 onrack_resources[sys_info['Hostname']]['Attrs'] = sys_info
                 onrack_resources[sys_info['Hostname']]['Type'] = type
-
+        if onrack_resources == {}:
+            message = "No Usable Resources Found, check the logs for more information"
+            self._logger(message)
+            self._WriteMessage(message)
+            raise Exception(message)
         return onrack_resources
 
 
