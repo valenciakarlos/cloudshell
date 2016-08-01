@@ -27,13 +27,12 @@ class OnRack(ResourceDriverInterface):
         for res in resources_to_create:
             if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
                 models_to_create[resources_to_create[res]['Attrs']['Model Name']] = resources_to_create[res]['Type']
-
         pack_loc = self._create_quali_package(families_to_create, models_to_create, resources_to_create, self.address,
                                               folder)
         self._import_package(pack_loc)
         resource_to_add = []
         for res in resources_to_create:
-            resource_to_add.append(resources_to_create[res]['Attrs']['System'])
+            resource_to_add.append(str(resources_to_create[res]['Attrs']['System']))
         self._add_resource_to_reservation(resources_to_create, folder)
         self._WriteMessage("OnRack Populate Resources Finished, Found these Resources: " + str(resource_to_add))
         self._logger("OnRack Populate Resources Finished")
@@ -87,22 +86,14 @@ class OnRack(ResourceDriverInterface):
             message = str(unsolved)
             self._logger(message)
             self._WriteMessage(message)
+            raise Exception(message)
         duplicate_deploy = deploy_dict
         num_retries = 3
-        for x in xrange(num_retries):  # Number of retires
-            task_ids = {}
-            for esx in deploy_dict:
-                task_id = self._deploy_image(onrack_address=self.address, api_token=token,
-                                             onrack_res_id=deploy_dict[esx][7], esx_ip=deploy_dict[esx][1],
-                                             esx_dns1=deploy_dict[esx][3], esx_dns2=deploy_dict[esx][4],
-                                             esx_gateway=deploy_dict[esx][5], esx_domain=deploy_dict[esx][6],
-                                             esx_hostname=esx, esx_password=deploy_dict[esx][2])
-                task_ids[task_id] = esx
-                deploy_dict[esx].append(task_id)
-                self._set_resource_livestatus(deploy_dict[esx][8], 'Installing', 'Installing ESX', folder)
-                # OnRack VooDoo if commands being sent too fast.
-                time.sleep(1)
-            self._logger("Task IDs for Deployment: " + str(task_ids))
+        for x in xrange(num_retries):
+            task_ids, new_dict = self._deploy_multiple_images(token, deploy_dict)
+            for esx in new_dict:
+                self._set_resource_livestatus(new_dict[esx][8], 'Installing', 'Installing ESX', folder)
+
             deployed, esx_states = self._wait_fo_tasks_to_complete(task_ids, 100, 15)
             if deployed:
                 esx_list = []
@@ -231,7 +222,7 @@ class OnRack(ResourceDriverInterface):
         self._logger("All OnRack Registered Systems: " + str(system_list))
         return system_list
 
-    def _list_all_nodes(self, address, node_type):
+    def _list_all_nodes_by_type(self, address, node_type):
         self._logger("Getting All OnRack Nodes....")
         url = 'http://' + address + ':8080/api/1.1/nodes'
         try:
@@ -366,12 +357,12 @@ class OnRack(ResourceDriverInterface):
         self.session.SetReservationResourcePosition(self.reservationid, resource, int(x), int(y))
         self._logger("Setting Resource Position To: " + str(x) + '/' + str(y) + " For Resource: " + resource)
 
-    def _deploy_image(self, onrack_address, api_token, onrack_res_id, esx_ip, esx_dns1, esx_dns2, esx_gateway, esx_domain,
-                      esx_hostname, esx_password, image_type='ESXi'):
+    def _deploy_image(self, onrack_address, api_token, onrack_res_id, image_ip, image_dns1, image_dns2, image_gateway,
+                      image_domain, image_hostname, image_password, image_type):
         deploy_request = '''
 {
-	"domain": "''' + esx_domain + '''",
-	"hostname": "''' + esx_hostname + '''",
+	"domain": "''' + image_domain + '''",
+	"hostname": "''' + image_hostname + '''",
     "repo": "http://172.31.128.1:8080/esxi/6.0",
     "version": "6.0",
     "osName": "''' + image_type + '''",
@@ -380,15 +371,15 @@ class OnRack(ResourceDriverInterface):
             "device": "eth0",
             "ipv4": {
                 "netmask": "255.255.255.0",
-				"ipAddr": "''' + esx_ip + '''",
-				"gateway": "''' + esx_gateway + '''"
+				"ipAddr": "''' + image_ip + '''",
+				"gateway": "''' + image_gateway + '''"
             }
         }
     ],
-	"rootPassword": "''' + esx_password + '''",
+	"rootPassword": "''' + image_password + '''",
     "dnsServers": [
-		"''' + esx_dns1 + '''",
-        "''' + esx_dns2 + '''"
+		"''' + image_dns1 + '''",
+        "''' + image_dns2 + '''"
     ]
 }'''
         self._logger("Deploy Request: " + deploy_request)
@@ -478,7 +469,7 @@ class OnRack(ResourceDriverInterface):
 
     def _get_onrack_info(self, onrack_address, token):
         systemlist = self._list_all_systems(onrack_address, token)
-        nodelist = self._list_all_nodes(onrack_address, ['compute'])
+        nodelist = self._list_all_nodes_by_type(onrack_address, ['compute'])
         onrack_resources = {}
         for system in systemlist:
             sys_info, id = self._get_system_info(onrack_address, token, system)
@@ -496,6 +487,20 @@ class OnRack(ResourceDriverInterface):
             raise Exception(message)
         return onrack_resources
 
+    def _deploy_multiple_images(self, token, deploy_dict):
+        task_ids = {}
+        for esx in deploy_dict:
+            task_id = self._deploy_image(onrack_address=self.address, api_token=token,
+                                         onrack_res_id=deploy_dict[esx][7], image_ip=deploy_dict[esx][1],
+                                         image_dns1=deploy_dict[esx][3], image_dns2=deploy_dict[esx][4],
+                                         image_gateway=deploy_dict[esx][5], image_domain=deploy_dict[esx][6],
+                                         image_hostname=esx, image_password=deploy_dict[esx][2], image_type='ESXi')
+            task_ids[task_id] = esx
+            deploy_dict[esx].append(task_id)
+            # OnRack VooDoo if commands being sent too fast.
+            time.sleep(1)
+        self._logger("Task IDs for Deployment: " + str(task_ids))
+        return task_ids, deploy_dict
 
 # a = OnRack()
 # # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
