@@ -49,7 +49,6 @@ class OnRack(ResourceDriverInterface):
         folder = "OnRackImport"
         token = self._get_onrack_api_token(self.address, self.user, self.password)
         resources_to_create = self._get_onrack_info(self.address, token)
-
         esx_info_matrix = context.resource.attributes['DeployTable']
         esx_gateway = context.resource.attributes['ESX Gateway']
         esx_dns1 = context.resource.attributes['ESX DNS1']
@@ -67,11 +66,8 @@ class OnRack(ResourceDriverInterface):
                 hostname = esx.split(',')[1]
                 ip = esx.split(',')[2]
                 for resource in resources_to_create:
-                    for eth in resources_to_create[resource]:
-                        if type(resources_to_create[resource][eth]) is dict:
-                            continue
-
-                        if str(resources_to_create[resource][eth]) == str(mac):
+                    for eth in resources_to_create[resource]['Interfaces']:
+                        if str(resources_to_create[resource]['Interfaces'][eth]) == str(mac):
                             deploy_dict[hostname] = [mac, ip, esx_root_password, esx_dns1, esx_dns2, esx_gateway,
                                                      esx_domain, resources_to_create[resource]['Attrs']['OnRackID'],
                                                      resources_to_create[resource]['Attrs']['System']]
