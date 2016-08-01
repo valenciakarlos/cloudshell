@@ -3,7 +3,7 @@ import json
 import zipfile
 import os
 import requests
-from quali_remote import rest_api_query
+from quali_remote import rest_api_query, powershell
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.context import InitCommandContext, ResourceCommandContext
 from cloudshell.api.cloudshell_api import CloudShellAPISession as cs_api
@@ -136,9 +136,30 @@ class OnRack(ResourceDriverInterface):
                                                   folder)
                     self._update_esx_resource(duplicate_deploy[esx][8], esx, duplicate_deploy[esx][1], folder)
                     esx_list.append(esx)
+
                 message = "Successfully deployed all ESXis: " + str(esx_list)
                 self._WriteMessage(message)
                 self._logger(message + " on retry number: " + str(x))
+                ping_retires = 60
+                pingable = []
+                for x in xrange(3):
+                    for esx in deploy_dict:
+                        ip_addr = deploy_dict[esx][1]
+                        if esx not in pingable:
+                            if self._ping_check(ip_addr, ping_retires):
+                                pingable.append(esx)
+                                self._set_resource_livestatus(deploy_dict[esx][8], 'Online', 'ESX host available',
+                                                              folder)
+                            else:
+                                self._set_resource_livestatus(deploy_dict[esx][8],  'Offline', 'ESX host not available',
+                                                              folder)
+
+                if len(pingable) != len(deploy_dict):
+                    message = "ESXs Failed to reply to ping check, please check the logs or manually adjust the IP " \
+                              "addresses."
+                    self._WriteMessage(message)
+                    self._logger(message + " ESX that replayed: " + str(pingable))
+                    raise Exception(message)
                 exit(0)
             else:
                 for esx_state in esx_states:
@@ -469,6 +490,15 @@ class OnRack(ResourceDriverInterface):
                      "\"  And new address: \"" + new_address + "\"")
         self.session.UpdateResourceAddress(old_resource, new_address)
         self.session.RenameResource(old_resource, new_name)
+
+    def _ping_check(self, address, ping_count):
+        self._logger("Checking ping for: " + address)
+        script = 'ping ' + address + " -n " + str(ping_count)
+        out = powershell(script)
+        if '100% loss' not in out:
+            return True
+        else:
+            return False
 
 
 # a = OnRack()
