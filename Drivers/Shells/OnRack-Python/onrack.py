@@ -21,27 +21,18 @@ class OnRack(ResourceDriverInterface):
         self._WriteMessage("starting to Populate OnRack Resources")
         folder = "OnRackImport"
         token = self._get_onrack_api_token(self.address, self.user, self.password)
-        systemlist = self._list_all_systems(self.address, token)
-        nodelist = self._list_all_nodes(self.address)
-        resources_to_create = {}
-        for system in systemlist:
-            sys_info, id = self._get_system_info(self.address, token, system)
-            if sys_info:
-                resources_to_create[sys_info['Hostname']] = nodelist[id]
-                resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
-
-        families_to_create = ['Compute']  # TODO Add Network Family
-        models_to_create = {}
+        resources_to_create = self._get_onrack_info(self.address, token)
         if resources_to_create == {}:
             message = "No Usable Resources Found, check the logs for more information"
-            self._logger(message + '\r\n' + "System List: " + str(systemlist) + '\r\n' + "Node List: " + str(nodelist))
+            self._logger(message)
             self._WriteMessage(message)
             raise Exception(message)
 
+        families_to_create = ['Compute']  # TODO Add Network Family when needed
+        models_to_create = {}
         for res in resources_to_create:
             if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
-                models_to_create[
-                    resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
+                models_to_create[resources_to_create[res]['Attrs']['Model Name']] = resources_to_create[res]['Type']
 
         pack_loc = self._create_quali_package(families_to_create, models_to_create, resources_to_create, self.address,
                                               folder)
@@ -252,11 +243,11 @@ class OnRack(ResourceDriverInterface):
         members = out['Members']
         system_list = []
         for member in members:
-            system_list.append(member['@odata.id'])
+            system_list.append(str(member['@odata.id'].split('/')[-1]))
         self._logger("All OnRack Registered Systems: " + str(system_list))
         return system_list
 
-    def _list_all_nodes(self, address):
+    def _list_all_nodes(self, address, node_type):
         self._logger("Getting All OnRack Nodes....")
         url = 'http://' + address + ':8080/api/1.1/nodes'
         try:
@@ -269,8 +260,9 @@ class OnRack(ResourceDriverInterface):
         out = json.loads(out)
         node_dict = {}
         for node in out:
-            if node['type'] == 'compute':
+            if node['type'] in node_type:
                 node_dict[node['id']] = {}
+                node_dict[node['id']]['Type'] = node['type'].capitalize()
                 num = 0
                 for id in node['identifiers']:
                     node_dict[node['id']]["eth" + str(num)] = id
@@ -280,7 +272,7 @@ class OnRack(ResourceDriverInterface):
 
     def _get_system_info(self, address, api_token, system_url):
         # 'new' RESP API /redfish/v1/System/{ID} doesnt have full details as the below
-        url = 'https://' + address + '/' + system_url
+        url = 'https://' + address + "/rest/v1/ManagedSystems/Systems/" + system_url
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
@@ -303,7 +295,7 @@ class OnRack(ResourceDriverInterface):
             'System': out['Oem']['EMC']['VisionID_System'],
             'Name': out['Name'],
         }
-        self._logger("OnRack System Info: " + str(system_info))
+        self._logger("OnRack System Info: " + str(system_info) + " System ID: " + id)
         return system_info, id
 
     def _create_quali_package(self, families, models, resources, onrack_ip, folder):
@@ -499,6 +491,22 @@ class OnRack(ResourceDriverInterface):
             return True
         else:
             return False
+
+    def _get_onrack_info(self, onrack_address, token):
+        systemlist = self._list_all_systems(onrack_address, token)
+        nodelist = self._list_all_nodes(onrack_address, ['compute'])
+        onrack_resources = {}
+        for system in systemlist:
+            sys_info, id = self._get_system_info(onrack_address, token, system)
+            if sys_info:
+                type = nodelist[id]['Type']
+                nodelist[id].pop('Type')
+                onrack_resources[sys_info['Hostname']] = {}
+                onrack_resources[sys_info['Hostname']]['Interfaces'] = nodelist[id]
+                onrack_resources[sys_info['Hostname']]['Attrs'] = sys_info
+                onrack_resources[sys_info['Hostname']]['Type'] = type
+
+        return onrack_resources
 
 
 # a = OnRack()
