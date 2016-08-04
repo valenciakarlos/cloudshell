@@ -120,8 +120,14 @@ class OnRack(ResourceDriverInterface):
                             if self._ping_check(ip_addr, ping_retires):
                                 pingable.append(esx)
                                 self._set_resource_livestatus(esx, 'Online', 'ESX host available', folder)
+                                message = "ESX: " + esx + " is Online with IP: " + ip_addr
+                                self._logger(message)
+                                self._WriteMessage(message)
                             else:
                                 self._set_resource_livestatus(esx, 'Offline', 'ESX host not available', folder)
+                                message = "ESX: " + esx + " is Offline"
+                                self._logger(message)
+                    time.sleep(20)
 
                 if len(pingable) != len(duplicate_deploy):
                     message = "ESXs Failed to reply to ping check, please check the logs or manually adjust the IP " \
