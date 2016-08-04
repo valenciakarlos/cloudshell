@@ -106,7 +106,7 @@ class OnRack(ResourceDriverInterface):
                 message = "Successfully deployed all ESXis: " + str(esx_list)
                 self._WriteMessage(message)
                 self._logger(message + " on retry number: " + str(x))
-                ping_retires = 100
+                ping_retires = 50
                 pingable = []
                 message = '''Waiting for up-to 30 Minutes for Servers to finish FirstBoot and PowerOn'''
                 self._WriteMessage(message)
@@ -122,7 +122,6 @@ class OnRack(ResourceDriverInterface):
                                 self._set_resource_livestatus(esx, 'Online', 'ESX host available', folder)
                             else:
                                 self._set_resource_livestatus(esx, 'Offline', 'ESX host not available', folder)
-                    time.sleep(20)
 
                 if len(pingable) != len(duplicate_deploy):
                     message = "ESXs Failed to reply to ping check, please check the logs or manually adjust the IP " \
@@ -130,6 +129,9 @@ class OnRack(ResourceDriverInterface):
                     self._WriteMessage(message)
                     self._logger(message + " ESX that replayed: " + str(pingable))
                     raise Exception(message)
+                message = "All ESXis are Deployed & Connected."
+                self._WriteMessage(message)
+                self._logger(message)
                 return
             else:
                 for esx_state in esx_states:
