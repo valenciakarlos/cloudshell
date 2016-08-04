@@ -106,27 +106,31 @@ class OnRack(ResourceDriverInterface):
                 message = "Successfully deployed all ESXis: " + str(esx_list)
                 self._WriteMessage(message)
                 self._logger(message + " on retry number: " + str(x))
-                ping_retires = 60
+                ping_retires = 100
                 pingable = []
-                for x in xrange(3):
-                    for esx in deploy_dict:
-                        ip_addr = deploy_dict[esx][1]
+                message = '''Waiting for up-to 30 Minutes for Servers to finish FirstBoot and PowerOn'''
+                self._WriteMessage(message)
+                self._logger(message)
+                timeout = time.time() + (30 * 60)
+                time.sleep(100)
+                while (time.time() < timeout) and (len(pingable) != len(duplicate_deploy)):
+                    for esx in duplicate_deploy:
+                        ip_addr = duplicate_deploy[esx][1]
                         if esx not in pingable:
                             if self._ping_check(ip_addr, ping_retires):
                                 pingable.append(esx)
-                                self._set_resource_livestatus(deploy_dict[esx][8], 'Online', 'ESX host available',
-                                                              folder)
+                                self._set_resource_livestatus(esx, 'Online', 'ESX host available', folder)
                             else:
-                                self._set_resource_livestatus(deploy_dict[esx][8],  'Offline', 'ESX host not available',
-                                                              folder)
+                                self._set_resource_livestatus(esx, 'Offline', 'ESX host not available', folder)
+                    time.sleep(20)
 
-                if len(pingable) != len(deploy_dict):
+                if len(pingable) != len(duplicate_deploy):
                     message = "ESXs Failed to reply to ping check, please check the logs or manually adjust the IP " \
                               "addresses."
                     self._WriteMessage(message)
                     self._logger(message + " ESX that replayed: " + str(pingable))
                     raise Exception(message)
-                exit(0)
+                return
             else:
                 for esx_state in esx_states:
                     if esx_states[esx_state] == 'Completed':
@@ -462,7 +466,7 @@ class OnRack(ResourceDriverInterface):
         self._logger("Checking ping for: " + address)
         script = 'ping ' + address + " -n " + str(ping_count)
         out = powershell(script)
-        if '100% loss' not in out:
+        if ('0% loss' in out) and ('host unreachable' not in out):
             return True
         else:
             return False
@@ -501,6 +505,7 @@ class OnRack(ResourceDriverInterface):
             time.sleep(1)
         self._logger("Task IDs for Deployment: " + str(task_ids))
         return task_ids, deploy_dict
+
 
 # a = OnRack()
 # # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
