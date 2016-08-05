@@ -3,7 +3,7 @@ import json
 import zipfile
 import os
 import requests
-from quali_remote import rest_api_query
+from quali_remote import rest_api_query, powershell
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.context import InitCommandContext, ResourceCommandContext
 from cloudshell.api.cloudshell_api import CloudShellAPISession as cs_api
@@ -19,36 +19,22 @@ class OnRack(ResourceDriverInterface):
         self.reservationid = context.reservation.reservation_id
         self._cs_session(context=context)
         self._WriteMessage("starting to Populate OnRack Resources")
+        folder = "OnRackImport"
         token = self._get_onrack_api_token(self.address, self.user, self.password)
-        systemlist = self._list_all_systems(self.address, token)
-        nodelist = self._list_all_nodes(self.address)
-        resources_to_create = {}
-        for system in systemlist:
-            sys_info, id = self._get_system_info(self.address, token, system)
-            if sys_info:
-                resources_to_create[sys_info['Hostname']] = nodelist[id]
-                resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
-
-        families_to_create = ['Compute']  # TODO Add Network Family
+        resources_to_create = self._get_onrack_info(self.address, token)
+        families_to_create = ['Compute']  # TODO Add Network Family when needed
         models_to_create = {}
-        if resources_to_create == {}:
-            message = "No Usable Resources Found, check the logs for more information"
-            self._logger(message + '\r\n' + "System List: " + str(systemlist) + '\r\n' + "Node List: " + str(nodelist))
-            self._WriteMessage(message)
-            raise Exception(message)
-
         for res in resources_to_create:
             if resources_to_create[res]['Attrs']['Model Name'] not in models_to_create:
-                models_to_create[
-                    resources_to_create[res]['Attrs']['Model Name']] = 'Compute'  # TODO For Network, need better logic
-
-        pack_loc = self._create_qualli_package(families_to_create, models_to_create, resources_to_create, self.address)
+                models_to_create[resources_to_create[res]['Attrs']['Model Name']] = resources_to_create[res]['Type']
+        pack_loc = self._create_quali_package(families_to_create, models_to_create, resources_to_create, self.address,
+                                              folder)
         self._import_package(pack_loc)
         resource_to_add = []
         for res in resources_to_create:
-            resource_to_add.append(resources_to_create[res]['Attrs']['System'])
-        self._add_resource_to_reservation(resources_to_create, 'OnRackImport')
-        self._WriteMessage("OnRack Populate Resources Finished")
+            resource_to_add.append(str(resources_to_create[res]['Attrs']['System']))
+        self._add_resource_to_reservation(resources_to_create, folder)
+        self._WriteMessage("OnRack Populate Resources Finished, Found these Resources: " + str(resource_to_add))
         self._logger("OnRack Populate Resources Finished")
 
     def deploy_esxs(self, context):
@@ -59,15 +45,9 @@ class OnRack(ResourceDriverInterface):
         self.reservationid = context.reservation.reservation_id
         self._cs_session(context=context)
         self._WriteMessage("Starting to Deploy ESXis on OnRack Resources")
+        folder = "OnRackImport"
         token = self._get_onrack_api_token(self.address, self.user, self.password)
-        systemlist = self._list_all_systems(self.address, token)
-        nodelist = self._list_all_nodes(self.address)
-        resources_to_create = {}
-        for system in systemlist:
-            sys_info, id = self._get_system_info(self.address, token, system)
-            if sys_info:
-                resources_to_create[sys_info['Hostname']] = nodelist[id]
-                resources_to_create[sys_info['Hostname']]['Attrs'] = sys_info
+        resources_to_create = self._get_onrack_info(self.address, token)
         esx_info_matrix = context.resource.attributes['DeployTable']
         esx_gateway = context.resource.attributes['ESX Gateway']
         esx_dns1 = context.resource.attributes['ESX DNS1']
@@ -76,37 +56,101 @@ class OnRack(ResourceDriverInterface):
         esx_domain = context.resource.attributes['ESX Domain']
 
         deploy_dict = {}
+        found_mac = []
+        length = 0
         for esx in esx_info_matrix.split(';'):
             mac = esx.split(',')[0]
             if (mac != 'MAC') and (mac != ''):
+                length += 1
                 hostname = esx.split(',')[1]
                 ip = esx.split(',')[2]
                 for resource in resources_to_create:
-                    for eth in resources_to_create[resource]:
-                        if type(resources_to_create[resource][eth]) is dict:
-                            continue
-
-                        if str(resources_to_create[resource][eth]) == str(mac):
+                    for eth in resources_to_create[resource]['Interfaces']:
+                        if str(resources_to_create[resource]['Interfaces'][eth]) == str(mac):
                             deploy_dict[hostname] = [mac, ip, esx_root_password, esx_dns1, esx_dns2, esx_gateway,
-                                                     esx_domain, resources_to_create[resource]['Attrs']['OnRackID']]
+                                                     esx_domain, resources_to_create[resource]['Attrs']['OnRackID'],
+                                                     resources_to_create[resource]['Attrs']['System']]
+                            found_mac.append(mac)
                             break
         self._logger("Deploy ESX Dict: " + str(deploy_dict))
-        task_ids =[]
-        for esx in deploy_dict:
-            task_id = self._deploy_esx(onrack_address=self.address, api_token=token, onrack_res_id=deploy_dict[esx][7],
-                                       esx_ip=deploy_dict[esx][1], esx_dns1=deploy_dict[esx][3],
-                                       esx_dns2=deploy_dict[esx][4], esx_gateway=deploy_dict[esx][5],
-                                       esx_domain=deploy_dict[esx][6], esx_hostname=esx,
-                                       esx_password=deploy_dict[esx][2])
-            task_ids.append(task_id)
-        self._logger("Task IDs for Deployment: " + str(task_ids))
+        unsolved = ''
+        if len(found_mac) != length:
+            for esx in esx_info_matrix.split(';'):
+                mac = esx.split(',')[0]
+                if (mac != 'MAC') and (mac != ''):
+                    hostname = esx.split(',')[1]
+                    if mac not in found_mac:
+                        unsolved += "Was not able to find Hardware for: " + hostname + " MAC: " + mac + '\n'
 
-        for x in[1,2]:
-            deplyed = self._wait_fo_tasks_to_complete(task_ids, 100, 15)
-            if deplyed:
-                exit(0)
-        exit(1)
+        if unsolved:
+            message = str(unsolved)
+            self._logger(message)
+            self._WriteMessage(message)
+            raise Exception(message)
+        duplicate_deploy = deploy_dict
+        num_retries = 3
+        for x in xrange(num_retries):
+            task_ids, new_dict = self._deploy_multiple_images(token, deploy_dict)
+            for esx in new_dict:
+                self._set_resource_livestatus(new_dict[esx][8], 'Installing', 'Installing ESX', folder)
 
+            deployed, esx_states = self._wait_fo_tasks_to_complete(task_ids, 100, 15)
+            if deployed:
+                esx_list = []
+                for esx in duplicate_deploy:
+                    self._set_resource_livestatus(duplicate_deploy[esx][8], 'Completed successfully', 'ESX Installed',
+                                                  folder)
+                    self._update_esx_resource(duplicate_deploy[esx][8], esx, duplicate_deploy[esx][1], folder)
+                    esx_list.append(esx)
+
+                message = "Successfully deployed all ESXis: " + str(esx_list)
+                self._WriteMessage(message)
+                self._logger(message + " on retry number: " + str(x))
+                ping_retires = 50
+                pingable = []
+                message = '''Waiting for up-to 30 Minutes for Servers to finish FirstBoot and PowerOn'''
+                self._WriteMessage(message)
+                self._logger(message)
+                timeout = time.time() + (30 * 60)
+                time.sleep(100)
+                while (time.time() < timeout) and (len(pingable) != len(duplicate_deploy)):
+                    for esx in duplicate_deploy:
+                        ip_addr = duplicate_deploy[esx][1]
+                        if esx not in pingable:
+                            if self._ping_check(ip_addr, ping_retires):
+                                pingable.append(esx)
+                                self._set_resource_livestatus(esx, 'Online', 'ESX host available', folder)
+                                message = "ESX: " + esx + " is Online with IP: " + ip_addr
+                                self._logger(message)
+                                self._WriteMessage(message)
+                            else:
+                                self._set_resource_livestatus(esx, 'Offline', 'ESX host not available', folder)
+                                message = "ESX: " + esx + " is Offline"
+                                self._logger(message)
+                    time.sleep(20)
+
+                if len(pingable) != len(duplicate_deploy):
+                    message = "ESXs Failed to reply to ping check, please check the logs or manually adjust the IP " \
+                              "addresses."
+                    self._WriteMessage(message)
+                    self._logger(message + " ESX that replayed: " + str(pingable))
+                    raise Exception(message)
+                message = "All ESXis are Deployed & Connected."
+                self._WriteMessage(message)
+                self._logger(message)
+                return
+            else:
+                for esx_state in esx_states:
+                    if esx_states[esx_state] == 'Completed':
+                        for esx in deploy_dict:
+                            if esx_state == deploy_dict[esx][9]:
+                                deploy_dict.pop(esx)
+                                break
+
+        message = "Failed to deployed all ESXis after " + str(num_retries) + " retries"
+        self._WriteMessage(message)
+        self._logger(message)
+        raise Exception(message)
 
     def _logger(self, message, path=r'c:\ProgramData\QualiSystems\OnRack.log'):
         try:
@@ -173,7 +217,7 @@ class OnRack(ResourceDriverInterface):
 
     def _list_all_systems(self, address, api_token):
         self._logger("Getting all OnRack Registered Systems...")
-        url = 'https://' + address + '/rest/v1/ManagedSystems/Systems'
+        url = 'https://' + address + '/redfish/v1/Systems'
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
@@ -183,14 +227,14 @@ class OnRack(ResourceDriverInterface):
             self._WriteMessage("Got Error while trying to get all OnRack Systems: " + str(e))
             raise Exception("Got Error while trying to get all OnRack Systems: " + str(e))
         out = json.loads(out)
-        members = out['Links']['Members']
+        members = out['Members']
         system_list = []
         for member in members:
-            system_list.append(member['href'])
+            system_list.append(str(member['@odata.id'].split('/')[-1]))
         self._logger("All OnRack Registered Systems: " + str(system_list))
         return system_list
 
-    def _list_all_nodes(self, address):
+    def _list_all_nodes_by_type(self, address, node_type):
         self._logger("Getting All OnRack Nodes....")
         url = 'http://' + address + ':8080/api/1.1/nodes'
         try:
@@ -203,8 +247,9 @@ class OnRack(ResourceDriverInterface):
         out = json.loads(out)
         node_dict = {}
         for node in out:
-            if node['type'] == 'compute':
+            if node['type'] in node_type:
                 node_dict[node['id']] = {}
+                node_dict[node['id']]['Type'] = node['type'].capitalize()
                 num = 0
                 for id in node['identifiers']:
                     node_dict[node['id']]["eth" + str(num)] = id
@@ -213,7 +258,8 @@ class OnRack(ResourceDriverInterface):
         return node_dict
 
     def _get_system_info(self, address, api_token, system_url):
-        url = 'https://' + address + '/' + system_url
+        # 'new' RESP API /redfish/v1/System/{ID} doesnt have full details as the below
+        url = 'https://' + address + "/rest/v1/ManagedSystems/Systems/" + system_url
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=False,
@@ -236,10 +282,10 @@ class OnRack(ResourceDriverInterface):
             'System': out['Oem']['EMC']['VisionID_System'],
             'Name': out['Name'],
         }
-        self._logger("OnRack System Info: " + str(system_info))
+        self._logger("OnRack System Info: " + str(system_info) + " System ID: " + id)
         return system_info, id
 
-    def _create_qualli_package(self, families, models, resources, onrack_ip):
+    def _create_quali_package(self, families, models, resources, onrack_ip, folder):
         self._logger("Creating Package for Import")
         zip_location = 'c:\\deploy\\OnRackImport.zip'
         pack = PackageEditor()
@@ -275,7 +321,6 @@ class OnRack(ResourceDriverInterface):
             res_model = resources[resource]['Attrs']['Model Name']
             res_add = resources[resource]['Attrs']['IP Address']
             res_attrs = resources[resource]['Attrs']
-            folder = 'OnRackImport'
             xml = '<?xml version="1.0" encoding="utf-8"?> \n'
             xml += '''<ResourceInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="''' + res_name + '''"  Address="''' + \
                    res_add + '''" ModelName="''' + res_model + '" FolderFullPath="' + folder + \
@@ -324,58 +369,58 @@ class OnRack(ResourceDriverInterface):
         self.session.SetReservationResourcePosition(self.reservationid, resource, int(x), int(y))
         self._logger("Setting Resource Position To: " + str(x) + '/' + str(y) + " For Resource: " + resource)
 
-    def _deploy_esx(self, onrack_address, api_token, onrack_res_id, esx_ip, esx_dns1, esx_dns2, esx_gateway, esx_domain,
-                    esx_hostname, esx_password):
+    def _deploy_image(self, onrack_address, api_token, onrack_res_id, image_ip, image_dns1, image_dns2, image_gateway,
+                      image_domain, image_hostname, image_password, image_type):
         deploy_request = '''
 {
-	"domain": "''' + esx_domain + '''",
-	"hostname": "''' + esx_hostname + '''",
+	"domain": "''' + image_domain + '''",
+	"hostname": "''' + image_hostname + '''",
     "repo": "http://172.31.128.1:8080/esxi/6.0",
     "version": "6.0",
+    "osName": "''' + image_type + '''",
     "networkDevices": [
         {
             "device": "eth0",
             "ipv4": {
                 "netmask": "255.255.255.0",
-				"ipAddr": "''' + esx_ip + '''",
-				"gateway": "''' + esx_gateway + '''"
+				"ipAddr": "''' + image_ip + '''",
+				"gateway": "''' + image_gateway + '''"
             }
         }
     ],
-	"rootPassword": "''' + esx_password + '''",
+	"rootPassword": "''' + image_password + '''",
     "dnsServers": [
-		"''' + esx_dns1 + '''",
-        "''' + esx_dns2 + '''"
+		"''' + image_dns1 + '''",
+        "''' + image_dns2 + '''"
     ]
 }'''
         self._logger("Deploy Request: " + deploy_request)
-        url = 'https://' + onrack_address + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + \
-              '/OEM/OnRack/Actions/BootImage/ESXi'
+        url = 'https://' + onrack_address + '/redfish/v1/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage'
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='post', body=deploy_request, is_body_json=True,
                                  return_xml=True, header=token_header)
         except Exception, e:
-            messgae = "Got Error while trying to deploy from OnRack: " + str(e)
-            self._logger(messgae)
-            self._WriteMessage(messgae)
-            raise Exception(messgae)
+            message = "Got Error while trying to deploy from OnRack: " + str(e)
+            self._logger(message)
+            self._WriteMessage(message)
+            raise Exception(message)
         self._logger("Deploy response: " + out)
         out = json.loads(out)
         task_id = out['Id']
         return task_id
 
     def _check_onrack_job_status(self, onrack_address, api_token, job_id):
-        url = 'https://' + onrack_address + '/rest/v1/ManagedSystems/TaskService/Tasks/' + job_id
+        url = 'https://' + onrack_address + '/redfish/v1/TaskService/Tasks/' + job_id
         token_header = {'Authentication-Token': api_token}
         try:
             out = rest_api_query(url=url, user='', password='', method='get', body='', is_body_json=True,
                                  return_xml=True, header=token_header)
         except Exception, e:
-            messgae = "Got Error while trying to get job status from onrack: " + str(e)
-            self._logger(messgae)
-            self._WriteMessage(messgae)
-            raise Exception(messgae)
+            message = "Got Error while trying to get job status from onrack: " + str(e)
+            self._logger(message)
+            self._WriteMessage(message)
+            raise Exception(message)
         self._logger("Job Status response: " + out)
         out = json.loads(out)
         task_state = out['TaskState']
@@ -385,21 +430,90 @@ class OnRack(ResourceDriverInterface):
         completed = {}
         for x in xrange(retires):
             for job in task_ids:
-                if not completed.has_key(job):
+                if job not in completed:
                     token = self._get_onrack_api_token(self.address, self.user, self.password)
                     state = self._check_onrack_job_status(self.address, token, job)
                     if state == 'Completed':
                         completed[job] = state
-                    elif state == 'Exception':
-                        messgae = "Failed to Deploy ESXs, check the logs"
-                        self._logger(messgae + " Completed Dict: " + str(completed))
-                        self._WriteMessage(messgae)
-                        return False
-
+                        message = "Successfully Deploy ESX: \"" + task_ids[job] + "\""
+                        self._logger(message)
+                        # self._WriteMessage(message)
+                    elif state == 'Running':
+                        message = "Deploy is still running for: \"" + task_ids[job] + "\""
+                        self._logger(message)
+                    elif (state == 'Exception') or (state == 'Killed'):
+                        completed[job] = state
+                        message = "Failed to Deploy ESX, \"" + task_ids[job] + "\"" + " Job ID: " + job
+                        self._logger(message + " Completed Dict: " + str(completed))
+                        self._WriteMessage(message)
             if len(completed) == len(task_ids):
-                return True
+                for task in completed:
+                    if completed[task] != 'Completed':
+                        return False, completed
+                return True, completed
             else:
                 time.sleep(retry_delay)
+        return False, completed
+
+    def _set_resource_livestatus(self, resource, status, add_info, folder=None):
+        if folder:
+            resource = folder + "/" + resource
+        self._logger("setting Resource " + resource + " Livestatus To: " + status)
+        self.session.SetResourceLiveStatus(resourceFullName=resource, liveStatusName=status, additionalInfo=add_info)
+
+    def _update_esx_resource(self, old_resource, new_name, new_address, folder=None):
+        if folder:
+            old_resource = folder + "/" + old_resource
+            # new_name = folder + "/" + new_name
+        self._logger("Updating Resource: \"" + old_resource + "\" To new name: \"" + new_name +
+                     "\"  And new address: \"" + new_address + "\"")
+        self.session.UpdateResourceAddress(old_resource, new_address)
+        self.session.RenameResource(old_resource, new_name)
+
+    def _ping_check(self, address, ping_count):
+        self._logger("Checking ping for: " + address)
+        script = 'ping ' + address + " -n " + str(ping_count)
+        out = powershell(script)
+        if ('0% loss' in out) and ('host unreachable' not in out):
+            return True
+        else:
+            return False
+
+    def _get_onrack_info(self, onrack_address, token):
+        systemlist = self._list_all_systems(onrack_address, token)
+        nodelist = self._list_all_nodes_by_type(onrack_address, ['compute'])
+        onrack_resources = {}
+        for system in systemlist:
+            sys_info, id = self._get_system_info(onrack_address, token, system)
+            if sys_info:
+                type = nodelist[id]['Type']
+                nodelist[id].pop('Type')
+                onrack_resources[sys_info['Hostname']] = {}
+                onrack_resources[sys_info['Hostname']]['Interfaces'] = nodelist[id]
+                onrack_resources[sys_info['Hostname']]['Attrs'] = sys_info
+                onrack_resources[sys_info['Hostname']]['Type'] = type
+        if onrack_resources == {}:
+            message = "No Usable Resources Found, check the logs for more information"
+            self._logger(message)
+            self._WriteMessage(message)
+            raise Exception(message)
+        return onrack_resources
+
+    def _deploy_multiple_images(self, token, deploy_dict):
+        task_ids = {}
+        for esx in deploy_dict:
+            task_id = self._deploy_image(onrack_address=self.address, api_token=token,
+                                         onrack_res_id=deploy_dict[esx][7], image_ip=deploy_dict[esx][1],
+                                         image_dns1=deploy_dict[esx][3], image_dns2=deploy_dict[esx][4],
+                                         image_gateway=deploy_dict[esx][5], image_domain=deploy_dict[esx][6],
+                                         image_hostname=esx, image_password=deploy_dict[esx][2], image_type='ESXi')
+            task_ids[task_id] = esx
+            deploy_dict[esx].append(task_id)
+            # OnRack VooDoo if commands being sent too fast.
+            time.sleep(1)
+        self._logger("Task IDs for Deployment: " + str(task_ids))
+        return task_ids, deploy_dict
+
 
 # a = OnRack()
 # # print a._get_onrack_api_token('10.10.111.90', 'admin', 'admin123')
