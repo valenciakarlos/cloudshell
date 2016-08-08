@@ -87,7 +87,7 @@ class OnRack(ResourceDriverInterface):
             self._logger(message)
             self._WriteMessage(message)
             raise Exception(message)
-        duplicate_deploy = deploy_dict
+        duplicate_deploy = deploy_dict.copy()
         num_retries = 3
         for x in xrange(num_retries):
             task_ids, new_dict = self._deploy_multiple_images(token, deploy_dict)
