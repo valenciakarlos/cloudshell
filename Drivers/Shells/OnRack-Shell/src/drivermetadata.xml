@@ -1,0 +1,13 @@
+<Driver Description="Provides OnRack commands" MainClass="driver.OnrackShellDriver" Name="OnrackShellDriver" Version="1.0.*">
+ <Layout>
+        <Category Name="Remote Commands">
+            <Command Description="Deploys OS on this host" DisplayName="Deploy OS" Name="deploy_os" Tags="remote_onrack,allow_unreserved">
+              <Parameters>
+                <Parameter AllowedValues="ESXi, Ubuntu MAAS" DefaultValue="ESXi" Description="Select the OS type to deploy" DisplayName="OS Type" Mandatory="True" Name="os_type" Type="Lookup" />
+                    
+              </Parameters>
+            </Command>
+
+        </Category>
+    </Layout>
+ </Driver>

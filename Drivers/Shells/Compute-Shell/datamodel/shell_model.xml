@@ -1,0 +1,185 @@
+<Shell>
+
+    <ShellAttributes>
+    </ShellAttributes>
+
+    <ShellModel Family="Compute Server">
+        <ResourceModel Name="ComputeShell" Description="" SupportsConcurrentCommands="true">
+            <AttachedAttributes>
+                <AttachedAttribute Name="OS Architecture" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="OS Type" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="OS Distribution" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="OS Version" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Storage Capacity" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Power Management" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Enable Password" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="System Name" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Vendor" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Location" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Backup Location" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Model" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="SNMP Read Community" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="SNMP Write Community" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="SNMP V3 Password" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="SNMP V3 Private Key" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="SNMP V3 User" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="SNMP Version" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Sessions Concurrency Limit" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Console Server IP Address" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Console User" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Console Password" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Console Port" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="CLI Connection Type" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="CPU usage" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Memory usage" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Memory Size" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Number of CPUs" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+
+                <AttachedAttribute Name="ESX Gateway" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX DNS1" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX DNS2" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX Domain" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="OnRackID" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+
+                <AttachedAttribute Name="Serial Number" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX Netmask" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX Repo URL" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="VisionID IP" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="BIOS Version" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+
+            </AttachedAttributes>
+            <AttributeValues>
+                <AttributeValue Name="User" Value="" />
+                <AttributeValue Name="Password" Value="3M3u7nkDzxWb0aJ/IZYeWw==" />
+                <AttributeValue Name="Enable Password" Value="3M3u7nkDzxWb0aJ/IZYeWw==" />
+                <AttributeValue Name="System Name" Value="" />
+                <AttributeValue Name="Vendor" Value="" />
+                <AttributeValue Name="OS Type" Value="" />
+                <AttributeValue Name="OS Version" Value="" />
+                <AttributeValue Name="Location" Value="" />
+                <AttributeValue Name="Model" Value="" />
+                <AttributeValue Name="CPU usage" Value="0" />
+                <AttributeValue Name="Memory usage" Value="0" />
+                <AttributeValue Name="Storage Capacity" Value="" />
+                <AttributeValue Name="Backup Location" Value="" />
+                <AttributeValue Name="SNMP Read Community" Value="" />
+                <AttributeValue Name="SNMP Write Community" Value="" />
+                <AttributeValue Name="SNMP V3 Password" Value="" />
+                <AttributeValue Name="SNMP V3 Private Key" Value="" />
+                <AttributeValue Name="SNMP V3 User" Value="" />
+                <AttributeValue Name="SNMP Version" Value="" />
+                <AttributeValue Name="Console Server IP Address" Value="" />
+                <AttributeValue Name="Console User" Value="" />
+                <AttributeValue Name="Console Password" Value="3M3u7nkDzxWb0aJ/IZYeWw==" />
+                <AttributeValue Name="Console Port" Value="0" />
+                <AttributeValue Name="CLI Connection Type" Value="Auto" />
+                <AttributeValue Name="Power Management" Value="False" />
+                <AttributeValue Name="Memory Size" Value="0" />
+                <AttributeValue Name="Number of CPUs" Value="0" />
+
+                <AttributeValue Name="ESX Gateway" Value="" />
+                <AttributeValue Name="ESX DNS1" Value="" />
+                <AttributeValue Name="ESX DNS2" Value="" />
+                <AttributeValue Name="ESX Root Password" Value="" />
+                <AttributeValue Name="ESX Domain" Value="" />
+                <AttributeValue Name="OnRackID" Value="" />
+                <AttributeValue Name="Serial Number" Value="" />
+                <AttributeValue Name="ESX Netmask" Value="" />
+                <AttributeValue Name="ESX Repo URL" Value="" />
+                <AttributeValue Name="VisionID IP" Value="" />
+                <AttributeValue Name="BIOS Version" Value="" />
+              </AttributeValues>
+            <ParentModels />
+            <Drivers>
+                <DriverName>ComputeShellDriver</DriverName>
+            </Drivers>
+            <Scripts />
+        </ResourceModel>
+
+    </ShellModel>
+</Shell>

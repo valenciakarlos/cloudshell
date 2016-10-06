@@ -1,0 +1,15 @@
+<Driver Description="Describe the purpose of your CloudShell shell" MainClass="driver.ComputeShellDriver" Name="ComputeShellDriver" Version="1.0.0">
+    <Layout>
+        <Category Name="BIOS">
+            <!--Command Description="Gets the BIOS version" DisplayName="Get Bios Version" Name="get_bios_version" />
+            <Command Description="Updates the BIOS to a specified version" DisplayName="Update BIOS"
+                     Name="update_bios" >
+                <Parameters>
+                    <Parameter Name="bios_version" Type="String" Mandatory = "True" DefaultValue=""
+                               DisplayName="BIOS version" Description="BIOS version to update to"/>
+                </Parameters>
+            </Command-->
+
+        </Category>
+    </Layout>
+</Driver>
