@@ -14,8 +14,14 @@ from cloudshell.core.logger.qs_logger import get_qs_logger
 
 
 def log(message):
-    with open(r'c:\programdata\qualisystems\onrack.log', 'a') as f:
-        f.write(strftime('%Y-%m-%d %H:%M:%S') + ': ' + message + '\r\n')
+    for _ in range(10):
+        try:
+            with open(r'c:\programdata\qualisystems\onrack.log', 'a') as f:
+                f.write(strftime('%Y-%m-%d %H:%M:%S') + ': ' + message + '\r\n')
+            return
+        except:
+            sleep(random.randint(5))
+
 
 def rest_json(method, url, bodydict, token):
     headers = {
@@ -191,39 +197,46 @@ class OnrackShellDriver (ResourceDriverInterface):
         systemlist = [x['@odata.id'].split('/')[-1]
                       for x in rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems', None, token)['Members']]
 
+        nodes = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token)
         nodeid2eths = dict([
             (node['id'], node['identifiers'])
-            for node in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token)
+            for node in nodes
             if node['type'] == 'compute'
         ])
+        log(str(nodes))
 
         currhosts = []
         for system in systemlist:
-            out = rest_json('get', 'https://' + onrack_ip + "/rest/v1/ManagedSystems/Systems/" + system, None, token)
-            if 'Oem' in out and out['Oem'] != {}:
-                model = out.get('Model', '').strip()
-                if not model:
+            url = 'https://' + onrack_ip + "/redfish/v1/Systems/" + system
+            out = rest_json('get', url, None, token)
+            if out['Oem']['EMC']['VisionID_System']:
+                model = out.get('Model', None)
+                if model:
+                    model = model.strip()
+                else:
                     model = out['Name']
                 currhosts.append({
                     "OnRackID": out['Id'],
-                    "ResourceName": model + ' ' + out['Oem']['EMC']['VisionID_Chassis'],
+                    "ResourceName": out['Name'] + ' ' + out['Oem']['EMC']['VisionID_Chassis'],
                     "ResourceAddress": out['SerialNumber'],
                     "ResourceFamily": "Compute Server",
                     "ResourceModel": "ComputeShell",
                     "ResourceFolder": "Compute",
-                    # "ResourceDescription": out['Oem']['EMC']['VisionID_System'],
-                    "ResourceDescription": '\n'.join([s[2:]
-                                                      for s in re.sub(r'[{}"\[\]]', '', json.dumps(out, indent=2, separators=('', ': '))).split('\n')
-                                                      if s.strip()]).strip()[0:1999],
-                    "Number of CPUs": str(out['Processors']['Count']),
-                    "Memory Size": str(out['Memory']['TotalSystemMemoryGB']),
+                    "ResourceDescription": out['Oem']['EMC']['VisionID_System'],
+                    # "ResourceDescription": '\n'.join([s[2:]
+                    #                                   for s in re.sub(r'[{}"\[\]]', '', json.dumps(out, indent=2, separators=('', ': '))).split('\n')
+                    #                                   if s.strip()]).strip()[0:1999],
+                    "Number of CPUs": str(out['ProcessorSummary']['Count']),
+                    "Memory Size": str(out['MemorySummary']['TotalSystemMemoryGiB']),
                     "BIOS Version": str(out['BiosVersion']),
-                    "Vendor": "Dell",
+                    "Vendor": out['Manufacturer'],
                     "Serial Number": out['SerialNumber'],
                     "Model": model,
                     "VisionID IP": out['Oem']['EMC']['VisionID_Ip'],
                     "Location": context.resource.attributes['Location'],
                 })
+            else:
+                log('Skipping system %s' % url)
 
         # currhosts = [
         #     # {"OnRackID": "or1", "ResourceName": "Host01", "ResourceAddress": "1", "ResourceFamily": "Compute Server", "ResourceModel": "ComputeShell", "ResourceFolder": "Compute", "ResourceDescription": "descr", "Number of CPUs": "4", "Memory Size": "64", "Vendor": "Dell", "Model": "R630", "Serial Number": "s1",  },
