@@ -210,11 +210,13 @@ class OnrackShellDriver (ResourceDriverInterface):
             url = 'https://' + onrack_ip + "/redfish/v1/Systems/" + system
             out = rest_json('get', url, None, token)
             if out['Oem']['EMC']['VisionID_System']:
+                name = out['Name']
                 model = out.get('Model', None)
                 if model:
-                    model = model.strip()
+                    model = name + ' ' + model.strip()
                 else:
-                    model = out['Name']
+                    model = name
+
                 currhosts.append({
                     "OnRackID": out['Id'],
                     "ResourceName": out['Name'] + ' ' + out['Oem']['EMC']['VisionID_Chassis'],
