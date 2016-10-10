@@ -197,15 +197,34 @@ class OnrackShellDriver (ResourceDriverInterface):
         systemlist = [x['@odata.id'].split('/')[-1]
                       for x in rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems', None, token)['Members']]
 
-        nodes = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token)
-        nodeid2eths = dict([
-            (node['id'], node['identifiers'])
-            for node in nodes
-            if node['type'] == 'compute'
-        ])
-        log(str(nodes))
+        nodeid2eths = {}
 
-        currhosts = []
+        for node in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token):
+            for ifname, ifdata in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + node['id'] + '/catalogs/ohai', None, token)['data']['network']['interfaces'].iteritems():
+                if ifdata.get('encapsulation', '') != 'Ethernet':
+                    continue
+                if node['id'] not in nodeid2eths:
+                    nodeid2eths['id'] = []
+                eth = {
+                    'ResourceFamily': 'Port',
+                    'ResourceModel': 'Resource Port',
+                    'ResourceName': ifname,
+                    'ResourceAddress': 'no-ohai-address',
+                    'MTU': ifdata['mtu'],
+                }
+                nodeid2eths['id'].append(eth)
+                for addr, addrdata in ifdata['addresses'].iteritems():
+                    if addrdata['family'] == 'lladdr':
+                        eth['MAC Address'] = addr
+                        eth['ResourceAddress'] = addr
+                    elif addrdata['family'] == 'inet':
+                        eth['IPv4 Address'] = addr
+                    elif addrdata['family'] == 'inet6':
+                        eth['IPv6 Address'] = addr
+
+        currhosts = [{'a': 'b'}]
+        if True:
+            currhosts = []
         for system in systemlist:
             url = 'https://' + onrack_ip + "/redfish/v1/Systems/" + system
             out = rest_json('get', url, None, token)
@@ -225,6 +244,12 @@ class OnrackShellDriver (ResourceDriverInterface):
                     "ResourceModel": "ComputeShell",
                     "ResourceFolder": "Compute",
                     "ResourceDescription": out['Oem']['EMC']['VisionID_System'],
+                    "ResourceSubresources": nodeid2eths.get(system, []) + [{
+                        'ResourceFamily': 'Power Port',
+                        'ResourceModel': 'Generic Power Port',
+                        'ResourceName': 'OnRack',
+                        'ResourceAddress': 'NA',
+                    }],
                     # "ResourceDescription": '\n'.join([s[2:]
                     #                                   for s in re.sub(r'[{}"\[\]]', '', json.dumps(out, indent=2, separators=('', ': '))).split('\n')
                     #                                   if s.strip()]).strip()[0:1999],
@@ -284,18 +309,22 @@ class OnrackShellDriver (ResourceDriverInterface):
         if len(to_create_guids) > 0:
             for folder in set([host['ResourceFolder'] for host in currhosts]):
                 csapi.CreateFolder(folder)
+
             roots = [
                 ResourceInfoDto('Compute Server', 'ComputeShell', guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'], guid2currhost[guid]['ResourceFolder'], '', guid2currhost[guid]['ResourceDescription'])
                 for guid in to_create_guids
                 ]
-            rootsubs = [
-                ResourceInfoDto('Power Port', 'Generic Power Port', 'OnRack', 'NA', '', guid2currhost[guid]['ResourceName'], '')
-                for guid in to_create_guids
-                ]
+
+            rootsubs = []
+            for guid in to_create_guids:
+                for sub in guid2currhost[guid]['ResourceSubresources']:
+                    rootsubs.append(ResourceInfoDto(sub['ResourceFamily'], sub['ResourceModel'], sub['ResourceName'], sub['ResourceAddress'], '', guid2currhost[guid]['ResourceName'], sub['ResourceDescription']))
+
             onracksubs = [
                 ResourceInfoDto('OnRack Discoverable', 'OnRack Discovered Resource', guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'], '', context.resource.fullname, '')
                 for guid in to_create_guids
                 ]
+
             csapi.CreateResources(roots + rootsubs + onracksubs)
             csapi.UpdatePhysicalConnections([
                                                 PhysicalConnectionUpdateRequest(
@@ -322,7 +351,21 @@ class OnrackShellDriver (ResourceDriverInterface):
                                                     if 'Resource' not in name])
                 for host in currhosts
                 ]
-            subs = [
+            rootsubs = []
+            for host in currhosts:
+                for sub in host['ResourceSubresources']:
+                    if False:
+                        sub = {'a': 'b'}
+                    attrs = [
+                        AttributeNameValue(name, value)
+                        for name, value in sub.iteritems()
+                        if 'Resource' not in name
+                        ]
+                    if len(attrs) > 0:
+                        rootsubs.append(ResourceAttributesUpdateRequest(sub['ResourceName'], attrs))
+
+
+            onracksubs = [
                 ResourceAttributesUpdateRequest(context.resource.fullname + '/' + host['ResourceName'],
                                                 [
                                                     AttributeNameValue('Model', host['Model']),
@@ -331,7 +374,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                                                 ])
                 for host in currhosts
                 ]
-            csapi.SetAttributesValues(roots + subs)
+            csapi.SetAttributesValues(roots + rootsubs + onracksubs)
             for host in currhosts:
                 csapi.UpdateResourceDescription(host['ResourceName'], host['ResourceDescription'])
         
