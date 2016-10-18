@@ -9,7 +9,9 @@ from quali_remote import notify_user
 import os
 import json
 import sys
-
+# a = True
+# while a:
+#     time.sleep(10)
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
@@ -161,6 +163,9 @@ except Exception, e:
         f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
+# Fix sio version
+if not sio_version.startswith('-'):
+    sio_version = '-' + sio_version
 
 # Install SVM role
 try:
@@ -170,20 +175,22 @@ try:
         # Install PGP Key
         installKey(siodic[name][0])
         if "Gateway" in name:
-            installGateway(siodic[name][0], gateway_password)
-            configureGateway(siodic[name][0], svm1_mgmt_ip, svm2_mgmt_ip, zp)
+            installGateway(siodic[name][0], gateway_password, version=sio_version)
+            # Unknown what to do here. Currently it breaks the gateway
+            # configureGateway(siodic[name][0], svm1_mgmt_ip, svm2_mgmt_ip, zp)
         else:
             # Install SDS & LIA
-            installSDS(siodic[name][0])
-            installLIA(siodic[name][0], lia_password)
+            installSDS(siodic[name][0], version=sio_version)
+            installLIA(siodic[name][0], lia_password, version=sio_version)
             # Install MDM role and install & Configure CallHome
             if siodic[name][0] == svm1_mgmt_ip or siodic[name][0] == svm2_mgmt_ip:
-                installSIOVM(siodic[name][0], "mdm")
-                if callhome_smtp_server != '':
-                    installCallHome(siodic[name][0])
-                    configureCallhome(siodic[name][0], smtphost=callhome_smtp_server, port=callhome_smtp_port, tls=callhome_smtp_tls.lower(), smtpuser=callhome_smtp_username, smtppass=callhome_smtp_password, user=callhome_sio_username, password=callhome_sio_password, fromemail=callhome_email_from, toemail=callhome_email_to, customername=callhome_customer_name, severity=callhome_severity_level.lower())
+                installSIOVM(siodic[name][0], "mdm", version=sio_version)
+                # NO CALLHOME FUNC IN THIS VERSION
+                # if callhome_smtp_server != '':
+                #     installCallHome(siodic[name][0], version=sio_version)
+                #     configureCallhome(siodic[name][0], smtphost=callhome_smtp_server, port=callhome_smtp_port, tls=callhome_smtp_tls.lower(), smtpuser=callhome_smtp_username, smtppass=callhome_smtp_password, user=callhome_sio_username, password=callhome_sio_password, fromemail=callhome_email_from, toemail=callhome_email_to, customername=callhome_customer_name, severity=callhome_severity_level.lower())
             elif "TieBreaker" in name:
-                installSIOVM(siodic[name][0], "tb")
+                installSIOVM(siodic[name][0], "tb", version=sio_version)
         # Change root Password
         changeRootPassword(siodic[name][0], svm_password)
 
@@ -197,13 +204,13 @@ except Exception, e:
 notify_user(api, reservationId, "Configure ScaleIO MDM Cluster")
 svmlist = []
 try:
-    configureSDS(svm1_mgmt_ip, svm2_mgmt_ip, svm3_mgmt_ip, adminpassword=sio_admin_password, password=svm_password)
+    configureSDS([svm1_mgmt_ip, svm1_data1_ip], [svm2_mgmt_ip, svm2_data1_ip], [svm3_mgmt_ip, svm3_data1_ip], adminpassword=sio_admin_password, password=svm_password)
     configureMainStorage(svm1_mgmt_ip, svm2_mgmt_ip, adminpassword=sio_admin_password, zp=zp, backscan=backscanner, sysname=system_name, password=svm_password, sp=storage_pool_name, pd=prot_domain_name)
     faults = createFaultsets(svm1_mgmt_ip, adminpassword=sio_admin_password, password=svm_password, pd=prot_domain_name, faultnameprefix=fault_name_prefix, number=fault_number)
     for name in siodic:
         _vm_name = vm_name + '-' + name
         if name != "Gateway":
-            svmlist.append(siodic[name][0])
+            svmlist.append(_siodic[name][1])
             svmlist.append(diskdic[_vm_name][0])
     addSdcNode(svm1_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, password=svm_password)
     time.sleep(30)
@@ -220,37 +227,38 @@ except Exception, e:
         f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
     exit(1)
 
+# No plugin install. need to 
 # Install vCenter Plugin
-notify_user(api, reservationId, "Install vCenter Plugin")
-try:
-    installvCenterplugin(svm4_mgmt_ip, sio_version.replace('-', '.'), vcenter_ip, vcenter_user, vcenter_password)
-    driver = webdriver.Firefox()
-    driver.set_window_size(1440, 990)
-    driver.implicitly_wait(20)
-    driver.set_page_load_timeout(5)
-    wait = WebDriverWait(driver, 10)
-    # navigate to first page
-    driver.get("https://" + vcenter_ip + "/")
-    # login
-    # set username
-    # wait.until(EC.presence_of_element_located((By.NAME, 'vsphereConfig.credentials[0].hostname')))
-    driver.find_element_by_xpath("//*[text()='Log in to vSphere Web Client']").click()
-    time.sleep(5)
-    driver.switch_to.frame('websso')
-    time.sleep(1)
-    driver.find_element_by_xpath("//*[@id='username']").send_keys(vcenter_user)
-    # set password
-    driver.find_element_by_xpath('//*[@id="password"]').send_keys(vcenter_password)
-    # click login
-    driver.find_element_by_xpath('//*[@id="submit"]').click()
-    time.sleep(60)
-    driver.quit()
-
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    sys.exit(1)
+# notify_user(api, reservationId, "Install vCenter Plugin")
+# try:
+#     installvCenterplugin(svm4_mgmt_ip, sio_version.replace('-', '.'), vcenter_ip, vcenter_user, vcenter_password)
+#     driver = webdriver.Firefox()
+#     driver.set_window_size(1440, 990)
+#     driver.implicitly_wait(20)
+#     driver.set_page_load_timeout(5)
+#     wait = WebDriverWait(driver, 10)
+#     # navigate to first page
+#     driver.get("https://" + vcenter_ip + "/")
+#     # login
+#     # set username
+#     # wait.until(EC.presence_of_element_located((By.NAME, 'vsphereConfig.credentials[0].hostname')))
+#     driver.find_element_by_xpath("//*[text()='Log in to vSphere Web Client']").click()
+#     time.sleep(5)
+#     driver.switch_to.frame('websso')
+#     time.sleep(1)
+#     driver.find_element_by_xpath("//*[@id='username']").send_keys(vcenter_user)
+#     # set password
+#     driver.find_element_by_xpath('//*[@id="password"]').send_keys(vcenter_password)
+#     # click login
+#     driver.find_element_by_xpath('//*[@id="submit"]').click()
+#     time.sleep(60)
+#     driver.quit()
+#
+# except Exception, e:
+#     print e
+#     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#         f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
+#     sys.exit(1)
 
 endtime = datetime.datetime.now()
 print "Total Configuration time: " + str(endtime - starttime)
