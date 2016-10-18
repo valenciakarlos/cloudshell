@@ -554,6 +554,6 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
                           'QualiPackage': ('QualiPackage', csv),
                           'reservationId': ('reservationId', env_details['id']),
                           'saveFileAs': ('saveFileAs', 'steps.csv'),
-                          'overwriteIfExists': ('overwriteIfExists', 'true'),
+                          'overwriteIfExists': ('overwriteIfExists', 'yes'),
                       })
         print 'steps.csv has been attached to the reservation. Reload the page and click the paperclip icon to download the file.'
