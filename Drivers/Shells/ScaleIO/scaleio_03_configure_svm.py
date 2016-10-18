@@ -177,7 +177,7 @@ try:
         if "Gateway" in name:
             installGateway(siodic[name][0], gateway_password, version=sio_version)
             # Unknown what to do here. Currently it breaks the gateway
-            # configureGateway(siodic[name][0], svm1_mgmt_ip, svm2_mgmt_ip, zp)
+            configureGateway(siodic[name][0], svm1_mgmt_ip, svm2_mgmt_ip, zp)
         else:
             # Install SDS & LIA
             installSDS(siodic[name][0], version=sio_version)

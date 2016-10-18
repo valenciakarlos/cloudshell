@@ -319,73 +319,14 @@ def installGateway(ip, adminpassword, version='-1.32-3455.5', user='root', passw
         print e
 
 def configureGateway(ip, primaryip, secondaryip, zp, user='root', password='admin'):
-    file = '''
-###############################################################################
-# If you make changes in this configuration file, you must restart            #
-# the ScaleIO Gateway service.                                               #
-###############################################################################
-
-####  mdm.ip.addresses   #####
-# Use a comma (,) or a semicolon (;) as a separator between the MDM IP addresses.
-# Empty space between addresses is not allowed.
-# For example: 10.76.60.50;10.76.40.11;10.76.80.55 or 10.76.60.50,10.76.40.11,10.76.80.55
-#
-# To improve the performance of the MDM lookup, place the primary MDM IP
-# addresses before the secondary MDM IP addresses.
-mdm.ip.addresses=''' + primaryip + ',' + secondaryip + '''
-
-# System ID. If the field is left empty, the ID will be created automatically on first login (/api/login).
-# The system ID must be identical to the system ID of the system specified in mdm.ip.addresses
-system.id=
-
-mdm.port=6611
-
-gateway-admin.password=1000:5b544ff5a671d959d20159ea3fe1c66723f2d4bf7043c764abc5054a0f16e671:f16fbd07da586a5dc7d65e49a2d6a7eb2df13bb69c16b9b740f20eb84b0d6442
-vmware-mode=false
-
-# When installing SDSs or SDCs on RHEL5 systems, change this value to 20.
-im.parallelism=100
-
-# Allow access for change operations to this/these IP address(es)
-#remote.read.only.limit_IPS=
-
-###################################
-# IF YOU MANUALLY CHANGE THIS FILE - CHANGE do.not.update.user.properties.with.values.before.upgrade TO =true
-# THIS WILL PREVENT THE FILE FROM BEING OVERWRITTEN with the original values before the upgrade.
-###################################
-do.not.update.user.properties.with.values.before.upgrade=true
-
-#######Features Enabler#######
-features.enable_gateway=true
-features.enable_IM=true
-features.enable_snmp=false
-
-#######SNMP properties#######
-# MDM credentials are only required for SNMP trap support
-# For security reasons, it is recommended to use the credentials of a read-only user.
-# Enable password encoding by setting it to true, otherwise leave it empty or set it to false.
-mdm.username=
-mdm.password=
-mdm.password.encoding=
-# sampling frequency for SNMP traps, in seconds
-snmp.sampling_frequency=30
-# resend frequency of SNMP traps, in minutes. 0 will send all traps every sampling
-snmp.resend_frequency=0
-#Supports two ips for two traps receivers. Use a comma (,) or a semicolon (;) as a separator between the two receivers IP addresses.
-snmp.traps_receiver_ip=
-snmp.port=162
-
-# The Installation Manager will ignore modifications made to these nodes (list of IP addresses):
-im.ip.ignore.list=
-    '''
-    if zp:
-        file += '''global.zero_padding=true'''
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
     ssh.connect(ip, username=user, password=password)
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
-    command = '''echo \"''' + file + '" > /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
+    command = 'sed -i -e \'s/mdm.ip.addresses=/mdm.ip.addresses=' + primaryip + ',' + secondaryip + '/\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
+    do_command_and_wait(chan, command, expect=r' #')
+    command = 'sed -i -e \'s/security.bypass_certificate_check=false/security.bypass_certificate_check=true/g\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
     do_command_and_wait(chan, command, expect=r' #')
     command = 'service scaleio-gateway restart'
     do_command_and_wait(chan, command, expect=r' #')
