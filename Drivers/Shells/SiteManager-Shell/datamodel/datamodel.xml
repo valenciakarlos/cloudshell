@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataModelInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.qualisystems.com/ResourceManagement/DataModelSchema.xsd">
+  <Attributes>
+    <AttributeInfo Name="Location" Type="String" DefaultValue="" IsReadOnly="false"
+      Description="The device physical location identifier. For example: Lab1/Floor2/Row5/Slot4">
+      <Rules Override="false">
+	     <Rule Name="Setting" />
+	     <Rule Name="Available For Abstract Resources" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management Start IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management End IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management Netmask" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management DNS1" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management DNS2" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management NTP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Management Search Domains" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data Start IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data End IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data Netmask" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data Search Domains" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+  </Attributes>
+  <ResourceFamilies>
+    <ResourceFamily Name="Site Manager" IsConnectable="false" IsLockedByDefault="false" Description="" IsSearchable="true" ResourceType="Resource">
+      <AttachedAttributes>
+      </AttachedAttributes>
+      <AttributeValues>
+      </AttributeValues>
+      <Models>
+      </Models>
+      <Categories />
+    </ResourceFamily>
+  </ResourceFamilies>
+  <DriverDescriptors>
+      <DriverDescriptor Name="SiteManagerShellDriver" DriverType="PythonDriver" />
+  </DriverDescriptors>
+</DataModelInfo>

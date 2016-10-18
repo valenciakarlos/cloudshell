@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ShellsConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.qualisystems.com/ResourceManagement/ShellsConfigurationSchema.xsd">
+<ResourceTemplates>
+    <ResourceTemplate Name="Site Network Manager" Model="SiteManagerShell" Driver="SiteManagerShellDriver">
+        <Description></Description>
+        <AutoLoad Enable="true">
+            <Description>Please provide the network details for the new site</Description>
+        </AutoLoad>
+        <Attributes>
+            <Attribute Name="Location" Value="" />
+            <Attribute Name="Management Start IP" Value="" />
+			<Attribute Name="Management End IP" Value="" />
+			<Attribute Name="Management Netmask" Value="" />
+			<Attribute Name="Management DNS1" Value="" />
+			<Attribute Name="Management DNS2" Value="" />
+			<Attribute Name="Management NTP" Value="" />
+			<Attribute Name="Management Search Domains" Value="" />
+			<Attribute Name="Data Start IP" Value="" />
+			<Attribute Name="Data End IP" Value="" />
+			<Attribute Name="Data Netmask" Value="" />
+			<Attribute Name="Data Search Domains" Value="" />
+        </Attributes>
+    </ResourceTemplate>    
+</ResourceTemplates>
+</ShellsConfiguration>

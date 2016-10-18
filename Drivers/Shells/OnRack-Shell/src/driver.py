@@ -211,6 +211,9 @@ class OnrackShellDriver (ResourceDriverInterface):
                     'ResourceName': ifname,
                     'ResourceAddress': 'no-ohai-address',
                     'MTU': ifdata['mtu'],
+                    'MAC Address': '',
+                    'IPv4 Address': '',
+                    'IPv6 Address': '',
                 }
                 nodeid2eths['id'].append(eth)
                 for addr, addrdata in ifdata['addresses'].iteritems():

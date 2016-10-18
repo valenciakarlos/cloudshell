@@ -1,0 +1,70 @@
+<Shell>
+
+    <ShellAttributes>
+    </ShellAttributes>
+
+    <ShellModel Family="Site Manager">
+        <ResourceModel Name="SiteManagerShell" Description="" SupportsConcurrentCommands="false">
+            <AttachedAttributes>
+                <AttachedAttribute Name="Location" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management Start IP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management End IP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management Netmask" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management DNS1" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management DNS2" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management NTP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Management Search Domains" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data Start IP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data End IP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data Netmask" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data Search Domains" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                
+            </AttachedAttributes>
+            <AttributeValues>
+                
+				<AttributeValue Name="Location" Value="" />
+				<AttributeValue Name="Management Start IP" Value="" />
+				<AttributeValue Name="Management End IP" Value="" />
+				<AttributeValue Name="Management Netmask" Value="" />
+				<AttributeValue Name="Management DNS1" Value="" />
+				<AttributeValue Name="Management DNS2" Value="" />
+				<AttributeValue Name="Management NTP" Value="" />
+				<AttributeValue Name="Management Search Domains" Value="" />
+				<AttributeValue Name="Data Start IP" Value="" />
+				<AttributeValue Name="Data End IP" Value="" />
+				<AttributeValue Name="Data Netmask" Value="" />
+				<AttributeValue Name="Data Search Domains" Value="" />
+              </AttributeValues>
+            <ParentModels />
+            <Drivers>
+                <DriverName>SiteManagerShellDriver</DriverName>
+            </Drivers>
+            <Scripts />
+        </ResourceModel>
+
+    </ShellModel>
+</Shell>

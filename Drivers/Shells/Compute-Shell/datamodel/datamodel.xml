@@ -166,11 +166,13 @@
     <AttributeInfo Name="CPU usage" Type="Numeric" DefaultValue="0" IsReadOnly="false">
       <Rules>
         <Rule Name="Setting" />
+        <Rule Name="Monitor Modifications" />
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Memory usage" Type="Numeric" DefaultValue="0" IsReadOnly="false">
       <Rules>
         <Rule Name="Setting" />
+        <Rule Name="Monitor Modifications" />
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Memory Size" Type="Numeric" DefaultValue="0" IsReadOnly="false">
