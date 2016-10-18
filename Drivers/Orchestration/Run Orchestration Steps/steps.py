@@ -1,6 +1,7 @@
 import os
 from time import sleep
 
+import requests
 from cloudshell.core.logger.qs_logger import get_qs_logger
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import InputNameValue, CloudShellAPISession
@@ -383,8 +384,11 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
     csapi = helpers.get_api_session()
     resid = helpers.get_reservation_context_details().id
 
-    site_manager_attrs = dict([(a.Name, a.Value) for a in csapi.GetResourceDetails([r for r in csapi.GetReservationDetails(resid).ReservationDescription.Resources
-                                                           if r.ResourceModelName == 'SiteManagerShell'][0].Name).ResourceAttributes])
+    sitemans = [r for r in csapi.GetReservationDetails(resid).ReservationDescription.Resources if r.ResourceModelName == 'SiteManagerShell']
+    if len(sitemans) == 0:
+        raise Exception('You must add a Site Network Manager resource to the reservation')
+    siteman_details = sitemans[0]
+    site_manager_attrs = dict([(a.Name, a.Value) for a in csapi.GetResourceDetails(siteman_details.Name).ResourceAttributes])
 
     site_manager_attrs['Interface Names For Migration'] = 'aaua'
     site_manager_attrs['Default VLAN'] = '4'
@@ -535,6 +539,21 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
         logger.info(str(step))
 
     if printmode:
-        print csv
-    # attach log
-    # AttachFileToReservation
+        con_details = helpers.get_connectivity_context_details_dict()
+        env_details = helpers.get_reservation_context_details_dict()
+        token = requests.put('http://%s:%s/Api/Auth/Login' % (con_details['serverAddress'], 9000),
+                             headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                             data='username=%s&password=%s&domain=%s' % (con_details['adminUser'], con_details['adminPass'], env_details['domain'])).content
+        if token.startswith('"') and token.endswith('"'):
+            token = token[1:-1]
+        requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_details['serverAddress'], 9000),
+                      headers={
+                          'Authorization': 'Basic ' + token,
+                      },
+                      files={
+                          'QualiPackage': ('QualiPackage', csv),
+                          'reservationId': ('reservationId', env_details['id']),
+                          'saveFileAs': ('saveFileAs', 'steps.csv'),
+                          'overwriteIfExists': ('overwriteIfExists', 'true'),
+                      })
+        print 'steps.csv has been attached to the reservation. Reload the page and click the paperclip icon to download the file.'

@@ -4534,6 +4534,15 @@
         <ScriptInput Name="VLAN_ID" Description="ID of the vlan to set on the interface" />
       </ScriptInputs>
     </ScriptDescriptor>
+    <ScriptDescriptor Name="generate_orchestration_steps_file" Description="Generates a summary of orchestration steps by number and attaches a CSV file to the reservation" CategoryName="System" Version="1" Alias="Generate Orchestration Steps File">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="run_orchestration_steps" Description="Run all orchestration steps or a subset of available steps" Version="1" CategoryName="System" Alias="Run Orchestration Steps">
+      <ScriptInputs>
+        <ScriptInput Name="Include_Ranges" Description="Steps to run: 'all', or a comma-separated list of step numbers or ranges, e.g. 1-5,8,10,20-end" />
+        <ScriptInput Name="Exclude_Ranges" Description="Steps to exclude when running: 'none', or a comma-separated list of step numbers or ranges, e.g. 6-7,9,11-end" />
+      </ScriptInputs>
+    </ScriptDescriptor>
     <ScriptDescriptor Name="vlog_02_startup_wizard" Description="Configure DNS, SMTP, license, NTP" Version="1" CategoryName="Install" Alias="02 Run Start-up Configuration Wizard">
       <ScriptInputs />
     </ScriptDescriptor>

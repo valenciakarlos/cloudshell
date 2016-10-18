@@ -1,4 +1,5 @@
 rem goto :skipdll
+
 rem compile drivers
 del "drivers\shells\onrack.compilation\onrack.dll"
 "C:\Program Files (x86)\QualiSystems\CloudShell\Authoring\QsDriverStudio.exe" "drivers\shells\onrack\onrack.tsdrvproj" compile

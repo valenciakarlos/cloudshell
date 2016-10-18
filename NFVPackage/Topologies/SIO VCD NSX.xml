@@ -5,6 +5,8 @@
     <Categories />
     <Scripts>
       <Script Name="copy_prereq" />
+      <Script Name="generate_orchestration_steps_file" />
+      <Script Name="run_orchestration_steps" />
     </Scripts>
     <Diagram Zoom="0.8" />
   </Details>
