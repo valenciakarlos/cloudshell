@@ -7,7 +7,9 @@ from quali_remote import powershell, notify_user
 import datetime
 import os
 import json
-
+# a = True
+# while a:
+#     time.sleep(10)
 with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 

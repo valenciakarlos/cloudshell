@@ -58,11 +58,15 @@ def restartService(service, operation, vmname, vcenter_ip, vcenter_username, vce
 def sioCommand(role, version, rpmswitch='rpm -i '):
     folder = '/root/install/'
     prefix = 'EMC-ScaleIO-'
-    sufix = '.sles11.3.SVM.x86_64.rpm'
+    sufix = '.sles11.3.x86_64.rpm'
     if role == 'gateway':
-        command = rpmswitch + folder + prefix + role + version + '.noarch.rpm'
+        command = rpmswitch + folder + prefix + role + version + '.x86_64.rpm'
     else:
         command = rpmswitch + folder + prefix + role + version + sufix
+    if role == 'mdm':
+        command = 'MDM_ROLE_IS_MANAGER=1 ' + command
+    elif role == 'tb':
+        command = 'MDM_ROLE_IS_MANAGER=0 ' + command.replace('tb', 'mdm')
     return command
 
 def installKey(ip, user='root', password='admin'):
@@ -151,7 +155,9 @@ def installSDS(ip, version='-1.32-3455.5', user='root', password='admin'):
         ssh.connect(ip, username=user, password=password)
         chan = ssh.invoke_shell()
         do_command_and_wait(chan, '', expect=r' ')
-        command = 'CONF=IOPS ' + sioCommand(role, version)
+        # command = 'CONF=IOPS ' + sioCommand(role, version)
+        # No longer need the CONF=IOPD. (not mentioned in the Docs)
+        command = sioCommand(role, version)
         do_command_and_wait(chan, command, expect=r' #')
     except Exception, e:
         print e
@@ -160,21 +166,25 @@ def configureSDS(ip, ip2, ip3, adminpassword, license=False, user='root', passwo
     try:
         ssh = paramiko.SSHClient()
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
+        ssh.connect(ip[0], username=user, password=password)
         chan = ssh.invoke_shell()
         do_command_and_wait(chan, '', expect=r' ')
         # Preper Primary
-        command = 'scli --add_primary_mdm --primary_mdm_ip ' + ip + ' --mdm_management_ip ' + ip + ',' + ip2 + ' --accept_license'
+        command = 'scli --create_mdm_cluster --master_mdm_ip ' + ip[1] + ' --master_mdm_management_ip ' + ip[0] + ' --master_mdm_name mdm_primary --accept_license'
         do_command_and_wait(chan, command, expect=r'license')
+        # Accept Certificate
+        do_command_and_wait(chan, 'y', expect=r' #')
         # Login
-        command = 'scli --login --mdm_ip ' + ip + ' --username admin --password admin'
+        command = 'scli --login --username admin --password admin'
         do_command_and_wait(chan, command, expect=r' #')
-        command = 'scli --set_password --mdm_ip ' + ip + ' --old_password admin --new_password ' + adminpassword
+        command = 'scli --set_password --old_password admin --new_password ' + adminpassword
         do_command_and_wait(chan, command, expect=r' #')
-        command = 'scli --login --mdm_ip ' + ip + ' --username admin --password ' + adminpassword
+        command = 'scli --login --username admin --password ' + adminpassword
         do_command_and_wait(chan, command, expect=r' #')
         # License
-        if license:
+        # if license:
+        # nothing on how to install the new license
+        if False:
             command = 'touch /tmp/siolicense.lsn'
             do_command_and_wait(chan, command, expect=r' #')
             # Transfer the license to the empty file
@@ -184,14 +194,13 @@ def configureSDS(ip, ip2, ip3, adminpassword, license=False, user='root', passwo
             do_command_and_wait(chan, command, expect=r' #')
 
         # Preper Secondary
-        command = 'scli --add_secondary_mdm --mdm_ip ' + ip + ' --secondary_mdm_ip ' + ip2 + ''
+        command = 'scli --add_standby_mdm --new_mdm_ip ' + ip2[1] + ' --mdm_role manager --new_mdm_management_ip ' + ip2[0] + ' --new_mdm_name mdm_secondary'
         do_command_and_wait(chan, command, expect=r' #')
-
         # Preper TB
-        command = 'scli --add_tb --tb_ip ' + ip3 + ' --mdm_ip ' + ip + ',' + ip2 + ''
+        command = 'scli --add_standby_mdm --new_mdm_ip ' + ip3[1] + ' --mdm_role tb --new_mdm_name mdm_tiebreaker'
         do_command_and_wait(chan, command, expect=r' #')
         # Change to Cluster mode
-        command = 'scli --switch_to_cluster_mode --mdm_ip ' + ip + ',' + ip2 + ''
+        command = 'scli --switch_cluster_mode --cluster_mode 3_node --add_slave_mdm_name mdm_secondary --add_tb_name mdm_tiebreaker'
         do_command_and_wait(chan, command, expect=r' ')
     except Exception, e:
         print e
@@ -203,14 +212,15 @@ def configureMainStorage(primaryip, secondaryip, adminpassword, zp, backscan, sy
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
     # Login
-    command = 'scli --login --mdm_ip ' + primaryip + ' --username admin --password ' + adminpassword
+    command = 'scli --login --username admin --password ' + adminpassword
     do_command_and_wait(chan, command, expect=r' #')
     # Create Protection Domain
-    command = 'scli --add_protection_domain --mdm_ip ' + primaryip + ',' + secondaryip + ' --protection_domain_name ' + pd + ''
+    command = 'scli --add_protection_domain --protection_domain_name ' + pd + ''
     do_command_and_wait(chan, command, expect=r' #')
     # Create Storage Pool
-    command = 'scli --add_storage_pool --mdm_ip ' + primaryip + ',' + secondaryip + ' --protection_domain_name ' + pd + ' --storage_pool_name ' + sp + ''
+    command = 'scli --add_storage_pool --protection_domain_name ' + pd + ' --storage_pool_name ' + sp + ''
     do_command_and_wait(chan, command, expect=r' #')
+
     if zp:
         command = 'scli --modify_zero_padding_policy --protection_domain_name ' + pd + ' --storage_pool_name ' + sp + ' --enable_zero_padding'
         do_command_and_wait(chan, command, expect=r' #')
@@ -228,17 +238,20 @@ def addSdsStorage(primaryip, secondaryip, sdsarray, adminpassword, rmcache, faul
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
     # Login
-    command = 'scli --login --mdm_ip ' + primaryip + ',' + secondaryip + ' --username admin --password ' + adminpassword
+    command = 'scli --login --username admin --password ' + adminpassword
     do_command_and_wait(chan, command, expect=r' #')
     for n in xrange(len(sdsarray)/2):
-        command = 'scli --add_sds --mdm_ip ' + primaryip + ',' + secondaryip + ' --sds_ip ' + sdsarray[(n*2)] + ' --sds_name sds' + str(n) + ' --protection_domain_name ' + pd + ' --storage_pool_name ' + sp + ' --rmcache_size_mb ' + str(rmcache)
+        sds_path = ''
+        for x in xrange(sdsarray[(n * 2) + 1]):
+            device_path = "/dev/sd" + str(chr((x + ord('b'))))
+            sds_path += device_path + ','
+        sds_path = sds_path[:-1]
+
+        command = 'scli --add_sds --sds_ip ' + sdsarray[(n*2)] + ' --sds_name sds' + str(n) + ' --protection_domain_name ' + pd + ' --storage_pool_name ' + sp + ' --rmcache_size_mb ' + str(rmcache) + ' --device_path ' + sds_path
         if faultlist != None:
             command += ' --fault_set_name ' + faultlist[n]
         do_command_and_wait(chan, command, expect=r' #')
-        for x in xrange(sdsarray[(n*2)+1]):
-            device_path = "/dev/sd" + str(chr((x + ord('b'))))
-            command = "scli --add_sds_device --sds_ip " + sdsarray[(n*2)] + " --device_path " + device_path + " --storage_pool_name " + sp
-            do_command_and_wait(chan, command, expect=r' #')
+
 
 
 def installSDC(esx, file, password, username='root'):
@@ -299,80 +312,21 @@ def installGateway(ip, adminpassword, version='-1.32-3455.5', user='root', passw
         chan = ssh.invoke_shell()
         do_command_and_wait(chan, '', expect=r' ')
         # Install Java
-        do_command_and_wait(chan, 'rpm -i /root/install/jre-7u65-linux-x64.rpm', '#')
+        do_command_and_wait(chan, 'rpm -i /root/install/jre-8u65-linux-x64.rpm', '#')
         command = "GATEWAY_ADMIN_PASSWORD=" + adminpassword + ' ' + sioCommand('gateway', version)
         do_command_and_wait(chan, command, expect=r' #')
     except Exception, e:
         print e
 
 def configureGateway(ip, primaryip, secondaryip, zp, user='root', password='admin'):
-    file = '''
-###############################################################################
-# If you make changes in this configuration file, you must restart            #
-# the ScaleIO Gateway service.                                               #
-###############################################################################
-
-####  mdm.ip.addresses   #####
-# Use a comma (,) or a semicolon (;) as a separator between the MDM IP addresses.
-# Empty space between addresses is not allowed.
-# For example: 10.76.60.50;10.76.40.11;10.76.80.55 or 10.76.60.50,10.76.40.11,10.76.80.55
-#
-# To improve the performance of the MDM lookup, place the primary MDM IP
-# addresses before the secondary MDM IP addresses.
-mdm.ip.addresses=''' + primaryip + ',' + secondaryip + '''
-
-# System ID. If the field is left empty, the ID will be created automatically on first login (/api/login).
-# The system ID must be identical to the system ID of the system specified in mdm.ip.addresses
-system.id=
-
-mdm.port=6611
-
-gateway-admin.password=1000:5b544ff5a671d959d20159ea3fe1c66723f2d4bf7043c764abc5054a0f16e671:f16fbd07da586a5dc7d65e49a2d6a7eb2df13bb69c16b9b740f20eb84b0d6442
-vmware-mode=false
-
-# When installing SDSs or SDCs on RHEL5 systems, change this value to 20.
-im.parallelism=100
-
-# Allow access for change operations to this/these IP address(es)
-#remote.read.only.limit_IPS=
-
-###################################
-# IF YOU MANUALLY CHANGE THIS FILE - CHANGE do.not.update.user.properties.with.values.before.upgrade TO =true
-# THIS WILL PREVENT THE FILE FROM BEING OVERWRITTEN with the original values before the upgrade.
-###################################
-do.not.update.user.properties.with.values.before.upgrade=true
-
-#######Features Enabler#######
-features.enable_gateway=true
-features.enable_IM=true
-features.enable_snmp=false
-
-#######SNMP properties#######
-# MDM credentials are only required for SNMP trap support
-# For security reasons, it is recommended to use the credentials of a read-only user.
-# Enable password encoding by setting it to true, otherwise leave it empty or set it to false.
-mdm.username=
-mdm.password=
-mdm.password.encoding=
-# sampling frequency for SNMP traps, in seconds
-snmp.sampling_frequency=30
-# resend frequency of SNMP traps, in minutes. 0 will send all traps every sampling
-snmp.resend_frequency=0
-#Supports two ips for two traps receivers. Use a comma (,) or a semicolon (;) as a separator between the two receivers IP addresses.
-snmp.traps_receiver_ip=
-snmp.port=162
-
-# The Installation Manager will ignore modifications made to these nodes (list of IP addresses):
-im.ip.ignore.list=
-    '''
-    if zp:
-        file += '''global.zero_padding=true'''
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
     ssh.connect(ip, username=user, password=password)
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
-    command = '''echo \"''' + file + '" > /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
+    command = 'sed -i -e \'s/mdm.ip.addresses=/mdm.ip.addresses=' + primaryip + ',' + secondaryip + '/\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
+    do_command_and_wait(chan, command, expect=r' #')
+    command = 'sed -i -e \'s/security.bypass_certificate_check=false/security.bypass_certificate_check=true/g\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
     do_command_and_wait(chan, command, expect=r' #')
     command = 'service scaleio-gateway restart'
     do_command_and_wait(chan, command, expect=r' #')
@@ -579,7 +533,11 @@ foreach ($esx in $Hosts.Split(",")){
     }
 write-host "<%<%" $result.Substring(0, $result.Length-1)
     '''
-    return powershell(script)
+    result = powershell(script)
+    if not re.match('error|exception', result.lower()):
+        return result
+    else:
+        return None
 
 
 def createRDMdisk(vmname, diskpath, vcenter_ip, vcenter_user, vcenter_password):
@@ -691,7 +649,7 @@ def addSdcNode(primaryip, esxips, adminpassword, user='root', password='admin'):
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
     # Login
-    command = 'scli --login --mdm_ip ' + primaryip + ' --username admin --password ' + adminpassword
+    command = 'scli --login --username admin --password ' + adminpassword
     do_command_and_wait(chan, command, expect=r' #')
     for esx in esxips:
         command = 'scli --add_sdc --sdc_ip ' + esx
@@ -730,14 +688,14 @@ def addVolume(primaryip, secondaryip, sdcs, adminpassword, volumetype, volumesiz
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
     # Login
-    command = 'scli --login --mdm_ip ' + primaryip + ' --username admin --password ' + adminpassword
+    command = 'scli --login --username admin --password ' + adminpassword
     do_command_and_wait(chan, command, expect=r' #')
-    command = 'scli --mdm_ip ' + primaryip + ' --add_volume --protection_domain_name ' + pd + ' --volume_name ' + volume + ' --size_gb ' + str(max_volume) + ' --storage_pool_name ' + sp
+    command = 'scli --add_volume --protection_domain_name ' + pd + ' --volume_name ' + volume + ' --size_gb ' + str(max_volume) + ' --storage_pool_name ' + sp
     if volumetype.lower() == 'thick':
         command += ' --thick_provisioned'
     do_command_and_wait(chan, command, expect=r' #')
     for sdc in sdcs:
-        command = 'scli --mdm_ip ' + primaryip + ' --map_volume_to_sdc --allow_multi_map --volume_name ' + volume + ' --sdc_ip ' + sdc
+        command = 'scli --map_volume_to_sdc --allow_multi_map --volume_name ' + volume + ' --sdc_ip ' + sdc
         do_command_and_wait(chan, command, expect=r' #')
 
 
