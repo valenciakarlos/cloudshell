@@ -324,7 +324,7 @@ def configureGateway(ip, primaryip, secondaryip, zp, user='root', password='admi
     ssh.connect(ip, username=user, password=password)
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
-    command = 'sed -i -e \'s/mdm.ip.addresses=/mdm.ip.addresses=' + primaryip + ',' + secondaryip + '/\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
+    command = 'sed -i -e \'s/mdm.ip.addresses=/mdm.ip.addresses=' + primaryip + ',' + secondaryip + '/g\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
     do_command_and_wait(chan, command, expect=r' #')
     command = 'sed -i -e \'s/security.bypass_certificate_check=false/security.bypass_certificate_check=true/g\' /opt/emc/scaleio/gateway/webapps/ROOT/WEB-INF/classes/gatewayUser.properties'
     do_command_and_wait(chan, command, expect=r' #')
