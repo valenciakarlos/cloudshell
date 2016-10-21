@@ -63,6 +63,9 @@ try:
 
     # Set VC session
     session = Vcenter(vcenterparams)
+
+    # STEPS # Quit if controller_vmname already exists on vcenter_ip vcenter_user vcenter_password
+
     session.add_dvPort_group(dv_switch, controller_1_portgroup, int(vds1_num_ports), vds1_vlanmode, vds1_vlan_ids)
     session.add_dvPort_group(dv_switchsdwan, controller_2_portgroup, int(vds1_num_ports), vds1_vlanmode, vds1_vlan_ids)
 except:

@@ -75,6 +75,7 @@ edge_ip_pool_end_ip = attrs['Edge IP Pool End IP']
 # else:
 scope = 'globalroot-0'
 
+# STEPS # try-catch on each command separately
 controller_ip_pool_moref = rest_api_query('''https://''' + nsx_ip + '''/api/2.0/services/ipam/pools/scope/''' + scope, nsx_user, nsx_password, 'post', '''
 <ipamAddressPool>
     <name>''' + mgmt_ip_pool_name + '''</name>

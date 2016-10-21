@@ -74,11 +74,13 @@ session = Vcenter(vcenterparams)
 
 #Create DC
 session.create_datacenter(datacenter_name)
+# STEPS # Catch already exists exception
 
 #Create Clusters
 for cluster in clusters:
     if cluster[0] != '':
-	    session.create_cluster(cluster[0], datacenter_name, str2bool(cluster[3]), 'manual', str2bool(cluster[2]))
+        session.create_cluster(cluster[0], datacenter_name, str2bool(cluster[3]), 'manual', str2bool(cluster[2]))
+        # STEPS # Catch already exists exception
 
 #Add ESXi to Cluster
 for cluster in clusters:
@@ -88,6 +90,7 @@ for cluster in clusters:
             #Get Thumbprint
             tp = session.getsslThumbprint(e)
             session.add_host(cluster[0], e, tp, esx_username, esx_password)
+            # STEPS # Catch already added exception
 
 
 # exit maintenance mode for all the vcenter hosts

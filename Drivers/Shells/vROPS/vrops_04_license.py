@@ -52,6 +52,8 @@ time.sleep(5)
 #wait for the page to completly load - and next button is clickable
 wait.until(EC.element_to_be_clickable((By.ID, 'wizard-button-next-btnEl')))
 
+# STEPS # Quit if it looks different
+
 #next
 driver.find_element_by_id("wizard-button-next-btnEl").click()
 time.sleep(3)

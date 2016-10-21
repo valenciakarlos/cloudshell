@@ -55,6 +55,7 @@ vds1_num_ports = '128'
 vds1_vlanmode = 'none'
 vds1_vlan_ids = '0'
 
+
 try:
     vcenterparams = {
         'IP': vcenter_ip,
@@ -63,10 +64,13 @@ try:
 
     # Set VC session
     session = Vcenter(vcenterparams)
+    # STEPS # Quit if vm_name already exists on vcenter_ip vcenter_user vcenter_password
+
     session.add_dvPort_group(dv_switch, versa_sb_portgroup, int(vds1_num_ports), vds1_vlanmode, vds1_vlan_ids)
 
 except:
     pass
+
 
 #Deploy Director
 try:

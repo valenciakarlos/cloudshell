@@ -539,21 +539,21 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
         logger.info(str(step))
 
     if printmode:
-        con_details = helpers.get_connectivity_context_details_dict()
-        env_details = helpers.get_reservation_context_details_dict()
-        token = requests.put('http://%s:%s/Api/Auth/Login' % (con_details['serverAddress'], 9000),
+        con_details = helpers.get_connectivity_context_details()
+        env_details = helpers.get_reservation_context_details()
+        token = requests.put('http://%s:%s/Api/Auth/Login' % (con_details.server_address, 9000),
                              headers={'Content-Type': 'application/x-www-form-urlencoded'},
-                             data='username=%s&password=%s&domain=%s' % (con_details['adminUser'], con_details['adminPass'], env_details['domain'])).content
+                             data='username=%s&password=%s&domain=%s' % (con_details.admin_user, con_details.admin_pass, env_details.domain)).content
         if token.startswith('"') and token.endswith('"'):
             token = token[1:-1]
-        requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_details['serverAddress'], 9000),
+        requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_details.server_address, 9000),
                       headers={
                           'Authorization': 'Basic ' + token,
                       },
                       files={
                           'QualiPackage': ('QualiPackage', csv),
-                          'reservationId': ('reservationId', env_details['id']),
+                          'reservationId': ('reservationId', env_details.id),
                           'saveFileAs': ('saveFileAs', 'steps.csv'),
-                          'overwriteIfExists': ('overwriteIfExists', 'true'),
+                          'overwriteIfExists': ('overwriteIfExists', 'yes'),
                       })
         print 'steps.csv has been attached to the reservation. Reload the page and click the paperclip icon to download the file.'

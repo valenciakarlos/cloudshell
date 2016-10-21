@@ -32,7 +32,7 @@ searchpath = attrs['DNS Suffix']
 dns = attrs['DNS Server IP']
 ip = attrs['vRA IP']
 portgroup = attrs['vRA Portgroup Name']
-name = attrs['vRA VM Name']
+vm_name = attrs['vRA VM Name']
 ova_path = attrs['Local vRA OVA Path']
 
 vcenter_user = attrs['vCenter Administrator Username']
@@ -40,6 +40,8 @@ vcenter_password = attrs['vCenter Administrator Password']
 vcenter_ip = attrs['vCenter IP']
 datacenter = attrs['Datacenter']
 cluster = attrs['Cluster']
+
+# STEPS # Quit if vm_name already exists on vcenter_ip vcenter_user vcenter_password
 
 try:
     command = ' '.join([
@@ -61,11 +63,11 @@ try:
         '--prop:vami.netmask0.VMware_vRealize_Appliance=' + netmask,
         '"--net:Network 1=' + portgroup + '"',
         '--X:waitForIp',
-        '--name="' + name + '"',
+        '--name="' + vm_name + '"',
         '"' + ova_path + '"',
         '"vi://''' + vcenter_user.replace('@', '%40') + ''':''' + '"' + vcenter_password + '"' + '''@''' + vcenter_ip + '''/''' + datacenter + '''/host/''' + cluster + '/Resources"'
     ])
-    deployVM(command, name, vcenter_ip, vcenter_user, vcenter_password, False)
+    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 except Exception as e:
     print '\r\n' + str(e)
     sys.exit(1)

@@ -53,6 +53,7 @@ time.sleep(5)
 #page2
 #wait for the license field
 wait.until(EC.element_to_be_clickable((By.XPATH, "//button[text()='Upload PAK...']")))
+# STEPS # Quit if patch version is already shown in the GUI, or see what happens if you load it again
 
 #set file
 driver.find_element_by_xpath("//div[contains(@class,'upgrade-uploader')]//input[@type='file']").send_keys(pakPath)

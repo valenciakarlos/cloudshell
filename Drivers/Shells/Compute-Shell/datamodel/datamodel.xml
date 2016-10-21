@@ -274,6 +274,24 @@
     </AttributeInfo>
 
 
+    <AttributeInfo Name="ESX PXE Network IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ESX PXE Network Gateway" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ESX PXE Network Netmask" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+
+
+
   </Attributes>
   <ResourceFamilies>
     <ResourceFamily Name="Compute Server" IsConnectable="false" IsLockedByDefault="true" Description="" IsSearchable="true" ResourceType="Resource">

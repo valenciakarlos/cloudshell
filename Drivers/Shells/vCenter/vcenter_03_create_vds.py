@@ -198,24 +198,33 @@ try:
     if vds2_name:
         # Create DV Switch
         dv_switch = session.create_dvSwitch(datacenter, vds2_name, vds2_version, int(vds2_num_ports), vds2_hosts.split(','), vds2_vnics.split(';'))
+        # STEPS # Catch already exists exception
         # Add port group to this switch
         session.add_dvPort_group(dv_switch, vds2_portgroup, int(vds2_num_ports), vds2_vlanmode, vds2_vlan_ids)
+        # STEPS # Catch already exists exception
         if vds2_ips:
             addVMKernel(vds2_hosts, vds2_ips, vds2_subnet, vds2_name, vds2_portgroup, vcenter_ip, vcenter_user, vcenter_password)
+            # STEPS # Catch already exists exception, see if it can add only new hosts
     if vds3_name:
         # Create DV Switch
         dv_switch = session.create_dvSwitch(datacenter, vds3_name, vds3_version, int(vds3_num_ports), vds3_hosts.split(','), vds3_vnics.split(';'))
+        # STEPS # Catch already exists exception
         # Add port group to this switch
         session.add_dvPort_group(dv_switch, vds3_portgroup, int(vds3_num_ports), vds3_vlanmode, vds3_vlan_ids)
+        # STEPS # Catch already exists exception
         if vds3_ips:
             addVMKernel(vds3_hosts, vds3_ips, vds3_subnet, vds3_portgroup, vds3_name, vcenter_ip, vcenter_user, vcenter_password)
+            # STEPS # Catch already exists exception, see if it can add only new hosts
     if vds4_name:
         # Create DV Switch
         dv_switch = session.create_dvSwitch(datacenter, vds4_name, vds4_version, int(vds4_num_ports), vds4_hosts.split(','), vds4_vnics.split(';'))
+        # STEPS # Catch already exists exception
         # Add port group to this switch
         session.add_dvPort_group(dv_switch, vds4_portgroup, int(vds4_num_ports), vds4_vlanmode, vds4_vlan_ids)
+        # STEPS # Catch already exists exception
         if vds4_ips:
             addVMKernel(vds4_hosts, vds4_ips, vds4_subnet, vds4_portgroup, vds4_name, vcenter_ip, vcenter_user, vcenter_password)
+            # STEPS # Catch already exists exception, see if it can add only new hosts
 except Exception, e:
     print "Caught exception: %s" % str(e)
     sys.exit(1)

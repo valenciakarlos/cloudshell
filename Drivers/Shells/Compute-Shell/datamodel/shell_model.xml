@@ -132,6 +132,16 @@
                     <AllowedValues />
                 </AttachedAttribute>
 
+                <AttachedAttribute Name="ESX PXE Network IP" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX PXE Network Gateway" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="ESX PXE Network Netmask" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+
             </AttachedAttributes>
             <AttributeValues>
                 <AttributeValue Name="User" Value="" />
@@ -173,7 +183,12 @@
                 <AttributeValue Name="ESX Repo URL" Value="" />
                 <AttributeValue Name="VisionID IP" Value="" />
                 <AttributeValue Name="BIOS Version" Value="" />
-              </AttributeValues>
+
+                <AttributeValue Name="ESX PXE Network IP" Value="" />
+                <AttributeValue Name="ESX PXE Network Gateway" Value="" />
+                <AttributeValue Name="ESX PXE Network Netmask" Value="" />
+
+            </AttributeValues>
             <ParentModels />
             <Drivers>
                 <DriverName>ComputeShellDriver</DriverName>

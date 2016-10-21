@@ -55,6 +55,8 @@ time.sleep(5)
 wait.until(EC.element_to_be_clickable((By.ID, 'button-1108-btnIconEl')))
 driver.find_element_by_id("button-1108-btnIconEl").click()
 #confirm first application startup
+# STEPS # Quit if it looks different
+
 try:
     driver.find_element_by_xpath("//span[contains(@id,'yes_')]").click()
     time.sleep(2)

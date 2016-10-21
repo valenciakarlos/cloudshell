@@ -54,6 +54,7 @@ time.sleep(5)
 
 #wait for the vsphere page
 wait.until(EC.presence_of_element_located((By.NAME, 'vcopsConfig.location')))
+# STEPS # Quit if vROPS already listed
 
 #hostname
 driver.find_element_by_name('vcopsConfig.location').send_keys(vropsHostname)

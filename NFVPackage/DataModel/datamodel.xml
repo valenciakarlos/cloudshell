@@ -4528,6 +4528,9 @@
     <ScriptDescriptor Name="copy_prereq" Description="Copies script prerequisites to their target folder" CategoryName="Hidden Commands" Version="1" Alias="Copy Prerequisites">
       <ScriptInputs />
     </ScriptDescriptor>
+    <ScriptDescriptor Name="copy_inputs" Description="Sets all service and resource attributes based on Site Manager values" CategoryName="System" Version="1" Alias="Set Inputs">
+      <ScriptInputs />
+    </ScriptDescriptor>
     <ScriptDescriptor Name="set_access_vlan" Description="Set the desire interfaces of the Brocade switch to the desired VLAN ID with access mode." Version="1" Alias="Set Access VLAN On Interfaces">
       <ScriptInputs>
         <ScriptInput Name="InterfaceNames" Description="List of interfaces to set the access vlan on. Separated by colons." />

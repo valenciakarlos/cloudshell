@@ -65,6 +65,7 @@ try:
 
     # Set VC session
     session = Vcenter(vcenterparams)
+    # STEPS # Quit if branch2_vmname already exists on vcenter_ip vcenter_user vcenter_password
     session.add_dvPort_group(dv_switchsdwan, branch2_1_portgroup, int(vds1_num_ports), vds1_vlanmode, vds1_vlan_ids)
     session.add_dvPort_group(dv_switch, branch2_2_portgroup, int(vds1_num_ports), vds1_vlanmode, vds1_vlan_ids)
 except:

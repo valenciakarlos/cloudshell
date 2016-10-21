@@ -100,6 +100,7 @@ driver.find_element_by_id("loginBtn-btnInnerEl").click()
 time.sleep(8)
 #wait for the page to completly load - and configure button is clickable
 wait.until(EC.element_to_be_clickable((By.XPATH, "//span[contains(@id,'configureBtn_')]")))
+# STEPS # Quit if vSphere already listed
 
 #choose VMware vSphere
 driver.find_element_by_xpath("//td[text()='VMware vSphere']").click()

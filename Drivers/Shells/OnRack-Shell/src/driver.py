@@ -1,7 +1,8 @@
 import json
 import re
-from time import sleep, strftime
+from time import sleep, strftime, time, strftime
 
+import paramiko
 import requests
 import subprocess
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
@@ -9,8 +10,29 @@ from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCom
     AutoLoadAttribute, AutoLoadDetails, CancellationContext, AutoLoadCommandContext
 import cloudshell.api.cloudshell_api
 from cloudshell.api.cloudshell_api import ResourceInfoDto, ResourceAttributesUpdateRequest, AttributeNameValue, PhysicalConnectionUpdateRequest
-import random, string
+import random
 from cloudshell.core.logger.qs_logger import get_qs_logger
+
+
+def ssh(host, user, password, command):
+    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g.write(strftime('%Y-%m-%d %H:%M:%S') + ': ssh ' + host + ': ' + command + '\r\n')
+    g.close()
+    sshcl = paramiko.SSHClient()
+    sshcl.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    sshcl.connect(host, username=user, password=password)
+    stdin, stdout, stderr = sshcl.exec_command(command)
+    stdin.close()
+    a = []
+    for line in stdout.read().splitlines():
+        a.append(line + '\n')
+    for line in stderr.read().splitlines():
+        a.append(line + '\n')
+    rv = '\n'.join(a)
+    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g.write(strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
+    g.close()
+    return rv
 
 
 def log(message):
@@ -67,43 +89,71 @@ class OnrackShellDriver (ResourceDriverInterface):
         :param ResourceCommandContext context: the context the command runs on
         """
 
+        # return 'xxx:' + str(context) + str(ports)
+        #
         csapi = cloudshell.api.cloudshell_api.CloudShellAPISession(context.connectivity.server_address,
                                                                    port=context.connectivity.cloudshell_api_port,
                                                                    token_id=context.connectivity.admin_auth_token)
 
-        onrack = ['/'.join(r.Name.split('/')[0:-1]) for r in csapi.GetResourceDetails(context.resource.fullname).ChildResources if r.Name.endswith('/OnRack')][0]
-        od = csapi.GetResourceDetails(onrack)
-        onrack_ip = od.Address
-        onrack_username = [a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Username'][0]
-        # onrack_password = csapi.DecryptPassword([a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Password'][0]).Value
-        onrack_password = [a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Password'][0]
+        # onrack = ['/'.join(r.Name.split('/')[0:-1]) for r in csapi.GetResourceDetails(context.resource.fullname).ChildResources if r.Name.endswith('/OnRack')][0]
+        # od = csapi.GetResourceDetails(onrack)
+        # onrack_ip = od.Address
+        # onrack_username = [a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Username'][0]
+        # # onrack_password = csapi.DecryptPassword([a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Password'][0]).Value
+        # onrack_password = [a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Password'][0]
+        onrack_ip = context.resource.address
+        onrack_username = context.resource.attributes['OnRack Username']
+        onrack_password = context.resource.attributes['OnRack Password']
+
+
+        # csapi.GetResourceDetails(context.resource.fullname).
+        # onrack = ['/'.join(r.Name.split('/')[0:-1]) for r in csapi.GetResourceDetails(context.resource.fullname).ChildResources if r.Name.endswith('/OnRack')][0]
+        onrack_res_id = ports[0].split('/')[-1]
+
+        attrs = {}
+        for r in csapi.GetResourceDetails(context.resource.fullname).ChildResources:
+            if r.Address == onrack_res_id or r.Address.endswith('/' + onrack_res_id):
+                server_resource_name = '/'.join(r.Connections[0].FullPath.split('/')[0:-1])
+                d = csapi.GetResourceDetails(server_resource_name)
+
+                for a in d.ResourceAttributes:
+                    attrs[a.Name] = a.Value
+                attrs['ResourceAddress'] = d.Address
+                attrs['ResourceName'] = d.Name
 
         tries = 0
         while tries < 5:
             token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
 
-            onrack_res_id = context.resource.attributes['OnRackID']
-            taskid = rest_json('post', 'https://' + onrack_ip + '/redfish/v1/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage', {
-                'domain': context.resource.attributes['ESX Domain'],
-                'hostname': context.resource.fullname,
-                'repo': context.resource.attributes['ESX Repo URL'],
-                'version': context.resource.attributes['ESX Version'],
-                'osName': 'ESXi',
+            # onrack_res_id = context.resource.attributes['OnRackID']
+            taskid = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
+                'domain': attrs['ESX Domain'],
+                'hostname': attrs['ResourceName'].split(' ')[-1],
+                'repo': attrs['ESX Repo URL'], # http://172.31.128.1:8080/esxi/6.0
+                'version': '6.0',
+                # 'version': attrs['ESX Version'],
+                # 'osName': 'ESXi', # removed osName
                 'networkDevices': [
                     {
                         'device': 'vmnic0',
                         'ipv4': {
-                            'netmask': context.resource.attributes['ESX Netmask'],
-                            'ipAddr': context.resource.address,
-                            'gateway': context.resource.attributes['ESX Gateway'],
+                            'netmask': attrs['ESX PXE Network Netmask'],
+                            'ipAddr': attrs['ESX PXE Network IP'], # context.resource.address,
+                            'gateway': attrs['ESX PXE Network Gateway'],
                         }
                     }
                 ],
+                'switchDevices': [ # added switchDevices
+                    {
+                        'switchName': 'vSwitch0',
+                        'uplinks': ['vmnic0']
+                    }
+                ],
                 # 'rootPassword': csapi.DecryptPassword(context.resource.attributes['ESX Root Password']).Value,
-                'rootPassword': context.resource.attributes['ESX Root Password'],
+                'rootPassword': attrs['ESX Root Password'],
                 'dnsServers': [
-                    context.resource.attributes['ESX DNS1'],
-                    context.resource.attributes['ESX DNS2'],
+                    attrs['ESX DNS1'],
+                    attrs['ESX DNS2'],
                 ]
             }, token)['Id']
 
@@ -121,8 +171,18 @@ class OnrackShellDriver (ResourceDriverInterface):
 
             if state == 'Completed':
                 sleep(100)
-                ping = subprocess.check_output(['ping', '-n', '1', context.resource.address], stderr=subprocess.STDOUT)
+                ping = subprocess.check_output(['ping', '-n', '1', attrs['ResourceAddress']], stderr=subprocess.STDOUT)
                 if 'host unreachable' not in ping and '0% loss' in ping:
+                    pw = attrs['ESX Root Password']
+                    ip10 = attrs['ResourceAddress']
+                    netmask10 = attrs['ESX Netmask']
+                    gateway10 = attrs['ESX Gateway']
+                    ssh(context.resource.address, 'root', pw, 'esxcfg-vswitch -a vSwitch1')
+                    ssh(context.resource.address, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
+                    ssh(context.resource.address, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
+                    ssh(context.resource.address, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
+                    ssh(context.resource.address, 'root', pw, 'esxcfg-route ' + gateway10)
+
                     return
 
             tries += 1
@@ -200,30 +260,34 @@ class OnrackShellDriver (ResourceDriverInterface):
         nodeid2eths = {}
 
         for node in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token):
-            for ifname, ifdata in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + node['id'] + '/catalogs/ohai', None, token)['data']['network']['interfaces'].iteritems():
-                if ifdata.get('encapsulation', '') != 'Ethernet':
-                    continue
-                if node['id'] not in nodeid2eths:
-                    nodeid2eths['id'] = []
-                eth = {
-                    'ResourceFamily': 'Port',
-                    'ResourceModel': 'Resource Port',
-                    'ResourceName': ifname,
-                    'ResourceAddress': 'no-ohai-address',
-                    'MTU': ifdata['mtu'],
-                    'MAC Address': '',
-                    'IPv4 Address': '',
-                    'IPv6 Address': '',
-                }
-                nodeid2eths['id'].append(eth)
-                for addr, addrdata in ifdata['addresses'].iteritems():
-                    if addrdata['family'] == 'lladdr':
-                        eth['MAC Address'] = addr
-                        eth['ResourceAddress'] = addr
-                    elif addrdata['family'] == 'inet':
-                        eth['IPv4 Address'] = addr
-                    elif addrdata['family'] == 'inet6':
-                        eth['IPv6 Address'] = addr
+            try:
+                for ifname, ifdata in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + node['id'] + '/catalogs/ohai', None, token)['data']['network']['interfaces'].iteritems():
+                    if ifdata.get('encapsulation', '') != 'Ethernet':
+                        continue
+                    if node['id'] not in nodeid2eths:
+                        nodeid2eths['id'] = []
+                    eth = {
+                        'ResourceFamily': 'Port',
+                        'ResourceModel': 'Resource Port',
+                        'ResourceName': ifname,
+                        'ResourceAddress': 'no-ohai-address',
+                        'ResourceDescription': '',
+                        'MTU': ifdata['mtu'],
+                        'MAC Address': '',
+                        'IPv4 Address': '',
+                        'IPv6 Address': '',
+                    }
+                    nodeid2eths['id'].append(eth)
+                    for addr, addrdata in ifdata['addresses'].iteritems():
+                        if addrdata['family'] == 'lladdr':
+                            eth['MAC Address'] = addr
+                            eth['ResourceAddress'] = addr
+                        elif addrdata['family'] == 'inet':
+                            eth['IPv4 Address'] = addr
+                        elif addrdata['family'] == 'inet6':
+                            eth['IPv6 Address'] = addr
+            except:
+                pass
 
         currhosts = [{'a': 'b'}]
         if True:
@@ -242,7 +306,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                 currhosts.append({
                     "OnRackID": out['Id'],
                     "ResourceName": out['Name'] + ' ' + out['Oem']['EMC']['VisionID_Chassis'],
-                    "ResourceAddress": out['SerialNumber'],
+                    "ResourceAddress": out['Id'],
                     "ResourceFamily": "Compute Server",
                     "ResourceModel": "ComputeShell",
                     "ResourceFolder": "Compute",
@@ -251,6 +315,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         'ResourceFamily': 'Power Port',
                         'ResourceModel': 'Generic Power Port',
                         'ResourceName': 'OnRack',
+                        'ResourceDescription': '',
                         'ResourceAddress': 'NA',
                     }],
                     # "ResourceDescription": '\n'.join([s[2:]

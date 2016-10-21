@@ -37,6 +37,7 @@ vcenter_sso_site = attrs['vCenter SSO Site Name']
 vcenter_ntp_server = attrs['vCenter NTP Server']
 
 
+# STEPS # Quit if VM called vcenter_vm_name already exists at vcenter_esx_ip vcenter_esx_username vcenter_esx_password
 
 
 if vcenter_diskformat.lower() == 'thin':

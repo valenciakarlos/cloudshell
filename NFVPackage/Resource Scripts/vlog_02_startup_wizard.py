@@ -60,7 +60,7 @@ wait = WebDriverWait(driver, 60)
 
 #navigate to first page
 driver.get("https://" + vLogAddress + "/admin/startup")
-
+# STEPS # Quit if startup page no longer appears
 #wait for the next button
 wait.until(EC.element_to_be_clickable((By.ID, 'skip-button')))
 #click on next button

@@ -90,6 +90,8 @@ for p in pools['ipAddressPools']:
 if not ip_pool_moref:
     raise Exception('IP pool named "' + nsx_controllers_ip_pool_name + '" not found')
 
+# STEPS # Query for existing controller and quit if found
+
 jobid = rest_api_query('''https://''' + nsx_ip + '''/api/2.0/vdn/controller''', nsx_user, nsx_password, 'post', '''
 <controllerSpec>
     <name>''' + controller_name + '''</name>

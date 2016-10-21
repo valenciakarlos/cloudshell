@@ -57,7 +57,7 @@ time.sleep(5)
 
 #wait for the vsphere page
 wait.until(EC.presence_of_element_located((By.NAME, 'vsphereConfig.credentials[0].hostname')))
-
+# STEPS # Quit if vCenter already listed
 #hostname
 driver.find_element_by_name('vsphereConfig.credentials[0].hostname').send_keys(vcenterHostname)
 #username

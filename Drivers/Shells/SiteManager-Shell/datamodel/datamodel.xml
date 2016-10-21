@@ -63,6 +63,28 @@
 	     <Rule Name="Configuration" />
       </Rules>
     </AttributeInfo>
+
+      <AttributeInfo Name="PXE Network Start IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+          <Rules Override="false">
+              <Rule Name="Configuration" />
+          </Rules>
+      </AttributeInfo>
+      <AttributeInfo Name="PXE Network End IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+          <Rules Override="false">
+              <Rule Name="Configuration" />
+          </Rules>
+      </AttributeInfo>
+      <AttributeInfo Name="PXE Network Netmask" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+          <Rules Override="false">
+              <Rule Name="Configuration" />
+          </Rules>
+      </AttributeInfo>
+      <AttributeInfo Name="PXE Network Gateway" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+          <Rules Override="false">
+              <Rule Name="Configuration" />
+          </Rules>
+      </AttributeInfo>
+
   </Attributes>
   <ResourceFamilies>
     <ResourceFamily Name="Site Manager" IsConnectable="false" IsLockedByDefault="false" Description="" IsSearchable="true" ResourceType="Resource">

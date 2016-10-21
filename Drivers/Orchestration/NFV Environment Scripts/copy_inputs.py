@@ -56,6 +56,7 @@ vcd_license_key = 'T000L-JZ5EK-N827J-0X106-AX5PH'
 
 data_ip_start = site_manager_attrs['Data Start IP']
 mgmt_ip_start = site_manager_attrs['Management Start IP']
+pxe_ip_start = site_manager_attrs['PXE Network Start IP']
 
 brocade_ip = brocade_attrs['ResourceAddress']
 brocade_password = brocade_attrs['Password']
@@ -68,7 +69,12 @@ management_gateway = site_manager_attrs['Management Gateway']
 management_netmask = site_manager_attrs['Management Netmask']
 management_ntp_ip = site_manager_attrs['Management NTP']
 management_search_domain = site_manager_attrs['Management Search Domains']
+pxe_gateway = site_manager_attrs['PXE Network Gateway']
+pxe_netmask = site_manager_attrs['PXE Network Netmask']
+
 onrack_ip = onrack_attrs['ResourceAddress']
+
+
 
 cluster2_name = vcenter_attrs['vCenter Cluster2 Name']
 datacenter = vcenter_attrs['vCenter Datacenter Name']
@@ -89,13 +95,19 @@ for i in range(len(esxis_details)):
     if i == len(esxis_details)-1:
         sio_master_ip = addr
     elif i in [len(esxis_details)-2, len(esxis_details)-3]:
-        versa_ips.append(esxis_details[i].FullAddress)
+        versa_ips.append(addr)
     else:
-        sio_worker_ips.append(esxis_details[i].FullAddress)
+        sio_worker_ips.append(addr)
 
 all_sio_versa_ips = [sio_master_ip] + sio_worker_ips + versa_ips
 
 sio_subnet = min(all_sio_versa_ips)
+
+
+def make_pxe_ip(ip):
+    a = [int(x) for x in ip.split('.')]
+    a[2] -= 2
+    return '.'.join([str(x) for x in a])
 
 
 def make_data_ip(ip):
@@ -104,7 +116,7 @@ def make_data_ip(ip):
     return '.'.join([str(x) for x in a])
 
 
-def pool(base, offset):
+def ipadd(base, offset):
     a = [int(x) for x in base.split('.')]
     for i in range(len(a)):
         a[len(a) - 1 - i] += offset
@@ -116,11 +128,33 @@ def pool(base, offset):
 
 
 def mgmt_pool(offset):
-    return pool(mgmt_ip_start, offset)
+    return ipadd(mgmt_ip_start, offset)
 
 
 def data_pool(offset):
-    return pool(mgmt_ip_start, offset)
+    return ipadd(mgmt_ip_start, offset)
+
+
+pxeoffset = 0
+def pxe_dynamic():
+    global pxeoffset
+    rv = ipadd(pxe_ip_start, pxeoffset)
+    pxeoffset += 1
+    return rv
+
+mgmtoffset = 42
+def mgmt_dynamic():
+    global mgmtoffset
+    rv = ipadd(mgmt_ip_start, mgmtoffset)
+    mgmtoffset += 1
+    return rv
+
+dataoffset = 42
+def data_dynamic():
+    global dataoffset
+    rv = ipadd(mgmt_ip_start, dataoffset)
+    dataoffset += 1
+    return rv
 
 
 vcenter_ip = mgmt_pool(1)
@@ -159,10 +193,15 @@ vra_ip = mgmt_pool(41)
 
 aa = [
     # ('Resource', 'ComputeShell', 'OnRack Address', onrack_ip),
+    ('Resource', 'ComputeShell', 'ResourceAddress', lambda: mgmt_dynamic()),
     ('Resource', 'ComputeShell', 'ESX Gateway', management_gateway),
+    ('Resource', 'ComputeShell', 'ESX Netmask', management_netmask),
     ('Resource', 'ComputeShell', 'ESX Domain', management_search_domain),
     ('Resource', 'ComputeShell', 'ESX DNS1', management_dns1),
     ('Resource', 'ComputeShell', 'ESX DNS2', management_dns2),
+    ('Resource', 'ComputeShell', 'ESX PXE Network IP', lambda: pxe_dynamic()),
+    ('Resource', 'ComputeShell', 'ESX PXE Network Gateway', pxe_gateway),
+    ('Resource', 'ComputeShell', 'ESX PXE Network Netmask', pxe_netmask),
 
     ('Service', 'vCenter', 'vCenter ESXi IP', sio_master_ip),
     ('Service', 'vCenter', 'vCenter IP', vcenter_ip),
@@ -179,7 +218,7 @@ aa = [
     ('Service', 'vCenter', 'VDS1 Kernel IPs', ''),
     ('Service', 'vCenter', 'VDS2 Hosts', ','.join(all_sio_versa_ips)),
     ('Service', 'vCenter', 'VDS2 Kernel Subnet', sio_subnet),
-    ('Service', 'vCenter', 'VDS2 Kernel IPs', ','.join([make_data_ip(ip) for ip in all_sio_versa_ips])),
+    ('Service', 'vCenter', 'VDS2 Kernel IPs', ','.join([data_dynamic() for ip in all_sio_versa_ips])),
     ('Service', 'vCenter', 'VDS3 Hosts', ','.join(versa_ips)),
     ('Service', 'vCenter', 'VDS3 Kernel Subnet', ''),
     ('Service', 'vCenter', 'VDS3 Kernel IPs', ''),
@@ -399,13 +438,21 @@ for kind, model, attr, value in aa:
             if model == res.ResourceModelName:
                 if res.Name not in res2av:
                     res2av[res.Name] = []
-                res2av[res.Name].append((attr, value))
+                if hasattr(value, '__call__'):
+                    v = value()
+                else:
+                    v = value
+                res2av[res.Name].append((attr, v))
     else:
         for svc in dd.Services:
             if model == svc.ServiceName:
                 if svc.Alias not in alias2av:
                     alias2av[svc.Alias] = []
-                alias2av[svc.Alias].append((attr, value))
+                if hasattr(value, '__call__'):
+                    v = value()
+                else:
+                    v = value
+                alias2av[svc.Alias].append((attr, v))
 
 # print str(res2av)
 # print str(alias2av)
@@ -414,11 +461,24 @@ for kind, model, attr, value in aa:
 #     ResourceAttributesUpdateRequest(res, [
 #         AttributeNameValue(attr, value)
 #         for attr, value in res2av[res]
+#         if attr != 'ResourceAddress'
 #     ])
 #     for res in res2av
 # ])
+# for res in res2av:
+#     for attr, value in res2av[res]:
+#         if attr == 'ResourceAddress':
+#             csapi.UpdateResourceAddress(res, value)
+
 for res in res2av:
     for attr, value in res2av[res]:
-        csapi.SetAttributeValue(res, attr, value)
+        if attr == 'ResourceAddress':
+            csapi.UpdateResourceAddress(res, value)
+        else:
+            csapi.SetAttributeValue(res, attr, value)
+
 for alias in alias2av:
-    csapi.SetServiceAttributesValues(resid, alias, [AttributeNameValue(attr, value) for attr, value in alias2av[alias]])
+    csapi.SetServiceAttributesValues(resid, alias, [
+        AttributeNameValue(attr, value)
+        for attr, value in alias2av[alias]
+        ])

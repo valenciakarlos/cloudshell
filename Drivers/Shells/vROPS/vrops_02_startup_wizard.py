@@ -49,6 +49,7 @@ driver.get("https://"+vromAddress+"/admin/newCluster.action")
 wait.until(EC.presence_of_element_located((By.ID, 'button-1177-btnIconEl')))
 #click on new installation
 driver.find_element_by_id("button-1177-btnIconEl").click()
+# STEPS # Quit if it looks different
 
 #wait for the Next button
 wait.until(EC.presence_of_element_located((By.ID, 'button-1013-btnIconEl')))

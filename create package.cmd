@@ -1,4 +1,4 @@
-rem goto :skipdll
+goto :skipdll
 
 rem compile drivers
 del "drivers\shells\onrack.compilation\onrack.dll"
@@ -80,7 +80,7 @@ cd ..\..\..\
 
 rem rem copy "drivers\orchestration\NFV Environment Scripts\steps.py" "nfvpackage\topology scripts\" /y
 rem rem copy "drivers\orchestration\NFV Environment Scripts\setup.py" "nfvpackage\topology scripts\" /y
-rem copy "drivers\orchestration\NFV Environment Scripts\copy_inputs.py" "nfvpackage\topology scripts\" /y
+copy "drivers\orchestration\NFV Environment Scripts\copy_inputs.py" "nfvpackage\topology scripts\" /y
 
 rem goto :skipshells
 
@@ -118,7 +118,7 @@ rem rem copy "drivers\shells\SiteManager-Shell\dist\Configuration\shellconfig.xm
 cd drivers\shells\Compute-Shell
 shellfoundry pack
 cd dist
-copy compute-shell ..\..\..\..\
+copy compute-shell.zip ..\..\..\..\
 rem "c:\Program Files\7-Zip\7z.exe" x -y compute-shell.zip
 rem copy "Resource Drivers - Python\ComputeShellDriver.zip"         "..\..\..\..\nfvpackage\Resource Drivers - Python\" /y
 cd ..

@@ -37,6 +37,7 @@ datacenter = attrs['vROPS Datacenter']
 cluster = attrs['vROPS Cluster']
 timezone = attrs['vROPS Timezone']
 
+# STEPS # Quit if vm_name already exists on vcenter_ip vcenter_user vcenter_password
 
 try:
     command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore="' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:vamitimezone="' + timezone + '"' + ' --prop:vami.gateway.vRealize_Operations_Manager_Appliance=' + gateway + ' --prop:vami.DNS.vRealize_Operations_Manager_Appliance=' + dns_ip +' --prop:vami.ip0.vRealize_Operations_Manager_Appliance=' + vrops_ip + ' --prop:vami.netmask0.vRealize_Operations_Manager_Appliance=' + vrops_netmask + ' --net:"Network 1"=' + '"' + portgroup + '"' + ' --name="''' + vm_name + '"' + ' "' + ova_path + '"' + ' "vi://' + vcenter_user + ':' + '"' + vcenter_password + '"' + '@' + vcenter_ip + '/' + datacenter + '/host/' +  cluster + '/Resources"'

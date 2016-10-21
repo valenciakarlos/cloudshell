@@ -42,7 +42,19 @@
                 <AttachedAttribute Name="Data Search Domains" IsOverridable="true" IsLocal="true">
                   <AllowedValues />
                 </AttachedAttribute>
-                
+
+                <AttachedAttribute Name="PXE Network Start IP" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="PXE Network End IP" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="PXE Network Netmask" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="PXE Network Gateway" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
             </AttachedAttributes>
             <AttributeValues>
                 
@@ -57,7 +69,11 @@
 				<AttributeValue Name="Data Start IP" Value="" />
 				<AttributeValue Name="Data End IP" Value="" />
 				<AttributeValue Name="Data Netmask" Value="" />
-				<AttributeValue Name="Data Search Domains" Value="" />
+                <AttributeValue Name="Data Search Domains" Value="" />
+                <AttributeValue Name="PXE Network Start IP" Value="" />
+                <AttributeValue Name="PXE Network End IP" Value="" />
+                <AttributeValue Name="PXE Network Netmask" Value="" />
+                <AttributeValue Name="PXE Network Gateway" Value="" />
               </AttributeValues>
             <ParentModels />
             <Drivers>

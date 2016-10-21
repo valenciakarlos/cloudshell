@@ -7,6 +7,7 @@
       <Script Name="copy_prereq" />
       <Script Name="generate_orchestration_steps_file" />
       <Script Name="run_orchestration_steps" />
+      <Script Name="copy_inputs" />
     </Scripts>
     <Diagram Zoom="0.8" />
   </Details>
