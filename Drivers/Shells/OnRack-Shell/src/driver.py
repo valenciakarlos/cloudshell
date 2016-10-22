@@ -184,11 +184,11 @@ class OnrackShellDriver (ResourceDriverInterface):
                     ip10 = attrs['ResourceAddress']
                     netmask10 = attrs['ESX Netmask']
                     gateway10 = attrs['ESX Gateway']
-                    ssh(context.resource.address, 'root', pw, 'esxcfg-vswitch -a vSwitch1')
-                    ssh(context.resource.address, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
-                    ssh(context.resource.address, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
-                    ssh(context.resource.address, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
-                    ssh(context.resource.address, 'root', pw, 'esxcfg-route ' + gateway10)
+                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vswitch -a vSwitch1')
+                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
+                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
+                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
+                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-route ' + gateway10)
 
                     return
 
