@@ -55,6 +55,8 @@ def rest_json(method, url, bodydict, token):
     log('url=%s method=%s bodydict=%s token=%s' % (url, method, str(bodydict), str(token)))
     o = requests.request(method.upper(), url, data=(json.dumps(bodydict) if bodydict else ''), headers=headers, verify=False)
     log('result=%s' % (str(o.text)))
+    if o.status_code >= 400:
+        raise Exception('REST query failed: %d %s: %s' % (o.status_code, str(o), str(o.text)))
     return json.loads(o.text)
 
 
@@ -126,7 +128,7 @@ class OnrackShellDriver (ResourceDriverInterface):
             token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
 
             # onrack_res_id = context.resource.attributes['OnRackID']
-            taskid = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
+            x = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
                 'domain': attrs['ESX Domain'],
                 'hostname': attrs['ResourceName'].split(' ')[-1],
                 'repo': attrs['ESX Repo URL'], # http://172.31.128.1:8080/esxi/6.0
@@ -155,15 +157,20 @@ class OnrackShellDriver (ResourceDriverInterface):
                     attrs['ESX DNS1'],
                     attrs['ESX DNS2'],
                 ]
-            }, token)['Id']
+            }, token)
 
+            try:
+                taskid = x['Id']
+            except:
+                sleep(100)
+                continue
             state = 'no-state'
             waited = 0
             while True:
                 state = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/TaskService/Tasks/' + taskid, None, token)['TaskState']
                 if state == 'Running':
                     waited += 1
-                    if waited > 60:
+                    if waited > 200:
                         break
                     sleep(10)
                 elif state in ['Completed', 'Exception', 'Killed']:
