@@ -53,7 +53,7 @@ def rest_json(method, url, bodydict, token):
     if token:
         headers['Authentication-Token'] = token
     log('url=%s method=%s bodydict=%s token=%s' % (url, method, str(bodydict), str(token)))
-    o = requests.request(method.upper(), url, data=(json.dumps(bodydict) if bodydict else ''), headers=headers, verify=False)
+    o = requests.request(method.upper(), url, data=(json.dumps(bodydict) if bodydict else None), headers=headers, verify=False)
     log('result=%s' % (str(o.text)))
     if o.status_code >= 400:
         raise Exception('REST query failed: %d %s: %s' % (o.status_code, str(o), str(o.text)))
@@ -127,6 +127,9 @@ class OnrackShellDriver (ResourceDriverInterface):
         while tries < 5:
             token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
 
+            ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id, None, None)['data']['ipaddress']
+            csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
+
             # onrack_res_id = context.resource.attributes['OnRackID']
             x = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
                 'domain': attrs['ESX Domain'],
@@ -140,7 +143,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         'device': 'vmnic0',
                         'ipv4': {
                             'netmask': attrs['ESX PXE Network Netmask'],
-                            'ipAddr': attrs['ESX PXE Network IP'], # context.resource.address,
+                            'ipAddr': ip172, # attrs['ESX PXE Network IP'], # context.resource.address,
                             'gateway': attrs['ESX PXE Network Gateway'],
                         }
                     }
@@ -184,11 +187,11 @@ class OnrackShellDriver (ResourceDriverInterface):
                     ip10 = attrs['ResourceAddress']
                     netmask10 = attrs['ESX Netmask']
                     gateway10 = attrs['ESX Gateway']
-                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vswitch -a vSwitch1')
-                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
-                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
-                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
-                    ssh(attrs['ESX PXE Network IP'], 'root', pw, 'esxcfg-route ' + gateway10)
+                    ssh(ip172, 'root', pw, 'esxcfg-vswitch -a vSwitch1')
+                    ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
+                    ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
+                    ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
+                    ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10)
 
                     return
 
@@ -290,11 +293,11 @@ class OnrackShellDriver (ResourceDriverInterface):
                             eth['MAC Address'] = addr
                             eth['ResourceAddress'] = addr
                         elif addrdata['family'] == 'inet':
-                            eth['IPv4 Address'] = addr
+                            eth['IPv4 Address'] = addr.replace('_', '.')
                         elif addrdata['family'] == 'inet6':
                             eth['IPv6 Address'] = addr
             except:
-                pass
+                log('ohai failed for node ' + node['id'])
 
         currhosts = [{'a': 'b'}]
         if True:
