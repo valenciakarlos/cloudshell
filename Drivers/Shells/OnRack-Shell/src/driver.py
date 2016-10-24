@@ -275,7 +275,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                     if ifdata.get('encapsulation', '') != 'Ethernet':
                         continue
                     if node['id'] not in nodeid2eths:
-                        nodeid2eths['id'] = []
+                        nodeid2eths[node['id']] = []
                     eth = {
                         'ResourceFamily': 'Port',
                         'ResourceModel': 'Resource Port',
@@ -287,7 +287,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         'IPv4 Address': '',
                         'IPv6 Address': '',
                     }
-                    nodeid2eths['id'].append(eth)
+                    nodeid2eths[node['id']].append(eth)
                     for addr, addrdata in ifdata['addresses'].iteritems():
                         if addrdata['family'] == 'lladdr':
                             eth['MAC Address'] = addr
@@ -440,7 +440,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         if 'Resource' not in name
                         ]
                     if len(attrs) > 0:
-                        rootsubs.append(ResourceAttributesUpdateRequest(sub['ResourceName'], attrs))
+                        rootsubs.append(ResourceAttributesUpdateRequest(host['ResourceName'] + '/' + sub['ResourceName'], attrs))
 
 
             onracksubs = [
@@ -452,6 +452,10 @@ class OnrackShellDriver (ResourceDriverInterface):
                                                 ])
                 for host in currhosts
                 ]
+            for x in roots + rootsubs + onracksubs:
+                log(x.ResourceFullName)
+                for av in x.AttributeNamesValues:
+                    log('  ' + av.Name + ' = ' + av.Value)
             csapi.SetAttributesValues(roots + rootsubs + onracksubs)
             for host in currhosts:
                 csapi.UpdateResourceDescription(host['ResourceName'], host['ResourceDescription'])

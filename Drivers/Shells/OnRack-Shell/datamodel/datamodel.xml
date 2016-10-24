@@ -152,19 +152,19 @@
 	     <Rule Name="Available For Abstract Resources" />
       </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="MAC Address" Type="String" DefaultValue="" IsReadOnly="true">
+    <AttributeInfo Name="MAC Address" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules Override="false">
 	     <Rule Name="Setting" />
 	     <Rule Name="Available For Abstract Resources" />
       </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="IPv4 Address" Type="String" DefaultValue="" IsReadOnly="true">
+    <AttributeInfo Name="IPv4 Address" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules Override="false">
 	     <Rule Name="Setting" />
 	     <Rule Name="Available For Abstract Resources" />
       </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="IPv6 Address" Type="String" DefaultValue="" IsReadOnly="true">
+    <AttributeInfo Name="IPv6 Address" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules Override="false">
 	     <Rule Name="Setting" />
 	     <Rule Name="Available For Abstract Resources" />
