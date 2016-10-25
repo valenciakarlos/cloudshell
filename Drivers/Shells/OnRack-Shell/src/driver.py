@@ -127,7 +127,7 @@ class OnrackShellDriver (ResourceDriverInterface):
         while tries < 5:
             token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
 
-            ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id, None, None)['data']['ipaddress']
+            ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
             csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
 
             # onrack_res_id = context.resource.attributes['OnRackID']
