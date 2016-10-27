@@ -13,9 +13,10 @@ from cloudshell.api.cloudshell_api import ResourceInfoDto, ResourceAttributesUpd
 import random
 from cloudshell.core.logger.qs_logger import get_qs_logger
 
+logfilename = r'c:\ProgramData\QualiSystems\onrack.log'
 
 def ssh(host, user, password, command):
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g = open(logfilename, 'a')
     g.write(strftime('%Y-%m-%d %H:%M:%S') + ': ssh ' + host + ': ' + command + '\r\n')
     g.close()
     sshcl = paramiko.SSHClient()
@@ -29,7 +30,7 @@ def ssh(host, user, password, command):
     for line in stderr.read().splitlines():
         a.append(line + '\n')
     rv = '\n'.join(a)
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
+    g = open(logfilename, 'a')
     g.write(strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
     g.close()
     return rv
@@ -38,7 +39,7 @@ def ssh(host, user, password, command):
 def log(message):
     for _ in range(10):
         try:
-            with open(r'c:\programdata\qualisystems\onrack.log', 'a') as f:
+            with open(logfilename, 'a') as f:
                 f.write(strftime('%Y-%m-%d %H:%M:%S') + ': ' + message + '\r\n')
             return
         except:
@@ -93,6 +94,10 @@ class OnrackShellDriver (ResourceDriverInterface):
 
         # return 'xxx:' + str(context) + str(ports)
         #
+        try:
+            resid = context.reservation.reservation_id
+        except:
+            resid = context.remote_reservation.reservation_id
         csapi = cloudshell.api.cloudshell_api.CloudShellAPISession(context.connectivity.server_address,
                                                                    port=context.connectivity.cloudshell_api_port,
                                                                    token_id=context.connectivity.admin_auth_token)
@@ -123,80 +128,115 @@ class OnrackShellDriver (ResourceDriverInterface):
                 attrs['ResourceAddress'] = d.Address
                 attrs['ResourceName'] = d.Name
 
+        csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Offline', '')
+        csapi.WriteMessageToReservationOutput(resid, 'Installing %s on %s...' % (os_type, attrs['ResourceName']))
         tries = 0
-        while tries < 5:
+        maxtries = 3
+        while tries < maxtries:
             token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
 
-            ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
-            csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
-
-            # onrack_res_id = context.resource.attributes['OnRackID']
-            x = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
-                'domain': attrs['ESX Domain'],
-                'hostname': attrs['ResourceName'].split(' ')[-1],
-                'repo': attrs['ESX Repo URL'], # http://172.31.128.1:8080/esxi/6.0
-                'version': '6.0',
-                # 'version': attrs['ESX Version'],
-                # 'osName': 'ESXi', # removed osName
-                'networkDevices': [
-                    {
-                        'device': 'vmnic0',
-                        'ipv4': {
-                            'netmask': attrs['ESX PXE Network Netmask'],
-                            'ipAddr': ip172, # attrs['ESX PXE Network IP'], # context.resource.address,
-                            'gateway': attrs['ESX PXE Network Gateway'],
-                        }
-                    }
-                ],
-                'switchDevices': [ # added switchDevices
-                    {
-                        'switchName': 'vSwitch0',
-                        'uplinks': ['vmnic0']
-                    }
-                ],
-                # 'rootPassword': csapi.DecryptPassword(context.resource.attributes['ESX Root Password']).Value,
-                'rootPassword': attrs['ESX Root Password'],
-                'dnsServers': [
-                    attrs['ESX DNS1'],
-                    attrs['ESX DNS2'],
-                ]
-            }, token)
+            # ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
+            # csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
+            ip172 = attrs['ESX PXE Network IP']
 
             try:
+                # onrack_res_id = context.resource.attributes['OnRackID']
+                x = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
+                    'domain': attrs['ESX Domain'],
+                    'hostname': attrs['ResourceName'].split(' ')[-1],
+                    'repo': attrs['ESX Repo URL'], # http://172.31.128.1:8080/esxi/6.0
+                    'version': '6.0',
+                    # 'version': attrs['ESX Version'],
+                    # 'osName': 'ESXi', # removed osName
+                    'networkDevices': [
+                        {
+                            'device': 'vmnic0',
+                            'ipv4': {
+                                'netmask': attrs['ESX PXE Network Netmask'],
+                                'ipAddr': ip172, # attrs['ESX PXE Network IP'], # context.resource.address,
+                                'gateway': attrs['ESX PXE Network Gateway'],
+                            }
+                        }
+                    ],
+                    'switchDevices': [ # added switchDevices
+                        {
+                            'switchName': 'vSwitch0',
+                            'uplinks': ['vmnic0']
+                        }
+                    ],
+                    # 'rootPassword': csapi.DecryptPassword(context.resource.attributes['ESX Root Password']).Value,
+                    'rootPassword': attrs['ESX Root Password'],
+                    'dnsServers': [
+                        attrs['ESX DNS1'],
+                        attrs['ESX DNS2'],
+                    ]
+                }, token)
+
                 taskid = x['Id']
-            except:
-                sleep(100)
-                continue
-            state = 'no-state'
-            waited = 0
-            while True:
-                state = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/TaskService/Tasks/' + taskid, None, token)['TaskState']
-                if state == 'Running':
-                    waited += 1
-                    if waited > 200:
+                state = 'no-state'
+                waited = 0
+                while True:
+                    state = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/TaskService/Tasks/' + taskid, None, token)['TaskState']
+                    if state == 'Running':
+                        waited += 1
+                        if waited > 200:
+                            break
+                        sleep(10)
+                    elif state in ['Completed', 'Exception', 'Killed']:
                         break
-                    sleep(10)
-                elif state in ['Completed', 'Exception', 'Killed']:
-                    break
 
-            if state == 'Completed':
+                if state != 'Completed':
+                    try:
+                        taskstatus = rest_json('get', 'http://' + onrack_ip + ':8080/api/common/workflows/' + taskid, None, None)
+                        taskdump += 'task ' + taskstatus['instanceId'] + '\n'
+                        taskdump += 'started ' + taskstatus['createdAt'] + '\n'
+                        if 'target' in taskstatus['context']:
+                            taskdump += 'target ' + taskstatus['context']['target'] + '\n'
+                        if 'defaults' in taskstatus['definition']['options']:
+                            taskdump += 'hostname ' + taskstatus['definition']['options']['defaults']['hostname'] + '\n'
+                        for t, td in taskstatus['tasks'].iteritems():
+                            # if td['state'] != 'succeeded':
+                            taskdump += td['friendlyName'] + ': ' + td['state'] + '\n'
+
+                        taskdump += json.dumps(taskstatus)
+                    except:
+                        taskdump = 'taskdump failed'
+                    raise Exception('OS deployment ended with status %s: %s' % (state, taskdump))
+                log('Sleeping 100 seconds')
                 sleep(100)
-                ping = subprocess.check_output(['ping', '-n', '1', attrs['ResourceAddress']], stderr=subprocess.STDOUT)
-                if 'host unreachable' not in ping and '0% loss' in ping:
-                    pw = attrs['ESX Root Password']
-                    ip10 = attrs['ResourceAddress']
-                    netmask10 = attrs['ESX Netmask']
-                    gateway10 = attrs['ESX Gateway']
-                    ssh(ip172, 'root', pw, 'esxcfg-vswitch -a vSwitch1')
-                    ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
-                    ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
-                    ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
-                    ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10)
+                ping = subprocess.check_output(['ping', ip172], stderr=subprocess.STDOUT)
+                if 'host unreachable' in ping or '0% loss' not in ping:
+                    raise Exception('Ping failed')
 
-                    return
-
+                log('Ping succeeded')
+                pw = attrs['ESX Root Password']
+                ip10 = attrs['ResourceAddress']
+                netmask10 = attrs['ESX Netmask']
+                gateway10 = attrs['ESX Gateway']
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch -a vSwitch1')
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
+                ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
+                ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10)
+                ssh(ip172, 'root', pw, 'esxcli system maintenanceMode set --enable false')
+                csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Online', '')
+                m = 'Finished installing %s on %s' % (os_type, attrs['ResourceName'])
+                csapi.WriteMessageToReservationOutput(resid, m)
+                log(m)
+                return
+            except Exception as e:
+                m = 'Error installing %s on %s: %s' % (os_type, attrs['ResourceName'], str(e))
+                csapi.WriteMessageToReservationOutput(resid, m)
+                log(m)
             tries += 1
+            m = 'Retrying deployment of %s on %s: Attempt %d' % (os_type, attrs['ResourceName'], tries)
+            log(m)
+            csapi.WriteMessageToReservationOutput(resid, m)
 
+            sleep(30)
+        raise Exception('Failed to install %s on %s in %d tries. See %s for details.' % (os_type, attrs['ResourceName'], maxtries, logfilename))
+    
+    
     def get_inventory(self, context):
         """
         Discovers the resource structure and attributes.

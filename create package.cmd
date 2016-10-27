@@ -1,4 +1,4 @@
-rem goto :skipdll
+goto :skipdll
 
 rem compile drivers
 del "drivers\shells\onrack.compilation\onrack.dll"

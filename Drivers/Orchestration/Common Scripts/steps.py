@@ -1,4 +1,55 @@
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# Only edit the copy of this file at Common Scripts/steps.py !!!!!!!
+#
+# Other copies will be overwritten by create package.cmd!!!!
+#
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+import json
 import os
+from threading import Thread
 from time import sleep
 
 import requests
@@ -133,6 +184,7 @@ class ResourceLiveStatus:
                     rv += 'found\n'
         return rv
 
+
 class ServiceLiveStatus:
     def __init__(self, service_model, status, message=''):
         """
@@ -260,7 +312,9 @@ class ResourceCommand:
         :param simulated: bool
         :return: str
         """
-        rv = ''
+        es = []
+        threads = []
+        rvs = []
         for res in csapi.GetReservationDetails(resid).ReservationDescription.Resources:
             if self.resource_model == res.ResourceModelName:
                 if self.input_generator:
@@ -268,10 +322,20 @@ class ResourceCommand:
                 else:
                     inp = self.input_dict
                 if not simulated:
-                    rv += csapi.ExecuteCommand(resid, res.Name, 'Resource', self.command, [InputNameValue(attr, value) for attr, value in inp.iteritems()], printOutput=False) + '\n'
+                    def t(csapi1, rvs1, es1, resid1, name1, kind1, command1, args1):
+                        try:
+                            trv = csapi1.ExecuteCommand(resid1, name1, kind1, command1, args1, printOutput=False)
+                            rvs1.append(trv)
+                        except Exception as e:
+                            es1.append(e)
+                    th = Thread(target=t, args=(csapi, rvs, es, resid, res.Name, 'Resource', self.command, [InputNameValue(attr, value) for attr, value in inp.iteritems()]))
+                    threads.append(th)
+                    th.start()
                 else:
-                    rv += 'found\n'
-        return rv
+                    rvs.append('found')
+        for th in threads:
+            th.join()
+        return '\n'.join(rvs + es)
 
 
 class ResourceRemoteCommand:
@@ -300,7 +364,9 @@ class ResourceRemoteCommand:
         :param simulated: bool
         :return: str
         """
-        rv = ''
+        rvs = []
+        es = []
+        threads = []
         for res in csapi.GetReservationDetails(resid).ReservationDescription.Resources:
             if self.resource_model == res.ResourceModelName:
                 if self.input_generator:
@@ -308,10 +374,22 @@ class ResourceRemoteCommand:
                 else:
                     inp = self.input_list
                 if not simulated:
-                    rv += csapi.ExecuteResourceConnectedCommand(resid, res.Name, self.command, self.tag, inp, [], printOutput=False).Output + '\n'
+                    def t(csapi1, rvs1, es1, resid1, name1, command1, tag1, inp1):
+                        try:
+                            trv = csapi1.ExecuteResourceConnectedCommand(resid1, name1, command1, tag1, inp1, [], printOutput=False).Output
+                            rvs1.append(trv)
+                        except Exception as e:
+                            es1.append(e)
+                    th = Thread(target=t, args=(csapi, rvs, es, resid, res.Name, self.command, self.tag, inp))
+                    threads.append(th)
+                    th.start()
                 else:
-                    rv += 'found\n'
-        return rv
+                    rvs.append('found')
+        for th in threads:
+            th.join()
+        if len(es) > 0:
+            raise Exception('One or more errors executing %s: %s' % (str(self), '\n'.join([str(x) for x in es])))
+        return '\n'.join(rvs)
 
 
 class ResourceEnqueuedCommand:
@@ -380,9 +458,18 @@ class ResourceAutoloadCommand:
         return rv
 
 
-def go(printmode, include_ranges='all', exclude_ranges='none'):
+def go(printmode, include_ranges='', exclude_ranges=''):
+    if not include_ranges:
+        include_ranges = 'all'
+    if not exclude_ranges:
+        exclude_ranges = 'none'
+    # print 'include=' + include_ranges
+    # print 'exclude=' + exclude_ranges
+    # print 'go'
     csapi = helpers.get_api_session()
+    # print 'got api'
     resid = helpers.get_reservation_context_details().id
+    # print 'resid=' + resid
 
     sitemans = [r for r in csapi.GetReservationDetails(resid).ReservationDescription.Resources if r.ResourceModelName == 'SiteManagerShell']
     if len(sitemans) == 0:
@@ -397,16 +484,16 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
     steps = [
         EnvironmentCommand('copy_prereq'),
 
-        ResourceLiveStatus('OnRack', 'Offline'),
-        ResourceAutoloadCommand('OnRack'),
-        ResourceLiveStatus('OnRack', 'Online'),
+        # ResourceLiveStatus('OnRack', 'Offline'),
+        # ResourceAutoloadCommand('OnRack'),
+        # ResourceLiveStatus('OnRack', 'Online'),
 
-        ResourceRemoteCommand('ComputeShell', 'deploy_os', 'remote_os', ['ESXi']),
+        ResourceRemoteCommand('ComputeShell', 'deploy_os', 'remote_onrack', ['ESXi']),
 
-        ResourceCommand('Brocade NOS Switch', 'set_access_vlan', {
-            'InterfaceNames': site_manager_attrs['Interface Names For Migration'],
-            'VLAN_ID': site_manager_attrs['Management VLAN']
-        }),
+        # ResourceCommand('Brocade NOS Switch', 'set_access_vlan', {
+        #     'InterfaceNames': site_manager_attrs['Interface Names For Migration'],
+        #     'VLAN_ID': site_manager_attrs['Management VLAN']
+        # }),
 
         ServiceLiveStatus('vCenter', 'Offline'),
         ServiceCommand('vCenter', 'vcenter_01_deploy_vcenter'),
@@ -415,10 +502,10 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
         ServiceCommand('vCenter', 'vcenter_03_create_vds'),
         ServiceLiveStatus('vCenter', 'Online'),
 
-        ResourceCommand('Brocade NOS Switch', 'set_access_vlan', {
-            'InterfaceNames': site_manager_attrs['Interface Names For Migration'],
-            'VLAN_ID': site_manager_attrs['Default VLAN']
-        }),
+        # ResourceCommand('Brocade NOS Switch', 'set_access_vlan', {
+        #     'InterfaceNames': site_manager_attrs['Interface Names For Migration'],
+        #     'VLAN_ID': site_manager_attrs['Default VLAN']
+        # }),
 
         ServiceLiveStatus('ScaleIO', 'Offline'),
         ServiceCommand('ScaleIO', 'scaleio_01_install_sdc'),
@@ -518,13 +605,16 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
     ]
 
     csv = ''
-
+    # print 'getting logger'
     logger = get_qs_logger(log_group=resid, log_file_prefix='NFV')
 
+    # print 'getting details'
     resdetails = csapi.GetReservationDetails(resid).ReservationDescription
 
     for i, step in enumerate(steps):
+        print i
         if inranges(i, include_ranges) and not inranges(i, exclude_ranges):
+            # print 'included'
             try:
                 result = step.execute(csapi, resid, resdetails, logger, printmode)
                 if result:
@@ -541,19 +631,34 @@ def go(printmode, include_ranges='all', exclude_ranges='none'):
     if printmode:
         con_details = helpers.get_connectivity_context_details()
         env_details = helpers.get_reservation_context_details()
-        token = requests.put('http://%s:%s/Api/Auth/Login' % (con_details.server_address, 9000),
+        # token1 = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])['adminAuthToken']
+        # pw = con_details.admin_pass
+        pw = 'admin'
+        # pw = csapi.DecryptPassword(con_details.admin_pass).Value
+        token2 = requests.put('http://%s:%d/API/Auth/Login' % (con_details.server_address, 9000),
                              headers={'Content-Type': 'application/x-www-form-urlencoded'},
-                             data='username=%s&password=%s&domain=%s' % (con_details.admin_user, con_details.admin_pass, env_details.domain)).content
-        if token.startswith('"') and token.endswith('"'):
-            token = token[1:-1]
-        requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_details.server_address, 9000),
-                      headers={
-                          'Authorization': 'Basic ' + token,
-                      },
-                      files={
-                          'QualiPackage': ('QualiPackage', csv),
-                          'reservationId': ('reservationId', env_details.id),
-                          'saveFileAs': ('saveFileAs', 'steps.csv'),
-                          'overwriteIfExists': ('overwriteIfExists', 'yes'),
-                      })
+                             data='username=%s&password=%s&domain=%s' % (con_details.admin_user, pw, env_details.domain)).content
+                             # data = 'token=%s&domain=%s' % (token1, env_details.domain)).content
+
+        if token2.startswith('"') and token2.endswith('"'):
+            token2 = token2[1:-1]
+
+        print os.environ
+        print token2
+        print con_details.admin_user
+        print pw
+        print env_details.domain
+        print csv
+        j = requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_details.server_address, 9000),
+                          headers={
+                              'Authorization': 'Basic ' + token2,
+                          },
+                          files={
+                              'QualiPackage': ('QualiPackage', csv),
+                              'reservationId': ('reservationId', env_details.id),
+                              'saveFileAs': ('saveFileAs', 'steps.csv'),
+                              'overwriteIfExists': ('overwriteIfExists', 'True'),
+                          })
+        print j.status_code
+        print j.text
         print 'steps.csv has been attached to the reservation. Reload the page and click the paperclip icon to download the file.'

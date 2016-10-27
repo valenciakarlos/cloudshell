@@ -199,7 +199,7 @@ aa = [
     ('Resource', 'ComputeShell', 'ESX Domain', management_search_domain),
     ('Resource', 'ComputeShell', 'ESX DNS1', management_dns1),
     ('Resource', 'ComputeShell', 'ESX DNS2', management_dns2),
-    # ('Resource', 'ComputeShell', 'ESX PXE Network IP', lambda: pxe_dynamic()),
+    ('Resource', 'ComputeShell', 'ESX PXE Network IP', lambda: pxe_dynamic()),
     ('Resource', 'ComputeShell', 'ESX PXE Network Gateway', pxe_gateway),
     ('Resource', 'ComputeShell', 'ESX PXE Network Netmask', pxe_netmask),
 
