@@ -59,10 +59,10 @@ svm2_data1_ip = attrs['Secondary MDM Data IP']
 svm3_data1_ip = attrs['Tie Breaker Data IP']
 svm4_data1_ip = attrs['Gateway Data IP']
 
-svm1_data2_ip = '' #'192.168.73.250'
-svm2_data2_ip = '' #'192.168.73.251'
-svm3_data2_ip = '' #'192.168.73.252'
-svm4_data2_ip = '' #'192.168.73.253'
+svm1_data2_ip = '10.10.109.1'
+svm2_data2_ip = '10.10.109.2'
+svm3_data2_ip = '10.10.109.3'
+svm4_data2_ip = '10.10.109.4'
 
 sds1_mgmt_ip = attrs['SDS1 MGMT IP']
 sds2_mgmt_ip = attrs['SDS2 MGMT IP']
@@ -180,7 +180,8 @@ except Exception, e:
     exit(1)
 
 # Add Gateway to the dictionary
-siodic['Gateway'] = [svm4_mgmt_ip, svm4_data1_ip, svm4_data2_ip, gatewayesx[1], gatewayesx[0]]
+siodic['Gateway'] = [svm4_mgmt_ip, '', '', gatewayesx[1], gatewayesx[0]]
+#  siodic['Gateway'] = [svm4_mgmt_ip, svm4_data1_ip, svm4_data2_ip, gatewayesx[1], gatewayesx[0]]
 
 # Add UUID attribute to the VMs
 notify_user(api, reservationId, "Power on VMs")
