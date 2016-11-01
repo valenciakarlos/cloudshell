@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compute-shell.zip" afterPath="$PROJECT_DIR$/compute-shell.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onrack-shell.zip" afterPath="$PROJECT_DIR$/onrack-shell.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site_manager_shell.zip" afterPath="$PROJECT_DIR$/site_manager_shell.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_02_set_sso.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_08_install_host_vibs.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_08_install_host_vibs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SIOCommon.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SIOCommon.py" pinned="false" current-in-tab="true">
         <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="396" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="869" selection-end-column="65" />
+            <state relative-caret-position="162">
+              <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -69,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nsx_02_set_sso.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nsx_02_set_sso.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="663">
@@ -77,6 +84,26 @@
               <folding>
                 <element signature="e#152#200#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Phase2.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2412">
+              <caret line="251" column="98" selection-start-line="251" selection-start-column="98" selection-end-line="251" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="steps.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="561" column="0" selection-start-line="561" selection-start-column="0" selection-end-line="561" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -148,7 +175,6 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml" />
         <option value="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/shell_model.xml" />
         <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
-        <option value="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
         <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" />
@@ -174,13 +200,14 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" />
-        <option value="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
+        <option value="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
+        <option value="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
       </list>
     </option>
   </component>
@@ -1355,14 +1382,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="230" column="41" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1370,14 +1389,6 @@
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1326">
-          <caret line="485" column="42" selection-start-line="485" selection-start-column="42" selection-end-line="485" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,14 +1409,6 @@
           <folding>
             <element signature="e#153#179#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="396" column="19" selection-start-line="0" selection-start-column="0" selection-end-line="869" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1506,6 +1509,30 @@
           <folding>
             <element signature="e#152#200#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="561" column="0" selection-start-line="561" selection-start-column="0" selection-end-line="561" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2412">
+          <caret line="251" column="98" selection-start-line="251" selection-start-column="98" selection-end-line="251" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

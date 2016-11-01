@@ -46,9 +46,9 @@
         <Attribute Name="Gateway Data2 IP" Value="" />
         <Attribute Name="ScaleIO SVM DiskType" Value="thick" />
         <Attribute Name="ScaleIO SVM Name PreFix" Value="ScaleIOVM" />
-        <Attribute Name="ScaleIO Version" Value="1.32.4555.5" />
-        <Attribute Name="SDC Path" Value="" />
-        <Attribute Name="Exclude ESXs From SDC Role" Value="C:\deploy\sio\ScaleIO_1.32.3_ESX_Download\sdc-1.32.428.0-esx6.0.zip" />
+        <Attribute Name="ScaleIO Version" Value="2.0-7120.0" />
+        <Attribute Name="SDC Path" Value="C:\deploy\sio\ScaleIO_2.0.0.2_Complete_VMware_SW_Download\ScaleIO_2.0.0.2_ESX_Download\sdc-2.0.7058.0-esx6.0.zip" />
+        <Attribute Name="Exclude ESXs From SDC Role" Value="" />
         <Attribute Name="Number of Faultsets" Value="" />
         <Attribute Name="Faultset Name PreFix" Value="FaultSet" />
         <Attribute Name="Data Subnet" Value="" />
@@ -59,9 +59,9 @@
         <Attribute Name="Volume Type" Value="thin" />
         <Attribute Name="MGMT Gateway" Value="" />
         <Attribute Name="Unified Datastore" Value="SIO_Datastore" />
-        <Attribute Name="Datacenter" Value="NFVDC" />
+        <Attribute Name="Datacenter" Value="" />
         <Attribute Name="Datastore" Value="" />
-        <Attribute Name="OVA Full Path" Value="C:\deploy\sio\ScaleIO_1.32.3_ESX_Download\ScaleIOVM_1.32.3455.5.ova" />
+        <Attribute Name="OVA Full Path" Value="C:\deploy\sio\ScaleIO_2.0.0.2_Complete_VMware_SW_Download\ScaleIO_2.0.0.2_ESX_Download\ScaleIOVM_2nics_2.0.7120.0.ova" />
         <Attribute Name="ScaleIO Admin Password" Value="Welcome1!" />
         <Attribute Name="vCenter Password" Value="Welcome1!" />
         <Attribute Name="ScaleIO System Name" Value="ScaleIO" />
@@ -249,7 +249,7 @@
         <Attribute Name="NSX VM Name" Value="NSXManager" />
         <Attribute Name="NSX DNS Server IP" Value="" />
         <Attribute Name="NSX Portgroup Name" Value="mgmtportgrp" />
-        <Attribute Name="Local NSX OVA Path" Value="C:\deploy\VMware-NSX-Manager-6.1.4-2691049.ova" />
+        <Attribute Name="Local NSX OVA Path" Value="C:\deploy\VMware-NSX-Manager-6.2.4-4292526.ova" />
         <Attribute Name="NSX Hostname" Value="nsx-manager" />
         <Attribute Name="Edge IP Pool DNS Server1" Value="8.8.8.8" />
         <Attribute Name="Edge IP Pool DNS Server2" Value="8.8.4.4" />
@@ -470,7 +470,7 @@
         <Attribute Name="Copyright Message" Value="" />
         <Attribute Name="Contact URL" Value="" />
         <Attribute Name="vRA Load Balancer IP" Value="" />
-        <Attribute Name="vRA Root Password" Value="" />
+        <Attribute Name="vRA Root Password" Value="Welcome1!" />
         <Attribute Name="vRA License Key" Value="" />
         <Attribute Name="Local chain pem Path" Value="" />
         <Attribute Name="Local rui key Path" Value="" />

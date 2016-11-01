@@ -556,7 +556,10 @@ def go(printmode, include_ranges='', exclude_ranges=''):
         ServiceLiveStatus('vRealize Log Insight', 'Online'),
 
 
-        # todo vRealize deploy, other steps commented
+        ServiceLiveStatus('vRealize Appliance', 'Offline'),
+        ServiceCommand('vRealize Appliance', 'vra_01_deploy_vra'),
+        # todo vRealize other steps commented
+        ServiceLiveStatus('vRealize Appliance', 'Online'),
 
         ServiceLiveStatus('Nagios Monitoring', 'Offline'),
         ServiceCommand('Nagios Monitoring', 'nagios_01_deploy_nagios'),
