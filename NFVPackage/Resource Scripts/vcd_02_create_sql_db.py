@@ -5,9 +5,9 @@ import os
 import time
 import subprocess
 import sys
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -74,30 +74,21 @@ if not db_folder == r'c:\deploy':
 
 
 #write sql file
-try:
-    with open(r'c:\deploy\vcd.sql', 'w') as f:
-        f.write(sqlscript)
-except Exception as e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcd write to file error: ' + str(e) + '\r\n')
-    sys.exit(1)
+with open(r'c:\deploy\vcd.sql', 'w') as f:
+    f.write(sqlscript)
 
 
 db_instance = ".\qualisystems2008"
 dbexist = subprocess.check_output('sqlcmd -S ' + db_instance + ' -Q "select name from master.sys.databases where name=\"vcloud\""')
 
 if "vcloud" in dbexist:
-    print 'vcloud db already exists, for new deployments run the "drop db" first'
-    sys.exit(1)
+    raise Exception('vcloud db already exists, for new deployments run the "drop db" first')
 else:
     out = subprocess.check_output('sqlcmd -S ' + db_instance + ' -i c:\\deploy\\vcd.sql')
     if "does not exist" in out:
-        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + out + '\r\n')
-        print out
-        sys.exit(1)
+        raise Exception(out)
     else:
-        print 'vcloud db created'
+        qs_info('vcloud db created')
 
 
+quali_exit(__file__)

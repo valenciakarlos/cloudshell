@@ -1,8 +1,8 @@
 
 from Versa_Common import *
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -71,29 +71,24 @@ try:
 except:
     pass
 # Deploy Controller
-try:
-    command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + controller_portgroup + '" --name="' + controller_vmname + '" "' + controller_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, controller_vmname, vcenter_ip, vcenter_user, vcenter_password, False)
-    time.sleep(5)
-    vmPower(controller_vmname, 'start', vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print '\r\n' + str(e)
-    sys.exit(1)
+command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + controller_portgroup + '" --name="' + controller_vmname + '" "' + controller_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
+deployVM(command, controller_vmname, vcenter_ip, vcenter_user, vcenter_password, False, True)
+time.sleep(5)
+vmPower(controller_vmname, 'start', vcenter_ip, vcenter_user, vcenter_password)
 
 loop = 10
 script = '\'cat /etc/network/interfaces\''
 time.sleep(30)
 
-try:
-    controller = setAdapterMAC(controller_vmname, controller, vcenter_ip, vcenter_user, vcenter_password)
-    while loop > 0:
-        firstNFVEth(controller_vmname, 'admin', 'versa123', controller, 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-        ans = invokeScript(script, controller_vmname, 'admin', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-        if 'EOF' in ans:
-            loop = 0
-        else:
-            loop -= 1
-    addNFVAdapter(controller_vmname, controller, vcenter_ip, vcenter_user, vcenter_password)
-    vmPower(controller_vmname, 'restart', vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print e
+controller = setAdapterMAC(controller_vmname, controller, vcenter_ip, vcenter_user, vcenter_password)
+while loop > 0:
+    firstNFVEth(controller_vmname, 'admin', 'versa123', controller, 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+    ans = invokeScript(script, controller_vmname, 'admin', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+    if 'EOF' in ans:
+        loop = 0
+    else:
+        loop -= 1
+addNFVAdapter(controller_vmname, controller, vcenter_ip, vcenter_user, vcenter_password)
+vmPower(controller_vmname, 'restart', vcenter_ip, vcenter_user, vcenter_password)
+
+quali_exit(__file__)

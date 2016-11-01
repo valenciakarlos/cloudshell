@@ -5,8 +5,9 @@ import sys
 import time
 import os
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 
 
@@ -73,25 +74,20 @@ except:
 
 
 #Deploy Director
-try:
-    command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + versa_sb_portgroup + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
-except Exception, e:
-    print '\r\n' + str(e)
-    sys.exit(1)
+command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + versa_sb_portgroup + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
+deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
 
 time.sleep(5)
-try:
-    vmPower(vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
-    addAdapter(vm_name, versa, vcenter_ip, vcenter_user, vcenter_password)
-    versa = setAdapterMAC(vm_name, versa, vcenter_ip, vcenter_user, vcenter_password)
-    chmod = '''\"echo \'versa123\' | sudo -S chmod 777 /etc/network/interfaces\"'''
-    networking = firstEth(versa)
-    networking += addEth(versa)
-    networking += addRoute(versa_nb_gateway, controller_ip, controller_mask, controller_network)
-    networking += '\' > /etc/network/interfaces"'
-    invokeScript(chmod, vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-    invokeScript(networking, vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-    vmPower(vm_name, 'restart', vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print e
+vmPower(vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
+addAdapter(vm_name, versa, vcenter_ip, vcenter_user, vcenter_password)
+versa = setAdapterMAC(vm_name, versa, vcenter_ip, vcenter_user, vcenter_password)
+chmod = '''\"echo \'versa123\' | sudo -S chmod 777 /etc/network/interfaces\"'''
+networking = firstEth(versa)
+networking += addEth(versa)
+networking += addRoute(versa_nb_gateway, controller_ip, controller_mask, controller_network)
+networking += '\' > /etc/network/interfaces"'
+invokeScript(chmod, vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+invokeScript(networking, vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+vmPower(vm_name, 'restart', vcenter_ip, vcenter_user, vcenter_password)
+
+quali_exit(__file__)

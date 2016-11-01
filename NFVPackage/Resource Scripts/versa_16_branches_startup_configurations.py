@@ -4,10 +4,9 @@ import paramiko
 import re
 import json
 import os
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
-
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -34,9 +33,7 @@ provider_ipsec_id = attrs['Versa Provider PreStaging IPSec ID']
 
 def do_command(ssh1, command):
     if command:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + '\r\n')
-        g.close()
+        qs_trace('ssh : ' + command)
         stdin, stdout, stderr = ssh1.exec_command(command)
         stdin.close()
         a = []
@@ -45,15 +42,11 @@ def do_command(ssh1, command):
         for line in stderr.read().splitlines():
             a.append(line + '\n')
         rv = '\n'.join(a)
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-        g.close()
+        qs_trace('ssh result: ' + rv)
         return rv
 
 def do_command_and_wait(chan, command, expect):
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + ' : wait for : ' + expect + '\r\n')
-    g.close()
+    qs_trace('ssh : ' + command + ' : wait for : ' + expect)
     # Ssh and wait for the password prompt.
     chan.send(command + '\n')
 
@@ -63,8 +56,7 @@ def do_command_and_wait(chan, command, expect):
         resp = chan.recv(9999)
         buff += resp
         #print resp
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': replay : ' + buff + ' : wait for : ' + expect + '\r\n')
+    qs_trace('replay : ' + buff + ' : wait for : ' + expect)
     time.sleep(1)
     return buff
 
@@ -152,3 +144,5 @@ br2ssh.connect(br2_ip, username='admin', password='versa123')
 br2chan = br2ssh.invoke_shell()
 for s in br2.splitlines():
     do_command_and_wait(br2chan, s, expect=r' ')
+
+quali_exit(__file__)

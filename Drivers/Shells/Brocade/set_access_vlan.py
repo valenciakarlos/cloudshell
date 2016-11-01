@@ -13,9 +13,7 @@ with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
 #helpers
 def do_command(ssh1, command):
     if command:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + '\r\n')
-        g.close()
+        qs_trace('ssh : ' + command)
         stdin, stdout, stderr = ssh1.exec_command(command)
         stdin.close()
         a = []
@@ -24,15 +22,11 @@ def do_command(ssh1, command):
         for line in stderr.read().splitlines():
             a.append(line + '\n')
         rv = '\n'.join(a)
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-        g.close()
+        qs_trace('ssh result: ' + rv)
         return rv
 
 def do_command_and_wait(chan, command, expect):
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + ' : wait for : ' + expect + '\r\n')
-    g.close()
+    qs_trace('ssh : ' + command + ' : wait for : ' + expect)
     # Ssh and wait for the password prompt.
     chan.send(command + '\n')
     

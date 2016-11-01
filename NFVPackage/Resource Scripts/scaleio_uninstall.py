@@ -6,11 +6,9 @@ import json
 import sys
 from vCenterCommon import deleteVMs, vmPower
 from SIOCommon import getSIOesxs
-from quali_remote import powershell
+from quali_remote import powershell, quali_enter, quali_exit
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
-
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -120,3 +118,5 @@ if 'not' in out:
 vm_name_prefix = attrs['ScaleIO SVM Name PreFix'] + '*'
 vmPower(vm_name_prefix, 'stop', vcenter_ip, vcenter_user, vcenter_password)
 deleteVMs(vm_name_prefix, vcenter_ip, vcenter_user, vcenter_password)
+
+quali_exit(__file__)

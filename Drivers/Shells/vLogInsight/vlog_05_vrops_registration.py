@@ -17,8 +17,9 @@ from quali_remote import qualiroot
 import os
 import json
 import time
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -79,3 +80,5 @@ driver.find_element_by_xpath("//div[.//div[contains(text(),'Registration success
 time.sleep(5)
 
 driver.quit()
+
+quali_exit(__file__)

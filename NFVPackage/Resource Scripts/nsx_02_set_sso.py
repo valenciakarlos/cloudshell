@@ -12,7 +12,7 @@ from NSX_Common import rest_api_query_with_retry
 import json
 import time
 import os
-from quali_remote import quali_enter, quali_exit
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
 quali_enter(__file__)
 

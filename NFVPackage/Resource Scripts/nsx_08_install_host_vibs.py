@@ -16,7 +16,7 @@ import json
 import time
 from quali_remote import powershell
 from NSX_Common import *
-from quali_remote import quali_enter, quali_exit
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
 quali_enter(__file__)
 # with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:

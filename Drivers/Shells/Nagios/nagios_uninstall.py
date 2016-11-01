@@ -5,8 +5,9 @@ import time
 import json
 from vCenterCommon import deleteVMs, vmPower
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -21,3 +22,5 @@ vm_name = attrs['Nagios VM Name']
 
 vmPower(vm_name, 'stop', vcenter_ip, vcenter_user, vcenter_password)
 deleteVMs(vm_name, vcenter_ip, vcenter_user, vcenter_password)
+
+quali_exit(__file__)

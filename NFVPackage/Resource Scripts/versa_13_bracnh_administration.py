@@ -4,12 +4,9 @@ import json
 import time
 from xml.dom.minidom import parseString
 
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-
-
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
-
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -90,3 +87,6 @@ try:
     rest_api_query('''http://''' + versa_dir_ip + ''':9182/vnms/template/organizations''', versa_username, versa_password, 'post', '{"versanms.templates":{"template":[{"name":"Branches-PostStaging"},{"name":"Branches-Staging"}]}}', is_body_json=True, return_xml=True)
 except Exception as e:
     print e
+
+
+quali_exit(__file__)

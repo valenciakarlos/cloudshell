@@ -3,8 +3,9 @@
 from Versa_Common import *
 import sys
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -65,28 +66,23 @@ except:
 
 
 #Deploy Analytics
-try:
-    command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + analytics_1_portgroup + '" --name="' + analytics_vm_name + '" "' + analytics_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, analytics_vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
-    time.sleep(5)
-    vmPower(analytics_vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print '\r\n' + str(e)
-    sys.exit(1)
-        
+command = ' --skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + analytics_1_portgroup + '" --name="' + analytics_vm_name + '" "' + analytics_ova_path + '" "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
+deployVM(command, analytics_vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
+time.sleep(5)
+vmPower(analytics_vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
+
 route_script = '''\"echo up route add -net 172.16.0.0 netmask 255.255.0.0 gw 192.168.140.254 dev eth1 >> /etc/network/interfaces\"'''
 time.sleep(30)
-try:
-    addAdapter(analytics_vm_name, analytics, vcenter_ip, vcenter_user, vcenter_password)
-    analytics = setAdapterMAC(analytics_vm_name, analytics, vcenter_ip, vcenter_user, vcenter_password)
-    chmod = '''\"echo \'versa123\' | sudo -S chmod 777 /etc/network/interfaces\"'''
-    networking = firstEth(analytics)
-    networking += addEth(analytics)
-    networking += addRoute(analytics_gateway, controller_ip, controller_mask, controller_network)
-    networking += '\' > /etc/network/interfaces"'
-    invokeScript(chmod, analytics_vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-    invokeScript(networking, analytics_vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-    invokeScript(route_script, analytics_vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
-    vmPower(analytics_vm_name, 'restart', vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print e
+addAdapter(analytics_vm_name, analytics, vcenter_ip, vcenter_user, vcenter_password)
+analytics = setAdapterMAC(analytics_vm_name, analytics, vcenter_ip, vcenter_user, vcenter_password)
+chmod = '''\"echo \'versa123\' | sudo -S chmod 777 /etc/network/interfaces\"'''
+networking = firstEth(analytics)
+networking += addEth(analytics)
+networking += addRoute(analytics_gateway, controller_ip, controller_mask, controller_network)
+networking += '\' > /etc/network/interfaces"'
+invokeScript(chmod, analytics_vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+invokeScript(networking, analytics_vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+invokeScript(route_script, analytics_vm_name, 'versa', 'versa123', 20, 30, vcenter_ip, vcenter_user, vcenter_password)
+vmPower(analytics_vm_name, 'restart', vcenter_ip, vcenter_user, vcenter_password)
+
+quali_exit(__file__)

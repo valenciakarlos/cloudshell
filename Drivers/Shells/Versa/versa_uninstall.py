@@ -4,10 +4,9 @@ import os
 import time
 import json
 from vCenterCommon import deleteVMs, vmPower
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
-
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -40,3 +39,5 @@ vmPower(vm_name, 'stop', vcenter_ip, vcenter_user, vcenter_password)
 deleteVMs(vm_name, vcenter_ip, vcenter_user, vcenter_password)
 
 #delete versa vds
+
+quali_exit(__file__)

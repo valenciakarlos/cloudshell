@@ -7,16 +7,15 @@ import paramiko
 import socket
 import re
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 
 #helpers
 def do_command(ssh1, command):
     if command:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + '\r\n')
-        g.close()
+        qs_trace('ssh : ' + command)
         stdin, stdout, stderr = ssh1.exec_command(command)
         stdin.close()
         a = []
@@ -25,15 +24,11 @@ def do_command(ssh1, command):
         for line in stderr.read().splitlines():
             a.append(line + '\n')
         rv = '\n'.join(a)
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-        g.close()
+        qs_trace('ssh result: ' + rv)
         return rv
 
 def do_command_and_wait(chan, command, expect):
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + ' : wait for : ' + expect + '\r\n')
-    g.close()
+    qs_trace('ssh : ' + command + ' : wait for : ' + expect)
     # Ssh and wait for the password prompt.
     chan.send(command + '\n')
     
@@ -50,9 +45,7 @@ def do_command_and_wait(chan, command, expect):
 
 def ssh_upload(ssh1, local_file, dest_file):
     if local_file and dest_file:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh upload : ' + local_file + ' -> ' + dest_file + '\r\n')
-        g.close()
+        qs_trace('ssh upload : ' + local_file + ' -> ' + dest_file)
         sftp = ssh1.open_sftp()
         sftp.put(local_file, dest_file)
     
@@ -123,5 +116,4 @@ do_command_and_wait(chan, r'vcloud', expect=r'Enter the database password')
 do_command_and_wait(chan, r'vcloudpass', r'Start it now|\]#')
 do_command_and_wait(chan, r'y', r'\]#')
 
-
-
+quali_exit(__file__)

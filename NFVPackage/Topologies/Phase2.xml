@@ -52,8 +52,8 @@
         <Attribute Name="Number of Faultsets" Value="" />
         <Attribute Name="Faultset Name PreFix" Value="FaultSet" />
         <Attribute Name="Data Subnet" Value="" />
+        <Attribute Name="Data2 Subnet" Value="" />
         <Attribute Name="MGMT Subnet" Value="" />
-        <Attribute Name="Second Data Subnet" Value="" />
         <Attribute Name="Enable Background Scanner" Value="True" />
         <Attribute Name="Volume Size" Value="0" />
         <Attribute Name="Volume Type" Value="thin" />
@@ -95,7 +95,7 @@
         <Attribute Name="SVM Root Password" Value="dangerous" />
         <Attribute Name="Management Network Label" Value="mgmtportgrp" />
         <Attribute Name="Data Network Label" Value="dataportgrp" />
-        <Attribute Name="Second Data Network Label" Value="" />
+        <Attribute Name="Data2 Network Label" Value="data2portgrp" />
         <Attribute Name="Gateway Management IP" Value="" />
         <Attribute Name="Gateway Data IP" Value="" />
         <Attribute Name="Gateway Datastore" Value="" />

@@ -13,9 +13,9 @@ import os
 import time
 import sys
 from vCenterCommon import deployVM
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -39,9 +39,7 @@ timezone = attrs['vROPS Timezone']
 
 # STEPS # Quit if vm_name already exists on vcenter_ip vcenter_user vcenter_password
 
-try:
-    command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore="' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:vamitimezone="' + timezone + '"' + ' --prop:vami.gateway.vRealize_Operations_Manager_Appliance=' + gateway + ' --prop:vami.DNS.vRealize_Operations_Manager_Appliance=' + dns_ip +' --prop:vami.ip0.vRealize_Operations_Manager_Appliance=' + vrops_ip + ' --prop:vami.netmask0.vRealize_Operations_Manager_Appliance=' + vrops_netmask + ' --net:"Network 1"=' + '"' + portgroup + '"' + ' --name="''' + vm_name + '"' + ' "' + ova_path + '"' + ' "vi://' + vcenter_user + ':' + '"' + vcenter_password + '"' + '@' + vcenter_ip + '/' + datacenter + '/host/' +  cluster + '/Resources"'
-    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
-except Exception, e:
-    print '\r\n' + str(e)
-    sys.exit(1)
+command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore="' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:vamitimezone="' + timezone + '"' + ' --prop:vami.gateway.vRealize_Operations_Manager_Appliance=' + gateway + ' --prop:vami.DNS.vRealize_Operations_Manager_Appliance=' + dns_ip +' --prop:vami.ip0.vRealize_Operations_Manager_Appliance=' + vrops_ip + ' --prop:vami.netmask0.vRealize_Operations_Manager_Appliance=' + vrops_netmask + ' --net:"Network 1"=' + '"' + portgroup + '"' + ' --name="''' + vm_name + '"' + ' "' + ova_path + '"' + ' "vi://' + vcenter_user + ':' + '"' + vcenter_password + '"' + '@' + vcenter_ip + '/' + datacenter + '/host/' +  cluster + '/Resources"'
+deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
+
+quali_exit(__file__)

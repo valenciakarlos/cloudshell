@@ -6,9 +6,9 @@ import json
 from vCenterCommon import deleteVMs, vmPower
 import subprocess
 import sys
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -42,8 +42,8 @@ with open(r'c:\deploy\drop_sql_sb.sql', 'w') as file_:
 db_instance = ".\qualisystems2008"
 out = subprocess.check_output('sqlcmd -S .\\qualisystems2008 -i c:\\deploy\\drop_sql_sb.sql', stderr=subprocess.STDOUT)
 if 'Cannot drop database' in out:
-    print out
-    sys.exit(1)
-else:
-    print 'vcloud db dropped'
+    raise Exception('Could not uninstall vCD: ' + out)
 
+qs_info('vcloud uninstalled')
+
+quali_exit(__file__)

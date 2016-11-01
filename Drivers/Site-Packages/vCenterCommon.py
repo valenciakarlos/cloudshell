@@ -351,8 +351,7 @@ def getAdapterMac(vmname, vcenter_ip, vcenter_user, vcenter_password):
 
 
 def deployVM_basic(string):
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write("Deploying VM using OVFTools with: " + string + '\r\n')
+    qs_trace("Deploying VM using OVFTools with: " + string)
     subprocess.check_output(
         'C:\Program Files\VMware\VMware OVF Tool\ovftool.exe ' + string
     )
@@ -382,8 +381,7 @@ def _deployVM(string):
         '''
     try:
         string = 'C:\Program Files\VMware\VMware OVF Tool\ovftool.exe ' + string
-        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploying VM using OVFTool: ' + str(string) + '\n')
+        qs_trace('Deploying VM using OVFTool: ' + str(string) + '\n')
 
         from subprocess import Popen, PIPE, STDOUT
         p = Popen(string, stdout=PIPE, stdin=PIPE, stderr=PIPE)
@@ -399,8 +397,7 @@ def _deployVM(string):
         # rv = subprocess.check_output(command_array, stderr=subprocess.STDOUT)
         if rv is not None:
             rv = rv.strip()
-        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploy VM result: ' + str(rv) + '\n')
+        qs_info('Deploy VM result: ' + str(rv))
 
         return rv
     except Exception as e:
@@ -408,9 +405,7 @@ def _deployVM(string):
             ou = str(e.output)
         else:
             ou = 'no output'
-        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploy VM failed: ' + str(e) + ': ' + ou + '\n')
-        raise e
+        raise Exception('Deploy VM failed: ' + str(e) + ': ' + ou + '\n')
 
 
 def changeVMadapter(vmname, nics, networks, vcenter_ip, vcenter_user, vcenter_password):

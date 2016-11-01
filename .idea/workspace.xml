@@ -3,13 +3,132 @@
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/generate_orchestration_steps_file.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/generate_orchestration_steps_file.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/run_orchestration_steps.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/run_orchestration_steps.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compute-shell.zip" afterPath="$PROJECT_DIR$/compute-shell.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onrack-shell.zip" afterPath="$PROJECT_DIR$/onrack-shell.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site_manager_shell.zip" afterPath="$PROJECT_DIR$/site_manager_shell.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Brocade/set_access_vlan.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Brocade/set_access_vlan.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_07_create_vxlan_segment.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_07_create_vxlan_segment.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_09_configure_host_vteps.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_09_configure_host_vteps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_01_deploy_nagios.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_01_deploy_nagios.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_02_configure_nagios.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_02_configure_nagios.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_02_deploy_analytics.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_02_deploy_analytics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_03_deploy_controller.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_03_deploy_controller.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_04_deploy_branch1.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_04_deploy_branch1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_05_deploy_branch2.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_05_deploy_branch2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_06_post_deployment_configurations.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_06_post_deployment_configurations.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_07_organization_administration.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_07_organization_administration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_08_create_controller.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_08_create_controller.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_09_controller_administration.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_09_controller_administration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_10_organization_configurations.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_10_organization_configurations.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_11_create_analytics.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_11_create_analytics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_12_ipsec_profiles.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_12_ipsec_profiles.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_13_bracnh_administration.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_13_bracnh_administration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_14_template_configurations_1.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_14_template_configurations_1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_15_template_configurations_2.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_15_template_configurations_2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_16_branches_startup_configurations.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_16_branches_startup_configurations.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/Versa/versa_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_03_create_certificates.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_03_create_certificates.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_04_install_and_configure.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_04_install_and_configure.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_drop_db.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_drop_db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_03_apply_pak_patch.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_03_apply_pak_patch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_04_vcenter_registration.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_04_vcenter_registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_05_vrops_registration.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_05_vrops_registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_02_startup_wizard.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_02_startup_wizard.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_03_start_service.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_03_start_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_04_license.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_04_license.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_05_vcenter_registration.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_05_vcenter_registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_01_deploy_nagios.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_01_deploy_nagios.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_02_configure_nagios.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_02_configure_nagios.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nagios_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_01_deploy_nsx.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_01_deploy_nsx.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_02_set_sso.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_03_set_vcenter.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_03_set_vcenter.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_04_add_nsx_admin.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_04_add_nsx_admin.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_05_create_ip_pools.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_05_create_ip_pools.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_06_deploy_controller.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_06_deploy_controller.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_07_create_vxlan_segment.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_07_create_vxlan_segment.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_08_install_host_vibs.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_08_install_host_vibs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_09_configure_host_vteps.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_09_configure_host_vteps.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_10_create_transport_zone.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_10_create_transport_zone.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_11_create_logical_switch.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_11_create_logical_switch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/set_access_vlan.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/set_access_vlan.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_01_deploy_vcd.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_01_deploy_vcd.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_02_create_sql_db.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_02_create_sql_db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_03_create_certificates.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_03_create_certificates.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_04_install_and_configure.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_04_install_and_configure.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_drop_db.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_drop_db.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_03_create_vds.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_03_create_vds.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_01_deploy_director.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_01_deploy_director.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_02_deploy_analytics.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_02_deploy_analytics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_03_deploy_controller.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_03_deploy_controller.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_04_deploy_branch1.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_04_deploy_branch1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_05_deploy_branch2.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_05_deploy_branch2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_06_post_deployment_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_06_post_deployment_configurations.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_07_organization_administration.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_07_organization_administration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_08_create_controller.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_08_create_controller.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_09_controller_administration.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_09_controller_administration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_10_organization_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_10_organization_configurations.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_11_create_analytics.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_11_create_analytics.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_12_ipsec_profiles.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_12_ipsec_profiles.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_13_bracnh_administration.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_13_bracnh_administration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_14_template_configurations_1.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_14_template_configurations_1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_15_template_configurations_2.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_15_template_configurations_2.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_16_branches_startup_configurations.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_16_branches_startup_configurations.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/versa_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_01_deploy_vlog.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_01_deploy_vlog.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_02_startup_wizard.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_02_startup_wizard.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_03_apply_pak_patch.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_03_apply_pak_patch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_04_vcenter_registration.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_04_vcenter_registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_05_vrops_registration.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_05_vrops_registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_uninstall.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_01_deploy_vrops.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_01_deploy_vrops.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_02_startup_wizard.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_02_startup_wizard.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_03_start_service.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_03_start_service.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_04_license.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_04_license.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_05_vcenter_registration.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_05_vcenter_registration.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_uninstall.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
@@ -30,59 +149,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="scaleio_01_install_sdc.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py">
+      <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="69" column="85" selection-start-line="69" selection-start-column="85" selection-end-line="69" selection-end-column="85" />
+            <state relative-caret-position="51">
+              <caret line="55" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
               <folding>
-                <element signature="e#22#80#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SIOCommon.py" pinned="false" current-in-tab="true">
-        <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py">
+      <file leaf-file-name="copy_inputs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vcenter_01_deploy_vcenter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="776">
-              <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
+            <state relative-caret-position="205">
+              <caret line="338" column="39" selection-start-line="338" selection-start-column="33" selection-end-line="338" selection-end-column="39" />
               <folding>
-                <marker date="1477974023346" expanded="true" signature="5666:5892" ph="..." />
+                <element signature="e#0#58#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nsx_01_deploy_nsx.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py">
+      <file leaf-file-name="__main__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state relative-caret-position="149">
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
               <folding>
-                <element signature="e#151#160#0" expanded="true" />
+                <element signature="e#29#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nsx_02_set_sso.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py">
+      <file leaf-file-name="vcd_02_create_sql_db.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+            <state relative-caret-position="295">
+              <caret line="90" column="11" selection-start-line="90" selection-start-column="11" selection-end-line="90" selection-end-column="11" />
               <folding>
-                <element signature="e#152#200#0" expanded="true" />
+                <element signature="e#29#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="driver.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -91,9 +212,43 @@
       <file leaf-file-name="Phase2.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2412">
-              <caret line="251" column="98" selection-start-line="251" selection-start-column="98" selection-end-line="251" selection-end-column="98" />
+            <state relative-caret-position="216">
+              <caret line="97" column="65" selection-start-line="97" selection-start-column="65" selection-end-line="97" selection-end-column="65" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="driver_context.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/site-packages/cloudshell/shell/core/driver_context.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="145" column="30" selection-start-line="145" selection-start-column="30" selection-end-line="145" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vcd_uninstall.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="759">
+              <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <element signature="e#29#38#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="861">
+              <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,42 +256,10 @@
       <file leaf-file-name="steps.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="561" column="0" selection-start-line="561" selection-start-column="0" selection-end-line="561" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="nsx_03_set_vcenter.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+            <state relative-caret-position="-838">
+              <caret line="369" column="114" selection-start-line="369" selection-start-column="114" selection-end-line="369" selection-end-column="114" />
               <folding>
-                <element signature="e#153#201#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSX_Common.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/NSX_Common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="333" column="123" selection-start-line="333" selection-start-column="123" selection-end-line="333" selection-end-column="123" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#315#324#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -157,57 +280,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_02_configure_nagios.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_uninstall.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_uninstall.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_03_create_certificates.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_04_install_and_configure.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_02_deploy_analytics.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_03_deploy_controller.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_04_deploy_branch1.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_05_deploy_branch2.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_06_post_deployment_configurations.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_07_organization_administration.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_08_create_controller.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_09_controller_administration.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_10_organization_configurations.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_11_create_analytics.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_12_ipsec_profiles.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_13_bracnh_administration.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_14_template_configurations_1.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_15_template_configurations_2.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_16_branches_startup_configurations.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_uninstall.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_uninstall.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_05_vrops_registration.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_04_vcenter_registration.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_03_apply_pak_patch.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_uninstall.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_02_startup_wizard.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_03_start_service.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_04_license.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_05_vcenter_registration.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/requirements.txt" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/datamodel/datamodel.xml" />
-        <option value="$PROJECT_DIR$/create package.cmd" />
-        <option value="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" />
-        <option value="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" />
-        <option value="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/datamodel.xml" />
-        <option value="$PROJECT_DIR$/NFVPackage/Topologies/SIO VCD NSX.xml" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/shell_model.xml" />
-        <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
-        <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py" />
-        <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" />
-        <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/vCenterCommon.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" />
-        <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_07_create_vxlan_segment.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_09_configure_host_vteps.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" />
+        <option value="$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" />
-        <option value="$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py" />
-        <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_drop_db.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
         <option value="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
+        <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py" />
+        <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
       </list>
     </option>
   </component>
@@ -589,54 +712,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Shells" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Compute-Shell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Drivers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shells" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Compute-Shell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="datamodel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Drivers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Orchestration" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -943,7 +1018,8 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3033586" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30119178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -975,10 +1051,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/Drivers/Orchestration/Copy Prerequisites/__main__.py</url>
-          <line>8</line>
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py</url>
           <line>2</line>
@@ -1090,449 +1162,483 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1190">
-          <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/datamodel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="249" column="69" selection-start-line="249" selection-start-column="69" selection-end-line="249" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/SIO VCD NSX.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="312">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="e#19#45#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_02_deploy_analytics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="516">
+          <caret line="87" column="19" selection-start-line="87" selection-start-column="19" selection-end-line="87" selection-end-column="19" />
+          <folding>
+            <element signature="e#2#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_03_deploy_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="176">
+          <caret line="74" column="92" selection-start-line="74" selection-start-column="92" selection-end-line="74" selection-end-column="92" />
+          <folding>
+            <element signature="e#1#27#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_04_deploy_branch1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
-          <folding />
+        <state relative-caret-position="176">
+          <caret line="74" column="89" selection-start-line="74" selection-start-column="89" selection-end-line="74" selection-end-column="89" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_05_deploy_branch2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="93" column="11" selection-start-line="93" selection-start-column="11" selection-end-line="93" selection-end-column="11" />
+          <folding>
+            <element signature="e#2#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_07_organization_administration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+        <state relative-caret-position="340">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_08_create_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="70" column="19" selection-start-line="70" selection-start-column="19" selection-end-line="70" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_09_controller_administration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2818">
+          <caret line="194" column="19" selection-start-line="194" selection-start-column="19" selection-end-line="194" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_10_organization_configurations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="69" column="19" selection-start-line="69" selection-start-column="19" selection-end-line="69" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_11_create_analytics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="92" column="19" selection-start-line="92" selection-start-column="19" selection-end-line="92" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_12_ipsec_profiles.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_13_bracnh_administration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="91" column="19" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_14_template_configurations_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="82" column="19" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_15_template_configurations_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="422" column="19" selection-start-line="422" selection-start-column="19" selection-end-line="422" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#26#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_uninstall.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+          <folding>
+            <element signature="e#28#37#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_uninstall.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <element signature="e#34#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_05_vrops_registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
+          <folding>
+            <element signature="e#34#64#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_04_vcenter_registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="91" column="20" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="20" />
+          <folding>
+            <element signature="e#34#64#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_03_apply_pak_patch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="89" column="20" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
+          <folding>
+            <element signature="e#34#64#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="61" column="55" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="292" column="81" selection-start-line="292" selection-start-column="81" selection-end-line="292" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/shell_model.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="193" column="73" selection-start-line="193" selection-start-column="73" selection-end-line="193" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="530">
+          <caret line="185" column="20" selection-start-line="185" selection-start-column="20" selection-end-line="185" selection-end-column="20" />
           <folding>
-            <element signature="e#0#76#0" expanded="false" />
+            <element signature="e#34#77#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/__main__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Driver/System Commands/Setup.tsdrv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="2649" column="49" selection-start-line="2649" selection-start-column="49" selection-end-line="2649" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="4527" column="25" selection-start-line="4527" selection-start-column="25" selection-end-line="4527" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2159">
-          <caret line="140" column="51" selection-start-line="140" selection-start-column="51" selection-end-line="140" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1955">
-          <caret line="115" column="19" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
-          <folding>
-            <element signature="e#21#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6069">
-          <caret line="357" column="19" selection-start-line="357" selection-start-column="19" selection-end-line="357" selection-end-column="19" />
-          <folding>
-            <element signature="e#21#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="725">
-          <caret line="340" column="10" selection-start-line="340" selection-start-column="4" selection-end-line="340" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="247" column="0" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="41" column="86" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_01_deploy_director.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="40" column="86" selection-start-line="40" selection-start-column="86" selection-end-line="40" selection-end-column="86" />
+        <state relative-caret-position="57">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="70" column="79" selection-start-line="70" selection-start-column="79" selection-end-line="70" selection-end-column="79" />
-          <folding>
-            <element signature="e#151#160#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="41" column="4" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        <state relative-caret-position="482">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <element signature="e#152#178#0" expanded="true" />
+            <element signature="e#168#179#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_02_startup_wizard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
-          <caret line="134" column="20" selection-start-line="134" selection-start-column="20" selection-end-line="134" selection-end-column="20" />
+        <state relative-caret-position="564">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
-            <element signature="e#152#178#0" expanded="true" />
+            <element signature="e#41#71#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_03_start_service.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="115" column="20" selection-start-line="115" selection-start-column="20" selection-end-line="115" selection-end-column="20" />
+        <state relative-caret-position="530">
+          <caret line="79" column="20" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="20" />
           <folding>
-            <element signature="e#156#182#0" expanded="true" />
+            <element signature="e#62#105#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_09_configure_host_vteps.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_04_license.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="200" column="19" selection-start-line="200" selection-start-column="19" selection-end-line="200" selection-end-column="19" />
+        <state relative-caret-position="530">
+          <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
           <folding>
-            <element signature="e#153#179#0" expanded="true" />
+            <element signature="e#67#110#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_05_vcenter_registration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="88" column="19" selection-start-line="88" selection-start-column="19" selection-end-line="88" selection-end-column="19" />
+        <state relative-caret-position="513">
+          <caret line="229" column="0" selection-start-line="229" selection-start-column="0" selection-end-line="229" selection-end-column="0" />
           <folding>
-            <element signature="e#153#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="52" column="14" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
-          <folding>
-            <element signature="e#152#178#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding>
-            <element signature="e#25#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="357" column="24" selection-start-line="357" selection-start-column="24" selection-end-line="357" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_07_create_vxlan_segment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-          <folding>
-            <element signature="e#153#179#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="88" column="17" selection-start-line="88" selection-start-column="17" selection-end-line="88" selection-end-column="17" />
-          <folding>
-            <element signature="e#153#179#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="69" column="85" selection-start-line="69" selection-start-column="85" selection-end-line="69" selection-end-column="85" />
-          <folding>
-            <element signature="e#22#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="776">
-          <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
-          <folding>
-            <marker date="1477974023346" expanded="true" signature="5666:5892" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/vCenterCommon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="348" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="537" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#151#160#0" expanded="true" />
+            <element signature="e#102#145#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+        <state relative-caret-position="428">
+          <caret line="51" column="51" selection-start-line="51" selection-start-column="51" selection-end-line="51" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="519" column="31" selection-start-line="519" selection-start-column="31" selection-end-line="519" selection-end-column="31" />
+        <state relative-caret-position="205">
+          <caret line="408" column="0" selection-start-line="408" selection-start-column="0" selection-end-line="408" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="333" column="123" selection-start-line="333" selection-start-column="123" selection-end-line="333" selection-end-column="123" />
+        <state relative-caret-position="205">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_uninstall.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="843">
+          <caret line="104" column="48" selection-start-line="104" selection-start-column="48" selection-end-line="104" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Copy Prerequisites/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#156#182#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/NSX_Common.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_03_create_certificates.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+        <state relative-caret-position="149">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_04_install_and_configure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_06_post_deployment_configurations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="91" column="4" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Versa/versa_16_branches_startup_configurations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Nagios/nagios_01_deploy_nagios.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="52" selection-start-line="7" selection-start-column="52" selection-end-line="7" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_drop_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#29#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_setup_script/__main__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+          <folding>
+            <element signature="e#29#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_02_create_sql_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="90" column="11" selection-start-line="90" selection-start-column="11" selection-end-line="90" selection-end-column="11" />
+          <folding>
+            <element signature="e#29#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/Compute-Shell/src/driver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
-          <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
           <folding>
-            <element signature="e#153#201#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
-          <folding>
-            <element signature="e#152#200#0" expanded="true" />
+            <element signature="e#0#83#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="561" column="0" selection-start-line="561" selection-start-column="0" selection-end-line="561" selection-end-column="0" />
+        <state relative-caret-position="-838">
+          <caret line="369" column="114" selection-start-line="369" selection-start-column="114" selection-end-line="369" selection-end-column="114" />
+          <folding>
+            <element signature="e#315#324#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/site-packages/cloudshell/shell/core/driver_context.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="145" column="30" selection-start-line="145" selection-start-column="30" selection-end-line="145" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="e#29#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2412">
-          <caret line="251" column="98" selection-start-line="251" selection-start-column="98" selection-end-line="251" selection-end-column="98" />
+        <state relative-caret-position="216">
+          <caret line="97" column="65" selection-start-line="97" selection-start-column="65" selection-end-line="97" selection-end-column="65" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py">
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="375" column="0" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="205">
+          <caret line="338" column="39" selection-start-line="338" selection-start-column="33" selection-end-line="338" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="55" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="378" column="0" selection-start-line="378" selection-start-column="0" selection-end-line="378" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

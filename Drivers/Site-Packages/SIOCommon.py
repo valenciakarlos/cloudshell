@@ -9,9 +9,7 @@ import uuid
 # SSH Helper
 def do_command(ssh1, command):
     if command:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + '\r\n')
-        g.close()
+        qs_trace('ssh : ' + command)
         stdin, stdout, stderr = ssh1.exec_command(command)
         stdin.close()
         a = []
@@ -20,16 +18,12 @@ def do_command(ssh1, command):
         for line in stderr.read().splitlines():
             a.append(line + '\n')
         rv = '\n'.join(a)
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-        g.close()
+        qs_trace('ssh result: ' + rv)
         return rv
 
 
 def do_command_and_wait(chan, command, expect):
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + ' : wait for : ' + expect + '\r\n')
-    g.close()
+    qs_trace('ssh : ' + command + ' : wait for : ' + expect)
     chan.send(command + '\n')
     buff = ''
     #while buff.find(expect) < 0:
@@ -39,8 +33,7 @@ def do_command_and_wait(chan, command, expect):
         buff += resp
         #print resp
 
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': replay : ' + buff + ' : wait for : ' + expect + '\r\n')
+    qs_trace('reply : ' + buff + ' : wait for : ' + expect)
     return buff
 
 def configureSIOnetwork(eth, ip, netmask, vmname, vcenter_ip, vcenter_username, vcenter_password, vmuser='root', vmpass='admin'):

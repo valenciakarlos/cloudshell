@@ -4,7 +4,7 @@ import os
 import time
 import json
 from vCenterCommon import deleteVMs, vmPower
-from quali_remote import quali_enter, quali_exit
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
 quali_enter(__file__)
 

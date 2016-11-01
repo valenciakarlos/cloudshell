@@ -5,16 +5,15 @@ import datetime
 from qualipy.api.cloudshell_api import CloudShellAPISession
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
-from quali_remote import notify_user
+from quali_remote import notify_user, quali_enter, quali_exit
 import os
 import json
 import sys
 # a = True
 # while a:
 #     time.sleep(10)
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
+quali_enter(__file__)
 starttime = datetime.datetime.now()
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -281,3 +280,5 @@ addSioStorageToESX(esx_for_Storage, sio_storage_name, vcenter_ip, vcenter_user, 
 
 endtime = datetime.datetime.now()
 print "Total Configuration time: " + str(endtime - starttime)
+
+quali_exit(__file__)

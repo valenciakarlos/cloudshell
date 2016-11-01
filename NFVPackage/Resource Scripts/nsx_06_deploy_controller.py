@@ -16,7 +16,7 @@ import json
 import time
 from quali_remote import powershell
 from NSX_Common import *
-from quali_remote import quali_enter, quali_exit
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
 quali_enter(__file__)
 # with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
@@ -82,9 +82,8 @@ scope = 'globalroot-0'
 ip_pool_moref = ''
 o = rest_api_query('''https://''' + nsx_ip + '''/api/2.0/services/ipam/pools/scope/''' + scope, nsx_user, nsx_password, 'get', '')
 pools = json.loads(o)
-f = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': o=' + str(o) + 'pools=' + str(pools) + '\r\n')
-f.close()
+
+qs_trace('o=' + str(o) + 'pools=' + str(pools))
 
 for p in pools['ipAddressPools']:
     if p['name'].lower() == nsx_controllers_ip_pool_name.lower():

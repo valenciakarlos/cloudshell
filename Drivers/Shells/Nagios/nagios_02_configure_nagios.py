@@ -6,9 +6,9 @@ import time
 import paramiko
 import sys
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
+quali_enter(__file__)
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
 attrs = resource['attributes']
@@ -312,8 +312,7 @@ while retries > 0:
     stdin, stdout, ssh_stderr = ssh.exec_command("ls -l /usr/local/nagios/libexec/QualiChecks.py")
     out = stdout.read()
     if 'rw-r--r--' in out:
-        with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-            f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': failed to change chmod, chmod output: ' + out + '\r\n')
+        qs_trace('failed to change chmod, chmod output: ' + out)
         retries -= 1
     else:
         retries = 0
@@ -322,3 +321,4 @@ if 'rw-r--r--' in out:
     print "Failed to modify QualiChecks.py permissions 5 times"
     sys.exit(1)
 
+quali_exit(__file__)

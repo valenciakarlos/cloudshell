@@ -5,16 +5,15 @@ import os
 import time
 import paramiko
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 
 #helpers
 def do_command(ssh1, command):
     if command:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + '\r\n')
-        g.close()
+        qs_trace('ssh : ' + command)
         stdin, stdout, stderr = ssh1.exec_command(command)
         stdin.close()
         a = []
@@ -23,9 +22,7 @@ def do_command(ssh1, command):
         for line in stderr.read().splitlines():
             a.append(line + '\n')
         rv = '\n'.join(a)
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-        g.close()
+        qs_trace('ssh result: ' + rv)
         return rv
 
 
@@ -75,3 +72,4 @@ do_command(ssh, proxycert)
 
 print 'self-signed certificates created'
 
+quali_exit(__file__)

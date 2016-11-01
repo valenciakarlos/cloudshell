@@ -47,15 +47,14 @@
 #
 #
 
-import json
 import os
 from threading import Thread
 from time import sleep
 
 import requests
-from cloudshell.core.logger.qs_logger import get_qs_logger
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import InputNameValue, CloudShellAPISession
+from quali_remote import qs_info
 
 # copy {Project.LogPath} {strreplace(Project.LogPath,'.log','.' + currenttime2str('yyyy-MM-dd HH-mm-ss') + '.log')}
 # {Project.LogPath} {currenttime2str}: Log file cleared
@@ -102,11 +101,10 @@ class ServiceSleep:
     def __repr__(self):
         return 'sleep,,,"%d seconds%s"' % (self.seconds, ' - ' + self.message if self.message else '')
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -117,7 +115,7 @@ class ServiceSleep:
                     sleep(self.seconds)
                 if self.message:
                     if not simulated:
-                        csapi.WriteMessageToReservationOutput(resid, self.message)
+                        qs_info('Sleeping %d seconds - %s ' % (self.seconds, self.message))
                     else:
                         rv += str(self) + '\n'
         return rv
@@ -135,11 +133,10 @@ class ServicePrint:
     def __repr__(self):
         return 'print,,,"%s"' % (self.message)
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -147,7 +144,7 @@ class ServicePrint:
         for svc in resdetails.Services:
             if self.service_model == svc.ServiceName:
                 if not simulated:
-                    csapi.WriteMessageToReservationOutput(resid, self.message)
+                    qs_info(self.message)
                     rv += self.message + '\n'
                 else:
                     rv += 'found\n'
@@ -166,11 +163,10 @@ class ResourceLiveStatus:
     def __repr__(self):
         return 'resource live status,"%s","%s","%s"' % (self.resource_model, self.status, self.message)
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -197,11 +193,10 @@ class ServiceLiveStatus:
     def __repr__(self):
         return 'service live status,"%s","%s","%s"' % (self.service_model, self.status, self.message)
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -230,11 +225,10 @@ class EnvironmentCommand:
     def __repr__(self):
         return 'command,ENVIRONMENT,"%s","%s"' % (self.command, 'dynamic' if self.input_generator else str(self.input_dict))
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -266,11 +260,10 @@ class ServiceCommand:
     def __repr__(self):
         return 'service command,"%s","%s","%s"' % (self.service_model, self.command, 'dynamic' if self.input_generator else str(self.input_dict))
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -304,11 +297,10 @@ class ResourceCommand:
     def __repr__(self):
         return 'resource command,"%s","%s","%s"' % (self.resource_model, self.command, 'dynamic' if self.input_generator else str(self.input_dict))
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -356,11 +348,10 @@ class ResourceRemoteCommand:
     def __repr__(self):
         return 'resource remote command,"%s","%s","%s"' % (self.resource_model, self.command, 'dynamic' if self.input_generator else str(self.input_list))
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -408,11 +399,10 @@ class ResourceEnqueuedCommand:
     def __repr__(self):
         return 'enqueue resource command,"%s","%s","%s"' % (self.resource_model, self.command, 'dynamic' if self.input_generator else str(self.input_list))
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -440,11 +430,10 @@ class ResourceAutoloadCommand:
     def __repr__(self):
         return 'resource autoload command,"%s",,' % (self.resource_model)
 
-    def execute(self, csapi, resid, resdetails, logger, simulated):
+    def execute(self, csapi, resid, resdetails, simulated):
         """
         :param csapi: CloudShellAPISession
         :param resid: str
-        :param logger: qs_logger
         :param simulated: bool
         :return: str
         """
@@ -612,8 +601,6 @@ def go(printmode, include_ranges='', exclude_ranges=''):
     ]
 
     csv = ''
-    # print 'getting logger'
-    logger = get_qs_logger(log_group=resid, log_file_prefix='NFV')
 
     # print 'getting details'
     resdetails = csapi.GetReservationDetails(resid).ReservationDescription
@@ -622,18 +609,12 @@ def go(printmode, include_ranges='', exclude_ranges=''):
         print i
         if inranges(i, include_ranges) and not inranges(i, exclude_ranges):
             # print 'included'
-            try:
-                result = step.execute(csapi, resid, resdetails, logger, printmode)
-                if result:
-                    if printmode:
-                        csv += '%d,%s\n' % (i, str(step))
-                    logger.info(str(step))
-                    logger.info(result)
-                    # csapi.WriteMessageToReservationOutput(resid, str(step))
-            except Exception as e:
-                logger.error(str(e))
-                raise e
-        logger.info(str(step))
+            result = step.execute(csapi, resid, resdetails, printmode)
+            if result:
+                if printmode:
+                    csv += '%d,%s\n' % (i, str(step))
+                qs_info(str(step))
+                qs_info(result)
 
     if printmode:
         con_details = helpers.get_connectivity_context_details()

@@ -1,24 +1,19 @@
 import json
-import re
-from time import sleep, strftime, time, strftime
+from quali_remote import qs_trace, qs_info
+from time import sleep, time
 
 import paramiko
 import requests
 import subprocess
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext, AutoLoadResource, \
-    AutoLoadAttribute, AutoLoadDetails, CancellationContext, AutoLoadCommandContext
+    AutoLoadDetails, AutoLoadCommandContext
 import cloudshell.api.cloudshell_api
 from cloudshell.api.cloudshell_api import ResourceInfoDto, ResourceAttributesUpdateRequest, AttributeNameValue, PhysicalConnectionUpdateRequest
-import random
-from cloudshell.core.logger.qs_logger import get_qs_logger
 
-logfilename = r'c:\ProgramData\QualiSystems\onrack.log'
 
-def ssh(host, user, password, command):
-    g = open(logfilename, 'a')
-    g.write(strftime('%Y-%m-%d %H:%M:%S') + ': ssh ' + host + ': ' + command + '\r\n')
-    g.close()
+def ssh(host, user, password, command, context):
+    qs_trace('ssh ' + host + ': ' + command, context)
     sshcl = paramiko.SSHClient()
     sshcl.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     sshcl.connect(host, username=user, password=password)
@@ -30,32 +25,20 @@ def ssh(host, user, password, command):
     for line in stderr.read().splitlines():
         a.append(line + '\n')
     rv = '\n'.join(a)
-    g = open(logfilename, 'a')
-    g.write(strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-    g.close()
+    qs_trace('ssh result: ' + rv, context)
     return rv
 
 
-def log(message):
-    for _ in range(10):
-        try:
-            with open(logfilename, 'a') as f:
-                f.write(strftime('%Y-%m-%d %H:%M:%S') + ': ' + message + '\r\n')
-            return
-        except:
-            sleep(random.randint(5))
-
-
-def rest_json(method, url, bodydict, token):
+def rest_json(method, url, bodydict, token, context):
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     }
     if token:
         headers['Authentication-Token'] = token
-    log('url=%s method=%s bodydict=%s token=%s' % (url, method, str(bodydict), str(token)))
+    qs_trace('url=%s method=%s bodydict=%s token=%s' % (url, method, str(bodydict), str(token)), context)
     o = requests.request(method.upper(), url, data=(json.dumps(bodydict) if bodydict else None), headers=headers, verify=False)
-    log('result=%s' % (str(o.text)))
+    qs_trace('result=%s' % (str(o.text)), context)
     if o.status_code >= 400:
         raise Exception('REST query failed: %d %s: %s' % (o.status_code, str(o), str(o.text)))
     return json.loads(o.text)
@@ -74,7 +57,6 @@ class OnrackShellDriver (ResourceDriverInterface):
         """
         ctor must be without arguments, it is created with reflection at run time
         """
-        self.logger = get_qs_logger("resources", "QS", "onrack")
         pass
 
     def initialize(self, context):
@@ -94,10 +76,6 @@ class OnrackShellDriver (ResourceDriverInterface):
 
         # return 'xxx:' + str(context) + str(ports)
         #
-        try:
-            resid = context.reservation.reservation_id
-        except:
-            resid = context.remote_reservation.reservation_id
         csapi = cloudshell.api.cloudshell_api.CloudShellAPISession(context.connectivity.server_address,
                                                                    port=context.connectivity.cloudshell_api_port,
                                                                    token_id=context.connectivity.admin_auth_token)
@@ -138,11 +116,11 @@ class OnrackShellDriver (ResourceDriverInterface):
         maxtries = 1
         while tries < maxtries:
             tries += 1
-            m = 'Deploying %s on %s: Attempt #%d...' % (os_type, attrs['ResourceName'], tries)
-            log(m)
-            csapi.WriteMessageToReservationOutput(resid, m)
+            qs_info('Deploying %s on %s: Attempt #%d...' % (os_type, attrs['ResourceName'], tries), context)
 
-            token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
+            token = rest_json('post', 'https://' + onrack_ip + '/login',
+                              {'email': onrack_username, 'password': onrack_password},
+                              '', context)['response']['user']['authentication_token']
 
             # ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
             # csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
@@ -179,13 +157,13 @@ class OnrackShellDriver (ResourceDriverInterface):
                         attrs['ESX DNS1'],
                         attrs['ESX DNS2'],
                     ]
-                }, token)
+                }, token, context)
 
                 taskid = x['Id']
                 state = 'no-state'
                 waited = 0
                 while True:
-                    state = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/TaskService/Tasks/' + taskid, None, token)['TaskState']
+                    state = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/TaskService/Tasks/' + taskid, None, token, context)['TaskState']
                     if state == 'Running':
                         waited += 1
                         if waited > 200:
@@ -196,8 +174,8 @@ class OnrackShellDriver (ResourceDriverInterface):
 
                 if state != 'Completed':
                     try:
-                        taskstatus = rest_json('get', 'http://' + onrack_ip + ':8080/api/common/workflows/' + taskid, None, None)
-                        taskdump += 'task ' + taskstatus['instanceId'] + '\n'
+                        taskstatus = rest_json('get', 'http://' + onrack_ip + ':8080/api/common/workflows/' + taskid, None, None, context)
+                        taskdump = 'task ' + taskstatus['instanceId'] + '\n'
                         taskdump += 'started ' + taskstatus['createdAt'] + '\n'
                         if 'target' in taskstatus['context']:
                             taskdump += 'target ' + taskstatus['context']['target'] + '\n'
@@ -211,39 +189,35 @@ class OnrackShellDriver (ResourceDriverInterface):
                     except:
                         taskdump = '(also could not dump subtask report)'
                     raise Exception('OS deployment ended with status %s: %s' % (state, taskdump))
-                log('Sleeping 100 seconds')
+                qs_info('Sleeping 100 seconds', context)
                 sleep(100)
                 ping = subprocess.check_output(['ping', ip172], stderr=subprocess.STDOUT)
                 # if 'host unreachable' in ping or '0% loss' not in ping:
                 if 'TTL' not in ping:
                     raise Exception('Ping failed')
 
-                log('Ping succeeded')
+                qs_info('Ping succeeded', context)
                 pw = attrs['ESX Root Password']
                 ip10 = attrs['ResourceAddress']
                 netmask10 = attrs['ESX Netmask']
                 gateway10 = attrs['ESX Gateway']
-                ssh(ip172, 'root', pw, 'esxcfg-vswitch -a vSwitch1')
-                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1')
-                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1')
-                ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
-                ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10)
-                ssh(ip172, 'root', pw, 'esxcli system maintenanceMode set --enable false')
-                ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup remove -v vSwitch0 -p "VM Network"')
-                ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup add    -v vSwitch1 -p "VM Network"')
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch -a vSwitch1', context)
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1', context)
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1', context)
+                ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1', context)
+                ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10, context)
+                ssh(ip172, 'root', pw, 'esxcli system maintenanceMode set --enable false', context)
+                ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup remove -v vSwitch0 -p "VM Network"', context)
+                ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup add    -v vSwitch1 -p "VM Network"', context)
 
                 csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Online', '')
                 csapi.SetAttributeValue(attrs['ResourceName'], 'Requires OS Deployment', 'False')
-                m = 'Finished installing %s on %s' % (os_type, attrs['ResourceName'])
-                csapi.WriteMessageToReservationOutput(resid, m)
-                log(m)
+                qs_info('Finished installing %s on %s' % (os_type, attrs['ResourceName']), context)
                 return
             except Exception as e:
-                m = 'Error installing %s on %s: %s' % (os_type, attrs['ResourceName'], str(e))
-                csapi.WriteMessageToReservationOutput(resid, m)
-                log(m)
+                qs_info('Error installing %s on %s: %s' % (os_type, attrs['ResourceName'], str(e)), context)
             sleep(30)
-        raise Exception('Failed to install %s on %s in %d tries. See %s for details.' % (os_type, attrs['ResourceName'], maxtries, logfilename))
+        raise Exception('Failed to install %s on %s in %d tries' % (os_type, attrs['ResourceName'], maxtries))
     
     
     def get_inventory(self, context):
@@ -253,6 +227,7 @@ class OnrackShellDriver (ResourceDriverInterface):
         :return Attribute and sub-resource information for the Shell resource you can return an AutoLoadDetails object
         :rtype: AutoLoadDetails
         """
+
         # See below some example code demonstrating how to return the resource structure
         # and attributes. In real life, of course, if the actual values are not static,
         # this code would be preceded by some SNMP/other calls to get the actual resource information
@@ -311,16 +286,18 @@ class OnrackShellDriver (ResourceDriverInterface):
         # password = csapi.DecryptPassword(context.resource.attributes['OnRack Password']).Value
         password = context.resource.attributes['OnRack Password']
 
-        token = rest_json('post', 'https://' + onrack_ip + '/login', { 'email': username, 'password': password }, '')['response']['user']['authentication_token']
+        token = rest_json('post', 'https://' + onrack_ip + '/login',
+                          { 'email': username, 'password': password},
+                          '', context)['response']['user']['authentication_token']
 
         systemlist = [x['@odata.id'].split('/')[-1]
-                      for x in rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems', None, token)['Members']]
+                      for x in rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems', None, token, context)['Members']]
 
         nodeid2eths = {}
 
-        for node in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token):
+        for node in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes', None, token, context):
             try:
-                for ifname, ifdata in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + node['id'] + '/catalogs/ohai', None, token)['data']['network']['interfaces'].iteritems():
+                for ifname, ifdata in rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + node['id'] + '/catalogs/ohai', None, token, context)['data']['network']['interfaces'].iteritems():
                     if ifdata.get('encapsulation', '') != 'Ethernet':
                         continue
                     if node['id'] not in nodeid2eths:
@@ -346,14 +323,14 @@ class OnrackShellDriver (ResourceDriverInterface):
                         elif addrdata['family'] == 'inet6':
                             eth['IPv6 Address'] = addr
             except:
-                log('ohai failed for node ' + node['id'])
+                qs_trace('ohai failed for node ' + node['id'], context)
 
         currhosts = [{'a': 'b'}]
         if True:
             currhosts = []
         for system in systemlist:
             url = 'https://' + onrack_ip + "/redfish/v1/Systems/" + system
-            out = rest_json('get', url, None, token)
+            out = rest_json('get', url, None, token, context)
             if out['Oem']['EMC']['VisionID_System']:
                 name = out['Name']
                 model = out.get('Model', None)
@@ -390,7 +367,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                     "Location": context.resource.attributes['Location'],
                 })
             else:
-                log('Skipping system %s' % url)
+                qs_info('Skipping system %s' % url, context)
 
         # currhosts = [
         #     # {"OnRackID": "or1", "ResourceName": "Host01", "ResourceAddress": "1", "ResourceFamily": "Compute Server", "ResourceModel": "ComputeShell", "ResourceFolder": "Compute", "ResourceDescription": "descr", "Number of CPUs": "4", "Memory Size": "64", "Vendor": "Dell", "Model": "R630", "Serial Number": "s1",  },
@@ -502,9 +479,9 @@ class OnrackShellDriver (ResourceDriverInterface):
                 for host in currhosts
                 ]
             for x in roots + rootsubs + onracksubs:
-                log(x.ResourceFullName)
+                qs_trace(x.ResourceFullName, context)
                 for av in x.AttributeNamesValues:
-                    log('  ' + av.Name + ' = ' + av.Value)
+                    qs_trace('  ' + av.Name + ' = ' + av.Value, context)
             csapi.SetAttributesValues(roots + rootsubs + onracksubs)
             for host in currhosts:
                 csapi.UpdateResourceDescription(host['ResourceName'], host['ResourceDescription'])

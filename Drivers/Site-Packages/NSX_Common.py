@@ -12,9 +12,7 @@ def nsx_wait(nsx_ip, user, password):
 
 def nsx_get_job_status(nsx_ip, nsx_user, nsx_password, job_moref):
     x = rest_api_query('https://' + nsx_ip + '/api/2.0/services/taskservice/job/' + job_moref, nsx_user, nsx_password, 'get', '')
-    f = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': Job status ' + job_moref + ': ' + x + '\n')
-    f.close()
+    qs_trace('Job status ' + job_moref + ': ' + x)
     return x
 
 
@@ -49,12 +47,9 @@ def rest_api_query_with_retry(url, user, password, method, body, is_body_json=Fa
 ''' + body.strip()
     for _ in [1, 2]:
         d = body.format(s)
-        f = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + url + ': ' + str(h) + ': ' + d + '\n')
+        qs_trace(url + ': ' + str(h) + ': ' + d)
         a = requests.request(method.upper(), url=url, auth=(user, password), verify=False, data=d, timeout=600, headers=h)
-        f = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(a.status_code) + ' ' + a.text + '\n')
-        f.close()
+        qs_trace(str(a.status_code) + ' ' + a.text)
         if 200 <= a.status_code < 400:
             return a.text
         s = '<certificateThumbprint>' + json.loads(a.text)['details'] + '</certificateThumbprint>'

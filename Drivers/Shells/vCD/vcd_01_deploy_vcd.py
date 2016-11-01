@@ -5,9 +5,9 @@ import os
 import time
 import sys
 from vCenterCommon import deployVM
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -37,10 +37,7 @@ vcenter_ip = attrs['vCenter IP']
 datacenter = attrs['Datacenter']
 cluster = attrs['vCD Cluster']
 
-try:
-    command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:DNS1=' + dns1 + ' --prop:DNS2=' + dns2 + ' --prop:Gateway=' + gateway + ' --prop:Gateway2=' + gateway2 + ' --prop:Hostname="' + hostname + '"  --prop:IP=' + vcd_ip + ' --prop:IP2=' + vcd_ip2 + ' --prop:Netmask=' + netmask + ' --prop:Netmask2=' + netmask2 + ' --prop:Root_Password="' + rootpass + '" --prop:Search_Domains="' + search_domains + '" --net:"mgmtportgrp"="' + portgroup + '" --net:"cmpPortGroup"="' + portgroup2 + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
-except Exception, e:
-    print '\r\n' + str(e)
-    sys.exit(1)
+command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:DNS1=' + dns1 + ' --prop:DNS2=' + dns2 + ' --prop:Gateway=' + gateway + ' --prop:Gateway2=' + gateway2 + ' --prop:Hostname="' + hostname + '"  --prop:IP=' + vcd_ip + ' --prop:IP2=' + vcd_ip2 + ' --prop:Netmask=' + netmask + ' --prop:Netmask2=' + netmask2 + ' --prop:Root_Password="' + rootpass + '" --prop:Search_Domains="' + search_domains + '" --net:"mgmtportgrp"="' + portgroup + '" --net:"cmpPortGroup"="' + portgroup2 + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
+deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
 
+quali_exit(__file__)

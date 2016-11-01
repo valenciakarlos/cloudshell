@@ -3,10 +3,9 @@ import os
 import json
 import time
 
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
-
+quali_enter(__file__)
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -80,3 +79,5 @@ try:
     rest_api_query('''http://''' + versa_dir_ip + ''':9182/api/config/devices/template/Branches-Staging/config/system/vnf-manager''', versa_username, versa_password, 'put', '{"vnf-manager":{"ip-addresses":["' + versa_director_sb_ip + '/32"],"vnf-mgmt-interfaces":["tvi-0/3.0"]}}', is_body_json=True, return_xml=True)
 except Exception as e:
     print e
+
+quali_exit(__file__)

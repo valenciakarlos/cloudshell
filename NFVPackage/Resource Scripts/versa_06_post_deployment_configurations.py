@@ -2,8 +2,9 @@
 import os
 import re
 from vCenterCommon import *
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit, qs_trace, qs_info
+
+quali_enter(__file__)
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -53,8 +54,6 @@ branch2_eth = 'eth0'
 analytics_log_port = attrs['Versa Analytics Logs Port']
 
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 
 def firstEth(ip, netmask, gateway, dns, eth='eth0'):
@@ -66,9 +65,7 @@ def firstEth(ip, netmask, gateway, dns, eth='eth0'):
 #helpers
 def do_command(ssh1, command):
     if command:
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + '\r\n')
-        g.close()
+        qs_trace('ssh : ' + command)
         stdin, stdout, stderr = ssh1.exec_command(command)
         stdin.close()
         a = []
@@ -77,16 +74,12 @@ def do_command(ssh1, command):
         for line in stderr.read().splitlines():
             a.append(line + '\n')
         rv = '\n'.join(a)
-        g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-        g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh result: ' + rv + '\r\n')
-        g.close()
+        qs_trace('ssh result: ' + rv)
         return rv
 
 
 def do_command_and_wait(chan, command, expect):
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ssh : ' + command + ' : wait for : ' + expect + '\r\n')
-    g.close()
+    qs_trace('ssh : ' + command + ' : wait for : ' + expect)
     # Ssh and wait for the password prompt.
     chan.send(command + '\n')
 
@@ -96,8 +89,7 @@ def do_command_and_wait(chan, command, expect):
         resp = chan.recv(9999)
         buff += resp
         #print resp
-    g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
-    g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': replay : ' + buff + ' : wait for : ' + expect + '\r\n')
+    qs_trace('replay : ' + buff + ' : wait for : ' + expect)
     time.sleep(1)
     return buff
 
@@ -201,30 +193,29 @@ try:
 except Exception, e:
     print "Failed to configure Branch2, Error:\"" + e.message + '"'
 
-try:
-    #Configure Analytics
+#Configure Analytics
 
-    #connect
-    analssh = paramiko.SSHClient()
-    analssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) #allow auto-accepting new hosts
+#connect
+analssh = paramiko.SSHClient()
+analssh.set_missing_host_key_policy(paramiko.AutoAddPolicy()) #allow auto-accepting new hosts
 
-    analssh.connect(analytics_ip, username='versa', password='versa123')
+analssh.connect(analytics_ip, username='versa', password='versa123')
 
-    #start Analytics Config Wizard
-    analchan = analssh.invoke_shell()
-    do_command_and_wait(analchan, r'cli', expect=r' ')
-    do_command_and_wait(analchan, r'conf', expect=r' ')
-    do_command_and_wait(analchan, r'set log-collector-exporter local collectors collector1 address ' + analytics_sb_ip + ' port ' + analytics_log_port + ' transport tcp storage directory /var/tmp/log format syslog', expect=r' ')
-    do_command_and_wait(analchan, r'commit', expect=r' ')
-    do_command_and_wait(analchan, r'q', expect=r' ')
-    do_command_and_wait(analchan, r'q', expect=r' ')
-    do_command_and_wait(analchan, r'sudo /opt/versa/scripts/van-scripts/vansetup.py', expect=r' ')
-    time.sleep(1)
-    do_command_and_wait(analchan, r'versa123', expect=r' ')
-    time.sleep(100)
-    do_command_and_wait(analchan, r'y', expect=r' ')
-    time.sleep(200)
-    do_command_and_wait(analchan, r'y', expect=r' ')
-    time.sleep(100)
-except Exception, e:
-    print "Filaed to configure Analytics, Error:\"" + e.message + '"'
+#start Analytics Config Wizard
+analchan = analssh.invoke_shell()
+do_command_and_wait(analchan, r'cli', expect=r' ')
+do_command_and_wait(analchan, r'conf', expect=r' ')
+do_command_and_wait(analchan, r'set log-collector-exporter local collectors collector1 address ' + analytics_sb_ip + ' port ' + analytics_log_port + ' transport tcp storage directory /var/tmp/log format syslog', expect=r' ')
+do_command_and_wait(analchan, r'commit', expect=r' ')
+do_command_and_wait(analchan, r'q', expect=r' ')
+do_command_and_wait(analchan, r'q', expect=r' ')
+do_command_and_wait(analchan, r'sudo /opt/versa/scripts/van-scripts/vansetup.py', expect=r' ')
+time.sleep(1)
+do_command_and_wait(analchan, r'versa123', expect=r' ')
+time.sleep(100)
+do_command_and_wait(analchan, r'y', expect=r' ')
+time.sleep(200)
+do_command_and_wait(analchan, r'y', expect=r' ')
+time.sleep(100)
+
+quali_exit(__file__)
