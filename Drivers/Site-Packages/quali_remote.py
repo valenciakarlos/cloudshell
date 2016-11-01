@@ -78,14 +78,14 @@ def quali_enter(fn):
     g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write('\n**************************************************************************************\n\n' +
             time.strftime('%Y-%m-%d %H:%M:%S') +
-            ': Function start\n\n' + fn.split('\\')[-1].replace('.py', '') + '\n' +
+            ': Function start\n\n' + fn.split('\\')[-1].replace('.pyc', '').replace('.py', '') + '\n' +
             dictpp(env2, '    ') +
             '\n**************************************************************************************\n' +
             '\n')
     g.close()
     g = open(r'c:\ProgramData\QualiSystems\Shells_brief.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Function start: ' + json.loads(os.environ['RESOURCECONTEXT'])['name'] +
-            ' - ' + fn.split('\\')[-1].replace('.py', '') + '\n\n')
+            ' - ' + fn.split('\\')[-1].replace('.pyc', '').replace('.py', '') + '\n\n')
     g.close()
 
 
@@ -94,12 +94,12 @@ def quali_exit(fn):
     g = open(r'c:\ProgramData\QualiSystems\Shells.log', 'a')
     g.write('\n**************************************************************************************\n' +
             time.strftime('%Y-%m-%d %H:%M:%S') +
-            ': Function ' + fn.split('\\')[-1].replace('.py', '') + ' completed (' + str(time.time() - start_time) + ')\n' +
+            ': Function ' + fn.split('\\')[-1].replace('.pyc', '').replace('.py', '') + ' completed (' + str(time.time() - start_time) + ')\n' +
             '**************************************************************************************\n')
     g.close()
     g = open(r'c:\ProgramData\QualiSystems\Shells_brief.log', 'a')
     g.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Function end: ' + json.loads(os.environ['RESOURCECONTEXT'])['name'] +
-            ' - ' + fn.split('\\')[-1].replace('.py', '') + ' (' + str(time.time() - start_time) + ')\n\n')
+            ' - ' + fn.split('\\')[-1].replace('.pyc', '').replace('.py', '') + ' (' + str(time.time() - start_time) + ')\n\n')
     g.close()
 
 def qualiroot():
@@ -310,7 +310,7 @@ def rest_api_query(url, user, password, method, body, is_body_json=False, return
     from requests.packages.urllib3.exceptions import InsecureRequestWarning
     requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') +
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.pyc', '').replace('.py', '') +
                 ': ' + url + ': ' + body + '\r\n')
     h = {}
     if return_xml:
@@ -331,7 +331,7 @@ def rest_api_query(url, user, password, method, body, is_body_json=False, return
     else:
         a = requests.request(method.upper(), url=url, auth=(user, password), verify=False, timeout=600, headers=h)
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') +
+        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.pyc', '').replace('.py', '') +
                 ': ' + str(a.status_code) + ' ' + a.text + '\r\n')
     if 200 <= a.status_code < 400:
         return a.text

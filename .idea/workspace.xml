@@ -2,54 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compute-shell.zip" afterPath="$PROJECT_DIR$/compute-shell.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/onrack-shell.zip" afterPath="$PROJECT_DIR$/onrack-shell.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site_manager_shell.zip" afterPath="$PROJECT_DIR$/site_manager_shell.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_06_deploy_controller.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_07_create_vxlan_segment.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_07_create_vxlan_segment.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_09_configure_host_vteps.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_09_configure_host_vteps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_10_create_transport_zone.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_11_create_logical_switch.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" afterPath="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_01_deploy_vcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_01_deploy_nsx.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_01_deploy_nsx.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_02_set_sso.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_02_set_sso.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_03_set_vcenter.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_03_set_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_04_add_nsx_admin.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_04_add_nsx_admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_05_create_ip_pools.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_05_create_ip_pools.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_06_deploy_controller.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_06_deploy_controller.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_07_create_vxlan_segment.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_07_create_vxlan_segment.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_08_install_host_vibs.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_08_install_host_vibs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_09_configure_host_vteps.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_09_configure_host_vteps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_10_create_transport_zone.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_10_create_transport_zone.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_11_create_logical_switch.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_11_create_logical_switch.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_uninstall.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/nsx_uninstall.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_01_install_sdc.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_01_install_sdc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_02_deploy_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/scaleio_03_configure_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_01_deploy_vcd.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_01_deploy_vcd.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_01_deploy_vlog.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vlog_01_deploy_vlog.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_01_deploy_vrops.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vrops_01_deploy_vrops.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,16 +45,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SIOCommon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="vcenter_01_deploy_vcenter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -125,12 +69,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nsx_02_set_sso.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nsx_02_set_sso.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-              <folding />
+            <state relative-caret-position="663">
+              <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+              <folding>
+                <element signature="e#152#200#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nsx_03_set_vcenter.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+              <folding>
+                <element signature="e#153#201#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,39 +96,21 @@
       <file leaf-file-name="NSX_Common.py" pinned="false" current-in-tab="false">
         <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/NSX_Common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="24" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="368">
+              <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vCenterCommon.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/vCenterCommon.py">
+      <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="348" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="537" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vCenterCommon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="519" column="31" selection-start-line="519" selection-start-column="31" selection-end-line="519" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSX_Common.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-              <folding />
+            <state relative-caret-position="538">
+              <caret line="333" column="123" selection-start-line="333" selection-start-column="123" selection-end-line="333" selection-end-column="123" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -225,7 +165,6 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py" />
-        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_05_create_ip_pools.py" />
@@ -237,10 +176,11 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_uninstall.py" />
         <option value="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
         <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_08_install_host_vibs.py" />
-        <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py" />
+        <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py" />
       </list>
     </option>
   </component>
@@ -439,28 +379,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vCenter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Drivers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shells" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vCD" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1367,16 +1285,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-          <folding>
-            <element signature="e#153#201#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_04_add_nsx_admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1493,16 +1401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/SIOCommon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
@@ -1547,14 +1445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="519" column="31" selection-start-line="519" selection-start-column="31" selection-end-line="519" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_01_deploy_nsx.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="759">
@@ -1565,27 +1455,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/NSX_Common.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="24" column="34" selection-start-line="0" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/NSX_Common.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
           <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/vCenterCommon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="519" column="31" selection-start-line="519" selection-start-column="31" selection-end-line="519" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="333" column="123" selection-start-line="333" selection-start-column="123" selection-end-line="333" selection-end-column="123" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/NSX_Common.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="36" column="4" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_03_set_vcenter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding>
+            <element signature="e#153#201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/NSX/nsx_02_set_sso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
+          <folding>
+            <element signature="e#152#200#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

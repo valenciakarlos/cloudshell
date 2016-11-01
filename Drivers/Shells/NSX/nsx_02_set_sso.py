@@ -34,7 +34,7 @@ sso_password = attrs['NSX SSO Password']
 if sso_fqdn:
     rest_api_query_with_retry('''https://''' + nsx_ip + '''/api/2.0/services/ssoconfig''', nsx_user, nsx_password, 'post', '''
     <ssoConfig>
-        <ssoLookupServiceUrl>https://''' + sso_fqdn + ''':7444/lookupservice/sdk</ssoLookupServiceUrl>
+        <ssoLookupServiceUrl>https://''' + sso_fqdn + ''':443/lookupservice/sdk</ssoLookupServiceUrl>
         <ssoAdminUsername>''' + sso_user + '''</ssoAdminUsername>
         <ssoAdminUserpassword>''' + sso_password + '''</ssoAdminUserpassword>
         {0}
