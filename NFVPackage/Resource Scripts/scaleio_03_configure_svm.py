@@ -71,10 +71,12 @@ callhome_syslog_facility = attrs['Call Home Syslog Facility']
 callhome_dns1 = attrs['Call Home DNS Server 1']
 callhome_dns2 = attrs['Call Home DNS Server 2']
 
+sio_data1_portgroup = attrs['Data Network Label']
+sio_data2_portgroup = attrs['Data2 Network Label']
 # IP Info
 mgmt_netmask = attrs['MGMT Subnet']
 data1_netmask = attrs['Data Subnet']
-data2_netmask = attrs['Second Data Subnet']
+data2_netmask = attrs['Data2 Subnet']
 mgmt_gw = attrs['MGMT Gateway']
 
 svm1_mgmt_ip = attrs['Primary MDM Management IP']
@@ -87,36 +89,48 @@ svm2_data1_ip = attrs['Secondary MDM Data IP']
 svm3_data1_ip = attrs['Tie Breaker Data IP']
 svm4_data1_ip = attrs['Gateway Data IP']
 
-svm1_data2_ip = '' #'192.168.73.250'
-svm2_data2_ip = '' #'192.168.73.251'
-svm3_data2_ip = '' #'192.168.73.252'
-svm4_data2_ip = '' #'192.168.73.253'
+svm1_data2_ip = attrs['Primary MDM Data2 IP']
+svm2_data2_ip = attrs['Secondary MDM Data2 IP']
+svm3_data2_ip = attrs['Tie Breaker Data2 IP']
+svm4_data2_ip = attrs['Gateway Data2 IP']
 
-sds1_mgmt_ip = attrs['SDS1 MGMT IP']
-sds2_mgmt_ip = attrs['SDS2 MGMT IP']
-sds3_mgmt_ip = attrs['SDS3 MGMT IP']
-sds4_mgmt_ip = attrs['SDS4 MGMT IP']
-
-sds1_data1_ip = attrs['SDS1 Data IP']
-sds2_data1_ip = attrs['SDS2 Data IP']
-sds3_data1_ip = attrs['SDS3 Data IP']
-sds4_data1_ip = attrs['SDS4 Data IP']
-
-sds1_data2_ip = '' #'192.168.73.250'
-sds2_data2_ip = '' #'192.168.73.251'
-sds3_data2_ip = '' #'192.168.73.252'
-sds4_data2_ip = '' #'192.168.73.253'
-
+# svm1_data2_ip = '10.10.109.1'
+# svm2_data2_ip = '10.10.109.2'
+# svm3_data2_ip = '10.10.109.3'
+# svm4_data2_ip = '10.10.109.4'
+#
+# sds1_mgmt_ip = attrs['SDS1 MGMT IP']
+# sds2_mgmt_ip = attrs['SDS2 MGMT IP']
+# sds3_mgmt_ip = attrs['SDS3 MGMT IP']
+# sds4_mgmt_ip = attrs['SDS4 MGMT IP']
+#
+# sds1_data1_ip = attrs['SDS1 Data IP']
+# sds2_data1_ip = attrs['SDS2 Data IP']
+# sds3_data1_ip = attrs['SDS3 Data IP']
+# sds4_data1_ip = attrs['SDS4 Data IP']
+#
+# sds1_data2_ip = '' #'192.168.73.250'
+# sds2_data2_ip = '' #'192.168.73.251'
+# sds3_data2_ip = '' #'192.168.73.252'
+# sds4_data2_ip = '' #'192.168.73.253'
+#
 _siodic = {
     'Primary': [svm1_mgmt_ip, svm1_data1_ip, svm1_data2_ip],
     'Secondary': [svm2_mgmt_ip, svm2_data1_ip, svm2_data2_ip],
     'TieBreaker': [svm3_mgmt_ip, svm3_data1_ip, svm3_data2_ip],
     'Gateway': [svm4_mgmt_ip, svm4_data1_ip, svm4_data2_ip],
-    'SDS-1': [sds1_mgmt_ip, sds1_data1_ip, sds1_data2_ip],
-    'SDS-2': [sds2_mgmt_ip, sds2_data1_ip, sds2_data2_ip],
-    'SDS-3': [sds3_mgmt_ip, sds3_data1_ip, sds3_data2_ip],
-    'SDS-4': [sds4_mgmt_ip, sds4_data1_ip, sds4_data2_ip],
+#     'SDS-1': [sds1_mgmt_ip, sds1_data1_ip, sds1_data2_ip],
+#     'SDS-2': [sds2_mgmt_ip, sds2_data1_ip, sds2_data2_ip],
+#     'SDS-3': [sds3_mgmt_ip, sds3_data1_ip, sds3_data2_ip],
+#     'SDS-4': [sds4_mgmt_ip, sds4_data1_ip, sds4_data2_ip],
 }
+
+sdsmgmt = attrs['SDS Management IPs CSV'].split(',')
+sdsdata = attrs['SDS Data IPs CSV'].split(',')
+sdsdata2 = attrs['SDS Data2 IPs CSV'].split(',')
+
+for i in range(len(sdsmgmt)):
+    _siodic['SDS-%d' % i+1] = [sdsmgmt[i], sdsdata[i], sdsdata2[i]]
 
 #connect to api
 api = CloudShellAPISession(connectivity_details["serverAddress"], reservation_details["ownerUser"], reservation_details["ownerPass"], reservation_details["domain"])
@@ -136,14 +150,21 @@ esxs.pop()
 esx_for_Storage = esxs[0].split(",")[0]
 
 
-
-
 # Get ESX Data IPs
 sdcdatalist = []
-sdcdataips = getESXDataIPs(vcenter_ip, vcenter_user, vcenter_password, datacenter, esx_excludes)
-for sdc in sdcdataips.split(","):
-    sdcdatalist.append(sdc)
+sdcdataips = getESXDataIPs(vcenter_ip, vcenter_user, vcenter_password, datacenter, esx_excludes, sio_data1_portgroup,
+                           sio_data2_portgroup)
+sdc_data1 = sdcdataips.split(';')[0].split(',')
+sdc_data2 = sdcdataips.split(';')[1].split(',')
+if len(sdc_data1) >= len(sdc_data2):
+    for sdc in sdc_data1:
+        sdcdatalist.append(sdc)
+else:
+    for sdc in sdc_data2:
+        sdcdatalist.append(sdc)
 
+#  DEBUG
+# sdcdatalist = ['10.10.109.72','10.10.109.74','10.10.109.198']#,'10.10.110.72','10.10.110.74','10.10.110.198']
 # Get Disks of each SVM
 diskdic = {}
 try:
@@ -204,16 +225,31 @@ except Exception, e:
 notify_user(api, reservationId, "Configure ScaleIO MDM Cluster")
 svmlist = []
 try:
-    configureSDS([svm1_mgmt_ip, svm1_data1_ip], [svm2_mgmt_ip, svm2_data1_ip], [svm3_mgmt_ip, svm3_data1_ip], adminpassword=sio_admin_password, password=svm_password)
+    configureSDS([svm1_mgmt_ip, svm1_data1_ip, svm1_data2_ip], [svm2_mgmt_ip, svm2_data1_ip, svm2_data2_ip],
+                 [svm3_mgmt_ip, svm3_data1_ip, svm3_data2_ip], adminpassword=sio_admin_password, password=svm_password)
     configureMainStorage(svm1_mgmt_ip, svm2_mgmt_ip, adminpassword=sio_admin_password, zp=zp, backscan=backscanner, sysname=system_name, password=svm_password, sp=storage_pool_name, pd=prot_domain_name)
+    # should be changed to support a mismatch in the number of faultsets and sds's
     faults = createFaultsets(svm1_mgmt_ip, adminpassword=sio_admin_password, password=svm_password, pd=prot_domain_name, faultnameprefix=fault_name_prefix, number=fault_number)
     for name in siodic:
         _vm_name = vm_name + '-' + name
         if name != "Gateway":
-            svmlist.append(_siodic[name][1])
+            ips = ''
+            if _siodic[name][1]:
+                ips = _siodic[name][1]
+            if _siodic[name][2]:
+                if ips:
+                    ips += ',' + _siodic[name][2]
+                else:
+                    ips = _siodic[name][2]
+            else:
+                ips = _siodic[name][0]
+
+            svmlist.append(ips)
             svmlist.append(diskdic[_vm_name][0])
+    # Need to Change to SDC UUID and not sdcdatalist
     addSdcNode(svm1_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, password=svm_password)
     time.sleep(30)
+    # should be changed to support a mismatch in the number of faultsets and sds's
     addSdsStorage(svm1_mgmt_ip, svm2_mgmt_ip, svmlist, adminpassword=sio_admin_password, rmcache=rmcache, faultlist=faults, password=svm_password, pd=prot_domain_name, sp=storage_pool_name)
     time.sleep(30)
     addVolume(svm1_mgmt_ip, svm2_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, volumetype=volume_type, volumesize=volume_size, password=svm_password, pd=prot_domain_name, sp=storage_pool_name)

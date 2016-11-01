@@ -128,11 +128,20 @@ class OnrackShellDriver (ResourceDriverInterface):
                 attrs['ResourceAddress'] = d.Address
                 attrs['ResourceName'] = d.Name
 
+        if attrs['Requires OS Deployment'].lower() in ['false', 'no']:
+            # todo log that we skipped it, "If you want to redeploy, set Requires OS Deployment to True"
+            return
+
         csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Offline', '')
-        csapi.WriteMessageToReservationOutput(resid, 'Installing %s on %s...' % (os_type, attrs['ResourceName']))
+        # csapi.WriteMessageToReservationOutput(resid, 'Installing %s on %s...' % (os_type, attrs['ResourceName']))
         tries = 0
-        maxtries = 3
+        maxtries = 1
         while tries < maxtries:
+            tries += 1
+            m = 'Deploying %s on %s: Attempt #%d...' % (os_type, attrs['ResourceName'], tries)
+            log(m)
+            csapi.WriteMessageToReservationOutput(resid, m)
+
             token = rest_json('post', 'https://' + onrack_ip + '/login', {'email': onrack_username, 'password': onrack_password}, '')['response']['user']['authentication_token']
 
             # ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
@@ -200,12 +209,13 @@ class OnrackShellDriver (ResourceDriverInterface):
 
                         taskdump += json.dumps(taskstatus)
                     except:
-                        taskdump = 'taskdump failed'
+                        taskdump = '(also could not dump subtask report)'
                     raise Exception('OS deployment ended with status %s: %s' % (state, taskdump))
                 log('Sleeping 100 seconds')
                 sleep(100)
                 ping = subprocess.check_output(['ping', ip172], stderr=subprocess.STDOUT)
-                if 'host unreachable' in ping or '0% loss' not in ping:
+                # if 'host unreachable' in ping or '0% loss' not in ping:
+                if 'TTL' not in ping:
                     raise Exception('Ping failed')
 
                 log('Ping succeeded')
@@ -219,7 +229,11 @@ class OnrackShellDriver (ResourceDriverInterface):
                 ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1')
                 ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10)
                 ssh(ip172, 'root', pw, 'esxcli system maintenanceMode set --enable false')
+                ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup remove -v vSwitch0 -p "VM Network"')
+                ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup add    -v vSwitch1 -p "VM Network"')
+
                 csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Online', '')
+                csapi.SetAttributeValue(attrs['ResourceName'], 'Requires OS Deployment', 'False')
                 m = 'Finished installing %s on %s' % (os_type, attrs['ResourceName'])
                 csapi.WriteMessageToReservationOutput(resid, m)
                 log(m)
@@ -228,11 +242,6 @@ class OnrackShellDriver (ResourceDriverInterface):
                 m = 'Error installing %s on %s: %s' % (os_type, attrs['ResourceName'], str(e))
                 csapi.WriteMessageToReservationOutput(resid, m)
                 log(m)
-            tries += 1
-            m = 'Retrying deployment of %s on %s: Attempt %d' % (os_type, attrs['ResourceName'], tries)
-            log(m)
-            csapi.WriteMessageToReservationOutput(resid, m)
-
             sleep(30)
         raise Exception('Failed to install %s on %s in %d tries. See %s for details.' % (os_type, attrs['ResourceName'], maxtries, logfilename))
     

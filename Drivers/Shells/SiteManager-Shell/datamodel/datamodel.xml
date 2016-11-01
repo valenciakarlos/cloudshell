@@ -23,6 +23,11 @@
 	     <Rule Name="Configuration" />
       </Rules>
     </AttributeInfo>
+	<AttributeInfo Name="Management Gateway" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
 	<AttributeInfo Name="Management DNS1" Type="String" DefaultValue="" IsReadOnly="false" Description="">
       <Rules Override="false">
 	     <Rule Name="Configuration" />
@@ -58,7 +63,37 @@
 	     <Rule Name="Configuration" />
       </Rules>
     </AttributeInfo>
+	<AttributeInfo Name="Data Gateway" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
 	<AttributeInfo Name="Data Search Domains" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data2 Start IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data2 End IP" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data2 Netmask" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data2 Gateway" Type="String" DefaultValue="" IsReadOnly="false" Description="">
+      <Rules Override="false">
+	     <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+	<AttributeInfo Name="Data2 Search Domains" Type="String" DefaultValue="" IsReadOnly="false" Description="">
       <Rules Override="false">
 	     <Rule Name="Configuration" />
       </Rules>

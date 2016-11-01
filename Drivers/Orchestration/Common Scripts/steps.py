@@ -244,7 +244,7 @@ class EnvironmentCommand:
         else:
             inp = self.input_dict
         if not simulated:
-            rv += csapi.ExecuteEnvironmentCommand(resid, [InputNameValue(attr, value) for attr, value in inp.iteritems()], printOutput=False).Output + '\n'
+            rv += csapi.ExecuteEnvironmentCommand(resid, self.command, [InputNameValue(attr, value) for attr, value in inp.iteritems()], printOutput=False).Output + '\n'
         else:
             rv += 'found\n'
         return rv
@@ -483,6 +483,7 @@ def go(printmode, include_ranges='', exclude_ranges=''):
 
     steps = [
         EnvironmentCommand('copy_prereq'),
+        EnvironmentCommand('copy_inputs'),
 
         # ResourceLiveStatus('OnRack', 'Offline'),
         # ResourceAutoloadCommand('OnRack'),
@@ -548,11 +549,14 @@ def go(printmode, include_ranges='', exclude_ranges=''):
 
         ServiceLiveStatus('vRealize Log Insight', 'Offline'),
         ServiceCommand('vRealize Log Insight', 'vlog_01_deploy_vlog'),
-        ServiceSleep('vRealize Log Insight', 600, 'Waiting for Log Insight VM to respond...'),
-        ServiceCommand('vRealize Log Insight', 'vlog_03_apply_pak_patch'),
-        ServiceCommand('vRealize Log Insight', 'vlog_04_vcenter_registration'),
-        ServiceCommand('vRealize Log Insight', 'vlog_05_vrops_registration'),
+        # ServiceSleep('vRealize Log Insight', 600, 'Waiting for Log Insight VM to respond...'),
+        # ServiceCommand('vRealize Log Insight', 'vlog_03_apply_pak_patch'),
+        # ServiceCommand('vRealize Log Insight', 'vlog_04_vcenter_registration'),
+        # ServiceCommand('vRealize Log Insight', 'vlog_05_vrops_registration'),
         ServiceLiveStatus('vRealize Log Insight', 'Online'),
+
+
+        # todo vRealize deploy, other steps commented
 
         ServiceLiveStatus('Nagios Monitoring', 'Offline'),
         ServiceCommand('Nagios Monitoring', 'nagios_01_deploy_nagios'),

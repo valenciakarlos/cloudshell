@@ -5,10 +5,11 @@ import json
 import subprocess
 import time
 import sys
-from quali_remote import powershell
+from quali_remote import powershell, quali_enter, quali_exit
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -56,12 +57,15 @@ Get-VMHost | Set-VMHost -State Connected
 $VMHost = Get-VMHost
 $storMgr = Get-View $VMHost.ExtensionData.ConfigManager.DatastoreSystem
 
+# New-VirtualPortGroup -name "''' + vcenter_portgroup + '''" -VirtualSwitch vSwitch1 -ErrorAction SilentlyContinue
+
 $i = 2
 $storMgr.QueryAvailableDisksForVmfs($null) | %{
-  New-Datastore -name "'''+vcenter_datastore+'''" -vmfs -path $_.CanonicalName
+  New-Datastore -name "'''+vcenter_datastore+'''" -vmfs -path $_.CanonicalName -ErrorAction SilentlyContinue
   #$i = $i+1
   break
 }
+
 
 ''')
 
@@ -168,17 +172,20 @@ json = '''{
     }
 }'''
 
+# For testing, if you can't set a DNS entry, manually enter the vCenter IP in the vCenter Hostname attribute.
+# Change the code for system.name from vcenter_hostname to vcenter_ip if the hostname is not expected to be in DNS in production.
 
 with open(r'c:\deploy\vcsaparams.json', 'w') as j:
     j.write(json)
 
 
 # deploy 
-try:
-    subprocess.check_output(r'c:\deploy\vcsa\vcsa-cli-installer\win32\vcsa-deploy.exe --no-esx-ssl-verify c:\deploy\vcsaparams.json', shell=True)
-except Exception as e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcenter deploy error: ' + str(e) + '\r\n')
-    sys.exit(1)
-
+# try:
+subprocess.check_output(r'c:\deploy\vcsa\vcsa-cli-installer\win32\vcsa-deploy.exe --no-esx-ssl-verify c:\deploy\vcsaparams.json', shell=True)
+# except Exception as e:
+#     print e
+#     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#         f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': vcenter deploy error: ' + str(e) + '\r\n')
+#     sys.exit(1)
+#
+quali_exit(__file__)

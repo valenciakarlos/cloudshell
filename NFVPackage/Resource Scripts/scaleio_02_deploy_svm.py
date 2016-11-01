@@ -36,7 +36,7 @@ vm_name = attrs['ScaleIO SVM Name PreFix']
 sio_svm_cluster = attrs['ScaleIO Cluster']
 sio_mgmt_portgroup = attrs['Management Network Label']
 sio_data1_portgroup = attrs['Data Network Label']
-sio_data2_portgroup = attrs['Second Data Network Label']
+sio_data2_portgroup = attrs['Data2 Network Label']
 
 
 # Path Info
@@ -46,7 +46,7 @@ ova_path = attrs['OVA Full Path']
 # IP Info
 mgmt_netmask = attrs['MGMT Subnet']
 data1_netmask = attrs['Data Subnet']
-data2_netmask = attrs['Second Data Subnet']
+data2_netmask = attrs['Data2 Subnet']
 mgmt_gw = attrs['MGMT Gateway']
 
 svm1_mgmt_ip = attrs['Primary MDM Management IP']
@@ -59,25 +59,30 @@ svm2_data1_ip = attrs['Secondary MDM Data IP']
 svm3_data1_ip = attrs['Tie Breaker Data IP']
 svm4_data1_ip = attrs['Gateway Data IP']
 
-svm1_data2_ip = '' #'192.168.73.250'
-svm2_data2_ip = '' #'192.168.73.251'
-svm3_data2_ip = '' #'192.168.73.252'
-svm4_data2_ip = '' #'192.168.73.253'
+svm1_data2_ip = attrs['Primary MDM Data2 IP']
+svm2_data2_ip = attrs['Secondary MDM Data2 IP']
+svm3_data2_ip = attrs['Tie Breaker Data2 IP']
+svm4_data2_ip = attrs['Gateway Data2 IP']
 
-sds1_mgmt_ip = attrs['SDS1 MGMT IP']
-sds2_mgmt_ip = attrs['SDS2 MGMT IP']
-sds3_mgmt_ip = attrs['SDS3 MGMT IP']
-sds4_mgmt_ip = attrs['SDS4 MGMT IP']
+# svm1_data2_ip = '10.10.109.1'
+# svm2_data2_ip = '10.10.109.2'
+# svm3_data2_ip = '10.10.109.3'
+# svm4_data2_ip = '10.10.109.4'
 
-sds1_data1_ip = attrs['SDS1 Data IP']
-sds2_data1_ip = attrs['SDS2 Data IP']
-sds3_data1_ip = attrs['SDS3 Data IP']
-sds4_data1_ip = attrs['SDS4 Data IP']
-
-sds1_data2_ip = '' #'192.168.73.250'
-sds2_data2_ip = '' #'192.168.73.251'
-sds3_data2_ip = '' #'192.168.73.252'
-sds4_data2_ip = '' #'192.168.73.253'
+# sds1_mgmt_ip = attrs['SDS1 MGMT IP']
+# sds2_mgmt_ip = attrs['SDS2 MGMT IP']
+# sds3_mgmt_ip = attrs['SDS3 MGMT IP']
+# sds4_mgmt_ip = attrs['SDS4 MGMT IP']
+#
+# sds1_data1_ip = attrs['SDS1 Data IP']
+# sds2_data1_ip = attrs['SDS2 Data IP']
+# sds3_data1_ip = attrs['SDS3 Data IP']
+# sds4_data1_ip = attrs['SDS4 Data IP']
+#
+# sds1_data2_ip = '' #'192.168.73.250'
+# sds2_data2_ip = '' #'192.168.73.251'
+# sds3_data2_ip = '' #'192.168.73.252'
+# sds4_data2_ip = '' #'192.168.73.253'
 
 siodic = {
     'Primary': [svm1_mgmt_ip, svm1_data1_ip, svm1_data2_ip],
@@ -86,12 +91,20 @@ siodic = {
 }
 
 sdsippool = {
-    'SDS-1': [sds1_mgmt_ip, sds1_data1_ip, sds1_data2_ip],
-    'SDS-2': [sds2_mgmt_ip, sds2_data1_ip, sds2_data2_ip],
-    'SDS-3': [sds3_mgmt_ip, sds3_data1_ip, sds3_data2_ip],
-    'SDS-4': [sds4_mgmt_ip, sds4_data1_ip, sds4_data2_ip],
+    # 'SDS-1': [sds1_mgmt_ip, sds1_data1_ip, sds1_data2_ip],
+    # 'SDS-2': [sds2_mgmt_ip, sds2_data1_ip, sds2_data2_ip],
+    # 'SDS-3': [sds3_mgmt_ip, sds3_data1_ip, sds3_data2_ip],
+    # 'SDS-4': [sds4_mgmt_ip, sds4_data1_ip, sds4_data2_ip],
 
 }
+sdsmgmt = attrs['SDS Management IPs CSV'].split(',')
+sdsdata = attrs['SDS Data IPs CSV'].split(',')
+sdsdata2 = attrs['SDS Data2 IPs CSV'].split(',')
+
+for i in range(len(sdsmgmt)):
+    sdsippool['SDS-%d' % i+1] = [sdsmgmt[i], sdsdata[i], sdsdata2[i]]
+
+
 
 #connect to api
 api = CloudShellAPISession(connectivity_details["serverAddress"], reservation_details["ownerUser"], reservation_details["ownerPass"], reservation_details["domain"])
@@ -180,7 +193,8 @@ except Exception, e:
     exit(1)
 
 # Add Gateway to the dictionary
-siodic['Gateway'] = [svm4_mgmt_ip, svm4_data1_ip, svm4_data2_ip, gatewayesx[1], gatewayesx[0]]
+siodic['Gateway'] = [svm4_mgmt_ip, '', '', gatewayesx[1], gatewayesx[0]]
+#  siodic['Gateway'] = [svm4_mgmt_ip, svm4_data1_ip, svm4_data2_ip, gatewayesx[1], gatewayesx[0]]
 
 # Add UUID attribute to the VMs
 notify_user(api, reservationId, "Power on VMs")

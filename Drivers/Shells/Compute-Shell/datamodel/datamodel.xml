@@ -290,7 +290,12 @@
       </Rules>
     </AttributeInfo>
 
-
+   <AttributeInfo Name="Requires OS Deployment" Type="Boolean" DefaultValue="True" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+        <Rule Name="Setting" />
+      </Rules>
+    </AttributeInfo>
 
   </Attributes>
   <ResourceFamilies>

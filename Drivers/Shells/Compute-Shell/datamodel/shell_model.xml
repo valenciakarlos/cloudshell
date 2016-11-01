@@ -142,6 +142,9 @@
                     <AllowedValues />
                 </AttachedAttribute>
 
+                <AttachedAttribute Name="Requires OS Deployment" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
             </AttachedAttributes>
             <AttributeValues>
                 <AttributeValue Name="User" Value="" />
@@ -187,6 +190,8 @@
                 <AttributeValue Name="ESX PXE Network IP" Value="" />
                 <AttributeValue Name="ESX PXE Network Gateway" Value="" />
                 <AttributeValue Name="ESX PXE Network Netmask" Value="" />
+
+                <AttributeValue Name="Requires OS Deployment" Value="True" />
 
             </AttributeValues>
             <ParentModels />

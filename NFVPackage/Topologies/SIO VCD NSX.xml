@@ -235,8 +235,8 @@
         <Attribute Name="Number of Faultsets" Value="" />
         <Attribute Name="Faultset Name PreFix" Value="" />
         <Attribute Name="Data Subnet" Value="" />
+        <Attribute Name="Data2 Subnet" Value="" />
         <Attribute Name="MGMT Subnet" Value="" />
-        <Attribute Name="Second Data Subnet" Value="" />
         <Attribute Name="Enable Background Scanner" Value="" />
         <Attribute Name="Volume Size" Value="" />
         <Attribute Name="Volume Type" Value="" />
@@ -278,32 +278,31 @@
         <Attribute Name="SVM Root Password" Value="" />
         <Attribute Name="Management Network Label" Value="" />
         <Attribute Name="Data Network Label" Value="" />
-        <Attribute Name="Second Data Network Label" Value="" />
+        <Attribute Name="Data2 Network Label" Value="" />
         <Attribute Name="Gateway Management IP" Value="" />
         <Attribute Name="Gateway Data IP" Value="" />
+        <Attribute Name="Gateway Data2 IP" Value="" />
         <Attribute Name="Gateway Datastore" Value="" />
         <Attribute Name="Primary MDM Management IP" Value="" />
         <Attribute Name="Primary MDM Data IP" Value="" />
+        <Attribute Name="Primary MDM Data2 IP" Value="" />
         <Attribute Name="Primary MDM Datastore" Value="" />
         <Attribute Name="Secondary MDM Management IP" Value="" />
         <Attribute Name="Secondary MDM Data IP" Value="" />
+        <Attribute Name="Secondary MDM Data2 IP" Value="" />
         <Attribute Name="Secondary MDM Datastore" Value="" />
         <Attribute Name="Tie Breaker Management IP" Value="" />
         <Attribute Name="Tie Breaker Data IP" Value="" />
+        <Attribute Name="Tie Breaker Data2 IP" Value="" />
         <Attribute Name="Tie Breaker Datastore" Value="" />
         <Attribute Name="ScaleIO SVM DiskType" Value="" />
         <Attribute Name="ScaleIO SVM Name PreFix" Value="" />
         <Attribute Name="ScaleIO Version" Value="" />
         <Attribute Name="SDC Path" Value="" />
         <Attribute Name="Exclude ESXs From SDC Role" Value="" />
-        <Attribute Name="SDS1 Data IP" Value="" />
-        <Attribute Name="SDS1 MGMT IP" Value="" />
-        <Attribute Name="SDS2 Data IP" Value="" />
-        <Attribute Name="SDS2 MGMT IP" Value="" />
-        <Attribute Name="SDS3 Data IP" Value="" />
-        <Attribute Name="SDS3 MGMT IP" Value="" />
-        <Attribute Name="SDS4 Data IP" Value="" />
-        <Attribute Name="SDS4 MGMT IP" Value="" />
+        <Attribute Name="SDS Management IPs CSV" Value="" />
+        <Attribute Name="SDS Data IPs CSV" Value="" />
+        <Attribute Name="SDS Data2 IPs CSV" Value="" />
       </Attributes>
     </Service>
     <Service PositionX="778" PositionY="595" Alias="Nagios Monitoring" ServiceName="Nagios Monitoring">

@@ -4,10 +4,11 @@ from vCenterCommon import *
 import json
 import time
 import os
-from quali_remote import powershell
+from quali_remote import powershell, quali_enter, quali_exit
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -87,10 +88,11 @@ for cluster in clusters:
     if cluster[0] != '':
         esxi = cluster[1].split(',')
         for e in esxi:
-            #Get Thumbprint
-            tp = session.getsslThumbprint(e)
-            session.add_host(cluster[0], e, tp, esx_username, esx_password)
-            # STEPS # Catch already added exception
+            if e:
+                #Get Thumbprint
+                tp = session.getsslThumbprint(e)
+                session.add_host(cluster[0], e, tp, esx_username, esx_password)
+                # STEPS # Catch already added exception
 
 
 # exit maintenance mode for all the vcenter hosts
@@ -110,3 +112,5 @@ $storMgr.QueryAvailableDisksForVmfs($null) | %{
 }#>
 
 ''')
+
+quali_exit(__file__)

@@ -18,6 +18,9 @@
                 <AttachedAttribute Name="Management Netmask" IsOverridable="true" IsLocal="true">
                   <AllowedValues />
                 </AttachedAttribute>
+                <AttachedAttribute Name="Management Gateway" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
                 <AttachedAttribute Name="Management DNS1" IsOverridable="true" IsLocal="true">
                   <AllowedValues />
                 </AttachedAttribute>
@@ -39,7 +42,25 @@
                 <AttachedAttribute Name="Data Netmask" IsOverridable="true" IsLocal="true">
                   <AllowedValues />
                 </AttachedAttribute>
+                <AttachedAttribute Name="Data Gateway" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
                 <AttachedAttribute Name="Data Search Domains" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data2 Start IP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data2 End IP" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data2 Netmask" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data2 Gateway" IsOverridable="true" IsLocal="true">
+                  <AllowedValues />
+                </AttachedAttribute>
+                <AttachedAttribute Name="Data2 Search Domains" IsOverridable="true" IsLocal="true">
                   <AllowedValues />
                 </AttachedAttribute>
 
@@ -62,6 +83,7 @@
 				<AttributeValue Name="Management Start IP" Value="" />
 				<AttributeValue Name="Management End IP" Value="" />
 				<AttributeValue Name="Management Netmask" Value="" />
+				<AttributeValue Name="Management Gateway" Value="" />
 				<AttributeValue Name="Management DNS1" Value="" />
 				<AttributeValue Name="Management DNS2" Value="" />
 				<AttributeValue Name="Management NTP" Value="" />
@@ -69,7 +91,13 @@
 				<AttributeValue Name="Data Start IP" Value="" />
 				<AttributeValue Name="Data End IP" Value="" />
 				<AttributeValue Name="Data Netmask" Value="" />
+				<AttributeValue Name="Data Gateway" Value="" />
                 <AttributeValue Name="Data Search Domains" Value="" />
+				<AttributeValue Name="Data2 Start IP" Value="" />
+				<AttributeValue Name="Data2 End IP" Value="" />
+				<AttributeValue Name="Data2 Netmask" Value="" />
+				<AttributeValue Name="Data2 Gateway" Value="" />
+                <AttributeValue Name="Data2 Search Domains" Value="" />
                 <AttributeValue Name="PXE Network Start IP" Value="" />
                 <AttributeValue Name="PXE Network End IP" Value="" />
                 <AttributeValue Name="PXE Network Netmask" Value="" />

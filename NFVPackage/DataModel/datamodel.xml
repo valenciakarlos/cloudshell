@@ -25,10 +25,7 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="MonitoringCleanupInterval" Type="Numeric" DefaultValue="600" IsReadOnly="false">
-      <Rules>
-        <Rule Name="Configuration" />
-        <Rule Name="Setting" />
-      </Rules>
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NagiosAddress" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -175,43 +172,43 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Datacenter" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Disk Format" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight DNS Server IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Local OVA Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Netmask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Log Insight VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Administrator Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Administrator User" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter FQDN" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -219,22 +216,22 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="ESX DNS1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ESX DNS2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ESX Domain" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ESX Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ESX Root Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="DeployTable" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="OnRack Address" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -357,10 +354,10 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="vROPS Local OVA Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vROPS Disk Format" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Cloud vCenter Administrator Username" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -368,16 +365,16 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Active Directory Server" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="adbind_vrops Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vROPS Timezone" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Enable vSphere Hardening" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vROM Admin Password" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -526,61 +523,61 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Disk Format" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios DNS1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios DNS2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Hostname" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Local OVA Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Netmask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Root Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Search Domains" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Datacenter" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="app_nsx_sso Username" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -598,7 +595,7 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Enterprise Admin Group" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vSphere Administrator Password" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -691,25 +688,25 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Segment ID Number" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Segment Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Segment Range Start" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Segment Range End" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Controller Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Controller Description" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Datacenter" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Cluster or Resource Pool" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -717,7 +714,7 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Deployment Size Small Medium Large" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -745,10 +742,10 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Transport Zone Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Transport Zone Description" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NEI Cluster or Resource Pool" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -766,166 +763,166 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Deployment Size" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX SSO Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX SSO Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Administrator Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Controller Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Controller Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Controller Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Controller Admin Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool DNS Server1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool DNS Server2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool DNS Suffix" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool End IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool Netmask Bits" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute IP Pool Start IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX NTP Servers" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Disk Format" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Gateway IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Netmask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX DNS Server IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Local NSX OVA Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Hostname" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool DNS Server1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool DNS Server2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool DNS Suffix" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool End IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool Netmask Bits" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge IP Pool Start IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool DNS Server1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool DNS Server2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool DNS Suffix" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool End IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool Netmask Bits" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT IP Pool Start IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute MTU" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute VLAN" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT Distributed vSwitch Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT MTU" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT VLAN" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge Distributed vSwitch Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge MTU" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Edge VLAN" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Compute Distributed vSwitch Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="NSX Search Domain" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Nagios Machine IP Address" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
@@ -1078,862 +1075,1363 @@
       </Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCD Administrator Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCD Administrator User" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCD Attached vCenter Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCD Contact Email" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCD Contact Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCD License Key" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vShield Manager Address" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vShield Manager Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vShield Manager Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Number of Faultsets" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Faultset Name PreFix" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Data Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Data2 Subnet" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
-    </AttributeInfo>
-    <AttributeInfo Name="Second Data Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Enable Background Scanner" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Volume Size" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Volume Type" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="MGMT Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Unified Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="OVA Full Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ScaleIO Admin Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ScaleIO System Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ScaleIO Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home SMTP Server" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home SMTP Port" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home SMTP Use TLS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home SMTP Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home SMTP Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home ScaleIO Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home ScaleIO Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Email From" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Email To" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Customer Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Severity Level" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Syslog Server" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Syslog Port" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home Syslog Facility" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home DNS Server 1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Call Home DNS Server 2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Protection Domain Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="RAM Read Cache size per SDS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Storage Pool Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Enable Zero Padding" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Host for ScaleIO Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Gateway Admin Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="LIA Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="SVM Root Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Management Network Label" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Data Network Label" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
-    <AttributeInfo Name="Second Data Network Label" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+    <AttributeInfo Name="Data2 Network Label" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Gateway Management IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Gateway Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Gateway Data2 IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Gateway Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Primary MDM Management IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Primary MDM Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Primary MDM Data2 IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Primary MDM Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Secondary MDM Management IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Secondary MDM Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Secondary MDM Data2 IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Secondary MDM Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Tie Breaker Management IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Tie Breaker Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Tie Breaker Data2 IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Tie Breaker Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ScaleIO SVM DiskType" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ScaleIO SVM Name PreFix" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="ScaleIO Version" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="SDC Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Exclude ESXs From SDC Role" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
-    <AttributeInfo Name="SDS1 Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+    <AttributeInfo Name="SDS Data IPs CSV" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+        <Rule Name="Setting" />
+      </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="SDS1 MGMT IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+    <AttributeInfo Name="SDS Data2 IPs CSV" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+        <Rule Name="Setting" />
+      </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="SDS2 Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
-    </AttributeInfo>
-    <AttributeInfo Name="SDS2 MGMT IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
-    </AttributeInfo>
-    <AttributeInfo Name="SDS3 Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
-    </AttributeInfo>
-    <AttributeInfo Name="SDS3 MGMT IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
-    </AttributeInfo>
-    <AttributeInfo Name="SDS4 Data IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
-    </AttributeInfo>
-    <AttributeInfo Name="SDS4 MGMT IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+    <AttributeInfo Name="SDS Management IPs CSV" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+        <Rule Name="Setting" />
+      </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa BGP Client NW" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa CMS UUID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller LAN IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller WAN IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Customer Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa DeviceGroup Email" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa DeviceGroup Phone" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa LEF DST IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa LEF SRC IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider MGMT IKE" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider MGMT IPSec" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Staging IPSec" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa TNT MGMT ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa TNT MGMT IKE" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa TNT MGMT IPSec" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa VNF Manager IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa WAN Local IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI1 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 NB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics NB DNS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics NB Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics NB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics NB Mask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics SB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics SB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 NB DNS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 NB Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 NB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 NB Mask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 NB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 NB DNS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 NB Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 NB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 NB Mask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Cluster" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller NB DNS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller NB Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller NB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller NB Mask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller NB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller SB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller SDWAN IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller SDWAN Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Datacenter" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director NB DNS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director NB Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director NB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director NB Mask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director Path" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director SB IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director SB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Disk Mode" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa SB DNS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 SDWAN IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 SDWAN IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa SB Netmask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 SDWAN Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 SDWAN Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Traffic Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Traffic Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics NB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Director NB Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Analytics Logs Port" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch Client Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch Client Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch IPSec Netmask" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch IPSec Range" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch PostStaging IPSec Key" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch PreStaging IPSec Key" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch Server Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch Server Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch Staging IPSec Key" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Latitude" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Location" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Longitude" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 PostStaging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 PreStaging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 SDWAN Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Serial" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI2 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI2 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI4 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI4 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI5 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI5 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Latitude" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Location" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Longitude" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 PostStaging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 PreStaging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 SDWAN Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Serial" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 Staging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI1 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI1 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI2 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI2 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI4 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI4 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI5 IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch2 TVI5 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Controller LAN Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider MGMT IKE Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider MGMT IPSec Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider PostStaging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider PreStaging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Provider Staging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa SB Network" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa SB Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa TNT MGMT IKE Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa TNT MGMT IPSec Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa SB VDS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa SDWAN VDS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Traffic VDS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 Staging IPSec ID" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="Versa Branch1 TVI1 IP Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster4 DRS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster4 ESXis" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster4 HA" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster4 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster5 DRS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster5 ESXis" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster5 HA" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster5 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Datacenter Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter SSO Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Kernel IPs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Kernel Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Kernel IPs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Kernel Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Kernel IPs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Kernel Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Kernel IPs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Kernel Subnet" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Kernel IPs" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Kernel Subnet" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Deployment Size" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Disk Format" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter DNS1" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter DNS2" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter ESXi IP" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter ESXi Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter ESXi Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Gateway" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Hostname" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter ISO location" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Prefix" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter SSO Domain" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter SSO Site Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter VM Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Datastore" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter NTP Server" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Version" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Hosts" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS1 Hosts PXE IPs" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Num Uplink Ports" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Port Group Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Port Group VLAN Type" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Hosts VNICS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Hosts VNICS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Hosts VNICS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Hosts VNICS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Hosts VNICS" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS1 Port Group VLAN IDs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Version" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Hosts" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Num Uplink Ports" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Port Group Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Port Group VLAN Type" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS2 Port Group VLAN IDs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Version" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Hosts" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Num Uplink Ports" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Port Group Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Port Group VLAN Type" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS3 Port Group VLAN IDs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Version" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Hosts" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Num Uplink Ports" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Port Group Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Port Group VLAN Type" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="VDS4 Port Group VLAN IDs" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Version" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Hosts" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Num Uplink Ports" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Port Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Port Group VLAN Type" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="VDS5 Port Group VLAN IDs" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster1 HA" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster1 DRS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster1 ESXis" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster1 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster2 DRS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster2 ESXis" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster2 HA" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster2 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster3 DRS" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster3 ESXis" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster3 HA" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter Cluster3 Name" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules />
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
+
+
+    <AttributeInfo Name="Load Balancer Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Web Primary IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Web Secondary IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Manager Primary IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Manager Secondary IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Primary IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Secondary IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRO Load Balancer Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Load Balancer Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Network Profile IP Range Start" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Network Profile IP Range End" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="DNS Suffix" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Network Profile Gateway" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="DNS Server IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Network Profile Netmask" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_fabric_admin Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_fabric_admin Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Tenant URL Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="svc_iaas Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="svc_iaas Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_iaas_admin Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_iaas_admin Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_tenant_admin Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_tenant_admin Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_Storage_Services Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHCOperations Business Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="app_vra_vro Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="app_vra_vro Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vra_vro Credential Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Background Color 6 Hex Digits" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Text Color 6 Hex Digits" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Logo URL or Data URI" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Company Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Product Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Disclaimer URL" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Copyright Message" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Contact URL" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Load Balancer IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Root Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA License Key" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Local chain pem Path" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Local rui key Path" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA DB Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Replication Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Postgres Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Timezone" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="SSO Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="SSO Administrator Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Password for Replicate User" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Primary Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Secondary Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Use FQDN as VM Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="AMP Domain" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Additional Disk Size GB" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA NTP Servers Comma Separated" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Email Address" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="SMTP Server" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="SMTP Server Authentication yes no" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="SMTP Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="SMTP Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Tenant Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="adbind_vra Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC OU" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Domain Administrator Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_Tenant_Admins Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_IaaS_Admins Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_Fabric_Admins Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_Service_Architects Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Business Group Email Address" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="ehc_sysadmin Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_Backup_Services Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="app_vra_vcenter Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="app_vra_vcenter Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="app_vra_nsx Username" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="app_vra_nsx Password" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vra_vcenter Credential Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vra_nsx Credential Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHCSystem Business Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vCenter Endpoint Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="EHC_Initial_Fabric_Group Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Initial Machine Prefix Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Tenant Pod Clusters Comma Separated" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Domain" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Datastore" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Disk Format" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Gateway IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Netmask" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA IP" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA Portgroup Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="vRA VM Name" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
+    <AttributeInfo Name="Local vRA OVA Path" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
     </AttributeInfo>
   </Attributes>
   <ResourceFamilies>
@@ -2035,7 +2533,440 @@
     <ResourceFamily Name="vRealize" Description="" IsService="true" ServiceType="Regular">
       <AttachedAttributes />
       <AttributeValues />
+
+
       <Models>
+
+
+                <ResourceModel Name="vRealize Automation" ImagePath="vRealize Automation_Model.png" Description="" SupportsConcurrentCommands="false">
+          <AttachedAttributes>
+            <AttachedAttribute Name="NSX IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="NSX Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="NSX Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Load Balancer Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Web Primary IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Web Secondary IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Manager Primary IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Manager Secondary IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Primary IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Secondary IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRO Load Balancer Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Load Balancer Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Network Profile IP Range Start" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Network Profile IP Range End" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="DNS Suffix" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Network Profile Gateway" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="DNS Server IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Network Profile Netmask" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_fabric_admin Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_fabric_admin Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Tenant URL Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="svc_iaas Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="svc_iaas Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_iaas_admin Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_iaas_admin Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_tenant_admin Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_tenant_admin Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_Storage_Services Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHCOperations Business Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="app_vra_vro Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="app_vra_vro Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vra_vro Credential Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Background Color 6 Hex Digits" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Text Color 6 Hex Digits" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Logo URL or Data URI" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Company Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Product Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Disclaimer URL" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Copyright Message" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Contact URL" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Load Balancer IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Root Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA License Key" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Local chain pem Path" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Local rui key Path" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA DB Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Replication Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Postgres Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Timezone" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="SSO Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="SSO Administrator Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Password for Replicate User" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Primary Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Secondary Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Use FQDN as VM Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="AMP Domain" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Additional Disk Size GB" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA NTP Servers Comma Separated" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vCenter Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="NSX Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Email Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="SMTP Server" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="SMTP Server Authentication yes no" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="SMTP Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="SMTP Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Tenant Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="adbind_vra Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC OU" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Domain Administrator Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_Tenant_Admins Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_IaaS_Admins Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_Fabric_Admins Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_Service_Architects Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Business Group Email Address" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="ehc_sysadmin Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_Backup_Services Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="app_vra_vcenter Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="app_vra_vcenter Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="app_vra_nsx Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="app_vra_nsx Password" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vra_vcenter Credential Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vra_nsx Credential Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHCSystem Business Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vCenter Endpoint Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="EHC_Initial_Fabric_Group Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Initial Machine Prefix Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Tenant Pod Clusters Comma Separated" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Domain" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vCenter Administrator Username" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Cluster" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Datastore" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Disk Format" IsOverridable="true" IsLocal="true">
+              <AllowedValues>
+                <AllowedValue>thin</AllowedValue>
+                <AllowedValue>thick</AllowedValue>
+              </AllowedValues>
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Hostname" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Gateway IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Netmask" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA IP" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA Portgroup Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="vRA VM Name" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Local vRA OVA Path" IsOverridable="true" IsLocal="true">
+              <AllowedValues />
+            </AttachedAttribute>
+          </AttachedAttributes>
+          <AttributeValues>
+            <AttributeValue Name="NSX IP" Value="" />
+            <AttributeValue Name="NSX Username" Value="" />
+            <AttributeValue Name="NSX Password" Value="" />
+            <AttributeValue Name="Load Balancer Name" Value="" />
+            <AttributeValue Name="vRA Web Primary IP" Value="" />
+            <AttributeValue Name="vRA Web Secondary IP" Value="" />
+            <AttributeValue Name="vRA Manager Primary IP" Value="" />
+            <AttributeValue Name="vRA Manager Secondary IP" Value="" />
+            <AttributeValue Name="vRA Primary IP" Value="" />
+            <AttributeValue Name="vRA Secondary IP" Value="" />
+            <AttributeValue Name="Domain" Value="" />
+            <AttributeValue Name="vRO Load Balancer Hostname" Value="" />
+            <AttributeValue Name="vRA Load Balancer Hostname" Value="" />
+            <AttributeValue Name="vRA Network Profile IP Range Start" Value="" />
+            <AttributeValue Name="vRA Network Profile IP Range End" Value="" />
+            <AttributeValue Name="DNS Suffix" Value="" />
+            <AttributeValue Name="vRA Network Profile Gateway" Value="" />
+            <AttributeValue Name="DNS Server IP" Value="" />
+            <AttributeValue Name="vRA Network Profile Netmask" Value="" />
+            <AttributeValue Name="ehc_fabric_admin Username" Value="" />
+            <AttributeValue Name="ehc_fabric_admin Password" Value="" />
+            <AttributeValue Name="Tenant URL Name" Value="" />
+            <AttributeValue Name="svc_iaas Username" Value="" />
+            <AttributeValue Name="svc_iaas Password" Value="" />
+            <AttributeValue Name="ehc_iaas_admin Username" Value="" />
+            <AttributeValue Name="ehc_iaas_admin Password" Value="" />
+            <AttributeValue Name="ehc_tenant_admin Username" Value="" />
+            <AttributeValue Name="ehc_tenant_admin Password" Value="" />
+            <AttributeValue Name="EHC_Storage_Services Group Name" Value="" />
+            <AttributeValue Name="EHCOperations Business Group Name" Value="" />
+            <AttributeValue Name="app_vra_vro Username" Value="" />
+            <AttributeValue Name="app_vra_vro Password" Value="" />
+            <AttributeValue Name="vra_vro Credential Name" Value="" />
+            <AttributeValue Name="Background Color 6 Hex Digits" Value="" />
+            <AttributeValue Name="Text Color 6 Hex Digits" Value="" />
+            <AttributeValue Name="Logo URL or Data URI" Value="" />
+            <AttributeValue Name="Company Name" Value="" />
+            <AttributeValue Name="Product Name" Value="" />
+            <AttributeValue Name="Disclaimer URL" Value="" />
+            <AttributeValue Name="Copyright Message" Value="" />
+            <AttributeValue Name="Contact URL" Value="" />
+            <AttributeValue Name="vRA Load Balancer IP" Value="" />
+            <AttributeValue Name="vRA Root Password" Value="" />
+            <AttributeValue Name="vRA License Key" Value="" />
+            <AttributeValue Name="Local chain pem Path" Value="" />
+            <AttributeValue Name="Local rui key Path" Value="" />
+            <AttributeValue Name="vRA DB Password" Value="" />
+            <AttributeValue Name="vRA Replication Password" Value="" />
+            <AttributeValue Name="vRA Postgres Password" Value="" />
+            <AttributeValue Name="vRA Timezone" Value="" />
+            <AttributeValue Name="SSO Hostname" Value="" />
+            <AttributeValue Name="SSO Administrator Password" Value="" />
+            <AttributeValue Name="Password for Replicate User" Value="" />
+            <AttributeValue Name="vRA Primary Hostname" Value="" />
+            <AttributeValue Name="vRA Secondary Hostname" Value="" />
+            <AttributeValue Name="Use FQDN as VM Name" Value="" />
+            <AttributeValue Name="AMP Domain" Value="" />
+            <AttributeValue Name="vCenter IP" Value="" />
+            <AttributeValue Name="vCenter Administrator Password" Value="" />
+            <AttributeValue Name="vRA Additional Disk Size GB" Value="" />
+            <AttributeValue Name="vRA NTP Servers Comma Separated" Value="" />
+            <AttributeValue Name="vCenter Hostname" Value="" />
+            <AttributeValue Name="NSX Hostname" Value="" />
+            <AttributeValue Name="Email Address" Value="" />
+            <AttributeValue Name="SMTP Server" Value="" />
+            <AttributeValue Name="SMTP Server Authentication yes no" Value="" />
+            <AttributeValue Name="SMTP Username" Value="" />
+            <AttributeValue Name="SMTP Password" Value="" />
+            <AttributeValue Name="Tenant Name" Value="" />
+            <AttributeValue Name="adbind_vra Username" Value="" />
+            <AttributeValue Name="EHC OU" Value="" />
+            <AttributeValue Name="Domain Administrator Password" Value="" />
+            <AttributeValue Name="EHC_Tenant_Admins Group Name" Value="" />
+            <AttributeValue Name="EHC_IaaS_Admins Group Name" Value="" />
+            <AttributeValue Name="EHC_Fabric_Admins Group Name" Value="" />
+            <AttributeValue Name="EHC_Service_Architects Group Name" Value="" />
+            <AttributeValue Name="Business Group Email Address" Value="" />
+            <AttributeValue Name="ehc_sysadmin Username" Value="" />
+            <AttributeValue Name="EHC_Backup_Services Group Name" Value="" />
+            <AttributeValue Name="app_vra_vcenter Username" Value="" />
+            <AttributeValue Name="app_vra_vcenter Password" Value="" />
+            <AttributeValue Name="app_vra_nsx Username" Value="" />
+            <AttributeValue Name="app_vra_nsx Password" Value="" />
+            <AttributeValue Name="vra_vcenter Credential Name" Value="" />
+            <AttributeValue Name="vra_nsx Credential Name" Value="" />
+            <AttributeValue Name="EHCSystem Business Group Name" Value="" />
+            <AttributeValue Name="vCenter Endpoint Name" Value="" />
+            <AttributeValue Name="EHC_Initial_Fabric_Group Name" Value="" />
+            <AttributeValue Name="Initial Machine Prefix Name" Value="" />
+            <AttributeValue Name="Tenant Pod Clusters Comma Separated" Value="" />
+            <AttributeValue Name="vRA Domain" Value="" />
+            <AttributeValue Name="vCenter Administrator Username" Value="" />
+            <AttributeValue Name="Datacenter" Value="" />
+            <AttributeValue Name="Cluster" Value="" />
+            <AttributeValue Name="vRA Datastore" Value="" />
+            <AttributeValue Name="vRA Disk Format" Value="thin" />
+            <AttributeValue Name="vRA Hostname" Value="" />
+            <AttributeValue Name="vRA Gateway IP" Value="" />
+            <AttributeValue Name="vRA Netmask" Value="" />
+            <AttributeValue Name="vRA IP" Value="" />
+            <AttributeValue Name="vRA Portgroup Name" Value="" />
+            <AttributeValue Name="vRA VM Name" Value="" />
+            <AttributeValue Name="Local vRA OVA Path" Value="" />
+          </AttributeValues>
+          <ParentModels />
+          <Drivers />
+          <Scripts>
+            <ScriptName>vra_01_deploy_vra</ScriptName>
+          </Scripts>
+        </ResourceModel>
+
+
+
         <ResourceModel Name="vRealize Log Insight" ImagePath="vRealize Log Insight_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
             <AttachedAttribute Name="Log Insight Admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -3302,10 +4233,10 @@
             <AttachedAttribute Name="Data Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Data2 Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Second Data Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Enable Background Scanner" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -3431,13 +4362,16 @@
             <AttachedAttribute Name="Data Network Label" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Second Data Network Label" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Data2 Network Label" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Gateway Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Gateway Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Gateway Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Gateway Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -3449,6 +4383,9 @@
             <AttachedAttribute Name="Primary MDM Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
+            <AttachedAttribute Name="Primary MDM Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
             <AttachedAttribute Name="Primary MDM Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
@@ -3458,6 +4395,9 @@
             <AttachedAttribute Name="Secondary MDM Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
+            <AttachedAttribute Name="Secondary MDM Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
             <AttachedAttribute Name="Secondary MDM Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
@@ -3465,6 +4405,9 @@
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Tie Breaker Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="Tie Breaker Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Tie Breaker Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -3485,28 +4428,13 @@
             <AttachedAttribute Name="Exclude ESXs From SDC Role" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDS1 Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDS Management IPs CSV" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDS1 MGMT IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDS Data IPs CSV" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDS2 Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
-              <AllowedValues />
-            </AttachedAttribute>
-            <AttachedAttribute Name="SDS2 MGMT IP" IsOverridable="true" IsLocal="true" UserInput="true">
-              <AllowedValues />
-            </AttachedAttribute>
-            <AttachedAttribute Name="SDS3 Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
-              <AllowedValues />
-            </AttachedAttribute>
-            <AttachedAttribute Name="SDS3 MGMT IP" IsOverridable="true" IsLocal="true" UserInput="true">
-              <AllowedValues />
-            </AttachedAttribute>
-            <AttachedAttribute Name="SDS4 Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
-              <AllowedValues />
-            </AttachedAttribute>
-            <AttachedAttribute Name="SDS4 MGMT IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDS Data2 IPs CSV" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -3514,8 +4442,8 @@
             <AttributeValue Name="Number of Faultsets" Value="" />
             <AttributeValue Name="Faultset Name PreFix" Value="" />
             <AttributeValue Name="Data Subnet" Value="" />
+            <AttributeValue Name="Data2 Subnet" Value="" />
             <AttributeValue Name="MGMT Subnet" Value="" />
-            <AttributeValue Name="Second Data Subnet" Value="" />
             <AttributeValue Name="Enable Background Scanner" Value="" />
             <AttributeValue Name="Volume Size" Value="" />
             <AttributeValue Name="Volume Type" Value="" />
@@ -3557,32 +4485,31 @@
             <AttributeValue Name="SVM Root Password" Value="" />
             <AttributeValue Name="Management Network Label" Value="" />
             <AttributeValue Name="Data Network Label" Value="" />
-            <AttributeValue Name="Second Data Network Label" Value="" />
+            <AttributeValue Name="Data2 Network Label" Value="" />
             <AttributeValue Name="Gateway Management IP" Value="" />
             <AttributeValue Name="Gateway Data IP" Value="" />
+            <AttributeValue Name="Gateway Data2 IP" Value="" />
             <AttributeValue Name="Gateway Datastore" Value="" />
             <AttributeValue Name="Primary MDM Management IP" Value="" />
             <AttributeValue Name="Primary MDM Data IP" Value="" />
+            <AttributeValue Name="Primary MDM Data2 IP" Value="" />
             <AttributeValue Name="Primary MDM Datastore" Value="" />
             <AttributeValue Name="Secondary MDM Management IP" Value="" />
             <AttributeValue Name="Secondary MDM Data IP" Value="" />
+            <AttributeValue Name="Secondary MDM Data2 IP" Value="" />
             <AttributeValue Name="Secondary MDM Datastore" Value="" />
             <AttributeValue Name="Tie Breaker Management IP" Value="" />
             <AttributeValue Name="Tie Breaker Data IP" Value="" />
+            <AttributeValue Name="Tie Breaker Data2 IP" Value="" />
             <AttributeValue Name="Tie Breaker Datastore" Value="" />
             <AttributeValue Name="ScaleIO SVM DiskType" Value="" />
             <AttributeValue Name="ScaleIO SVM Name PreFix" Value="" />
             <AttributeValue Name="ScaleIO Version" Value="" />
             <AttributeValue Name="SDC Path" Value="" />
             <AttributeValue Name="Exclude ESXs From SDC Role" Value="" />
-            <AttributeValue Name="SDS1 Data IP" Value="" />
-            <AttributeValue Name="SDS1 MGMT IP" Value="" />
-            <AttributeValue Name="SDS2 Data IP" Value="" />
-            <AttributeValue Name="SDS2 MGMT IP" Value="" />
-            <AttributeValue Name="SDS3 Data IP" Value="" />
-            <AttributeValue Name="SDS3 MGMT IP" Value="" />
-            <AttributeValue Name="SDS4 Data IP" Value="" />
-            <AttributeValue Name="SDS4 MGMT IP" Value="" />
+            <AttributeValue Name="SDS Management IPs CSV" Value="" />
+            <AttributeValue Name="SDS Data IPs CSV" Value="" />
+            <AttributeValue Name="SDS Data2 IPs CSV" Value="" />
           </AttributeValues>
           <ParentModels />
           <Drivers />
@@ -4226,6 +5153,12 @@
             <AttachedAttribute Name="VDS4 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
             <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
@@ -4295,6 +5228,9 @@
             <AttachedAttribute Name="VDS1 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
+            <AttachedAttribute Name="VDS1 Hosts PXE IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
             <AttachedAttribute Name="VDS1 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
@@ -4314,6 +5250,9 @@
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS4 Hosts VNICS" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Hosts VNICS" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS1 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4382,6 +5321,27 @@
             <AttachedAttribute Name="VDS4 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Version" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
+            <AttachedAttribute Name="VDS5 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
             <AttachedAttribute Name="vCenter Cluster1 HA" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
@@ -4438,6 +5398,8 @@
             <AttributeValue Name="VDS3 Kernel Subnet" Value="" />
             <AttributeValue Name="VDS4 Kernel IPs" Value="" />
             <AttributeValue Name="VDS4 Kernel Subnet" Value="" />
+            <AttributeValue Name="VDS5 Kernel IPs" Value="" />
+            <AttributeValue Name="VDS5 Kernel Subnet" Value="" />
             <AttributeValue Name="vCenter Administrator Password" Value="" />
             <AttributeValue Name="vCenter Administrator User" Value="" />
             <AttributeValue Name="vCenter Deployment Size" Value="" />
@@ -4461,6 +5423,7 @@
             <AttributeValue Name="VDS1 Name" Value="" />
             <AttributeValue Name="VDS1 Version" Value="" />
             <AttributeValue Name="VDS1 Hosts" Value="" />
+            <AttributeValue Name="VDS1 Hosts PXE IPs" Value="" />
             <AttributeValue Name="VDS1 Num Uplink Ports" Value="" />
             <AttributeValue Name="VDS1 Port Group Name" Value="" />
             <AttributeValue Name="VDS1 Port Group VLAN Type" Value="" />
@@ -4468,6 +5431,7 @@
             <AttributeValue Name="VDS2 Hosts VNICS" Value="" />
             <AttributeValue Name="VDS3 Hosts VNICS" Value="" />
             <AttributeValue Name="VDS4 Hosts VNICS" Value="" />
+            <AttributeValue Name="VDS5 Hosts VNICS" Value="" />
             <AttributeValue Name="VDS1 Port Group VLAN IDs" Value="" />
             <AttributeValue Name="VDS2 Name" Value="" />
             <AttributeValue Name="VDS2 Version" Value="" />
@@ -4490,6 +5454,13 @@
             <AttributeValue Name="VDS4 Port Group Name" Value="" />
             <AttributeValue Name="VDS4 Port Group VLAN Type" Value="" />
             <AttributeValue Name="VDS4 Port Group VLAN IDs" Value="" />
+            <AttributeValue Name="VDS5 Name" Value="" />
+            <AttributeValue Name="VDS5 Version" Value="" />
+            <AttributeValue Name="VDS5 Hosts" Value="" />
+            <AttributeValue Name="VDS5 Num Uplink Ports" Value="" />
+            <AttributeValue Name="VDS5 Port Group Name" Value="" />
+            <AttributeValue Name="VDS5 Port Group VLAN Type" Value="" />
+            <AttributeValue Name="VDS5 Port Group VLAN IDs" Value="" />
             <AttributeValue Name="vCenter Cluster1 HA" Value="" />
             <AttributeValue Name="vCenter Cluster1 DRS" Value="" />
             <AttributeValue Name="vCenter Cluster1 ESXis" Value="" />
@@ -4718,6 +5689,9 @@
       <ScriptInputs />
     </ScriptDescriptor>
     <ScriptDescriptor Name="vcenter_02_create_infrastructure" Description="Create datacenter, clusters, assign hosts" Version="1" CategoryName="Install" Alias="02 Create Infrastructure">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="vra_01_deploy_vra" Alias="vra_01_deploy_vra">
       <ScriptInputs />
     </ScriptDescriptor>
   </ScriptDescriptors>
