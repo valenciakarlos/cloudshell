@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" afterPath="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,9 +25,21 @@
       <file leaf-file-name="scaleio_01_install_sdc.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
+            <state relative-caret-position="986">
               <caret line="64" column="14" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="14" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="copy_inputs.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="325" column="30" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
+              <folding>
+                <element signature="e#0#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -39,14 +47,14 @@
       <file leaf-file-name="scaleio_02_deploy_svm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
+            <state relative-caret-position="1343">
               <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="scaleio_03_configure_svm.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="scaleio_03_configure_svm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="289">
@@ -56,10 +64,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Phase2.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="145">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="vcenter_01_deploy_vcenter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
+            <state relative-caret-position="3230">
               <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
               <folding>
                 <element signature="e#21#30#0" expanded="true" />
@@ -72,7 +90,7 @@
       <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="false">
         <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
+            <state relative-caret-position="969">
               <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
               <folding />
             </state>
@@ -82,7 +100,7 @@
       <file leaf-file-name="vcenter_02_create_infrastructure.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
+            <state relative-caret-position="1955">
               <caret line="115" column="19" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
               <folding>
                 <element signature="e#21#48#0" expanded="true" />
@@ -91,20 +109,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="driver.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="140" column="51" selection-start-line="140" selection-start-column="51" selection-end-line="140" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="vcenter_03_create_vds.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
+            <state relative-caret-position="6069">
               <caret line="357" column="19" selection-start-line="357" selection-start-column="19" selection-end-line="357" selection-end-column="19" />
               <folding>
                 <element signature="e#21#48#0" expanded="true" />
@@ -116,22 +124,10 @@
       <file leaf-file-name="vra_01_deploy_vra.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="793">
+            <state relative-caret-position="1275">
               <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
               <folding>
                 <element signature="e#151#160#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -194,7 +190,6 @@
         <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" />
         <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-        <option value="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
         <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py" />
@@ -203,6 +198,7 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_03_configure_svm.py" />
+        <option value="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" />
       </list>
     </option>
   </component>
@@ -237,6 +233,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -746,7 +743,6 @@
       <pane id="Scratches">
         <subPane />
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -956,7 +952,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18177028" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3033586" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3033586" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1141,7 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="114" selection-start-line="3" selection-start-column="106" selection-end-line="3" selection-end-column="119" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,7 +1184,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1197,7 +1191,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,7 +1198,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1190">
           <caret line="78" column="30" selection-start-line="78" selection-start-column="30" selection-end-line="78" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1213,7 +1205,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="59" selection-start-line="20" selection-start-column="59" selection-end-line="20" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1221,7 +1212,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="43" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1229,7 +1219,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="249" column="69" selection-start-line="249" selection-start-column="69" selection-end-line="249" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1253,7 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="94" column="18" selection-start-line="94" selection-start-column="18" selection-end-line="94" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1261,7 +1249,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="92" column="28" selection-start-line="92" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1269,7 +1256,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1277,7 +1263,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1285,7 +1270,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="66" column="4" selection-start-line="66" selection-start-column="4" selection-end-line="66" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1293,7 +1277,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="65" column="4" selection-start-line="65" selection-start-column="4" selection-end-line="65" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1301,7 +1284,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1309,7 +1291,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1325,7 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1333,7 +1313,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
           <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1365,7 +1344,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="674">
           <caret line="528" column="1" selection-start-line="528" selection-start-column="1" selection-end-line="528" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1383,7 +1361,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1391,7 +1368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="485" column="42" selection-start-line="485" selection-start-column="42" selection-end-line="485" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1399,7 +1375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="2649" column="49" selection-start-line="2649" selection-start-column="49" selection-end-line="2649" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1415,31 +1390,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="356" column="4" selection-start-line="356" selection-start-column="4" selection-end-line="356" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="419" column="50" selection-start-line="419" selection-start-column="41" selection-end-line="419" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="225" column="0" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
+        <state relative-caret-position="2159">
           <caret line="140" column="51" selection-start-line="140" selection-start-column="51" selection-end-line="140" selection-end-column="51" />
           <folding />
         </state>
@@ -1447,7 +1403,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
+        <state relative-caret-position="1105">
           <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
@@ -1457,7 +1413,7 @@
     </entry>
     <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="969">
           <caret line="68" column="4" selection-start-line="68" selection-start-column="4" selection-end-line="68" selection-end-column="4" />
           <folding />
         </state>
@@ -1465,7 +1421,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
+        <state relative-caret-position="3230">
           <caret line="190" column="19" selection-start-line="190" selection-start-column="19" selection-end-line="190" selection-end-column="19" />
           <folding>
             <element signature="e#21#30#0" expanded="true" />
@@ -1476,7 +1432,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
+        <state relative-caret-position="1955">
           <caret line="115" column="19" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
           <folding>
             <element signature="e#21#48#0" expanded="true" />
@@ -1486,7 +1442,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_03_create_vds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
+        <state relative-caret-position="6069">
           <caret line="357" column="19" selection-start-line="357" selection-start-column="19" selection-end-line="357" selection-end-column="19" />
           <folding>
             <element signature="e#21#48#0" expanded="true" />
@@ -1496,7 +1452,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/vRA/vra_01_deploy_vra.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
+        <state relative-caret-position="1275">
           <caret line="75" column="19" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
           <folding>
             <element signature="e#151#160#0" expanded="true" />
@@ -1506,7 +1462,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_01_install_sdc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
+        <state relative-caret-position="986">
           <caret line="64" column="14" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="14" />
           <folding />
         </state>
@@ -1514,7 +1470,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/ScaleIO/scaleio_02_deploy_svm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
+        <state relative-caret-position="1343">
           <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
           <folding />
         </state>
@@ -1524,6 +1480,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="325" column="30" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="145">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
