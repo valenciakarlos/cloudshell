@@ -73,6 +73,7 @@ callhome_dns2 = attrs['Call Home DNS Server 2']
 
 sio_data1_portgroup = attrs['Data Network Label']
 sio_data2_portgroup = attrs['Data2 Network Label']
+
 # IP Info
 mgmt_netmask = attrs['MGMT Subnet']
 data1_netmask = attrs['Data Subnet']
@@ -165,6 +166,7 @@ else:
 
 #  DEBUG
 # sdcdatalist = ['10.10.109.72','10.10.109.74','10.10.109.198']#,'10.10.110.72','10.10.110.74','10.10.110.198']
+
 # Get Disks of each SVM
 diskdic = {}
 try:

@@ -45,8 +45,6 @@ svm2_data1_ip = attrs['Secondary MDM Data IP']
 svm1_data2_ip = attrs['Primary MDM Data2 IP']
 svm2_data2_ip = attrs['Secondary MDM Data2 IP']
 
-# svm1_data2_ip = '10.10.109.1'
-# svm2_data2_ip = '10.10.109.2'
 
 sds1_mgmt_ip = ''  
 sds2_mgmt_ip = ''  

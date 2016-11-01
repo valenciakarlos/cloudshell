@@ -169,8 +169,19 @@ def configureSDS(ip, ip2, ip3, adminpassword, license=False, user='root', passwo
         ssh.connect(ip[0], username=user, password=password)
         chan = ssh.invoke_shell()
         do_command_and_wait(chan, '', expect=r' ')
+
         # Preper Primary
-        command = 'scli --create_mdm_cluster --master_mdm_ip ' + ip[1] + ' --master_mdm_management_ip ' + ip[0] + ' --master_mdm_name mdm_primary --accept_license'
+        data_ips = ''
+        if ip[1]:
+            data_ips = ip[1]
+        if ip[2]:
+            if data_ips:
+                data_ips += ',' + ip[2]
+            else:
+                data_ips = ip[2]
+        if not data_ips:
+            data_ips = ip[0]
+        command = 'scli --create_mdm_cluster --master_mdm_ip ' + data_ips + ' --master_mdm_management_ip ' + ip[0] + ' --master_mdm_name mdm_primary --accept_license'
         do_command_and_wait(chan, command, expect=r'license')
         # Accept Certificate
         do_command_and_wait(chan, 'y', expect=r' #')
@@ -190,14 +201,34 @@ def configureSDS(ip, ip2, ip3, adminpassword, license=False, user='root', passwo
             # Transfer the license to the empty file
             ssh_upload(ip, user, password, license, '/tmp/siolicense.lsn')
             # Add license to the SIO system
-            command = 'scli --set_license --mdm_ip ' + ip + ' --license_file /tmp/siolicense.lsn'
+            command = 'scli --set_license --mdm_ip ' + ip[0] + ' --license_file /tmp/siolicense.lsn'
             do_command_and_wait(chan, command, expect=r' #')
 
         # Preper Secondary
-        command = 'scli --add_standby_mdm --new_mdm_ip ' + ip2[1] + ' --mdm_role manager --new_mdm_management_ip ' + ip2[0] + ' --new_mdm_name mdm_secondary'
+        data_ips = ''
+        if ip2[1]:
+            data_ips = ip2[1]
+        if ip2[2]:
+            if data_ips:
+                data_ips += ',' + ip2[2]
+            else:
+                data_ips = ip2[2]
+        if not data_ips:
+            data_ips = ip2[0]
+        command = 'scli --add_standby_mdm --new_mdm_ip ' + data_ips + ' --mdm_role manager --new_mdm_management_ip ' + ip2[0] + ' --new_mdm_name mdm_secondary'
         do_command_and_wait(chan, command, expect=r' #')
         # Preper TB
-        command = 'scli --add_standby_mdm --new_mdm_ip ' + ip3[1] + ' --mdm_role tb --new_mdm_name mdm_tiebreaker'
+        data_ips = ''
+        if ip3[1]:
+            data_ips = ip3[1]
+        if ip3[2]:
+            if data_ips:
+                data_ips += ',' + ip3[2]
+            else:
+                data_ips = ip3[2]
+        if not data_ips:
+            data_ips = ip3[0]
+        command = 'scli --add_standby_mdm --new_mdm_ip ' + data_ips + ' --mdm_role tb --new_mdm_name mdm_tiebreaker'
         do_command_and_wait(chan, command, expect=r' #')
         # Change to Cluster mode
         command = 'scli --switch_cluster_mode --cluster_mode 3_node --add_slave_mdm_name mdm_secondary --add_tb_name mdm_tiebreaker'
@@ -652,6 +683,7 @@ def addSdcNode(primaryip, esxips, adminpassword, user='root', password='admin'):
     command = 'scli --login --username admin --password ' + adminpassword
     do_command_and_wait(chan, command, expect=r' #')
     for esx in esxips:
+        # need to change to --sdc_uuid + uuid and not --sdc_ip
         command = 'scli --add_sdc --sdc_ip ' + esx
         do_command_and_wait(chan, command, expect=r' #')
 
@@ -767,7 +799,7 @@ Write-Host '<%<%', $a
     return result
 
 
-def getESXDataIPs(vcenter_ip, vcenter_user, vcenter_password, datacenter, excludeesx):
+def getESXDataIPs(vcenter_ip, vcenter_user, vcenter_password, datacenter, excludeesx, data_portgroup, data2_portgroup):
     script = '''
     Add-PSSnapin VMware.VimAutomation.Core
     $vcenterip = \'''' + vcenter_ip + '''\'
@@ -775,6 +807,8 @@ def getESXDataIPs(vcenter_ip, vcenter_user, vcenter_password, datacenter, exclud
     $vcenterpassword = \'''' + vcenter_password + '''\'
     $vcenterdc = \'''' + datacenter + '''\'
     $masteresx = \'''' + excludeesx + '''\'
+    $data1 = \'''' + data_portgroup + '''\'
+    $data2 = \'''' + data2_portgroup + '''\'
     $exclideesxs = @()
     foreach ($exesx in $masteresx.split(",")) {
         $exclideesxs += $exesx
@@ -790,20 +824,37 @@ $dchosts = Get-Datacenter $vcenterdc | Get-VMHost | Select Name
     $filter = @{'Guest.IPAddress' = "$csip"}
     $csh = get-view -ViewType VirtualMachine -Filter $filter | select @{n='Host';e={get-vmhost -id $_.runtime.host}}
     $a = ''
+    $b = ''
     foreach ($ESXiServer in $dchosts) {
         if ($ESXiServer.Name -ne $vch.Host.Name) {
             if ($ESXiServer.Name -ne $csh.Host.Name) {
                 if ($exclideesxs -notcontains $ESXiServer.Name) {
                     $v = Get-VMHost -Name $ESXiServer.Name
-                    $v = $v.NetworkInfo.VirtualNic | Where {$_.DeviceName -eq 'vmk1'} | select IP
-                    $a += $v.IP + ','
+                    # $v = $v.NetworkInfo.VirtualNic | Where {$_.DeviceName -eq 'vmk1'} | select IP
+                    $d1 = Get-VMHostNetworkAdapter -VMKernel -VMHost $v | ? {$_.PortGroupName -eq $data1}
+                    $d2 = Get-VMHostNetworkAdapter -VMKernel -VMHost $v | ? {$_.PortGroupName -eq $data2}
+                    if ($d1){
+                        $a += $d1.IP + ','
+                        }
+                    if ($d2){
+                        $b += $d2.IP  + ','
+                        }
+                    #$a += $v.IP + ','
              }
                 }
         }
     }
-
-    $a =  $a.ToString().Substring(0,$a.Length-1)
-    write-host '<%<%', $a
+    if ($a.Length -ne 0){
+        if ($a.EndsWith(',')){
+            $a =  $a.ToString().Substring(0,$a.Length-1)
+            }
+        }
+    if ($b.Length -ne 0){
+        if ($b.EndsWith(',')){
+            $b =  $b.ToString().Substring(0,$b.Length-1)
+            }
+        }
+    write-host '<%<%', $a, ';', $b
     '''
     result = powershell(script).split('<%<%')[1].strip()
     return result
