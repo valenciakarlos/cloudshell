@@ -73,42 +73,33 @@ def installKey(ip, user='root', password='admin'):
     folder = '/root/install/'
     key = 'RPM-GPG-KEY-ScaleIO'
     command = 'rpm --import ' + folder + key
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        do_command_and_wait(chan, command, expect=r'#')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    do_command_and_wait(chan, command, expect=r'#')
 
 
 def installLIA(ip, liapassword, version='-1.32-3455.5', user='root', password='admin'):
     role = 'lia'
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        command = 'TOKEN=' + liapassword + ' ' + sioCommand(role, version)
-        do_command_and_wait(chan, command, expect=r' #')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    command = 'TOKEN=' + liapassword + ' ' + sioCommand(role, version)
+    do_command_and_wait(chan, command, expect=r' #')
 
 
 def installCallHome(ip, version='-1.32-3455.5', user='root', password='admin'):
     role = 'callhome'
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        do_command_and_wait(chan, sioCommand(role, version), expect=r' #')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    do_command_and_wait(chan, sioCommand(role, version), expect=r' #')
 
 def configureCallhome(ip, toemail='', fromemail='', calluser='', callpass='', customername='',smtpuser='', smtppass='', severity='', smtphost='localhost', port='25', tls='no', user='root', password='admin'):
     file = '''[general]
@@ -135,106 +126,97 @@ password = ''' + smtppass + '''
 email_to = ''' + toemail + '''
 # Severity can be: warning, error, critical
 severity = ''' + severity
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        command = '''echo \"''' + file + '" > /opt/emc/scaleio/callhome/cfg/conf.txt'
-        do_command_and_wait(chan, command, expect=r' #')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    command = '''echo \"''' + file + '" > /opt/emc/scaleio/callhome/cfg/conf.txt'
+    do_command_and_wait(chan, command, expect=r' #')
 
 
 def installSDS(ip, version='-1.32-3455.5', user='root', password='admin'):
     role = 'sds'
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        # command = 'CONF=IOPS ' + sioCommand(role, version)
-        # No longer need the CONF=IOPD. (not mentioned in the Docs)
-        command = sioCommand(role, version)
-        do_command_and_wait(chan, command, expect=r' #')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    # command = 'CONF=IOPS ' + sioCommand(role, version)
+    # No longer need the CONF=IOPD. (not mentioned in the Docs)
+    command = sioCommand(role, version)
+    do_command_and_wait(chan, command, expect=r' #')
 
 def configureSDS(ip, ip2, ip3, adminpassword, license=False, user='root', password='admin'):
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip[0], username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip[0], username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
 
-        # Preper Primary
-        data_ips = ''
-        if ip[1]:
-            data_ips = ip[1]
-        if ip[2]:
-            if data_ips:
-                data_ips += ',' + ip[2]
-            else:
-                data_ips = ip[2]
-        if not data_ips:
-            data_ips = ip[0]
-        command = 'scli --create_mdm_cluster --master_mdm_ip ' + data_ips + ' --master_mdm_management_ip ' + ip[0] + ' --master_mdm_name mdm_primary --accept_license'
-        do_command_and_wait(chan, command, expect=r'license')
-        # Accept Certificate
-        do_command_and_wait(chan, 'y', expect=r' #')
-        # Login
-        command = 'scli --login --username admin --password admin'
+    # Preper Primary
+    data_ips = ''
+    if ip[1]:
+        data_ips = ip[1]
+    if ip[2]:
+        if data_ips:
+            data_ips += ',' + ip[2]
+        else:
+            data_ips = ip[2]
+    if not data_ips:
+        data_ips = ip[0]
+    command = 'scli --create_mdm_cluster --master_mdm_ip ' + data_ips + ' --master_mdm_management_ip ' + ip[0] + ' --master_mdm_name mdm_primary --accept_license'
+    do_command_and_wait(chan, command, expect=r'license')
+    # Accept Certificate
+    do_command_and_wait(chan, 'y', expect=r' #')
+    # Login
+    command = 'scli --login --username admin --password admin'
+    do_command_and_wait(chan, command, expect=r' #')
+    command = 'scli --set_password --old_password admin --new_password ' + adminpassword
+    do_command_and_wait(chan, command, expect=r' #')
+    command = 'scli --login --username admin --password ' + adminpassword
+    do_command_and_wait(chan, command, expect=r' #')
+    # License
+    # if license:
+    # nothing on how to install the new license
+    if False:
+        command = 'touch /tmp/siolicense.lsn'
         do_command_and_wait(chan, command, expect=r' #')
-        command = 'scli --set_password --old_password admin --new_password ' + adminpassword
+        # Transfer the license to the empty file
+        ssh_upload(ip, user, password, license, '/tmp/siolicense.lsn')
+        # Add license to the SIO system
+        command = 'scli --set_license --mdm_ip ' + ip[0] + ' --license_file /tmp/siolicense.lsn'
         do_command_and_wait(chan, command, expect=r' #')
-        command = 'scli --login --username admin --password ' + adminpassword
-        do_command_and_wait(chan, command, expect=r' #')
-        # License
-        # if license:
-        # nothing on how to install the new license
-        if False:
-            command = 'touch /tmp/siolicense.lsn'
-            do_command_and_wait(chan, command, expect=r' #')
-            # Transfer the license to the empty file
-            ssh_upload(ip, user, password, license, '/tmp/siolicense.lsn')
-            # Add license to the SIO system
-            command = 'scli --set_license --mdm_ip ' + ip[0] + ' --license_file /tmp/siolicense.lsn'
-            do_command_and_wait(chan, command, expect=r' #')
 
-        # Preper Secondary
-        data_ips = ''
-        if ip2[1]:
-            data_ips = ip2[1]
-        if ip2[2]:
-            if data_ips:
-                data_ips += ',' + ip2[2]
-            else:
-                data_ips = ip2[2]
-        if not data_ips:
-            data_ips = ip2[0]
-        command = 'scli --add_standby_mdm --new_mdm_ip ' + data_ips + ' --mdm_role manager --new_mdm_management_ip ' + ip2[0] + ' --new_mdm_name mdm_secondary'
-        do_command_and_wait(chan, command, expect=r' #')
-        # Preper TB
-        data_ips = ''
-        if ip3[1]:
-            data_ips = ip3[1]
-        if ip3[2]:
-            if data_ips:
-                data_ips += ',' + ip3[2]
-            else:
-                data_ips = ip3[2]
-        if not data_ips:
-            data_ips = ip3[0]
-        command = 'scli --add_standby_mdm --new_mdm_ip ' + data_ips + ' --mdm_role tb --new_mdm_name mdm_tiebreaker'
-        do_command_and_wait(chan, command, expect=r' #')
-        # Change to Cluster mode
-        command = 'scli --switch_cluster_mode --cluster_mode 3_node --add_slave_mdm_name mdm_secondary --add_tb_name mdm_tiebreaker'
-        do_command_and_wait(chan, command, expect=r' ')
-    except Exception, e:
-        print e
+    # Preper Secondary
+    data_ips = ''
+    if ip2[1]:
+        data_ips = ip2[1]
+    if ip2[2]:
+        if data_ips:
+            data_ips += ',' + ip2[2]
+        else:
+            data_ips = ip2[2]
+    if not data_ips:
+        data_ips = ip2[0]
+    command = 'scli --add_standby_mdm --new_mdm_ip ' + data_ips + ' --mdm_role manager --new_mdm_management_ip ' + ip2[0] + ' --new_mdm_name mdm_secondary'
+    do_command_and_wait(chan, command, expect=r' #')
+    # Preper TB
+    data_ips = ''
+    if ip3[1]:
+        data_ips = ip3[1]
+    if ip3[2]:
+        if data_ips:
+            data_ips += ',' + ip3[2]
+        else:
+            data_ips = ip3[2]
+    if not data_ips:
+        data_ips = ip3[0]
+    command = 'scli --add_standby_mdm --new_mdm_ip ' + data_ips + ' --mdm_role tb --new_mdm_name mdm_tiebreaker'
+    do_command_and_wait(chan, command, expect=r' #')
+    # Change to Cluster mode
+    command = 'scli --switch_cluster_mode --cluster_mode 3_node --add_slave_mdm_name mdm_secondary --add_tb_name mdm_tiebreaker'
+    do_command_and_wait(chan, command, expect=r' ')
 
 def configureMainStorage(primaryip, secondaryip, adminpassword, zp, backscan, sysname, user='root', password='admin', pd='PD1', sp='SP1'):
     ssh = paramiko.SSHClient()
@@ -286,25 +268,27 @@ def addSdsStorage(primaryip, secondaryip, sdsarray, adminpassword, rmcache, faul
 
 
 def installSDC(esx, file, password, username='root'):
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(esx, username=username, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        # Create empty file
-        command = 'touch /tmp/sdc.zip'
-        do_command_and_wait(chan, command, expect=r'@')
-        # Transfer the zip to the empty file
-        ssh_upload(esx, username, password, file, '/tmp/sdc.zip')
-        # Change ESX PartnerSupport level
-        command = 'esxcli software acceptance set --level=PartnerSupported'
-        do_command_and_wait(chan, command, expect=r'@')
-        # Install SDC
-        command = 'esxcli software vib install -d /tmp/sdc.zip'
-        do_command_and_wait(chan, command, expect=r'@')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(esx, username=username, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+
+    if 'scaleio' in do_command_and_wait(chan, 'esxcli software vib list', expect=r'@'):
+        return False
+
+    # Create empty file
+    command = 'touch /tmp/sdc.zip'
+    do_command_and_wait(chan, command, expect=r'@')
+    # Transfer the zip to the empty file
+    ssh_upload(esx, username, password, file, '/tmp/sdc.zip')
+    # Change ESX PartnerSupport level
+    command = 'esxcli software acceptance set --level=PartnerSupported'
+    do_command_and_wait(chan, command, expect=r'@')
+    # Install SDC
+    command = 'esxcli software vib install -d /tmp/sdc.zip'
+    do_command_and_wait(chan, command, expect=r'@')
+    return True
 
 def configureSDC(esx, password, ipstring, username='root'):
     ssh = paramiko.SSHClient()
@@ -313,6 +297,12 @@ def configureSDC(esx, password, ipstring, username='root'):
     chan = ssh.invoke_shell()
     do_command_and_wait(chan, '', expect=r' ')
     # Run SDC configurations
+
+    s = do_command_and_wait(chan, 'esxcli system module parameters list -m scini | grep IoctlMdmIPStr', expect=r'@')
+    m = re.match(r'.*string\s+(\S+)\s+Mdms IPs.*', s)
+    if m and m.groups()[0] == ipstring:
+        return False
+
     esx_uuid = uuid.uuid4()
     command = 'esxcli system module parameters set -m scini -p "IoctlIniGuidStr=' + str(esx_uuid) + ' IoctlMdmIPStr=' + ipstring + '"'
     do_command_and_wait(chan, command, expect=r'@')
@@ -322,32 +312,27 @@ def configureSDC(esx, password, ipstring, username='root'):
     # Load SDC Module
     command = 'esxcli system module load -m scini'
     do_command_and_wait(chan, command, expect=r'@')
+    return True
 
 
 def installSIOVM(ip, role, version='-1.32-3455.5', user='root', password='admin'):
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        do_command_and_wait(chan, sioCommand(role, version), expect=r' #')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    do_command_and_wait(chan, sioCommand(role, version), expect=r' #')
 
 def installGateway(ip, adminpassword, version='-1.32-3455.5', user='root', password='admin'):
-    try:
-        ssh = paramiko.SSHClient()
-        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
-        ssh.connect(ip, username=user, password=password)
-        chan = ssh.invoke_shell()
-        do_command_and_wait(chan, '', expect=r' ')
-        # Install Java
-        do_command_and_wait(chan, 'rpm -i /root/install/jre-8u65-linux-x64.rpm', '#')
-        command = "GATEWAY_ADMIN_PASSWORD=" + adminpassword + ' ' + sioCommand('gateway', version)
-        do_command_and_wait(chan, command, expect=r' #')
-    except Exception, e:
-        print e
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # allow auto-accepting new hosts
+    ssh.connect(ip, username=user, password=password)
+    chan = ssh.invoke_shell()
+    do_command_and_wait(chan, '', expect=r' ')
+    # Install Java
+    do_command_and_wait(chan, 'rpm -i /root/install/jre-8u65-linux-x64.rpm', '#')
+    command = "GATEWAY_ADMIN_PASSWORD=" + adminpassword + ' ' + sioCommand('gateway', version)
+    do_command_and_wait(chan, command, expect=r' #')
 
 def configureGateway(ip, primaryip, secondaryip, zp, user='root', password='admin'):
     ssh = paramiko.SSHClient()

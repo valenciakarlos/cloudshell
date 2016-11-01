@@ -16,8 +16,11 @@ import json
 import time
 from quali_remote import powershell
 from NSX_Common import *
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit
+
+quali_enter(__file__)
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -194,3 +197,5 @@ nsx_wait_job(nsx_ip, nsx_user, nsx_password, rest_api_query('''https://''' + nsx
     </resourceConfig>
 </nwFabricFeatureConfig>
 '''))
+
+quali_exit(__file__)

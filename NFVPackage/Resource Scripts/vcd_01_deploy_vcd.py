@@ -39,7 +39,7 @@ cluster = attrs['vCD Cluster']
 
 try:
     command = ' --machineOutput --noSSLVerify --powerOn --allowExtraConfig --datastore=' + '"' + datastore + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --prop:DNS1=' + dns1 + ' --prop:DNS2=' + dns2 + ' --prop:Gateway=' + gateway + ' --prop:Gateway2=' + gateway2 + ' --prop:Hostname="' + hostname + '"  --prop:IP=' + vcd_ip + ' --prop:IP2=' + vcd_ip2 + ' --prop:Netmask=' + netmask + ' --prop:Netmask2=' + netmask2 + ' --prop:Root_Password="' + rootpass + '" --prop:Search_Domains="' + search_domains + '" --net:"mgmtportgrp"="' + portgroup + '" --net:"cmpPortGroup"="' + portgroup2 + '" --name="' + vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + cluster + '/Resources"'
-    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
+    deployVM(command, vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
 except Exception, e:
     print '\r\n' + str(e)
     sys.exit(1)

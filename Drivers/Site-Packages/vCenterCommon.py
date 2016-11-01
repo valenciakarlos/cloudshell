@@ -4,6 +4,7 @@ import inspect
 import time
 import subprocess
 
+
 class Vcenter(object):
     def __init__(self, vcenter_params):
         self.pyVmomi = __import__("pyVmomi")
@@ -41,7 +42,7 @@ class Vcenter(object):
             if datacenter is None:
                 raise ValueError("Missing value for datacenter.")
 
-            print("Creating Cluster %s " % cluster_name )
+            print("Creating Cluster %s " % cluster_name)
             # get cluster spec
             cluster_spec = self.pyVmomi.vim.cluster.ConfigSpecEx()
             # get DC object
@@ -84,11 +85,10 @@ class Vcenter(object):
             das_config.defaultVmSettings = default_vm_settings
             cluster_spec.dasConfig = das_config
 
-
             cluster = host_folder.CreateClusterEx(name=cluster_name, spec=cluster_spec)
             return cluster
 
-    def add_host(self, cluster_name, hostname, sslthumbprint,  username, password):
+    def add_host(self, cluster_name, hostname, sslthumbprint, username, password):
         host = self.get_obj([self.pyVmomi.vim.HostSystem], hostname)
         if host is not None:
             print("host already exists")
@@ -102,8 +102,9 @@ class Vcenter(object):
                 raise ValueError(error)
 
             try:
-                hostspec = self.pyVmomi.vim.host.ConnectSpec(hostName=hostname,userName=username, sslThumbprint=sslthumbprint, password=password, force=True)
-                task=cluster.AddHost(spec=hostspec,asConnected=True)
+                hostspec = self.pyVmomi.vim.host.ConnectSpec(hostName=hostname, userName=username,
+                                                             sslThumbprint=sslthumbprint, password=password, force=True)
+                task = cluster.AddHost(spec=hostspec, asConnected=True)
             except self.pyVmomi.vmodl.MethodFault as error:
                 print "Caught vmodl fault : " + error.msg
                 return -1
@@ -125,12 +126,12 @@ class Vcenter(object):
         print(host_name)
         host = self.get_obj([self.pyVmomi.vim.HostSystem], host_name)
         datastore_spec = self.pyVmomi.vim.host.NasVolume.Specification()
-        datastore_spec.remoteHost=nas_ip
-        datastore_spec.remotePath=nas_mount
-        datastore_spec.localPath=datastore_name
-        datastore_spec.accessMode="readWrite"
+        datastore_spec.remoteHost = nas_ip
+        datastore_spec.remotePath = nas_mount
+        datastore_spec.localPath = datastore_name
+        datastore_spec.accessMode = "readWrite"
 
-        datastore=host.configManager.datastoreSystem.CreateNasDatastore(datastore_spec)
+        datastore = host.configManager.datastoreSystem.CreateNasDatastore(datastore_spec)
         return datastore
 
     def get_vlan_ranges(self, vlan_ids):
@@ -156,7 +157,7 @@ class Vcenter(object):
 
         if not portgroup_name:
             return
-        
+
         exists = self.get_obj([self.pyVmomi.vim.dvs.DistributedVirtualPortgroup], portgroup_name)
         if exists:
             return
@@ -194,7 +195,7 @@ class Vcenter(object):
         exists = self.get_obj([self.pyVmomi.vim.DistributedVirtualSwitch], dvs_name)
         if exists:
             return exists
-        
+
         dvs_host_configs = []
         dvs_create_spec = self.pyVmomi.vim.DistributedVirtualSwitch.CreateSpec()
         dvs_config_spec = self.pyVmomi.vim.VmwareDistributedVirtualSwitch.ConfigSpec()
@@ -222,7 +223,7 @@ class Vcenter(object):
                         pnic_spec = self.pyVmomi.vim.dvs.HostMember.PnicSpec()
                         pnic_spec.pnicDevice = pn
                         pnic_specs.append(pnic_spec)
-                
+
                 dvs_host_config = self.pyVmomi.vim.dvs.HostMember.ConfigSpec()
                 dvs_host_config.operation = self.pyVmomi.vim.ConfigSpecOperation.add
                 dvs_host_config.host = host
@@ -269,7 +270,7 @@ class Vcenter(object):
     def connect_to_vcenter(self):
         from pyVim import connect
         import ssl
-        
+
         print("Connecting to %s using username %s" % (self.server, self.username))
         try:
             default_context = ssl._create_default_https_context
@@ -278,7 +279,7 @@ class Vcenter(object):
             # Legacy Python that doesn't verify HTTPS certificates by default
             pass
         else:
-             # Handle target environment that doesn't support HTTPS verification
+            # Handle target environment that doesn't support HTTPS verification
             ssl._create_default_https_context = _create_unverified_https_context
 
         context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
@@ -289,7 +290,7 @@ class Vcenter(object):
                                                      pwd=self.password,
                                                      port=443,
                                                      sslContext=context)
-            
+
         ssl._create_default_https_context = default_context
         self.content = self.service_instance.RetrieveContent()
         about = self.service_instance.content.about
@@ -311,15 +312,15 @@ class Vcenter(object):
             write-host '<%<%', $a1
             ''').split('<%<%')[1].strip()
 
-
         # p1 = subprocess.Popen(('echo', '-n'), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         # p2 = subprocess.Popen(('openssl', 's_client', '-connect', '{0}:443'.format(ip)), stdin=p1.stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         # p3 = subprocess.Popen(('openssl', 'x509', '-noout', '-fingerprint', '-sha1'), stdin=p2.stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         # out = p3.stdout.read()
         # ssl_thumbprint = out.split('=')[-1].strip()
-        ssl_thumbprint = ":".join(ssl_thumbprint[i:i+2] for i in range(0, len(ssl_thumbprint), 2))
+        ssl_thumbprint = ":".join(ssl_thumbprint[i:i + 2] for i in range(0, len(ssl_thumbprint), 2))
 
         return ssl_thumbprint
+
 
 def vmPower(vmname, command, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core\n
@@ -332,11 +333,13 @@ def vmPower(vmname, command, vcenter_ip, vcenter_user, vcenter_password):
         script += '''Restart-VM -VM ''' + vmname + ''' -Confirm:$false'''
     powershell(script)
 
+
 def deleteVMs(vmname, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core\n
     Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue\n
     Remove-VM -VM ''' + vmname + ''' -DeletePermanently -Confirm:$false'''
     powershell(script)
+
 
 def getAdapterMac(vmname, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core\n
@@ -346,6 +349,7 @@ def getAdapterMac(vmname, vcenter_ip, vcenter_user, vcenter_password):
     macs = powershell(script).split('<%<%')[1].strip().split(' ')
     return macs
 
+
 def deployVM_basic(string):
     with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
         f.write("Deploying VM using OVFTools with: " + string + '\r\n')
@@ -354,8 +358,11 @@ def deployVM_basic(string):
     )
 
 
-def deployVM(string, vm_name=None, vc_ip=None, vc_user=None, vc_pass=None, retry_deploy=False):
+def deployVM(string, vm_name=None, vc_ip=None, vc_user=None, vc_pass=None, retry_deploy=False,
+             allow_already_exist=False):
     output = _deployVM(string)
+    if 'already exists' in output and allow_already_exist:
+        return 'VM %s already exists, skipping deployment' % vm_name
     if retry_deploy and ('already exists' in output):
         try:
             vmPower(vm_name, 'stop', vc_ip, vc_user, vc_pass)
@@ -405,6 +412,7 @@ def _deployVM(string):
             f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': Deploy VM failed: ' + str(e) + ': ' + ou + '\n')
         raise e
 
+
 def changeVMadapter(vmname, nics, networks, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core\n
         Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue \n'''
@@ -412,7 +420,8 @@ def changeVMadapter(vmname, nics, networks, vcenter_ip, vcenter_user, vcenter_pa
         if network != '':
             script += '''$myNetworkAdapters = Get-VM ''' + vmname + '''| Get-NetworkAdapter -Name "Network adapter ''' + nic + '''" \n'''
             script += '''Set-NetworkAdapter -NetworkAdapter $myNetworkAdapters -StartConnected:$true -Confirm:$false -Connected:$true -NetworkName "''' + network + '''" \n'''
-    powershell (script)
+    powershell(script)
+
 
 def invokeScript(script, vmname, vmuser, vmpass, retry, delay, vcenter_ip, vcenter_user, vcenter_password):
     start = '''Add-PSSnapin VMware.VimAutomation.Core\n
@@ -437,6 +446,7 @@ def invokeScript(script, vmname, vmuser, vmpass, retry, delay, vcenter_ip, vcent
     if finish is not True:
         raise Exception(finish)
 
+
 def cleanup(vmname, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core\n
     Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue\n
@@ -446,6 +456,7 @@ def cleanup(vmname, vcenter_ip, vcenter_user, vcenter_password):
         powershell(script)
     except:
         pass
+
 
 def rebootESX(esxs, vcenter_ip, vcenter_user, vcenter_password):
     script = '''Add-PSSnapin VMware.VimAutomation.Core
@@ -493,9 +504,10 @@ while ($sw.elapsed -lt $timeout){
         '''
     try:
         powershell(script)
-        #print "ESX " + esx + ' is going to be rebooted #Reboot is commented out#'
+        # print "ESX " + esx + ' is going to be rebooted #Reboot is commented out#'
     except:
         pass
+
 
 def addVMKernel(esxs, ips, subnet, vds, portgroup, vcenter_ip, vcenter_user, vcenter_pass):
     script = '''

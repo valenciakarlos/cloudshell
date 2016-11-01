@@ -16,8 +16,11 @@ import json
 import time
 from quali_remote import powershell
 from NSX_Common import *
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit
+
+quali_enter(__file__)
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -64,39 +67,40 @@ $a4 = ($c3 | get-view).MoRef.Value
 
 write-host '<%<%', $a1, $a2, $a3, $a4
 ''').split('<%<%')[1].strip().split(' ')
-try:
-    for cluster_moref in {nsx_cluster_moref, compute_cluster_moref, mgmt_cluster_moref}:
-        test = rest_api_query('''https://''' + nsx_ip + '''/api/2.0/nwfabric/configure''', nsx_user, nsx_password, 'post', '''
-        <nwFabricFeatureConfig>
-            <resourceConfig>
-            <resourceId>''' + cluster_moref + '''</resourceId>
-            </resourceConfig>
-        </nwFabricFeatureConfig>
-        ''')
-        with open(r'c:\ProgramData\QualiSystems\Shellss.log', 'a') as f:
-            f.write(test)
-        try:
-            nsx_wait_job(nsx_ip, nsx_user, nsx_password, test)
-        except Exception, e:
-            print e
-        #time.sleep(30)
-        try:
-            bat('''
-            cd ''' + qualiroot() + '''\\eamjava
-    
-            "C:\\Program Files\\Java\\jre7\\bin\\java.exe" -cp .;eam+vim25-wsdl.jar DisableVum ''' + vcenter_ip + ''' ''' + vcenter_user + ''' ''' + vcenter_password + ''' true
-    
-            ''')
-        
-            try:
-                rest_api_query('''https://''' + nsx_ip + '''/api/2.0/nwfabric/resolveIssues/''' + cluster_moref, nsx_user, nsx_password, 'post', '')
-            except:
-                pass
-        except:
-            pass
-    time.sleep(300)
-except Exception, e:
-    print e
+
+for cluster_moref in {nsx_cluster_moref, compute_cluster_moref, mgmt_cluster_moref}:
+    test = rest_api_query('''https://''' + nsx_ip + '''/api/2.0/nwfabric/configure''', nsx_user, nsx_password, 'post', '''
+    <nwFabricFeatureConfig>
+        <resourceConfig>
+        <resourceId>''' + cluster_moref + '''</resourceId>
+        </resourceConfig>
+    </nwFabricFeatureConfig>
+    ''')
+    # with open(r'c:\ProgramData\QualiSystems\Shellss.log', 'a') as f:
+    #     f.write(test)
+    # try:
+    nsx_wait_job(nsx_ip, nsx_user, nsx_password, test)
+    # except Exception, e:
+    #     print e
+    # time.sleep(30)
+    # try:
+
+    # Not needed if VUM is good
+        # bat('''
+        # cd ''' + qualiroot() + '''\\eamjava
+        #
+        # "C:\\Program Files\\Java\\jre7\\bin\\java.exe" -cp .;eam+vim25-wsdl.jar DisableVum ''' + vcenter_ip + ''' ''' + vcenter_user + ''' ''' + vcenter_password + ''' true
+        #
+        # ''')
+
+    try:
+        # ignore 404 bug
+        rest_api_query('''https://''' + nsx_ip + '''/api/2.0/nwfabric/resolveIssues/''' + cluster_moref, nsx_user, nsx_password, 'post', '')
+    except:
+        pass
+    # except:
+    #     pass
+time.sleep(300)
 
 # requests.get('https://' + vcenter_ip + '/eam/mob/', auth={vcenter_user, vcenter_password})
 
@@ -130,3 +134,5 @@ except Exception, e:
 #     if failed_hosts_csv == '':
 #         break
 #
+
+quali_exit(__file__)

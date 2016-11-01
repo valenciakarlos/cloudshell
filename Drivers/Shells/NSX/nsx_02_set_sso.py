@@ -12,9 +12,12 @@ from NSX_Common import rest_api_query_with_retry
 import json
 import time
 import os
+from quali_remote import quali_enter, quali_exit
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
+
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -37,3 +40,5 @@ if sso_fqdn:
         {0}
     </ssoConfig>
     ''')
+
+quali_exit(__file__)

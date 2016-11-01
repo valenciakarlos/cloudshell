@@ -68,7 +68,7 @@ command = ' '.join([
     '"' + ova_path + '"',
     '"vi://''' + vcenter_user.replace('@', '%40') + ''':''' + '"' + vcenter_password + '"' + '''@''' + vcenter_ip + '''/''' + datacenter + '''/host/''' + cluster + '/Resources"'
 ])
-deployVM(command, name, vcenter_ip, vcenter_user, vcenter_password, False)
+deployVM(command, name, vcenter_ip, vcenter_user, vcenter_password, False, True)
 # except Exception as e:
 #     print '\r\n' + str(e)
 #     sys.exit(1)

@@ -13,9 +13,12 @@ from NSX_Common import rest_api_query_with_retry
 import os
 import json
 import time
+from quali_remote import quali_enter, quali_exit
 
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+quali_enter(__file__)
+
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
 resource_name = resource['name']
@@ -41,3 +44,5 @@ rest_api_query_with_retry('''https://''' + nsx_ip + '''/api/2.0/services/vcconfi
     <pluginDownloadPort></pluginDownloadPort>
 </vcInfo>
 ''')
+
+quali_exit(__file__)

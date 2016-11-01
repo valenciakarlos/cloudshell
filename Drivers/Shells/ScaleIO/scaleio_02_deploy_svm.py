@@ -102,7 +102,7 @@ sdsdata = attrs['SDS Data IPs CSV'].split(',')
 sdsdata2 = attrs['SDS Data2 IPs CSV'].split(',')
 
 for i in range(len(sdsmgmt)):
-    sdsippool['SDS-%d' % i+1] = [sdsmgmt[i], sdsdata[i], sdsdata2[i]]
+    sdsippool['SDS-%d' % (i+1)] = [sdsmgmt[i], sdsdata[i], sdsdata2[i]]
 
 
 
@@ -172,25 +172,19 @@ for i in _sdclist:
         sdclist.append(i)
 
 
-try:
-    # Deploy SVM
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"'
-        notify_user(api, reservationId, "Deploying " + _vm_name)
-        deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
-
-    # Deploy Gateway
-    _vm_name = vm_name + "-Gateway"
-    command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"'
+# Deploy SVM
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + siodic[name][4] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + siodic[name][5] + '/' + siodic[name][3] + '"'
     notify_user(api, reservationId, "Deploying " + _vm_name)
-    deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False)
+    deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
 
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
+# Deploy Gateway
+_vm_name = vm_name + "-Gateway"
+command = '--skipManifestCheck --noSSLVerify  --allowExtraConfig --datastore=' + '"' + gatewayesx[0] + '"' + ' --acceptAllEulas --diskMode=' + thick_thin + ' --net:"VM Network"="' + sio_mgmt_portgroup + '" --name="' + _vm_name + '" ' + ova_path + ' "vi://' + vcenter_user + ':"' + vcenter_password + '"@' + vcenter_ip + '/' + datacenter + '/host/' + gatewayesx[1] + '/' + gateway_esx + '"'
+notify_user(api, reservationId, "Deploying " + _vm_name)
+deployVM(command, _vm_name, vcenter_ip, vcenter_user, vcenter_password, False, True)
+
 
 # Add Gateway to the dictionary
 siodic['Gateway'] = [svm4_mgmt_ip, '', '', gatewayesx[1], gatewayesx[0]]
@@ -198,85 +192,61 @@ siodic['Gateway'] = [svm4_mgmt_ip, '', '', gatewayesx[1], gatewayesx[0]]
 
 # Add UUID attribute to the VMs
 notify_user(api, reservationId, "Power on VMs")
-try:
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        script = '''Add-PSSnapin VMware.VimAutomation.Core\n
-        Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue\n
-        $v = Get-VM -Name ''' + _vm_name + '''
-        New-AdvancedSetting -Entity $v -Name disk.EnableUUID -Value TRUE -Confirm:$false -Force:$true
-        '''
-        powershell(script)
-        vmPower(_vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    script = '''Add-PSSnapin VMware.VimAutomation.Core\n
+    Connect-VIServer -Server ''' + vcenter_ip + ''' -User ''' + vcenter_user + ''' -Password ''' + vcenter_password + ''' -WarningAction SilentlyContinue\n
+    $v = Get-VM -Name ''' + _vm_name + '''
+    New-AdvancedSetting -Entity $v -Name disk.EnableUUID -Value TRUE -Confirm:$false -Force:$true
+    '''
+    powershell(script)
+    vmPower(_vm_name, 'start', vcenter_ip, vcenter_user, vcenter_password)
 
 time.sleep(60)
 notify_user(api, reservationId, "Configure VMs network")
-try:
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        # Reconfigure VM NICs for Data network
-        changeVMadapter(_vm_name, ("2", "3"), (sio_data1_portgroup, sio_data2_portgroup), vcenter_ip, vcenter_user, vcenter_password)
-        # Configure SVM ETHs
-        if siodic[name][0] != '':
-            configureSIOnetwork('eth0', siodic[name][0], mgmt_netmask, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
-        if siodic[name][1] != '':
-            configureSIOnetwork('eth1', siodic[name][1], data1_netmask, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
-        if siodic[name][2] != '':
-            configureSIOnetwork('eth2', siodic[name][2], data2_netmask, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
-        # Configure Routes
-        configureSIORoute('eth0', mgmt_gw, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
-        restartService('network', 'restart', _vm_name, vcenter_ip, vcenter_user, vcenter_password)
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    # Reconfigure VM NICs for Data network
+    changeVMadapter(_vm_name, ("2", "3"), (sio_data1_portgroup, sio_data2_portgroup), vcenter_ip, vcenter_user, vcenter_password)
+    # Configure SVM ETHs
+    if siodic[name][0] != '':
+        configureSIOnetwork('eth0', siodic[name][0], mgmt_netmask, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
+    if siodic[name][1] != '':
+        configureSIOnetwork('eth1', siodic[name][1], data1_netmask, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
+    if siodic[name][2] != '':
+        configureSIOnetwork('eth2', siodic[name][2], data2_netmask, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
+    # Configure Routes
+    configureSIORoute('eth0', mgmt_gw, _vm_name, vcenter_ip, vcenter_user, vcenter_password)
+    restartService('network', 'restart', _vm_name, vcenter_ip, vcenter_user, vcenter_password)
 
 # Add RDM to SVMs
 notify_user(api, reservationId, "Add RDM to SVMs")
 diskdic = {}
-try:
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        # Skip Gateway SVM
-        if not "Gateway" in _vm_name:
-            disks = getESXfreedisks(siodic[name][3], vcenter_ip, vcenter_user, vcenter_password).split('<%<%')[1].strip()
-            # Check if the ESX have any free disks
-            if disks != None:
-                for disk in disks.split(";"):
-                    diskesx = disk.split(",")[0]
-                    diskname = disk.split(",")[1]
-                    diskssd = disk.split(",")[2]
-                    disksize = disk.split(",")[3]
-                    # Remove Disks with less than 100GB of space form the list
-                    if float(disksize) >= 100:
-                        if _vm_name in diskdic:
-                            diskdic[_vm_name] = diskdic[_vm_name] + [diskname, diskssd, disksize]
-                        else:
-                            diskdic[_vm_name] = [diskname, diskssd, disksize]
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    # Skip Gateway SVM
+    if not "Gateway" in _vm_name:
+        disks = getESXfreedisks(siodic[name][3], vcenter_ip, vcenter_user, vcenter_password).split('<%<%')[1].strip()
+        # Check if the ESX have any free disks
+        if disks != None:
+            for disk in disks.split(";"):
+                diskesx = disk.split(",")[0]
+                diskname = disk.split(",")[1]
+                diskssd = disk.split(",")[2]
+                disksize = disk.split(",")[3]
+                # Remove Disks with less than 100GB of space form the list
+                if float(disksize) >= 100:
+                    if _vm_name in diskdic:
+                        diskdic[_vm_name] = diskdic[_vm_name] + [diskname, diskssd, disksize]
+                    else:
+                        diskdic[_vm_name] = [diskname, diskssd, disksize]
 
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
 
-try:
-    for vm in diskdic:
-        for n in xrange(len(diskdic[vm])/3):
-            print "VM name is: " + vm + " Disk " + diskdic[vm][n*3] + " Size: " + diskdic[vm][(n*3)+2]
-            createRDMdisk(vm, diskdic[vm][n*3], vcenter_ip, vcenter_user, vcenter_password)
+for vm in diskdic:
+    for n in xrange(len(diskdic[vm])/3):
+        print "VM name is: " + vm + " Disk " + diskdic[vm][n*3] + " Size: " + diskdic[vm][(n*3)+2]
+        createRDMdisk(vm, diskdic[vm][n*3], vcenter_ip, vcenter_user, vcenter_password)
 
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
 
 # Add AutoStart to the ESXs and SVMs
 svms = ''
@@ -284,14 +254,8 @@ for svm in siodic:
     _vm_name = vm_name + '-' + svm
     svms += _vm_name + ','
 
-try:
-    configureAutomaticstart(svms[:-1], datacenter, vcenter_ip, vcenter_user, vcenter_password)
+configureAutomaticstart(svms[:-1], datacenter, vcenter_ip, vcenter_user, vcenter_password)
 
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
 
 endtime = datetime.datetime.now()
 print "Total Deployment time: " + str(endtime - starttime)

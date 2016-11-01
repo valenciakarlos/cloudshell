@@ -275,6 +275,7 @@ aa = [
     ('Service', 'vCenter', 'vCenter DNS1', management_dns1),
     ('Service', 'vCenter', 'vCenter DNS2', management_dns2),
     ('Service', 'vCenter', 'vCenter NTP Server', management_ntp_ip),
+    ('Service', 'vCenter', 'Datacenter', datacenter),
 
     ('Service', 'vCenter', 'vCenter Cluster1 ESXis', sio_master_host_ip),
     ('Service', 'vCenter', 'vCenter Cluster2 ESXis', ','.join(sio_nonmdm_host_ips)),
@@ -302,6 +303,8 @@ aa = [
     ('Service', 'vCenter', 'VDS5 Kernel IPs', ','.join(sdc_data2_vmk_ips)),
 
     ('Service', 'ScaleIO', 'vCenter IP', vcenter_ip),
+    ('Service', 'ScaleIO', 'Datacenter', datacenter),
+
     ('Service', 'ScaleIO', 'Call Home DNS Server 1', management_dns1),
     ('Service', 'ScaleIO', 'Call Home DNS Server 2', management_dns2),
     ('Service', 'ScaleIO', 'Host for ScaleIO Gateway', sio_master_host_ip),

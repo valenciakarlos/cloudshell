@@ -131,7 +131,7 @@ sdsdata = attrs['SDS Data IPs CSV'].split(',')
 sdsdata2 = attrs['SDS Data2 IPs CSV'].split(',')
 
 for i in range(len(sdsmgmt)):
-    _siodic['SDS-%d' % i+1] = [sdsmgmt[i], sdsdata[i], sdsdata2[i]]
+    _siodic['SDS-%d' % (i+1)] = [sdsmgmt[i], sdsdata[i], sdsdata2[i]]
 
 #connect to api
 api = CloudShellAPISession(connectivity_details["serverAddress"], reservation_details["ownerUser"], reservation_details["ownerPass"], reservation_details["domain"])
@@ -169,101 +169,82 @@ else:
 
 # Get Disks of each SVM
 diskdic = {}
-try:
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        # Skip Gateway SVM
-        if not "Gateway" in _vm_name:
-            disks = getSvmDisks(_vm_name, vcenter_ip, vcenter_user, vcenter_password)
-            # Check if the VM have more then 1 disk
-            if disks != '1':
-                disk = int(disks)-1
-                diskdic[_vm_name] = [disk]
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    # Skip Gateway SVM
+    if not "Gateway" in _vm_name:
+        disks = getSvmDisks(_vm_name, vcenter_ip, vcenter_user, vcenter_password)
+        # Check if the VM have more then 1 disk
+        if disks != '1':
+            disk = int(disks)-1
+            diskdic[_vm_name] = [disk]
 
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
 
 # Fix sio version
 if not sio_version.startswith('-'):
     sio_version = '-' + sio_version
 
 # Install SVM role
-try:
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        notify_user(api, reservationId, "Install SVM role on " + _vm_name)
-        # Install PGP Key
-        installKey(siodic[name][0])
-        if "Gateway" in name:
-            installGateway(siodic[name][0], gateway_password, version=sio_version)
-            # Unknown what to do here. Currently it breaks the gateway
-            configureGateway(siodic[name][0], svm1_mgmt_ip, svm2_mgmt_ip, zp)
-        else:
-            # Install SDS & LIA
-            installSDS(siodic[name][0], version=sio_version)
-            installLIA(siodic[name][0], lia_password, version=sio_version)
-            # Install MDM role and install & Configure CallHome
-            if siodic[name][0] == svm1_mgmt_ip or siodic[name][0] == svm2_mgmt_ip:
-                installSIOVM(siodic[name][0], "mdm", version=sio_version)
-                # NO CALLHOME FUNC IN THIS VERSION
-                # if callhome_smtp_server != '':
-                #     installCallHome(siodic[name][0], version=sio_version)
-                #     configureCallhome(siodic[name][0], smtphost=callhome_smtp_server, port=callhome_smtp_port, tls=callhome_smtp_tls.lower(), smtpuser=callhome_smtp_username, smtppass=callhome_smtp_password, user=callhome_sio_username, password=callhome_sio_password, fromemail=callhome_email_from, toemail=callhome_email_to, customername=callhome_customer_name, severity=callhome_severity_level.lower())
-            elif "TieBreaker" in name:
-                installSIOVM(siodic[name][0], "tb", version=sio_version)
-        # Change root Password
-        changeRootPassword(siodic[name][0], svm_password)
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    notify_user(api, reservationId, "Install SVM role on " + _vm_name)
+    # Install PGP Key
+    installKey(siodic[name][0])
+    if "Gateway" in name:
+        installGateway(siodic[name][0], gateway_password, version=sio_version)
+        # Unknown what to do here. Currently it breaks the gateway
+        configureGateway(siodic[name][0], svm1_mgmt_ip, svm2_mgmt_ip, zp)
+    else:
+        # Install SDS & LIA
+        installSDS(siodic[name][0], version=sio_version)
+        installLIA(siodic[name][0], lia_password, version=sio_version)
+        # Install MDM role and install & Configure CallHome
+        if siodic[name][0] == svm1_mgmt_ip or siodic[name][0] == svm2_mgmt_ip:
+            installSIOVM(siodic[name][0], "mdm", version=sio_version)
+            # NO CALLHOME FUNC IN THIS VERSION
+            # if callhome_smtp_server != '':
+            #     installCallHome(siodic[name][0], version=sio_version)
+            #     configureCallhome(siodic[name][0], smtphost=callhome_smtp_server, port=callhome_smtp_port, tls=callhome_smtp_tls.lower(), smtpuser=callhome_smtp_username, smtppass=callhome_smtp_password, user=callhome_sio_username, password=callhome_sio_password, fromemail=callhome_email_from, toemail=callhome_email_to, customername=callhome_customer_name, severity=callhome_severity_level.lower())
+        elif "TieBreaker" in name:
+            installSIOVM(siodic[name][0], "tb", version=sio_version)
+    # Change root Password
+    changeRootPassword(siodic[name][0], svm_password)
 
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
 
 # Configure SIO MDM Cluster
 notify_user(api, reservationId, "Configure ScaleIO MDM Cluster")
 svmlist = []
-try:
-    configureSDS([svm1_mgmt_ip, svm1_data1_ip, svm1_data2_ip], [svm2_mgmt_ip, svm2_data1_ip, svm2_data2_ip],
-                 [svm3_mgmt_ip, svm3_data1_ip, svm3_data2_ip], adminpassword=sio_admin_password, password=svm_password)
-    configureMainStorage(svm1_mgmt_ip, svm2_mgmt_ip, adminpassword=sio_admin_password, zp=zp, backscan=backscanner, sysname=system_name, password=svm_password, sp=storage_pool_name, pd=prot_domain_name)
-    # should be changed to support a mismatch in the number of faultsets and sds's
-    faults = createFaultsets(svm1_mgmt_ip, adminpassword=sio_admin_password, password=svm_password, pd=prot_domain_name, faultnameprefix=fault_name_prefix, number=fault_number)
-    for name in siodic:
-        _vm_name = vm_name + '-' + name
-        if name != "Gateway":
-            ips = ''
-            if _siodic[name][1]:
-                ips = _siodic[name][1]
-            if _siodic[name][2]:
-                if ips:
-                    ips += ',' + _siodic[name][2]
-                else:
-                    ips = _siodic[name][2]
+configureSDS([svm1_mgmt_ip, svm1_data1_ip, svm1_data2_ip], [svm2_mgmt_ip, svm2_data1_ip, svm2_data2_ip],
+             [svm3_mgmt_ip, svm3_data1_ip, svm3_data2_ip], adminpassword=sio_admin_password, password=svm_password)
+configureMainStorage(svm1_mgmt_ip, svm2_mgmt_ip, adminpassword=sio_admin_password, zp=zp, backscan=backscanner, sysname=system_name, password=svm_password, sp=storage_pool_name, pd=prot_domain_name)
+# should be changed to support a mismatch in the number of faultsets and sds's
+faults = createFaultsets(svm1_mgmt_ip, adminpassword=sio_admin_password, password=svm_password, pd=prot_domain_name, faultnameprefix=fault_name_prefix, number=fault_number)
+for name in siodic:
+    _vm_name = vm_name + '-' + name
+    if name != "Gateway":
+        ips = ''
+        if _siodic[name][1]:
+            ips = _siodic[name][1]
+        if _siodic[name][2]:
+            if ips:
+                ips += ',' + _siodic[name][2]
             else:
-                ips = _siodic[name][0]
+                ips = _siodic[name][2]
+        else:
+            ips = _siodic[name][0]
 
-            svmlist.append(ips)
-            svmlist.append(diskdic[_vm_name][0])
-    # Need to Change to SDC UUID and not sdcdatalist
-    addSdcNode(svm1_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, password=svm_password)
-    time.sleep(30)
-    # should be changed to support a mismatch in the number of faultsets and sds's
-    addSdsStorage(svm1_mgmt_ip, svm2_mgmt_ip, svmlist, adminpassword=sio_admin_password, rmcache=rmcache, faultlist=faults, password=svm_password, pd=prot_domain_name, sp=storage_pool_name)
-    time.sleep(30)
-    addVolume(svm1_mgmt_ip, svm2_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, volumetype=volume_type, volumesize=volume_size, password=svm_password, pd=prot_domain_name, sp=storage_pool_name)
-    time.sleep(30)
-    addSioStorageToESX(esx_for_Storage, sio_storage_name, vcenter_ip, vcenter_user, vcenter_password)
+        svmlist.append(ips)
+        svmlist.append(diskdic[_vm_name][0])
+# Need to Change to SDC UUID and not sdcdatalist
+addSdcNode(svm1_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, password=svm_password)
+time.sleep(30)
+# should be changed to support a mismatch in the number of faultsets and sds's
+addSdsStorage(svm1_mgmt_ip, svm2_mgmt_ip, svmlist, adminpassword=sio_admin_password, rmcache=rmcache, faultlist=faults, password=svm_password, pd=prot_domain_name, sp=storage_pool_name)
+time.sleep(30)
+addVolume(svm1_mgmt_ip, svm2_mgmt_ip, sdcdatalist, adminpassword=sio_admin_password, volumetype=volume_type, volumesize=volume_size, password=svm_password, pd=prot_domain_name, sp=storage_pool_name)
+time.sleep(30)
+addSioStorageToESX(esx_for_Storage, sio_storage_name, vcenter_ip, vcenter_user, vcenter_password)
 
-
-except Exception, e:
-    print e
-    with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-        f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ' Got Error: ' + str(e) + '\r\n')
-    exit(1)
 
 # No plugin install. need to 
 # Install vCenter Plugin

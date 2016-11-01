@@ -14,8 +14,11 @@ import json
 import time
 from NSX_Common import *
 from quali_remote import powershell
-with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
+from quali_remote import quali_enter, quali_exit
+
+quali_enter(__file__)
+# with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+#     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.py', '') + ': ' + str(os.environ) + '\r\n')
 
 
 resource = json.loads(os.environ['RESOURCECONTEXT'])
@@ -128,3 +131,5 @@ edge_ip_pool_moref = rest_api_query('''https://''' + nsx_ip + '''/api/2.0/servic
     </ipRanges>
 </ipamAddressPool>
 ''')
+
+quali_exit(__file__)

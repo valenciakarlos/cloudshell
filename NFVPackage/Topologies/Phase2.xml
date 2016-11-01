@@ -179,7 +179,7 @@
     <Service PositionX="582" PositionY="347" Alias="NSX Manager" ServiceName="NSX Manager">
       <Attributes>
         <Attribute Name="NSX IP" Value="" />
-        <Attribute Name="NSX Username" Value="" />
+        <Attribute Name="NSX Username" Value="admin" />
         <Attribute Name="NSX Password" Value="" />
         <Attribute Name="vCenter FQDN" Value="" />
         <Attribute Name="app_nsx_sso Username" Value="" />
@@ -227,8 +227,8 @@
         <Attribute Name="Logical Switch Description" Value="" />
         <Attribute Name="Cluster" Value="" />
         <Attribute Name="Deployment Size" Value="Small" />
-        <Attribute Name="NSX SSO Password" Value="admin" />
-        <Attribute Name="NSX SSO Username" Value="Welcome1!" />
+        <Attribute Name="NSX SSO Username" Value="admin" />
+        <Attribute Name="NSX SSO Password" Value="Welcome1!" />
         <Attribute Name="vCenter Administrator Username" Value="administrator@vsphere.local" />
         <Attribute Name="Controller Cluster" Value="" />
         <Attribute Name="Controller Datastore" Value="SIO_Datastore" />
@@ -521,7 +521,7 @@
         <Attribute Name="vRA Domain" Value="" />
         <Attribute Name="vCenter Administrator Username" Value="" />
         <Attribute Name="NSX IP" Value="" />
-        <Attribute Name="NSX Username" Value="" />
+        <Attribute Name="NSX Username" Value="admin" />
         <Attribute Name="NSX Password" Value="" />
       </Attributes>
     </Service>
