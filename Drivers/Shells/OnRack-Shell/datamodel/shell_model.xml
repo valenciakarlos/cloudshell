@@ -39,6 +39,9 @@
                 <AttachedAttribute Name="OnRack Password" IsOverridable="true" IsLocal="true">
                     <AllowedValues />
                 </AttachedAttribute>
+                <AttachedAttribute Name="OS Deployment Attempts Limit" IsOverridable="true" IsLocal="true">
+                    <AllowedValues />
+                </AttachedAttribute>
             </AttachedAttributes>
             <AttributeValues>
                 <AttributeValue Name="User" Value="" />
@@ -53,6 +56,7 @@
                 <AttributeValue Name="OnRackID" Value="" />
                 <AttributeValue Name="OnRack Username" Value="" />
                 <AttributeValue Name="OnRack Password" Value="" />
+                <AttributeValue Name="OS Deployment Attempts Limit" Value="1" />
               </AttributeValues>
             <ParentModels />
             <Drivers>

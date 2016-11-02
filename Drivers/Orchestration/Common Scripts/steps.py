@@ -371,6 +371,7 @@ class ResourceRemoteCommand:
                             rvs1.append(trv)
                         except Exception as e:
                             es1.append(e)
+                    qs_info('starting thread for ' + res.Name)
                     th = Thread(target=t, args=(csapi, rvs, es, resid, res.Name, self.command, self.tag, inp))
                     threads.append(th)
                     th.start()
@@ -606,7 +607,6 @@ def go(printmode, include_ranges='', exclude_ranges=''):
     resdetails = csapi.GetReservationDetails(resid).ReservationDescription
 
     for i, step in enumerate(steps):
-        print i
         if inranges(i, include_ranges) and not inranges(i, exclude_ranges):
             # print 'included'
             result = step.execute(csapi, resid, resdetails, printmode)
@@ -631,11 +631,11 @@ def go(printmode, include_ranges='', exclude_ranges=''):
         if token2.startswith('"') and token2.endswith('"'):
             token2 = token2[1:-1]
 
-        print os.environ
-        print token2
-        print con_details.admin_user
-        print pw
-        print env_details.domain
+        # print os.environ
+        # print token2
+        # print con_details.admin_user
+        # print pw
+        # print env_details.domain
         print csv
         j = requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_details.server_address, 9000),
                           headers={
@@ -647,6 +647,6 @@ def go(printmode, include_ranges='', exclude_ranges=''):
                               'saveFileAs': ('saveFileAs', 'steps.csv'),
                               'overwriteIfExists': ('overwriteIfExists', 'True'),
                           })
-        print j.status_code
-        print j.text
+        # print j.status_code
+        # print j.text
         print 'steps.csv has been attached to the reservation. Reload the page and click the paperclip icon to download the file.'

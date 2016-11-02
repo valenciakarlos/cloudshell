@@ -299,8 +299,8 @@
         <Attribute Name="vCenter DNS1" Value="" />
         <Attribute Name="vCenter DNS2" Value="" />
         <Attribute Name="vCenter ESXi IP" Value="" />
-        <Attribute Name="vCenter ESXi Password" Value="" />
-        <Attribute Name="vCenter ESXi Username" Value="" />
+        <Attribute Name="vCenter ESXi Password" Value="dangerous" />
+        <Attribute Name="vCenter ESXi Username" Value="root" />
         <Attribute Name="vCenter Gateway" Value="" />
         <Attribute Name="vCenter Hostname" Value="" />
         <Attribute Name="vCenter IP" Value="" />
@@ -315,18 +315,19 @@
         <Attribute Name="VDS1 Name" Value="mgmtsw" />
         <Attribute Name="VDS1 Version" Value="6.0.0" />
         <Attribute Name="VDS1 Hosts" Value="" />
-        <Attribute Name="VDS1 Num Uplink Ports" Value="4" />
+        <Attribute Name="VDS1 Num Uplink Ports" Value="8" />
         <Attribute Name="VDS1 Port Group Name" Value="mgmtportgrp" />
         <Attribute Name="VDS1 Port Group VLAN Type" Value="none" />
         <Attribute Name="VDS1 Hosts VNICS" Value="" />
-        <Attribute Name="VDS2 Hosts VNICS" Value="" />
+        <Attribute Name="VDS2 Hosts VNICS" Value="vmnic2" />
         <Attribute Name="VDS3 Hosts VNICS" Value="" />
         <Attribute Name="VDS4 Hosts VNICS" Value="" />
+        <Attribute Name="VDS5 Hosts VNICS" Value="vmnic3" />
         <Attribute Name="VDS1 Port Group VLAN IDs" Value="" />
         <Attribute Name="VDS2 Name" Value="data" />
         <Attribute Name="VDS2 Version" Value="6.0.0" />
         <Attribute Name="VDS2 Hosts" Value="" />
-        <Attribute Name="VDS2 Num Uplink Ports" Value="4" />
+        <Attribute Name="VDS2 Num Uplink Ports" Value="8" />
         <Attribute Name="VDS2 Port Group Name" Value="dataportgrp" />
         <Attribute Name="VDS2 Port Group VLAN Type" Value="none" />
         <Attribute Name="VDS2 Port Group VLAN IDs" Value="" />
@@ -359,20 +360,19 @@
         <Attribute Name="vCenter Cluster4 DRS" Value="False" />
         <Attribute Name="vCenter Cluster4 ESXis" Value="" />
         <Attribute Name="vCenter Cluster4 HA" Value="False" />
-        <Attribute Name="vCenter Cluster4 Name" Value="" />
+        <Attribute Name="vCenter Cluster4 Name" Value="cluster4" />
         <Attribute Name="vCenter Cluster5 DRS" Value="False" />
         <Attribute Name="vCenter Cluster5 ESXis" Value="" />
         <Attribute Name="vCenter Cluster5 HA" Value="False" />
-        <Attribute Name="vCenter Cluster5 Name" Value="" />
-        <Attribute Name="vCenter Datacenter Name" Value="" />
+        <Attribute Name="vCenter Cluster5 Name" Value="cluster5" />
+        <Attribute Name="vCenter Datacenter Name" Value="NFVDC" />
         <Attribute Name="vCenter SSO Password" Value="Welcome1!" />
         <Attribute Name="VDS5 Kernel IPs" Value="" />
         <Attribute Name="VDS5 Kernel Subnet" Value="" />
-        <Attribute Name="VDS5 Hosts VNICS" Value="" />
         <Attribute Name="VDS5 Name" Value="data2" />
         <Attribute Name="VDS5 Version" Value="6.0.0" />
         <Attribute Name="VDS5 Hosts" Value="" />
-        <Attribute Name="VDS5 Num Uplink Ports" Value="4" />
+        <Attribute Name="VDS5 Num Uplink Ports" Value="8" />
         <Attribute Name="VDS5 Port Group Name" Value="data2portgrp" />
         <Attribute Name="VDS5 Port Group VLAN Type" Value="none" />
         <Attribute Name="VDS5 Port Group VLAN IDs" Value="" />

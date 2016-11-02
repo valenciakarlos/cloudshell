@@ -106,14 +106,15 @@ class OnrackShellDriver (ResourceDriverInterface):
                 attrs['ResourceAddress'] = d.Address
                 attrs['ResourceName'] = d.Name
 
+        qs_info('start deploy_os for ' + attrs['ResourceName'], context)
         if attrs['Requires OS Deployment'].lower() in ['false', 'no']:
-            # todo log that we skipped it, "If you want to redeploy, set Requires OS Deployment to True"
+            qs_info('Skipping deployment for %s. To force redeploy, set Requires OS Deployment attribute to True on %s' % (attrs['ResourceName'], attrs['ResourceName']), context)
             return
 
         csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Offline', '')
         # csapi.WriteMessageToReservationOutput(resid, 'Installing %s on %s...' % (os_type, attrs['ResourceName']))
         tries = 0
-        maxtries = 1
+        maxtries = int(context.resource.attributes['OS Deployment Attempts Limit'])
         while tries < maxtries:
             tries += 1
             qs_info('Deploying %s on %s: Attempt #%d...' % (os_type, attrs['ResourceName'], tries), context)
@@ -216,6 +217,15 @@ class OnrackShellDriver (ResourceDriverInterface):
                 return
             except Exception as e:
                 qs_info('Error installing %s on %s: %s' % (os_type, attrs['ResourceName'], str(e)), context)
+                if 'in progress' in str(e).lower():
+                    qs_info('Killing in-progress task on %s' % onrack_res_id)
+                    # http://localhost:8080/api/common/nodes/$1/workflows/active
+                    try:
+                        rest_json('delete', 'http://' + onrack_ip + ':8080/api/common/nodes/' + onrack_res_id + '/workflows/active', None, '', context)
+                    except Exception as e2:
+                        qs_info('Failed to kill in-progress task on %s, sleeping 30 minutes to wait for task timeout. %s' % (onrack_res_id, str(e2)))
+                        sleep(30*60)
+                    sleep(60)
             sleep(30)
         raise Exception('Failed to install %s on %s in %d tries' % (os_type, attrs['ResourceName'], maxtries))
     

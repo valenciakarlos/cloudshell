@@ -133,6 +133,11 @@
         <Rule Name="Configuration" />
       </Rules>
     </AttributeInfo>
+    <AttributeInfo Name="OS Deployment Attempts Limit" Type="Numeric" DefaultValue="1" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+      </Rules>
+    </AttributeInfo>
     <AttributeInfo xsi:type="LookupAttributeDetails" Name="CLI Connection Type" Type="Lookup" DefaultValue="Auto" IsReadOnly="false" IsCommand="false">
       <Rules>
         <Rule Name="Configuration" />

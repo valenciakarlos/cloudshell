@@ -275,7 +275,6 @@ aa = [
     ('Service', 'vCenter', 'vCenter DNS1', management_dns1),
     ('Service', 'vCenter', 'vCenter DNS2', management_dns2),
     ('Service', 'vCenter', 'vCenter NTP Server', management_ntp_ip),
-    ('Service', 'vCenter', 'Datacenter', datacenter),
 
     ('Service', 'vCenter', 'vCenter Cluster1 ESXis', sio_master_host_ip),
     ('Service', 'vCenter', 'vCenter Cluster2 ESXis', ','.join(sio_nonmdm_host_ips)),

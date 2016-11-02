@@ -33,17 +33,17 @@ def qs_log(severity, message, context=None):
             except:
                 resid = 'no-reservation'
 
+        # try:
+        #     resource = context.remote_endpoints[0].fullname + '_via_' + context.resource.fullname
+        # except:
+        #     try:
+        #         resource = context.resource.fullname
+        #     except:
+        #         resource = 'no-resource'
+        # resource = resource.replace('/', '-').replace(':', '-')
+        #
         try:
-            resource = context.remote_endpoints[0].fullname + '_via_' + context.resource.fullname
-        except:
-            try:
-                resource = context.resource.fullname
-            except:
-                resource = 'no-resource'
-        resource = resource.replace('/', '-').replace(':', '-')
-
-        try:
-            csapi = cloudshell.api.cloudshell_api.CloudShellAPISession(context.connectivity.server_address,
+            csapi = CloudShellAPISession(context.connectivity.server_address,
                                                                        port=context.connectivity.cloudshell_api_port,
                                                                        token_id=context.connectivity.admin_auth_token)
         except:
@@ -56,16 +56,15 @@ def qs_log(severity, message, context=None):
         except:
             resid = 'no-reservation'
 
-        try:
-            resource = helpers.get_resource_context_details().fullname
-        except:
-            resource = 'no-resource'
-        resource = resource.replace('/', '-').replace(':', '-')
+        # try:
+        #     resource = helpers.get_resource_context_details().fullname
+        # except:
+        #     resource = 'no-resource'
+        # resource = resource.replace('/', '-').replace(':', '-')
 
-    # with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
-    #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + str(resid) + ' ' + str(resource) + ' ' + str(message))
-
-    logger = get_qs_logger(log_group=resid, log_category='NFV', log_file_prefix=resource)
+    logger = get_qs_logger(log_group=resid, log_category='NFV', log_file_prefix='nfv')
+    with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
+        f.write(logger.name + ' ' + time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + str(resid) + ' ' + str(message)[0:50] + '...\n')
 
     if severity in ['info']:
         logger.info(message)
