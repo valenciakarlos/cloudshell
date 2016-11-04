@@ -16,14 +16,16 @@ from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import CloudShellAPISession
 
 
-def qs_log(severity, message, context=None):
+def qs_log(severity, message, context=None, file_name=None):
     # with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
     #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.pyc', '').replace('.py', '') +
     #             ': ' + message + '\r\n')
 
     # with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
     #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': qs_log called')
+    log_root_folder = 'c:\\ProgramData\\QualiSystems\\'
 
+    os.environ['LOG_PATH'] = log_root_folder
     if context:
         try:
             resid = context.reservation.reservation_id
@@ -66,11 +68,11 @@ def qs_log(severity, message, context=None):
     with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
         f.write(logger.name + ' ' + time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + str(resid) + ' ' + str(message)[0:50] + '...\n')
 
-    if severity in ['info']:
-        logger.info(message)
-
     if severity in ['trace']:
         logger.debug(message)
+
+    if severity in ['info']:
+        logger.info(message)
 
     if severity in ['error']:
         logger.error(message)

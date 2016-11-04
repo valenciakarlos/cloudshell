@@ -183,15 +183,7 @@
         <Rule Name="Admin Only"/>
       </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="OnRack Username" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules>
-        <Rule Name="Configuration" />
-      </Rules>
-    </AttributeInfo>
-    <AttributeInfo Name="OnRack Password" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules>
-      </Rules>
-    </AttributeInfo>
+
     <AttributeInfo Name="VisionID IP" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules>
         <Rule Name="Configuration" />

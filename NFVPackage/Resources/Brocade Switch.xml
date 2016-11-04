@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ResourceInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="Brocade Switch" FolderFullPath="" Address="NA" ModelName="Brocade NOS Switch" xmlns="http://schemas.qualisystems.com/ResourceManagement/ResourceSchema.xsd">
-  <Attributes>
-    <Attribute Name="User" Value="" />
-    <Attribute Name="Password" Value="54hKweHFkBB2PiKWMQimZ3TggVUGIImUIIg9pfEaWL0=" />
-  </Attributes>
-  <ChildResources />
-  <Connections />
-</ResourceInfo>

@@ -30,15 +30,7 @@
                 <AttachedAttribute Name="Version" IsOverridable="true" IsLocal="true">
                     <AllowedValues />
                 </AttachedAttribute>
-                <AttachedAttribute Name="OnRackID" IsOverridable="true" IsLocal="true">
-                    <AllowedValues />
-                </AttachedAttribute>
-                <AttachedAttribute Name="OnRack Username" IsOverridable="true" IsLocal="true">
-                    <AllowedValues />
-                </AttachedAttribute>
-                <AttachedAttribute Name="OnRack Password" IsOverridable="true" IsLocal="true">
-                    <AllowedValues />
-                </AttachedAttribute>
+
                 <AttachedAttribute Name="OS Deployment Attempts Limit" IsOverridable="true" IsLocal="true">
                     <AllowedValues />
                 </AttachedAttribute>
@@ -53,9 +45,6 @@
 		        <AttributeValue Name="Version" Value="" />
                 <AttributeValue Name="Power Management" Value="False" />
 
-                <AttributeValue Name="OnRackID" Value="" />
-                <AttributeValue Name="OnRack Username" Value="" />
-                <AttributeValue Name="OnRack Password" Value="" />
                 <AttributeValue Name="OS Deployment Attempts Limit" Value="1" />
               </AttributeValues>
             <ParentModels />

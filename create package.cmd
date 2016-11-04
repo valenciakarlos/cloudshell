@@ -80,7 +80,7 @@ cd ..\..\..\
 
 rem rem copy "drivers\orchestration\NFV Environment Scripts\steps.py" "nfvpackage\topology scripts\" /y
 rem rem copy "drivers\orchestration\NFV Environment Scripts\setup.py" "nfvpackage\topology scripts\" /y
-copy "drivers\orchestration\NFV Environment Scripts\copy_inputs.py" "nfvpackage\topology scripts\" /y
+copy "drivers\orchestration\NFV Environment Scripts\*.py" "nfvpackage\topology scripts\" /y
 
 rem goto :skipshells
 
@@ -142,6 +142,7 @@ copy drivers\shells\vcenter\*.py "nfvpackage\resource scripts" /y
 copy drivers\shells\versa\*.py "nfvpackage\resource scripts" /y
 copy drivers\shells\vcd\*.py "nfvpackage\resource scripts" /y
 copy drivers\shells\vloginsight\*.py "nfvpackage\resource scripts" /y
+copy drivers\shells\vra\*.py "nfvpackage\resource scripts" /y
 copy drivers\shells\vrops\*.py "nfvpackage\resource scripts" /y
 
 

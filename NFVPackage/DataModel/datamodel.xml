@@ -1833,6 +1833,9 @@
     <AttributeInfo Name="VDS1 Port Group VLAN Type" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
+    <AttributeInfo Name="PXE VNIC" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+    </AttributeInfo>
     <AttributeInfo Name="VDS1 Hosts VNICS" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
@@ -5240,6 +5243,9 @@
             <AttachedAttribute Name="VDS1 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
+            <AttachedAttribute Name="PXE VNIC" IsOverridable="true" IsLocal="true" UserInput="true">
+              <AllowedValues />
+            </AttachedAttribute>
             <AttachedAttribute Name="VDS1 Hosts VNICS" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
@@ -5427,6 +5433,7 @@
             <AttributeValue Name="VDS1 Num Uplink Ports" Value="" />
             <AttributeValue Name="VDS1 Port Group Name" Value="" />
             <AttributeValue Name="VDS1 Port Group VLAN Type" Value="" />
+            <AttributeValue Name="PXE VNIC" Value="" />
             <AttributeValue Name="VDS1 Hosts VNICS" Value="" />
             <AttributeValue Name="VDS2 Hosts VNICS" Value="" />
             <AttributeValue Name="VDS3 Hosts VNICS" Value="" />
@@ -5494,6 +5501,7 @@
     <DriverDescriptor Name="NagiosServiceDriver" Description="" DriverType="TestShellDriver" />
     <DriverDescriptor Name="NagiosRegistrationDriver" Description="" DriverType="TestShellDriver" />
     <DriverDescriptor Name="NFV Environment Driver" DriverType="TestShellDriver" />
+    <DriverDescriptor Name="Python Setup &amp; Teardown" Description="This driver is used for running Python scripts in the environment setup and teardown. To use this driver, make sure you select a suitable setup and/or teardown script." DriverType="TestShellDriver" />
   </DriverDescriptors>
   <ScriptDescriptors>
     <ScriptDescriptor Name="copy_prereq" Description="Copies script prerequisites to their target folder" CategoryName="Hidden Commands" Version="1" Alias="Copy Prerequisites">
@@ -5691,7 +5699,13 @@
     <ScriptDescriptor Name="vcenter_02_create_infrastructure" Description="Create datacenter, clusters, assign hosts" Version="1" CategoryName="Install" Alias="02 Create Infrastructure">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="vra_01_deploy_vra" Alias="vra_01_deploy_vra">
+    <ScriptDescriptor Name="vra_01_deploy_vra" Alias="01 Deploy vRA">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="onrack_discovery_setup" CategoryName="Hidden Commands" Version="1" Alias="Setup script">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="setup"  Version="1" Alias="Setup script">
       <ScriptInputs />
     </ScriptDescriptor>
   </ScriptDescriptors>

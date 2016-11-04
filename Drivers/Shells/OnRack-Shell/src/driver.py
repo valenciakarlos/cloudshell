@@ -68,6 +68,27 @@ class OnrackShellDriver (ResourceDriverInterface):
         pass
 
     #remote command
+    def cancel_os_deployment(self, context, ports):
+        """
+        A simple example function
+        :param ResourceCommandContext context: the context the command runs on
+        """
+
+        csapi = cloudshell.api.cloudshell_api.CloudShellAPISession(context.connectivity.server_address,
+                                                                   port=context.connectivity.cloudshell_api_port,
+                                                                   token_id=context.connectivity.admin_auth_token)
+        onrack_ip = context.resource.address
+        onrack_username = context.resource.attributes['User']
+        onrack_password = csapi.DecryptPassword(context.resource.attributes['Password']).Value
+
+        onrack_res_id = ports[0].split('/')[-1]
+
+        token = rest_json('post', 'https://' + onrack_ip + '/login',
+                          {'email': onrack_username, 'password': onrack_password},
+                          '', context)['response']['user']['authentication_token']
+        rest_json('delete', 'http://' + onrack_ip + ':8080/api/common/nodes/' + onrack_res_id + '/workflows/active', None, token, context)
+
+    #remote command
     def deploy_os(self, context, ports, os_type):
         """
         A simple example function
@@ -87,37 +108,117 @@ class OnrackShellDriver (ResourceDriverInterface):
         # # onrack_password = csapi.DecryptPassword([a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Password'][0]).Value
         # onrack_password = [a.Value for a in od.ResourceAttributes if a.Name == 'OnRack Password'][0]
         onrack_ip = context.resource.address
-        onrack_username = context.resource.attributes['OnRack Username']
-        onrack_password = context.resource.attributes['OnRack Password']
+        # onrack_username = context.resource.attributes['OnRack Username']
+        # onrack_password = context.resource.attributes['OnRack Password']
+        onrack_username = context.resource.attributes['User']
+        onrack_password = csapi.DecryptPassword(context.resource.attributes['Password']).Value
 
 
         # csapi.GetResourceDetails(context.resource.fullname).
         # onrack = ['/'.join(r.Name.split('/')[0:-1]) for r in csapi.GetResourceDetails(context.resource.fullname).ChildResources if r.Name.endswith('/OnRack')][0]
         onrack_res_id = ports[0].split('/')[-1]
 
-        attrs = {}
+        server_attrs = {}
         for r in csapi.GetResourceDetails(context.resource.fullname).ChildResources:
             if r.Address == onrack_res_id or r.Address.endswith('/' + onrack_res_id):
                 server_resource_name = '/'.join(r.Connections[0].FullPath.split('/')[0:-1])
                 d = csapi.GetResourceDetails(server_resource_name)
 
                 for a in d.ResourceAttributes:
-                    attrs[a.Name] = a.Value
-                attrs['ResourceAddress'] = d.Address
-                attrs['ResourceName'] = d.Name
+                    server_attrs[a.Name] = a.Value
+                server_attrs['ResourceAddress'] = d.Address
+                server_attrs['ResourceName'] = d.Name
 
-        qs_info('start deploy_os for ' + attrs['ResourceName'], context)
-        if attrs['Requires OS Deployment'].lower() in ['false', 'no']:
-            qs_info('Skipping deployment for %s. To force redeploy, set Requires OS Deployment attribute to True on %s' % (attrs['ResourceName'], attrs['ResourceName']), context)
+        vcenter_attrs = {}
+        for s in csapi.GetReservationDetails(context.remote_reservation.reservation_id).ReservationDescription.Services:
+            if 'vCenter' in s.ServiceName:
+                for a in s.Attributes:
+                    vcenter_attrs[a.Name] = a.Value
+
+        if len(vcenter_attrs) == 0:
+            raise Exception('vCenter service not found in reservation')
+
+        if server_attrs['Requires OS Deployment'].lower() in ['false', 'no']:
+            qs_info('Skipping deployment for %s. To force redeploy, set Requires OS Deployment attribute to True on resource %s' % (server_attrs['ResourceName'], server_attrs['ResourceName']), context)
             return
 
-        csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Offline', '')
+        csapi.SetResourceLiveStatus(server_attrs['ResourceName'], 'Offline', '')
         # csapi.WriteMessageToReservationOutput(resid, 'Installing %s on %s...' % (os_type, attrs['ResourceName']))
+        nic10 = vcenter_attrs['VDS1 Hosts VNICS']
+        if not nic10:
+            raise Exception('Attribute "VDS1 Hosts VNICS" was not set on vCenter service')
+        if ',' in nic10:
+            raise Exception('Only a single NIC is supported for attribute "VDS1 Hosts VNICS" on vCenter service - got "%s"' % nic10)
+
+        nic172 = vcenter_attrs['PXE VNIC']
+        if not nic172:
+            raise Exception('Attribute "PXE VNIC" was not set on vCenter service')
+
+        ip172 = server_attrs['ESX PXE Network IP']
+
+        token = rest_json('post', 'https://' + onrack_ip + '/login',
+                          {'email': onrack_username, 'password': onrack_password},
+                          '', context)['response']['user']['authentication_token']
+        ipmi_ip = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems/' + onrack_res_id, None, token, context)['Oem']['EMC']['VisionID_Ip']
+        needfix = False
+        bootseq = ssh(ipmi_ip, 'root', 'calvin', 'racadm get BIOS.BiosBootSettings.BootSeq', context)
+        bootseq = bootseq.split('BootSeq=')[1].split('\n')[0].strip()
+        got_nic = False
+        # needfix = False
+        for b in bootseq.split(','):
+            if 'NIC' in b and 'Integrated' in b:
+                got_nic = True
+            if 'HardDisk' in b:
+                if not got_nic:
+                    # raise Exception('Bad boot order detected on %s (%s): %s' % (server_attrs['ResourceName'], onrack_res_id, bootseq))
+                    needfix = True
+                    break
+        if needfix:
+            b2 = []
+            for b in bootseq.split(','):
+                if 'Integrated' in b:
+                    b2.append(b)
+            for b in bootseq.split(','):
+                if 'Integrated' not in b:
+                    b2.append(b)
+            bootseq2 = ','.join(b2)
+            qs_info('Attempting to fix boot order on %s (%s):\nBefore: %s\nNew: %s' % (server_attrs['ResourceName'], ipmi_ip, bootseq, bootseq2), context)
+            ssh(ipmi_ip, 'root', 'calvin', 'racadm set BIOS.BiosBootSettings.BootSeq ' + bootseq2, context)
+            jids = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue create BIOS.Setup.1-1 -r forced', context)
+            # Commit JID = JID_782384188487
+            # Reboot JID = RID_782384191517
+            commit = jids.split('Commit JID =')[1].split('\n')[0].strip()
+            reboot = jids.split('Reboot JID =')[1].split('\n')[0].strip()
+
+            waited = 0
+            while True:
+                s = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue view -i ' + reboot, context)
+                if 'Status=Reboot Completed' in s:
+                    break
+                sleep(30)
+                waited += 30
+                if waited > 600:
+                    raise Exception('Reboot for BIOS boot order change did not succeed within 10 minutes. Status: %s' % s)
+            waited = 0
+            while True:
+                s = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue view -i ' + commit, context)
+                if 'Status=Completed' in s:
+                    break
+                sleep(30)
+                waited += 30
+                if waited > 600:
+                    raise Exception('Commit for BIOS boot order change did not succeed within 10 minutes. Status: %s' % s)
+            sleep(30)
+            qs_info('Boot order fixed on %s, proceeding with OS install' % (server_attrs['ResourceName']), context)
+
+        # except Exception as e:
+        #     qs_info('Failed to check boot order: ' + str(e), context)
+
         tries = 0
         maxtries = int(context.resource.attributes['OS Deployment Attempts Limit'])
         while tries < maxtries:
             tries += 1
-            qs_info('Deploying %s on %s: Attempt #%d...' % (os_type, attrs['ResourceName'], tries), context)
+            qs_info('Deploying %s on %s: Attempt #%d...' % (os_type, server_attrs['ResourceName'], tries), context)
 
             token = rest_json('post', 'https://' + onrack_ip + '/login',
                               {'email': onrack_username, 'password': onrack_password},
@@ -125,38 +226,37 @@ class OnrackShellDriver (ResourceDriverInterface):
 
             # ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
             # csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
-            ip172 = attrs['ESX PXE Network IP']
 
             try:
                 # onrack_res_id = context.resource.attributes['OnRackID']
                 x = rest_json('post', 'https://' + onrack_ip + '/rest/v1/ManagedSystems/Systems/' + onrack_res_id + '/OEM/OnRack/Actions/BootImage/ESXi', { # changed redfish to rest, added /ManagedSystems, added /ESXi
-                    'domain': attrs['ESX Domain'],
-                    'hostname': attrs['ResourceName'].split(' ')[-1],
-                    'repo': attrs['ESX Repo URL'], # http://172.31.128.1:8080/esxi/6.0
+                    'domain': server_attrs['ESX Domain'],
+                    'hostname': server_attrs['ResourceName'].split(' ')[-1],
+                    'repo': 'http://' + server_attrs['ESX PXE Network Gateway'] + ':8080/esxi/6.0', #server_attrs['ESX Repo URL'],  # http://172.31.128.1:8080/esxi/6.0
                     'version': '6.0',
                     # 'version': attrs['ESX Version'],
                     # 'osName': 'ESXi', # removed osName
                     'networkDevices': [
                         {
-                            'device': 'vmnic0',
+                            'device': nic172,
                             'ipv4': {
-                                'netmask': attrs['ESX PXE Network Netmask'],
-                                'ipAddr': ip172, # attrs['ESX PXE Network IP'], # context.resource.address,
-                                'gateway': attrs['ESX PXE Network Gateway'],
+                                'netmask': server_attrs['ESX PXE Network Netmask'],
+                                'ipAddr': ip172,  # attrs['ESX PXE Network IP'], # context.resource.address,
+                                'gateway': server_attrs['ESX PXE Network Gateway'],
                             }
                         }
                     ],
                     'switchDevices': [ # added switchDevices
                         {
                             'switchName': 'vSwitch0',
-                            'uplinks': ['vmnic0']
+                            'uplinks': [nic172]
                         }
                     ],
                     # 'rootPassword': csapi.DecryptPassword(context.resource.attributes['ESX Root Password']).Value,
-                    'rootPassword': attrs['ESX Root Password'],
+                    'rootPassword': server_attrs['ESX Root Password'],
                     'dnsServers': [
-                        attrs['ESX DNS1'],
-                        attrs['ESX DNS2'],
+                        server_attrs['ESX DNS1'],
+                        server_attrs['ESX DNS2'],
                     ]
                 }, token, context)
 
@@ -185,8 +285,8 @@ class OnrackShellDriver (ResourceDriverInterface):
                         for t, td in taskstatus['tasks'].iteritems():
                             # if td['state'] != 'succeeded':
                             taskdump += td['friendlyName'] + ': ' + td['state'] + '\n'
-
-                        taskdump += json.dumps(taskstatus)
+                        qs_trace(taskdump, context)
+                        qs_trace(json.dumps(taskstatus), context)
                     except:
                         taskdump = '(also could not dump subtask report)'
                     raise Exception('OS deployment ended with status %s: %s' % (state, taskdump))
@@ -198,25 +298,25 @@ class OnrackShellDriver (ResourceDriverInterface):
                     raise Exception('Ping failed')
 
                 qs_info('Ping succeeded', context)
-                pw = attrs['ESX Root Password']
-                ip10 = attrs['ResourceAddress']
-                netmask10 = attrs['ESX Netmask']
-                gateway10 = attrs['ESX Gateway']
+                pw = server_attrs['ESX Root Password']
+                ip10 = server_attrs['ResourceAddress']
+                netmask10 = server_attrs['ESX Netmask']
+                gateway10 = server_attrs['ESX Gateway']
                 ssh(ip172, 'root', pw, 'esxcfg-vswitch -a vSwitch1', context)
-                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=vmnic1', context)
-                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=vmnic1', context)
-                ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' vmnic1', context)
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --link=' + nic10, context)
+                ssh(ip172, 'root', pw, 'esxcfg-vswitch vSwitch1 --add-pg=' + nic10, context)
+                ssh(ip172, 'root', pw, 'esxcfg-vmknic -a -i ' + ip10 + ' -n ' + netmask10 + ' ' + nic10, context)
                 ssh(ip172, 'root', pw, 'esxcfg-route ' + gateway10, context)
                 ssh(ip172, 'root', pw, 'esxcli system maintenanceMode set --enable false', context)
                 ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup remove -v vSwitch0 -p "VM Network"', context)
                 ssh(ip172, 'root', pw, 'esxcli network  vswitch standard portgroup add    -v vSwitch1 -p "VM Network"', context)
 
-                csapi.SetResourceLiveStatus(attrs['ResourceName'], 'Online', '')
-                csapi.SetAttributeValue(attrs['ResourceName'], 'Requires OS Deployment', 'False')
-                qs_info('Finished installing %s on %s' % (os_type, attrs['ResourceName']), context)
+                csapi.SetResourceLiveStatus(server_attrs['ResourceName'], 'Online', '')
+                csapi.SetAttributeValue(server_attrs['ResourceName'], 'Requires OS Deployment', 'False')
+                qs_info('Finished installing %s on %s' % (os_type, server_attrs['ResourceName']), context)
                 return
             except Exception as e:
-                qs_info('Error installing %s on %s: %s' % (os_type, attrs['ResourceName'], str(e)), context)
+                qs_info('Error installing %s on %s: %s' % (os_type, server_attrs['ResourceName'], str(e)), context)
                 if 'in progress' in str(e).lower():
                     qs_info('Killing in-progress task on %s' % onrack_res_id)
                     # http://localhost:8080/api/common/nodes/$1/workflows/active
@@ -227,7 +327,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         sleep(30*60)
                     sleep(60)
             sleep(30)
-        raise Exception('Failed to install %s on %s in %d tries' % (os_type, attrs['ResourceName'], maxtries))
+        raise Exception('Failed to install %s on %s in %d tries' % (os_type, server_attrs['ResourceName'], maxtries))
     
     
     def get_inventory(self, context):
@@ -292,9 +392,9 @@ class OnrackShellDriver (ResourceDriverInterface):
                                                                    token_id=context.connectivity.admin_auth_token)
 
         onrack_ip = context.resource.address
-        username = context.resource.attributes['OnRack Username']
-        # password = csapi.DecryptPassword(context.resource.attributes['OnRack Password']).Value
-        password = context.resource.attributes['OnRack Password']
+        username = context.resource.attributes['User']
+        password = csapi.DecryptPassword(context.resource.attributes['Password']).Value
+        # password = context.resource.attributes['OnRack Password']
 
         token = rest_json('post', 'https://' + onrack_ip + '/login',
                           { 'email': username, 'password': password},

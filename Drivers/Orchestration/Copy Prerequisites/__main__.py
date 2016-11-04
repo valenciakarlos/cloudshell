@@ -1,4 +1,3 @@
-# service "vCloud Director"
 import os
 import subprocess
 import time

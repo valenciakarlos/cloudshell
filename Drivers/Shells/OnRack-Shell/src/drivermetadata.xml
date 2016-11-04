@@ -7,6 +7,8 @@
                     
               </Parameters>
             </Command>
+            <Command Description="Cancels any running OS deployment job on this host" DisplayName="Cancel OS Deployment" Name="cancel_os_deployment" Tags="remote_onrack,allow_unreserved">
+            </Command>
 
         </Category>
     </Layout>

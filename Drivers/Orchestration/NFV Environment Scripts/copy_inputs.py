@@ -83,7 +83,7 @@ pxe_netmask = site_manager_attrs['PXE Network Netmask']
 cluster2_name = vcenter_attrs['vCenter Cluster2 Name']
 cluster3_name = vcenter_attrs['vCenter Cluster3 Name']
 datacenter = vcenter_attrs['vCenter Datacenter Name']
-esx_root_password = vcenter_attrs['vCenter Datacenter Name']
+esx_root_password = vcenter_attrs['vCenter ESXi Password']
 sio_unified_datastore = scaleio_attrs['Unified Datastore']
 vcenter_datastore = vcenter_attrs['vCenter Datastore']
 vcenter_password = vcenter_attrs['vCenter Administrator Password']
@@ -268,6 +268,7 @@ aa = [
     ('Resource', 'ComputeShell', 'ESX DNS2', management_dns2),
     ('Resource', 'ComputeShell', 'ESX PXE Network Gateway', pxe_gateway),
     ('Resource', 'ComputeShell', 'ESX PXE Network Netmask', pxe_netmask),
+    ('Resource', 'ComputeShell', 'ESX Root Password', esx_root_password),
 
     ('Service', 'vCenter', 'vCenter ESXi IP', sio_master_host_ip),
     ('Service', 'vCenter', 'vCenter IP', vcenter_ip),

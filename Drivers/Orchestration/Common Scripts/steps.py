@@ -115,7 +115,7 @@ class ServiceSleep:
                     sleep(self.seconds)
                 if self.message:
                     if not simulated:
-                        qs_info('Sleeping %d seconds - %s ' % (self.seconds, self.message))
+                        qs_info('Sleeping %d seconds - %s ' % (self.seconds, self.message), filename='orchestration')
                     else:
                         rv += str(self) + '\n'
         return rv
@@ -144,7 +144,37 @@ class ServicePrint:
         for svc in resdetails.Services:
             if self.service_model == svc.ServiceName:
                 if not simulated:
-                    qs_info(self.message)
+                    qs_info(self.message, filename='orchestration')
+                    rv += self.message + '\n'
+                else:
+                    rv += 'found\n'
+        return rv
+
+
+class ResourcePrint:
+    def __init__(self, resource_model, message):
+        """
+        :param resource_model: str
+        :param message: str
+        """
+        self.resource_model = resource_model
+        self.message = message
+
+    def __repr__(self):
+        return 'print,,,"%s"' % (self.message)
+
+    def execute(self, csapi, resid, resdetails, simulated):
+        """
+        :param csapi: CloudShellAPISession
+        :param resid: str
+        :param simulated: bool
+        :return: str
+        """
+        rv = ''
+        for res in resdetails.Resources:
+            if self.resource_model == res.ResourceModelName:
+                if not simulated:
+                    qs_info(self.message, filename='orchestration')
                     rv += self.message + '\n'
                 else:
                     rv += 'found\n'
@@ -371,7 +401,6 @@ class ResourceRemoteCommand:
                             rvs1.append(trv)
                         except Exception as e:
                             es1.append(e)
-                    qs_info('starting thread for ' + res.Name)
                     th = Thread(target=t, args=(csapi, rvs, es, resid, res.Name, self.command, self.tag, inp))
                     threads.append(th)
                     th.start()
@@ -472,12 +501,13 @@ def go(printmode, include_ranges='', exclude_ranges=''):
     site_manager_attrs['Management VLAN'] = '5'
 
     steps = [
-        EnvironmentCommand('copy_prereq'),
-        EnvironmentCommand('copy_inputs'),
+        # EnvironmentCommand('copy_prereq'),
+        # EnvironmentCommand('copy_inputs'),
 
         # ResourceLiveStatus('OnRack', 'Offline'),
         # ResourceAutoloadCommand('OnRack'),
         # ResourceLiveStatus('OnRack', 'Online'),
+        ResourcePrint('SiteManagerShell', 'Starting deployment'),
 
         ResourceRemoteCommand('ComputeShell', 'deploy_os', 'remote_onrack', ['ESXi']),
 
@@ -613,8 +643,8 @@ def go(printmode, include_ranges='', exclude_ranges=''):
             if result:
                 if printmode:
                     csv += '%d,%s\n' % (i, str(step))
-                qs_info(str(step))
-                qs_info(result)
+                qs_info(str(step), filename='orchestration')
+                qs_info(result, filename='orchestration')
 
     if printmode:
         con_details = helpers.get_connectivity_context_details()

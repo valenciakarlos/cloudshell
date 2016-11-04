@@ -296,6 +296,18 @@
         <Rule Name="Setting" />
       </Rules>
     </AttributeInfo>
+   <AttributeInfo Name="OnRackID" Type="String" DefaultValue="" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+        <Rule Name="Setting" />
+      </Rules>
+    </AttributeInfo>
+   <AttributeInfo Name="MTU" Type="Numeric" DefaultValue="1500" IsReadOnly="false">
+      <Rules>
+        <Rule Name="Configuration" />
+        <Rule Name="Setting" />
+      </Rules>
+    </AttributeInfo>
 
   </Attributes>
   <ResourceFamilies>

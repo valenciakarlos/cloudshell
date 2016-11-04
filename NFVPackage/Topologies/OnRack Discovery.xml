@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TopologyInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Details Name="OnRack Discovery" Alias="OnRack Discovery" Driver="Python Setup &amp; Teardown" SetupDuration="10" Public="false" ImageName="OnRack Discovery.png" DefaultDuration="120">
+    <Description>Run autodiscovery on OnRack device and import updated resources into CloudShell</Description>
+    <Categories />
+    <Scripts>
+      <Script Name="onrack_discovery_setup" />
+    </Scripts>
+    <Diagram Zoom="1" />
+  </Details>
+  <Apps />
+</TopologyInfo>
