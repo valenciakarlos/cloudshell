@@ -14,18 +14,21 @@ import requests
 from cloudshell.core.logger.qs_logger import get_qs_logger
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import CloudShellAPISession
+import random
 
+def qs_log(severity, message, context=None, filename='shells'):
+    # os.environ['LOG_PATH'] = 'c:\\ProgramData\\QualiSystems\\Logs'
+    # try:
+    #     os.mkdir(os.environ['LOG_PATH'])
+    # except:
+    #     pass
+    # # with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
+    # #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.pyc', '').replace('.py', '') +
+    # #             ': ' + message + '\r\n')
 
-def qs_log(severity, message, context=None, file_name=None):
-    # with open(r'c:\ProgramData\QualiSystems\Shells.log', 'a') as f:
-    #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + __file__.split('\\')[-1].replace('.pyc', '').replace('.py', '') +
-    #             ': ' + message + '\r\n')
+    # # with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
+    # #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': qs_log called')
 
-    # with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
-    #     f.write(time.strftime('%Y-%m-%d %H:%M:%S') + ': qs_log called')
-    log_root_folder = 'c:\\ProgramData\\QualiSystems\\'
-
-    os.environ['LOG_PATH'] = log_root_folder
     if context:
         try:
             resid = context.reservation.reservation_id
@@ -46,8 +49,8 @@ def qs_log(severity, message, context=None, file_name=None):
         #
         try:
             csapi = CloudShellAPISession(context.connectivity.server_address,
-                                                                       port=context.connectivity.cloudshell_api_port,
-                                                                       token_id=context.connectivity.admin_auth_token)
+                                         port=context.connectivity.cloudshell_api_port,
+                                         token_id=context.connectivity.admin_auth_token)
         except:
             csapi = None
 
@@ -55,43 +58,71 @@ def qs_log(severity, message, context=None, file_name=None):
         csapi = helpers.get_api_session()
         try:
             resid = helpers.get_reservation_context_details().id
-        except:
+        except Exception as e:
             resid = 'no-reservation'
+            with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
+                f.write('RESERVATION ERROR ' + str(e) + '\n')
 
-        # try:
+                # try:
         #     resource = helpers.get_resource_context_details().fullname
         # except:
         #     resource = 'no-resource'
         # resource = resource.replace('/', '-').replace(':', '-')
 
-    logger = get_qs_logger(log_group=resid, log_category='NFV', log_file_prefix='nfv')
-    with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
-        f.write(logger.name + ' ' + time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + str(resid) + ' ' + str(message)[0:50] + '...\n')
+    try:
+        os.mkdir(r'c:\ProgramData\QualiSystems\Logs')
+    except:
+        pass
+    try:
+        os.mkdir(r'c:\ProgramData\QualiSystems\Logs\%s' % resid)
+    except:
+        pass
 
-    if severity in ['trace']:
-        logger.debug(message)
+    file = traceback.format_stack()[1].split(' ')[1].replace('"', '')
+    function = traceback.format_stack()[1].split(' ')[-1].strip()
 
-    if severity in ['info']:
-        logger.info(message)
+    for _ in range(5):
+        try:
+            with open(r'c:\ProgramData\QualiSystems\Logs\%s\%s.log' % (resid, filename), 'a') as f:
+                for line in str(message).replace('\r\n', '\n').replace('\r', '\n').split('\n'):
+                    f.write('%s [%s]: %s - %s               %s\r\n' % (
+                        time.strftime('%Y-%m-%d %H:%M:%S,000'),
+                        severity.upper(),
+                        file,
+                        function,
+                        line))
+            break
+        except:
+            time.sleep(random.randint(1000, 10000) / 1000.0)
 
-    if severity in ['error']:
-        logger.error(message)
+    # logger = get_qs_logger(log_group=resid, log_category='NFV', log_file_prefix=filename)
+    # with open(r'c:\ProgramData\QualiSystems\LoggingDebug.log', 'a') as f:
+    #     f.write(logger.name + ' ' + time.strftime('%Y-%m-%d %H:%M:%S') + ': ' + str(resid) + ' ' + filename + ' ' + str(message)[0:50] + '...\n')
+    #
+    # if severity in ['info']:
+    #     logger.info(message)
+    #
+    # if severity in ['trace']:
+    #     logger.debug(message)
+    #
+    # if severity in ['error']:
+    # logger.error(message)
 
     if severity in ['info', 'error']:
         if resid != 'no-reservation' and csapi:
             csapi.WriteMessageToReservationOutput(resid, message)
 
 
-def qs_trace(message, context=None):
-    qs_log('trace', message, context)
+def qs_trace(message, context=None, filename='shells'):
+    qs_log('debug', message, context, filename)
 
 
-def qs_info(message, context=None):
-    qs_log('info', message, context)
+def qs_info(message, context=None, filename='shells'):
+    qs_log('info', message, context, filename)
 
 
-def qs_error(message, context=None):
-    qs_log('error', message, context)
+def qs_error(message, context=None, filename='shells'):
+    qs_log('error', message, context, filename)
 
 
 def myexcepthook(exctype, value, tb):
@@ -134,6 +165,7 @@ def dictpp(o, tabs):
 
 
 def quali_enter(fn):
+    fn = fn.split('\\')[-1].replace('.pyc', '').replace('.py', '')
     global start_time
     start_time = time.time()
     env1 = os.environ
@@ -144,17 +176,21 @@ def quali_enter(fn):
 
     qs_trace('**************************************************************************************')
     qs_trace('Function start')
-    qs_trace(fn.split('\\')[-1].replace('.pyc', '').replace('.py', ''))
+    qs_trace(fn)
     qs_trace(dictpp(env2, '    '))
     qs_trace('**************************************************************************************')
+    qs_info('%s started' % fn, filename='orchestration')
 
 
 def quali_exit(fn):
+    fn = fn.split('\\')[-1].replace('.pyc', '').replace('.py', '')
+
     global start_time
     qs_trace('**************************************************************************************')
     qs_trace('Function completed (' + str(time.time() - start_time))
-    qs_trace(fn.split('\\')[-1].replace('.pyc', '').replace('.py', ''))
+    qs_trace(fn)
     qs_trace('**************************************************************************************')
+    qs_info('%s completed' % fn, filename='orchestration')
 
 
 def qualiroot():

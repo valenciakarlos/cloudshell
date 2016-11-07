@@ -118,7 +118,7 @@ def pxe_dynamic():
     pxeoffset += 1
     return rv
 
-mgmtoffset = 42
+mgmtoffset = 0
 def mgmt_dynamic():
     global mgmtoffset
     rv = ipadd(mgmt_ip_start, mgmtoffset)
@@ -126,60 +126,20 @@ def mgmt_dynamic():
     mgmtoffset += 1
     return rv
 
-dataoffset = 42
+dataoffset = 0
 def data_dynamic():
     global dataoffset
     rv = ipadd(data_ip_start, dataoffset)
     dataoffset += 1
     return rv
 
-data2offset = 42
+data2offset = 0
 def data2_dynamic():
     global data2offset
     rv = ipadd(data2_ip_start, data2offset)
     data2offset += 1
     return rv
 
-vcenter_ip = mgmt_pool(1)
-scaleio_gateway_management_ip = mgmt_pool(10)
-scaleio_gateway_data_ip = data_pool(10)
-scaleio_gateway_data2_ip = data2_pool(10)
-
-scaleio_primary_mdm_mgmt_ip = mgmt_pool(7)
-scaleio_primary_mdm_data_ip = data_pool(7)
-scaleio_primary_mdm_data2_ip = data2_pool(7)
-scaleio_secondary_mdm_mgmt_ip = mgmt_pool(8)
-scaleio_secondary_mdm_data_ip = data_pool(8)
-scaleio_secondary_mdm_data2_ip = data2_pool(8)
-scaleio_tiebreaker_mgmt_ip = mgmt_pool(9)
-scaleio_tiebreaker_data_ip = data_pool(9)
-scaleio_tiebreaker_data2_ip = data2_pool(9)
-# scaleio_sds1_data_ip = data_pool(36)
-# scaleio_sds1_mgmt_ip = mgmt_pool(36)
-# scaleio_sds2_data_ip = data_pool(37)
-# scaleio_sds2_mgmt_ip = mgmt_pool(37)
-# scaleio_sds3_data_ip = data_pool(38)
-# scaleio_sds3_mgmt_ip = mgmt_pool(38)
-# scaleio_sds4_data_ip = data_pool(39)
-# scaleio_sds4_mgmt_ip = mgmt_pool(39)
-
-
-vrops_ip = mgmt_pool(6)
-logi_ip = mgmt_pool(5)
-nagios_ip = mgmt_pool(2)
-vcd_vm_ip = data_pool(1)
-vcd_management_ip = mgmt_pool(4)
-nsx_manager_ip = mgmt_pool(3)
-compute_ip_pool_start = data_pool(15)
-compute_ip_pool_end = data_pool(25)
-mgmt_ip_pool_start = mgmt_pool(15)
-mgmt_ip_pool_end = mgmt_pool(35)
-versa_director_nb_ip = mgmt_pool(40)
-versa_analytics_nb_ip = mgmt_pool(11)
-versa_controller_nb_ip = mgmt_pool(12)
-versa_branch1_nb_ip = mgmt_pool(13)
-versa_branch2_nb_ip = mgmt_pool(14)
-vra_ip = mgmt_pool(41)
 
 
 sio_master_host_ip = ''
@@ -215,6 +175,7 @@ host_name2ip = {}
 host_name2ip172 = {}
 
 pxeoffset = mgmtoffset
+
 
 
 for i in range(len(esxis_details)):
@@ -256,6 +217,48 @@ svm_data2_ips = [data2_dynamic() for _ in sds_host_ips]
 
 sdc_data_vmk_ips = [data_dynamic() for _ in sdc_host_ips]
 sdc_data2_vmk_ips = [data2_dynamic() for _ in sdc_host_ips]
+
+vcenter_ip = mgmt_dynamic()
+scaleio_gateway_management_ip = mgmt_dynamic()
+scaleio_gateway_data_ip = data_dynamic()
+scaleio_gateway_data2_ip = data2_dynamic()
+
+scaleio_primary_mdm_mgmt_ip = mgmt_dynamic()
+scaleio_primary_mdm_data_ip = data_dynamic()
+scaleio_primary_mdm_data2_ip = data2_dynamic()
+scaleio_secondary_mdm_mgmt_ip = mgmt_dynamic()
+scaleio_secondary_mdm_data_ip = data_dynamic()
+scaleio_secondary_mdm_data2_ip = data2_dynamic()
+scaleio_tiebreaker_mgmt_ip = mgmt_dynamic()
+scaleio_tiebreaker_data_ip = data_dynamic()
+scaleio_tiebreaker_data2_ip = data2_dynamic()
+# scaleio_sds1_data_ip = data_dynamic()
+# scaleio_sds1_mgmt_ip = mgmt_dynamic()
+# scaleio_sds2_data_ip = data_dynamic()
+# scaleio_sds2_mgmt_ip = mgmt_dynamic()
+# scaleio_sds3_data_ip = data_dynamic()
+# scaleio_sds3_mgmt_ip = mgmt_dynamic()
+# scaleio_sds4_data_ip = data_dynamic()
+# scaleio_sds4_mgmt_ip = mgmt_dynamic()
+
+
+vrops_ip = mgmt_dynamic()
+logi_ip = mgmt_dynamic()
+nagios_ip = mgmt_dynamic()
+vcd_vm_ip = data_dynamic()
+vcd_management_ip = mgmt_dynamic()
+nsx_manager_ip = mgmt_dynamic()
+compute_ip_pool_start = data_dynamic()
+compute_ip_pool_end = data_dynamic()
+mgmt_ip_pool_start = mgmt_dynamic()
+mgmt_ip_pool_end = mgmt_dynamic()
+versa_director_nb_ip = mgmt_dynamic()
+versa_analytics_nb_ip = mgmt_dynamic()
+versa_controller_nb_ip = mgmt_dynamic()
+versa_branch1_nb_ip = mgmt_dynamic()
+versa_branch2_nb_ip = mgmt_dynamic()
+vra_ip = mgmt_dynamic()
+
 
 aa = [
     # ('Resource', 'ComputeShell', 'OnRack Address', onrack_ip),

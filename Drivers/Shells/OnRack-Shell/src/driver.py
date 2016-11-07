@@ -156,60 +156,59 @@ class OnrackShellDriver (ResourceDriverInterface):
 
         ip172 = server_attrs['ESX PXE Network IP']
 
-        token = rest_json('post', 'https://' + onrack_ip + '/login',
-                          {'email': onrack_username, 'password': onrack_password},
-                          '', context)['response']['user']['authentication_token']
-        ipmi_ip = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems/' + onrack_res_id, None, token, context)['Oem']['EMC']['VisionID_Ip']
-        needfix = False
-        bootseq = ssh(ipmi_ip, 'root', 'calvin', 'racadm get BIOS.BiosBootSettings.BootSeq', context)
-        bootseq = bootseq.split('BootSeq=')[1].split('\n')[0].strip()
-        got_nic = False
+        # token = rest_json('post', 'https://' + onrack_ip + '/login',
+        #                   {'email': onrack_username, 'password': onrack_password},
+        #                   '', context)['response']['user']['authentication_token']
+        # ipmi_ip = rest_json('get', 'https://' + onrack_ip + '/redfish/v1/Systems/' + onrack_res_id, None, token, context)['Oem']['EMC']['VisionID_Ip']
         # needfix = False
-        for b in bootseq.split(','):
-            if 'NIC' in b and 'Integrated' in b:
-                got_nic = True
-            if 'HardDisk' in b:
-                if not got_nic:
-                    # raise Exception('Bad boot order detected on %s (%s): %s' % (server_attrs['ResourceName'], onrack_res_id, bootseq))
-                    needfix = True
-                    break
-        if needfix:
-            b2 = []
-            for b in bootseq.split(','):
-                if 'Integrated' in b:
-                    b2.append(b)
-            for b in bootseq.split(','):
-                if 'Integrated' not in b:
-                    b2.append(b)
-            bootseq2 = ','.join(b2)
-            qs_info('Attempting to fix boot order on %s (%s):\nBefore: %s\nNew: %s' % (server_attrs['ResourceName'], ipmi_ip, bootseq, bootseq2), context)
-            ssh(ipmi_ip, 'root', 'calvin', 'racadm set BIOS.BiosBootSettings.BootSeq ' + bootseq2, context)
-            jids = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue create BIOS.Setup.1-1 -r forced', context)
-            # Commit JID = JID_782384188487
-            # Reboot JID = RID_782384191517
-            commit = jids.split('Commit JID =')[1].split('\n')[0].strip()
-            reboot = jids.split('Reboot JID =')[1].split('\n')[0].strip()
+        # bootseq = ssh(ipmi_ip, 'root', 'calvin', 'racadm get BIOS.BiosBootSettings.BootSeq', context)
+        # bootseq = bootseq.split('BootSeq=')[1].split('\n')[0].strip()
+        # got_nic = False
+        # # needfix = False
+        # for b in bootseq.split(','):
+        #     if 'NIC' in b and 'Integrated' in b:
+        #         got_nic = True
+        #     if 'HardDisk' in b:
+        #         if not got_nic:
+        #             raise Exception('Bad boot order detected on %s (%s): %s' % (server_attrs['ResourceName'], onrack_res_id, bootseq))
+        #             #needfix = True
+        #             #break
+        #if needfix:
+        #    b2 = []
+        #    for b in bootseq.split(','):
+        #        if 'Integrated' in b:
+        #            b2.append(b)
+        #    for b in bootseq.split(','):
+        #        if 'Integrated' not in b:
+        #            b2.append(b)
+        #    bootseq2 = ','.join(b2)
+        #    qs_info('Attempting to fix boot order on %s (%s):\nBefore: %s\nNew: %s' % (server_attrs['ResourceName'], ipmi_ip, bootseq, bootseq2), context)
+        #    ssh(ipmi_ip, 'root', 'calvin', 'racadm set BIOS.BiosBootSettings.BootSeq ' + bootseq2, context)
+        #    jids = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue create BIOS.Setup.1-1 -r forced', context)
+        #    # Commit JID = JID_782384188487
+        #    # Reboot JID = RID_782384191517
+        #    commit = jids.split('Commit JID =')[1].split('\n')[0].strip()##
 
-            waited = 0
-            while True:
-                s = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue view -i ' + reboot, context)
-                if 'Status=Reboot Completed' in s:
-                    break
-                sleep(30)
-                waited += 30
-                if waited > 600:
-                    raise Exception('Reboot for BIOS boot order change did not succeed within 10 minutes. Status: %s' % s)
-            waited = 0
-            while True:
-                s = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue view -i ' + commit, context)
-                if 'Status=Completed' in s:
-                    break
-                sleep(30)
-                waited += 30
-                if waited > 600:
-                    raise Exception('Commit for BIOS boot order change did not succeed within 10 minutes. Status: %s' % s)
-            sleep(30)
-            qs_info('Boot order fixed on %s, proceeding with OS install' % (server_attrs['ResourceName']), context)
+        #    waited = 0
+        #    while True:
+        #        s = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue view -i ' + reboot, context)
+        #        if 'Status=Reboot Completed' in s:
+        #            break
+        #        sleep(30)
+        #        waited += 30
+        #        if waited > 600:
+        #            raise Exception('Reboot for BIOS boot order change did not succeed within 10 minutes. Status: %s' % s)
+        #    waited = 0
+        #    while True:
+        #        s = ssh(ipmi_ip, 'root', 'calvin', 'racadm jobqueue view -i ' + commit, context)
+        #        if 'Status=Completed' in s:
+        #            break
+        #        sleep(30)
+        #        waited += 30
+        #        if waited > 600:
+        #            raise Exception('Commit for BIOS boot order change did not succeed within 10 minutes. Status: %s' % s)
+        #    sleep(30)
+        #    qs_info('Boot order fixed on %s, proceeding with OS install' % (server_attrs['ResourceName']), context)
 
         # except Exception as e:
         #     qs_info('Failed to check boot order: ' + str(e), context)

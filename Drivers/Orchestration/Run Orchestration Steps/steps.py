@@ -508,7 +508,7 @@ def go(printmode, include_ranges='', exclude_ranges=''):
         # ResourceAutoloadCommand('OnRack'),
         # ResourceLiveStatus('OnRack', 'Online'),
         ResourcePrint('SiteManagerShell', 'Starting deployment'),
-
+        # todo add alias and description
         ResourceRemoteCommand('ComputeShell', 'deploy_os', 'remote_onrack', ['ESXi']),
 
         # ResourceCommand('Brocade NOS Switch', 'set_access_vlan', {
@@ -643,8 +643,9 @@ def go(printmode, include_ranges='', exclude_ranges=''):
             if result:
                 if printmode:
                     csv += '%d,%s\n' % (i, str(step))
-                qs_info(str(step), filename='orchestration')
-                qs_info(result, filename='orchestration')
+                else:
+                    qs_info(str(step), filename='orchestration')
+                    qs_info(result, filename='orchestration')
 
     if printmode:
         con_details = helpers.get_connectivity_context_details()

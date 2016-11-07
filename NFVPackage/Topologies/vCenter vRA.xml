@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TopologyInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Details Name="vCenter vRA" Alias="vCenter vRA" Driver="Python Setup &amp; Teardown" Public="false" ImageName="vCenter vRA.jpg" DefaultDuration="1200">
+    <Description>Blueprint for vSphere+vRA based NFV cloud deployment</Description>
+    <Categories />
+    <Scripts>
+      <Script Name="generate_orchestration_steps_file" />
+      <Script Name="copy_prereq" />
+      <Script Name="run_orchestration_steps" />
+      <Script Name="copy_inputs" />
+      <Script Name="setup" />
+      <Script Name="attach_logs" />
+      <Script Name="clean_logs" />
+    </Scripts>
+    <Diagram Zoom="0.8" />
+  </Details>
+  <Resources />
+  <AbstractResources>
+    <AbstractResource PositionX="41" PositionY="138" Name="Master" Shared="false" ResourceFamily="Compute Server">
+      <Quantity Published="false" Value="1" />
+      <ResourceModels Published="false">
+        <ResourceModel>ComputeShell</ResourceModel>
+      </ResourceModels>
+    </AbstractResource>
+    <AbstractResource PositionX="41" PositionY="242" Name="SIO" Shared="false" ResourceFamily="Compute Server">
+      <Quantity Published="false" Value="3" />
+      <ResourceModels Published="false">
+        <ResourceModel>ComputeShell</ResourceModel>
+      </ResourceModels>
+    </AbstractResource>
+    <AbstractResource PositionX="866.25" PositionY="346.25" Name="Site Manager" Shared="true" ResourceFamily="Site Manager">
+      <Quantity Published="false" Value="1" />
+      <ResourceModels Published="false">
+        <ResourceModel>SiteManagerShell</ResourceModel>
+      </ResourceModels>
+    </AbstractResource>
+    <AbstractResource PositionX="297" PositionY="138" Name="Compute" Shared="false" ResourceFamily="Compute Server">
+      <Quantity Published="true" Value="1" />
+      <ResourceModels Published="false">
+        <ResourceModel>ComputeShell</ResourceModel>
+      </ResourceModels>
+    </AbstractResource>
+  </AbstractResources>
+  <Services>
+    <Service PositionX="582" PositionY="242" Alias="ScaleIO" ServiceName="ScaleIO">
+      <Attributes>
+        <Attribute Name="Gateway Data2 IP" Value="" />
+        <Attribute Name="ScaleIO SVM DiskType" Value="thick" />
+        <Attribute Name="ScaleIO SVM Name PreFix" Value="ScaleIOVM" />
+        <Attribute Name="ScaleIO Version" Value="2.0-7120.0" />
+        <Attribute Name="SDC Path" Value="C:\deploy\sio\ScaleIO_2.0.0.2_Complete_VMware_SW_Download\ScaleIO_2.0.0.2_ESX_Download\sdc-2.0.7058.0-esx6.0.zip" />
+        <Attribute Name="Exclude ESXs From SDC Role" Value="" />
+        <Attribute Name="Number of Faultsets" Value="" />
+        <Attribute Name="Faultset Name PreFix" Value="FaultSet" />
+        <Attribute Name="Data Subnet" Value="" />
+        <Attribute Name="Data2 Subnet" Value="" />
+        <Attribute Name="MGMT Subnet" Value="" />
+        <Attribute Name="Enable Background Scanner" Value="True" />
+        <Attribute Name="Volume Size" Value="0" />
+        <Attribute Name="Volume Type" Value="thin" />
+        <Attribute Name="MGMT Gateway" Value="" />
+        <Attribute Name="Unified Datastore" Value="SIO_Datastore" />
+        <Attribute Name="Datacenter" Value="" />
+        <Attribute Name="Datastore" Value="" />
+        <Attribute Name="OVA Full Path" Value="C:\deploy\sio\ScaleIO_2.0.0.2_Complete_VMware_SW_Download\ScaleIO_2.0.0.2_ESX_Download\ScaleIOVM_2nics_2.0.7120.0.ova" />
+        <Attribute Name="ScaleIO Admin Password" Value="Welcome1!" />
+        <Attribute Name="vCenter Password" Value="Welcome1!" />
+        <Attribute Name="ScaleIO System Name" Value="ScaleIO" />
+        <Attribute Name="vCenter IP" Value="" />
+        <Attribute Name="ScaleIO Cluster" Value="" />
+        <Attribute Name="vCenter Username" Value="administrator@vsphere.local" />
+        <Attribute Name="Call Home SMTP Server" Value="" />
+        <Attribute Name="Call Home SMTP Port" Value="25" />
+        <Attribute Name="Call Home SMTP Use TLS" Value="False" />
+        <Attribute Name="Call Home SMTP Username" Value="" />
+        <Attribute Name="Call Home SMTP Password" Value="" />
+        <Attribute Name="Call Home ScaleIO Username" Value="" />
+        <Attribute Name="Call Home ScaleIO Password" Value="" />
+        <Attribute Name="Call Home Email From" Value="" />
+        <Attribute Name="Call Home Email To" Value="" />
+        <Attribute Name="Call Home Customer Name" Value="" />
+        <Attribute Name="Call Home Severity Level" Value="Error" />
+        <Attribute Name="Call Home Syslog Server" Value="" />
+        <Attribute Name="Call Home Syslog Port" Value="1468" />
+        <Attribute Name="Call Home Syslog Facility" Value="local use 0  (local0)" />
+        <Attribute Name="Call Home DNS Server 1" Value="" />
+        <Attribute Name="Call Home DNS Server 2" Value="" />
+        <Attribute Name="Protection Domain Name" Value="ProtDomain" />
+        <Attribute Name="RAM Read Cache size per SDS" Value="128" />
+        <Attribute Name="Storage Pool Name" Value="StoragePool" />
+        <Attribute Name="Enable Zero Padding" Value="True" />
+        <Attribute Name="ESX Root Password" Value="dangerous" />
+        <Attribute Name="Host for ScaleIO Gateway" Value="" />
+        <Attribute Name="Gateway Admin Password" Value="Welcome1!" />
+        <Attribute Name="LIA Password" Value="Welcome1!" />
+        <Attribute Name="SVM Root Password" Value="dangerous" />
+        <Attribute Name="Management Network Label" Value="mgmtportgrp" />
+        <Attribute Name="Data Network Label" Value="dataportgrp" />
+        <Attribute Name="Data2 Network Label" Value="data2portgrp" />
+        <Attribute Name="Gateway Management IP" Value="" />
+        <Attribute Name="Gateway Data IP" Value="" />
+        <Attribute Name="Gateway Datastore" Value="" />
+        <Attribute Name="Primary MDM Management IP" Value="" />
+        <Attribute Name="Primary MDM Data IP" Value="" />
+        <Attribute Name="Primary MDM Datastore" Value="" />
+        <Attribute Name="Secondary MDM Management IP" Value="" />
+        <Attribute Name="Secondary MDM Data IP" Value="" />
+        <Attribute Name="Secondary MDM Datastore" Value="" />
+        <Attribute Name="Tie Breaker Management IP" Value="" />
+        <Attribute Name="Tie Breaker Data IP" Value="" />
+        <Attribute Name="Tie Breaker Datastore" Value="" />
+        <Attribute Name="SDS Management IPs CSV" Value="" />
+        <Attribute Name="SDS Data IPs CSV" Value="" />
+        <Attribute Name="SDS Data2 IPs CSV" Value="" />
+        <Attribute Name="Data2 Subnet" Value="" />
+        <Attribute Name="Data2 Network Label" Value="" />
+        <Attribute Name="Primary MDM Data2 IP" Value="" />
+        <Attribute Name="Secondary MDM Data2 IP" Value="" />
+        <Attribute Name="Tie Breaker Data2 IP" Value="" />
+      </Attributes>
+    </Service>
+    <Service PositionX="582" PositionY="555" Alias="vRealize Operations Manager" ServiceName="vRealize Operations Manager">
+      <Attributes>
+        <Attribute Name="Enable Memory Overcommit" Value="True Demand" />
+        <Attribute Name="Include Network IO" Value="True" />
+        <Attribute Name="Include Storage IO" Value="True" />
+        <Attribute Name="OU" Value="" />
+        <Attribute Name="adbind_vrops Username" Value="" />
+        <Attribute Name="Local EMC VCOPS PAK Path" Value="" />
+        <Attribute Name="VNX Management IP" Value="" />
+        <Attribute Name="VNX License Key" Value="" />
+        <Attribute Name="VNX Username" Value="" />
+        <Attribute Name="VNX Password" Value="Welcome1!" />
+        <Attribute Name="Local EMC ViPR PAK Path" Value="" />
+        <Attribute Name="vROPS Datastore" Value="SIO_Datastore" />
+        <Attribute Name="vROPS thick thin" Value="" />
+        <Attribute Name="vROPS Gateway" Value="" />
+        <Attribute Name="vROPS DNS Server IP" Value="" />
+        <Attribute Name="vROPS IP" Value="" />
+        <Attribute Name="vROPS Netmask" Value="" />
+        <Attribute Name="vROPS Portgroup Name" Value="mgmtportgrp" />
+        <Attribute Name="vROPS VM Name" Value="vROPS" />
+        <Attribute Name="vCenter Administrator User" Value="administrator@vsphere.local" />
+        <Attribute Name="vCenter Administrator Password" Value="Welcome1!" />
+        <Attribute Name="vCenter FQDN" Value="" />
+        <Attribute Name="vROPS Datacenter" Value="NFVDC" />
+        <Attribute Name="vROPS Cluster" Value="" />
+        <Attribute Name="vROPS Local OVA Path" Value="c:\deploy\vRealize-Operations-Manager-Appliance-6.1.0.3038036_OVF10.ova" />
+        <Attribute Name="vROPS Disk Format" Value="thin" />
+        <Attribute Name="Cloud vCenter Administrator Username" Value="" />
+        <Attribute Name="Active Directory Server" Value="" />
+        <Attribute Name="adbind_vrops Password" Value="" />
+        <Attribute Name="vROPS Timezone" Value="" />
+        <Attribute Name="Enable vSphere Hardening" Value="Yes" />
+        <Attribute Name="vROM Admin Password" Value="" />
+        <Attribute Name="vROPS FQDN" Value="" />
+        <Attribute Name="vROPS admin Username" Value="admin" />
+        <Attribute Name="vROPS admin Password" Value="Welcome1!" />
+        <Attribute Name="vROPS Cluster Master FQDN" Value="SIO" />
+        <Attribute Name="vROPS NTP Server IP" Value="" />
+        <Attribute Name="ViPR FQDN" Value="" />
+        <Attribute Name="ViPR Username" Value="" />
+        <Attribute Name="ViPR Password" Value="" />
+        <Attribute Name="Local EMC MP for vRA PAK Path" Value="" />
+        <Attribute Name="vRA Load Balancer FQDN" Value="" />
+        <Attribute Name="Domain" Value="vsphere.local" />
+        <Attribute Name="Cloud vCenter Administrator Password" Value="Welcome1!" />
+        <Attribute Name="app_vrops_vra Username" Value="admin" />
+        <Attribute Name="app_vrops_vra Password" Value="Welcome1!" />
+        <Attribute Name="vROPS Product Key" Value="" />
+        <Attribute Name="Cloud vCenter FQDN" Value="" />
+        <Attribute Name="app_vrops_vcenter UPN" Value="administrator" />
+        <Attribute Name="app_vrops_vcenter Password" Value="Welcome1!" />
+        <Attribute Name="Enable Health Alerts" Value="True" />
+        <Attribute Name="Enable Risk Alerts" Value="True" />
+        <Attribute Name="Enable Efficiency Alerts" Value="True" />
+        <Attribute Name="Enable CPU Overcommit" Value="Yes" />
+      </Attributes>
+    </Service>
+    <Service PositionX="582" PositionY="347" Alias="NSX Manager" ServiceName="NSX Manager">
+      <Attributes>
+        <Attribute Name="NSX IP" Value="" />
+        <Attribute Name="NSX Username" Value="admin" />
+        <Attribute Name="NSX Password" Value="" />
+        <Attribute Name="vCenter FQDN" Value="" />
+        <Attribute Name="app_nsx_sso Username" Value="" />
+        <Attribute Name="app_nsx_sso Password" Value="" />
+        <Attribute Name="vCenter IP" Value="" />
+        <Attribute Name="app_nsx_vcenter Username" Value="" />
+        <Attribute Name="Enterprise Admin Group" Value="NSX" />
+        <Attribute Name="vSphere Administrator Password" Value="" />
+        <Attribute Name="Datacenter Name" Value="" />
+        <Attribute Name="NSX Controllers IP Pool Name" Value="" />
+        <Attribute Name="NSX Controllers IP Pool Netmask Bits" Value="" />
+        <Attribute Name="NSX Controllers IP Pool Gateway" Value="" />
+        <Attribute Name="NSX Controllers IP Pool DNS Suffix" Value="" />
+        <Attribute Name="NSX Controllers IP Pool DNS Server1" Value="" />
+        <Attribute Name="NSX Controllers IP Pool DNS Server2" Value="" />
+        <Attribute Name="NSX Controllers IP Pool Start IP" Value="" />
+        <Attribute Name="NSX Controllers IP Pool End IP" Value="" />
+        <Attribute Name="VTEP IP Pool Name" Value="" />
+        <Attribute Name="VTEP IP Pool Netmask Bits" Value="" />
+        <Attribute Name="VTEP IP Pool Gateway" Value="" />
+        <Attribute Name="VTEP IP Pool DNS Suffix" Value="" />
+        <Attribute Name="VTEP IP Pool DNS Server1" Value="" />
+        <Attribute Name="VTEP IP Pool DNS Server2" Value="" />
+        <Attribute Name="VTEP IP Pool Start IP" Value="" />
+        <Attribute Name="VTEP IP Pool End IP" Value="" />
+        <Attribute Name="Segment ID Number" Value="" />
+        <Attribute Name="Segment Name" Value="NSXSegment" />
+        <Attribute Name="Segment Range Start" Value="" />
+        <Attribute Name="Segment Range End" Value="" />
+        <Attribute Name="vCenter Administrator Password" Value="Welcome1!" />
+        <Attribute Name="Controller Name" Value="NSXController" />
+        <Attribute Name="Controller Description" Value="NSXController" />
+        <Attribute Name="Datacenter" Value="NFVDC" />
+        <Attribute Name="Cluster or Resource Pool" Value="" />
+        <Attribute Name="Datastore" Value="SIO_Datastore" />
+        <Attribute Name="Deployment Size Small Medium Large" Value="" />
+        <Attribute Name="Portgroup" Value="" />
+        <Attribute Name="New Admin Password" Value="" />
+        <Attribute Name="Distributed vSwitch Name" Value="" />
+        <Attribute Name="VLAN" Value="" />
+        <Attribute Name="Transport Zone Name" Value="ComputeEdgeZone" />
+        <Attribute Name="Transport Zone Description" Value="Compute Cluster to Edge Cluster Zone" />
+        <Attribute Name="NEI Cluster or Resource Pool" Value="" />
+        <Attribute Name="Logical Switch Name" Value="" />
+        <Attribute Name="Logical Switch Description" Value="" />
+        <Attribute Name="Cluster" Value="" />
+        <Attribute Name="Deployment Size" Value="Small" />
+        <Attribute Name="NSX SSO Username" Value="admin" />
+        <Attribute Name="NSX SSO Password" Value="Welcome1!" />
+        <Attribute Name="vCenter Administrator Username" Value="administrator@vsphere.local" />
+        <Attribute Name="Controller Cluster" Value="" />
+        <Attribute Name="Controller Datastore" Value="SIO_Datastore" />
+        <Attribute Name="Controller Portgroup Name" Value="mgmtportgrp" />
+        <Attribute Name="Controller Admin Password" Value="Welcome1!2@3" />
+        <Attribute Name="Compute IP Pool DNS Server1" Value="192.168.2.1" />
+        <Attribute Name="Compute IP Pool DNS Server2" Value="192.168.2.1" />
+        <Attribute Name="Compute IP Pool DNS Suffix" Value="" />
+        <Attribute Name="Compute IP Pool End IP" Value="" />
+        <Attribute Name="Compute IP Pool Gateway" Value="" />
+        <Attribute Name="Compute IP Pool Name" Value="compute" />
+        <Attribute Name="Compute IP Pool Netmask Bits" Value="" />
+        <Attribute Name="Compute IP Pool Start IP" Value="" />
+        <Attribute Name="NSX NTP Servers" Value="" />
+        <Attribute Name="NSX Disk Format" Value="thin" />
+        <Attribute Name="NSX Gateway IP" Value="" />
+        <Attribute Name="NSX Netmask" Value="" />
+        <Attribute Name="NSX VM Name" Value="NSXManager" />
+        <Attribute Name="NSX DNS Server IP" Value="" />
+        <Attribute Name="NSX Portgroup Name" Value="mgmtportgrp" />
+        <Attribute Name="Local NSX OVA Path" Value="C:\deploy\VMware-NSX-Manager-6.2.4-4292526.ova" />
+        <Attribute Name="NSX Hostname" Value="nsx-manager" />
+        <Attribute Name="Edge IP Pool DNS Server1" Value="8.8.8.8" />
+        <Attribute Name="Edge IP Pool DNS Server2" Value="8.8.4.4" />
+        <Attribute Name="Edge IP Pool DNS Suffix" Value="" />
+        <Attribute Name="Edge IP Pool End IP" Value="" />
+        <Attribute Name="Edge IP Pool Gateway" Value="" />
+        <Attribute Name="Edge IP Pool Name" Value="edge" />
+        <Attribute Name="Edge IP Pool Netmask Bits" Value="" />
+        <Attribute Name="Edge IP Pool Start IP" Value="" />
+        <Attribute Name="Compute Cluster" Value="" />
+        <Attribute Name="MGMT Cluster" Value="" />
+        <Attribute Name="MGMT IP Pool DNS Server1" Value="" />
+        <Attribute Name="MGMT IP Pool DNS Server2" Value="" />
+        <Attribute Name="MGMT IP Pool DNS Suffix" Value="" />
+        <Attribute Name="MGMT IP Pool End IP" Value="" />
+        <Attribute Name="MGMT IP Pool Gateway" Value="" />
+        <Attribute Name="MGMT IP Pool Name" Value="mgmt" />
+        <Attribute Name="MGMT IP Pool Netmask Bits" Value="" />
+        <Attribute Name="MGMT IP Pool Start IP" Value="" />
+        <Attribute Name="Compute MTU" Value="" />
+        <Attribute Name="Compute VLAN" Value="109" />
+        <Attribute Name="MGMT Distributed vSwitch Name" Value="mgmtsw" />
+        <Attribute Name="MGMT MTU" Value="" />
+        <Attribute Name="MGMT VLAN" Value="110" />
+        <Attribute Name="Edge Distributed vSwitch Name" Value="versa1sw" />
+        <Attribute Name="Edge MTU" Value="" />
+        <Attribute Name="Edge VLAN" Value="108" />
+        <Attribute Name="Compute Distributed vSwitch Name" Value="data" />
+        <Attribute Name="NSX Search Domain" Value="" />
+      </Attributes>
+    </Service>
+    <Service PositionX="582" PositionY="138" Alias="vCenter" ServiceName="vCenter">
+      <Attributes>
+        <Attribute Name="VDS1 Hosts PXE IPs" Value="" />
+        <Attribute Name="VDS1 Kernel IPs" Value="" />
+        <Attribute Name="VDS1 Kernel Subnet" Value="" />
+        <Attribute Name="VDS2 Kernel IPs" Value="" />
+        <Attribute Name="VDS2 Kernel Subnet" Value="" />
+        <Attribute Name="VDS3 Kernel IPs" Value="" />
+        <Attribute Name="VDS3 Kernel Subnet" Value="" />
+        <Attribute Name="VDS4 Kernel IPs" Value="" />
+        <Attribute Name="VDS4 Kernel Subnet" Value="" />
+        <Attribute Name="vCenter Administrator Password" Value="Welcome1!" />
+        <Attribute Name="vCenter Administrator User" Value="administrator@vsphere.local" />
+        <Attribute Name="vCenter Deployment Size" Value="small" />
+        <Attribute Name="vCenter Disk Format" Value="thin" />
+        <Attribute Name="vCenter DNS1" Value="" />
+        <Attribute Name="vCenter DNS2" Value="" />
+        <Attribute Name="vCenter ESXi IP" Value="" />
+        <Attribute Name="vCenter ESXi Password" Value="dangerous" />
+        <Attribute Name="vCenter ESXi Username" Value="root" />
+        <Attribute Name="vCenter Gateway" Value="" />
+        <Attribute Name="vCenter Hostname" Value="" />
+        <Attribute Name="vCenter IP" Value="" />
+        <Attribute Name="vCenter ISO location" Value="C:\deploy\VMware-VCSA-all-6.0.0-2800571.iso" />
+        <Attribute Name="vCenter Portgroup Name" Value="VM Network" />
+        <Attribute Name="vCenter Prefix" Value="24" />
+        <Attribute Name="vCenter SSO Domain" Value="vsphere.local" />
+        <Attribute Name="vCenter SSO Site Name" Value="vCenter6Domain" />
+        <Attribute Name="vCenter VM Name" Value="vCenter6" />
+        <Attribute Name="vCenter Datastore" Value="Management Datastore" />
+        <Attribute Name="vCenter NTP Server" Value="" />
+        <Attribute Name="VDS1 Name" Value="mgmtsw" />
+        <Attribute Name="VDS1 Version" Value="6.0.0" />
+        <Attribute Name="VDS1 Hosts" Value="" />
+        <Attribute Name="VDS1 Num Uplink Ports" Value="8" />
+        <Attribute Name="VDS1 Port Group Name" Value="mgmtportgrp" />
+        <Attribute Name="VDS1 Port Group VLAN Type" Value="none" />
+        <Attribute Name="PXE VNIC" Value="vmnic0" />
+        <Attribute Name="VDS1 Hosts VNICS" Value="vmnic1" />
+        <Attribute Name="VDS2 Hosts VNICS" Value="vmnic2" />
+        <Attribute Name="VDS3 Hosts VNICS" Value="" />
+        <Attribute Name="VDS4 Hosts VNICS" Value="" />
+        <Attribute Name="VDS5 Hosts VNICS" Value="vmnic3" />
+        <Attribute Name="VDS1 Port Group VLAN IDs" Value="" />
+        <Attribute Name="VDS2 Name" Value="data" />
+        <Attribute Name="VDS2 Version" Value="6.0.0" />
+        <Attribute Name="VDS2 Hosts" Value="" />
+        <Attribute Name="VDS2 Num Uplink Ports" Value="8" />
+        <Attribute Name="VDS2 Port Group Name" Value="dataportgrp" />
+        <Attribute Name="VDS2 Port Group VLAN Type" Value="none" />
+        <Attribute Name="VDS2 Port Group VLAN IDs" Value="" />
+        <Attribute Name="VDS3 Name" Value="versasw1" />
+        <Attribute Name="VDS3 Version" Value="6.0.0" />
+        <Attribute Name="VDS3 Hosts" Value="" />
+        <Attribute Name="VDS3 Num Uplink Ports" Value="4" />
+        <Attribute Name="VDS3 Port Group Name" Value="versa1portgrp" />
+        <Attribute Name="VDS3 Port Group VLAN Type" Value="trunk" />
+        <Attribute Name="VDS3 Port Group VLAN IDs" Value="130" />
+        <Attribute Name="VDS4 Name" Value="versasw2" />
+        <Attribute Name="VDS4 Version" Value="6.0.0" />
+        <Attribute Name="VDS4 Hosts" Value="" />
+        <Attribute Name="VDS4 Num Uplink Ports" Value="4" />
+        <Attribute Name="VDS4 Port Group Name" Value="versa2portgrp" />
+        <Attribute Name="VDS4 Port Group VLAN Type" Value="trunk" />
+        <Attribute Name="VDS4 Port Group VLAN IDs" Value="140" />
+        <Attribute Name="vCenter Cluster1 HA" Value="False" />
+        <Attribute Name="vCenter Cluster1 DRS" Value="False" />
+        <Attribute Name="vCenter Cluster1 ESXis" Value="" />
+        <Attribute Name="vCenter Cluster1 Name" Value="Master" />
+        <Attribute Name="vCenter Cluster2 DRS" Value="False" />
+        <Attribute Name="vCenter Cluster2 ESXis" Value="" />
+        <Attribute Name="vCenter Cluster2 HA" Value="False" />
+        <Attribute Name="vCenter Cluster2 Name" Value="Compute" />
+        <Attribute Name="vCenter Cluster3 DRS" Value="False" />
+        <Attribute Name="vCenter Cluster3 ESXis" Value="" />
+        <Attribute Name="vCenter Cluster3 HA" Value="False" />
+        <Attribute Name="vCenter Cluster3 Name" Value="SIO" />
+        <Attribute Name="vCenter Cluster4 DRS" Value="False" />
+        <Attribute Name="vCenter Cluster4 ESXis" Value="" />
+        <Attribute Name="vCenter Cluster4 HA" Value="False" />
+        <Attribute Name="vCenter Cluster4 Name" Value="cluster4" />
+        <Attribute Name="vCenter Cluster5 DRS" Value="False" />
+        <Attribute Name="vCenter Cluster5 ESXis" Value="" />
+        <Attribute Name="vCenter Cluster5 HA" Value="False" />
+        <Attribute Name="vCenter Cluster5 Name" Value="cluster5" />
+        <Attribute Name="vCenter Datacenter Name" Value="NFVDC" />
+        <Attribute Name="vCenter SSO Password" Value="Welcome1!" />
+        <Attribute Name="VDS5 Kernel IPs" Value="" />
+        <Attribute Name="VDS5 Kernel Subnet" Value="" />
+        <Attribute Name="VDS5 Name" Value="data2" />
+        <Attribute Name="VDS5 Version" Value="6.0.0" />
+        <Attribute Name="VDS5 Hosts" Value="" />
+        <Attribute Name="VDS5 Num Uplink Ports" Value="8" />
+        <Attribute Name="VDS5 Port Group Name" Value="data2portgrp" />
+        <Attribute Name="VDS5 Port Group VLAN Type" Value="none" />
+        <Attribute Name="VDS5 Port Group VLAN IDs" Value="" />
+      </Attributes>
+    </Service>
+    <Service PositionX="582" PositionY="452" Alias="vRealize Log Insight" ServiceName="vRealize Log Insight">
+      <Attributes>
+        <Attribute Name="Log Insight Admin Password" Value="" />
+        <Attribute Name="Log Insight Admin Email" Value="" />
+        <Attribute Name="Log Insight License Key" Value="" />
+        <Attribute Name="Log Insight Notification Emails CSV" Value="" />
+        <Attribute Name="Log Insight Send Weekly Trace" Value="True" />
+        <Attribute Name="Log Insight Sync Time With NTP" Value="True" />
+        <Attribute Name="Log Insight NTP Servers CSV" Value="" />
+        <Attribute Name="Log Insight SMTP Server" Value="localhost" />
+        <Attribute Name="Log Insight SMTP Port" Value="25" />
+        <Attribute Name="Log Insight SMTP SSL" Value="False" />
+        <Attribute Name="Log Insight SMTP STARTTLS" Value="False" />
+        <Attribute Name="Log Insight SMTP Sender" Value="" />
+        <Attribute Name="Log Insight SMTP Username" Value="" />
+        <Attribute Name="Log Insight SMTP Password" Value="" />
+        <Attribute Name="Log Insight PAK Path" Value="" />
+        <Attribute Name="Cloud vCenter FQDN" Value="" />
+        <Attribute Name="Domain" Value="vsphere.local" />
+        <Attribute Name="app_logi_vcenter Username" Value="administrator" />
+        <Attribute Name="app_logi_vcenter Password" Value="Welcome1!" />
+        <Attribute Name="vROPS FQDN" Value="" />
+        <Attribute Name="vROPS admin Username" Value="admin" />
+        <Attribute Name="vROPS admin Password" Value="Welcome1!" />
+        <Attribute Name="Log Insight Cluster" Value="" />
+        <Attribute Name="Log Insight Datacenter" Value="NFVDC" />
+        <Attribute Name="Log Insight Datastore" Value="SIO_Datastore" />
+        <Attribute Name="Log Insight Disk Format" Value="thin" />
+        <Attribute Name="Log Insight DNS Server IP" Value="" />
+        <Attribute Name="Log Insight Gateway" Value="" />
+        <Attribute Name="Log Insight IP" Value="" />
+        <Attribute Name="Log Insight Local OVA Path" Value="c:\deploy\VMware-vRealize-Log-Insight-3.0.0-3021606.ova" />
+        <Attribute Name="Log Insight Netmask" Value="" />
+        <Attribute Name="Log Insight Portgroup Name" Value="mgmtportgrp" />
+        <Attribute Name="Log Insight VM Name" Value="vLogInsight" />
+        <Attribute Name="vCenter Administrator Password" Value="Welcome1!" />
+        <Attribute Name="vCenter Administrator User" Value="administrator@vsphere.local" />
+        <Attribute Name="vCenter FQDN" Value="" />
+      </Attributes>
+    </Service>
+    <Service PositionX="866" PositionY="138" Alias="vRealize Automation" ServiceName="vRealize Automation">
+      <Attributes>
+        <Attribute Name="Load Balancer Name" Value="" />
+        <Attribute Name="vRA Web Primary IP" Value="" />
+        <Attribute Name="Datacenter" Value="" />
+        <Attribute Name="Cluster" Value="" />
+        <Attribute Name="vRA Datastore" Value="" />
+        <Attribute Name="vRA Disk Format" Value="thin" />
+        <Attribute Name="vRA Hostname" Value="" />
+        <Attribute Name="vRA Gateway IP" Value="" />
+        <Attribute Name="vRA Netmask" Value="" />
+        <Attribute Name="vRA IP" Value="" />
+        <Attribute Name="vRA Portgroup Name" Value="" />
+        <Attribute Name="vRA VM Name" Value="" />
+        <Attribute Name="Local vRA OVA Path" Value="" />
+        <Attribute Name="vRA Web Secondary IP" Value="" />
+        <Attribute Name="vRA Manager Primary IP" Value="" />
+        <Attribute Name="vRA Manager Secondary IP" Value="" />
+        <Attribute Name="vRA Primary IP" Value="" />
+        <Attribute Name="vRA Secondary IP" Value="" />
+        <Attribute Name="Domain" Value="" />
+        <Attribute Name="vRO Load Balancer Hostname" Value="" />
+        <Attribute Name="vRA Load Balancer Hostname" Value="" />
+        <Attribute Name="vRA Network Profile IP Range Start" Value="" />
+        <Attribute Name="vRA Network Profile IP Range End" Value="" />
+        <Attribute Name="DNS Suffix" Value="" />
+        <Attribute Name="vRA Network Profile Gateway" Value="" />
+        <Attribute Name="DNS Server IP" Value="" />
+        <Attribute Name="vRA Network Profile Netmask" Value="" />
+        <Attribute Name="ehc_fabric_admin Username" Value="" />
+        <Attribute Name="ehc_fabric_admin Password" Value="" />
+        <Attribute Name="Tenant URL Name" Value="" />
+        <Attribute Name="svc_iaas Username" Value="" />
+        <Attribute Name="svc_iaas Password" Value="" />
+        <Attribute Name="ehc_iaas_admin Username" Value="" />
+        <Attribute Name="ehc_iaas_admin Password" Value="" />
+        <Attribute Name="ehc_tenant_admin Username" Value="" />
+        <Attribute Name="ehc_tenant_admin Password" Value="" />
+        <Attribute Name="EHC_Storage_Services Group Name" Value="" />
+        <Attribute Name="EHCOperations Business Group Name" Value="" />
+        <Attribute Name="app_vra_vro Username" Value="" />
+        <Attribute Name="app_vra_vro Password" Value="" />
+        <Attribute Name="vra_vro Credential Name" Value="" />
+        <Attribute Name="Background Color 6 Hex Digits" Value="" />
+        <Attribute Name="Text Color 6 Hex Digits" Value="" />
+        <Attribute Name="Logo URL or Data URI" Value="" />
+        <Attribute Name="Company Name" Value="" />
+        <Attribute Name="Product Name" Value="" />
+        <Attribute Name="Disclaimer URL" Value="" />
+        <Attribute Name="Copyright Message" Value="" />
+        <Attribute Name="Contact URL" Value="" />
+        <Attribute Name="vRA Load Balancer IP" Value="" />
+        <Attribute Name="vRA Root Password" Value="Welcome1!" />
+        <Attribute Name="vRA License Key" Value="" />
+        <Attribute Name="Local chain pem Path" Value="" />
+        <Attribute Name="Local rui key Path" Value="" />
+        <Attribute Name="vRA DB Password" Value="" />
+        <Attribute Name="vRA Replication Password" Value="" />
+        <Attribute Name="vRA Postgres Password" Value="" />
+        <Attribute Name="vRA Timezone" Value="" />
+        <Attribute Name="SSO Hostname" Value="" />
+        <Attribute Name="SSO Administrator Password" Value="" />
+        <Attribute Name="Password for Replicate User" Value="" />
+        <Attribute Name="vRA Primary Hostname" Value="" />
+        <Attribute Name="vRA Secondary Hostname" Value="" />
+        <Attribute Name="Use FQDN as VM Name" Value="" />
+        <Attribute Name="AMP Domain" Value="" />
+        <Attribute Name="vCenter IP" Value="" />
+        <Attribute Name="vCenter Administrator Password" Value="" />
+        <Attribute Name="vRA Additional Disk Size GB" Value="" />
+        <Attribute Name="vRA NTP Servers Comma Separated" Value="" />
+        <Attribute Name="vCenter Hostname" Value="" />
+        <Attribute Name="NSX Hostname" Value="" />
+        <Attribute Name="Email Address" Value="" />
+        <Attribute Name="SMTP Server" Value="" />
+        <Attribute Name="SMTP Server Authentication yes no" Value="" />
+        <Attribute Name="SMTP Username" Value="" />
+        <Attribute Name="SMTP Password" Value="" />
+        <Attribute Name="Tenant Name" Value="" />
+        <Attribute Name="adbind_vra Username" Value="" />
+        <Attribute Name="EHC OU" Value="" />
+        <Attribute Name="Domain Administrator Password" Value="" />
+        <Attribute Name="EHC_Tenant_Admins Group Name" Value="" />
+        <Attribute Name="EHC_IaaS_Admins Group Name" Value="" />
+        <Attribute Name="EHC_Fabric_Admins Group Name" Value="" />
+        <Attribute Name="EHC_Service_Architects Group Name" Value="" />
+        <Attribute Name="Business Group Email Address" Value="" />
+        <Attribute Name="ehc_sysadmin Username" Value="" />
+        <Attribute Name="EHC_Backup_Services Group Name" Value="" />
+        <Attribute Name="app_vra_vcenter Username" Value="" />
+        <Attribute Name="app_vra_vcenter Password" Value="" />
+        <Attribute Name="app_vra_nsx Username" Value="" />
+        <Attribute Name="app_vra_nsx Password" Value="" />
+        <Attribute Name="vra_vcenter Credential Name" Value="" />
+        <Attribute Name="vra_nsx Credential Name" Value="" />
+        <Attribute Name="EHCSystem Business Group Name" Value="" />
+        <Attribute Name="vCenter Endpoint Name" Value="" />
+        <Attribute Name="EHC_Initial_Fabric_Group Name" Value="" />
+        <Attribute Name="Initial Machine Prefix Name" Value="" />
+        <Attribute Name="Tenant Pod Clusters Comma Separated" Value="" />
+        <Attribute Name="vRA Domain" Value="" />
+        <Attribute Name="vCenter Administrator Username" Value="" />
+        <Attribute Name="NSX IP" Value="" />
+        <Attribute Name="NSX Username" Value="admin" />
+        <Attribute Name="NSX Password" Value="" />
+      </Attributes>
+    </Service>
+  </Services>
+  <Apps />
+  <Inputs>
+    <RequirementsInput Name="Quantity" DefaultValue="1" ResourceName="Compute" InputType="Quantity" />
+  </Inputs>
+</TopologyInfo>

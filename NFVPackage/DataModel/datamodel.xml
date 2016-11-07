@@ -2440,13 +2440,13 @@
   <ResourceFamilies>
     <ResourceFamily Name="Compute" IsLockedByDefault="true" ImagePath="Compute_Family.png" Description="" SupportsMulticastMapping="true" SupportsLoopbackMapping="true" IsSearchable="true">
       <AttachedAttributes>
-        <AttachedAttribute Name="Nagios Host Group" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="Nagios Host Group" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-        <AttachedAttribute Name="Memory usage" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="Memory usage" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-		<AttachedAttribute Name="CPU usage" IsOverridable="true" IsLocal="true">
+		<AttachedAttribute Name="CPU usage" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
       </AttachedAttributes>
@@ -2460,22 +2460,22 @@
     </ResourceFamily>
     <ResourceFamily Name="Nagios Server" Description="" IsSearchable="true" IsAdminOnly="true">
       <AttachedAttributes>
-        <AttachedAttribute Name="MappingFilePath" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="MappingFilePath" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-        <AttachedAttribute Name="MonitoringCleanupInterval" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="MonitoringCleanupInterval" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-        <AttachedAttribute Name="NagiosAddress" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="NagiosAddress" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-        <AttachedAttribute Name="NagiosPassword" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="NagiosPassword" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-        <AttachedAttribute Name="NagiosSamplingInterval" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="NagiosSamplingInterval" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
-        <AttachedAttribute Name="NagiosUser" IsOverridable="true" IsLocal="true">
+        <AttachedAttribute Name="NagiosUser" IsOverridable="true" IsLocal="true" UserInput="false">
           <AllowedValues />
         </AttachedAttribute>
       </AttachedAttributes>
@@ -2513,10 +2513,10 @@
       <Models>
         <ResourceModel Name="Brocade NOS Switch" ImagePath="Brocade NOS Switch_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -2543,316 +2543,316 @@
 
                 <ResourceModel Name="vRealize Automation" ImagePath="vRealize Automation_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="NSX IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Load Balancer Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Load Balancer Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Web Primary IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Web Primary IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Web Secondary IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Web Secondary IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Manager Primary IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Manager Primary IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Manager Secondary IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Manager Secondary IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Primary IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Primary IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Secondary IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Secondary IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRO Load Balancer Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRO Load Balancer Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Load Balancer Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Load Balancer Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Network Profile IP Range Start" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Network Profile IP Range Start" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Network Profile IP Range End" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Network Profile IP Range End" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="DNS Suffix" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Network Profile Gateway" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Network Profile Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="DNS Server IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Network Profile Netmask" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Network Profile Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_fabric_admin Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_fabric_admin Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_fabric_admin Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_fabric_admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tenant URL Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Tenant URL Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="svc_iaas Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="svc_iaas Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="svc_iaas Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="svc_iaas Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_iaas_admin Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_iaas_admin Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_iaas_admin Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_iaas_admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_tenant_admin Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_tenant_admin Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_tenant_admin Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_tenant_admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_Storage_Services Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_Storage_Services Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHCOperations Business Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHCOperations Business Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vra_vro Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_vra_vro Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vra_vro Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_vra_vro Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vra_vro Credential Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vra_vro Credential Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Background Color 6 Hex Digits" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Background Color 6 Hex Digits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Text Color 6 Hex Digits" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Text Color 6 Hex Digits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Logo URL or Data URI" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Logo URL or Data URI" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Company Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Company Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Product Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Product Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Disclaimer URL" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Disclaimer URL" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Copyright Message" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Copyright Message" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Contact URL" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Contact URL" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Load Balancer IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Load Balancer IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Root Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA License Key" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA License Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local chain pem Path" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Local chain pem Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local rui key Path" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Local rui key Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA DB Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA DB Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Replication Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Replication Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Postgres Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Postgres Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Timezone" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Timezone" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SSO Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="SSO Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SSO Administrator Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="SSO Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Password for Replicate User" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Password for Replicate User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Primary Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Primary Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Secondary Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Secondary Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Use FQDN as VM Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Use FQDN as VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="AMP Domain" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="AMP Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Additional Disk Size GB" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Additional Disk Size GB" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA NTP Servers Comma Separated" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA NTP Servers Comma Separated" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Email Address" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Email Address" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SMTP Server" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="SMTP Server" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SMTP Server Authentication yes no" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="SMTP Server Authentication yes no" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SMTP Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="SMTP Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SMTP Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="SMTP Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tenant Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Tenant Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="adbind_vra Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="adbind_vra Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC OU" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC OU" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Domain Administrator Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Domain Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_Tenant_Admins Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_Tenant_Admins Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_IaaS_Admins Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_IaaS_Admins Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_Fabric_Admins Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_Fabric_Admins Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_Service_Architects Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_Service_Architects Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Business Group Email Address" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Business Group Email Address" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ehc_sysadmin Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="ehc_sysadmin Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_Backup_Services Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_Backup_Services Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vra_vcenter Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_vra_vcenter Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vra_vcenter Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_vra_vcenter Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vra_nsx Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_vra_nsx Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vra_nsx Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_vra_nsx Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vra_vcenter Credential Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vra_vcenter Credential Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vra_nsx Credential Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vra_nsx Credential Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHCSystem Business Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHCSystem Business Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Endpoint Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter Endpoint Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="EHC_Initial_Fabric_Group Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="EHC_Initial_Fabric_Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Initial Machine Prefix Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Initial Machine Prefix Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tenant Pod Clusters Comma Separated" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Tenant Pod Clusters Comma Separated" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Domain" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter Administrator Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cluster" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Datastore" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Disk Format" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues>
                 <AllowedValue>thin</AllowedValue>
                 <AllowedValue>thick</AllowedValue>
               </AllowedValues>
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Hostname" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Gateway IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Gateway IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Netmask" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Portgroup Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA VM Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vRA VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local vRA OVA Path" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Local vRA OVA Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -2972,37 +2972,37 @@
 
         <ResourceModel Name="vRealize Log Insight" ImagePath="vRealize Log Insight_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="Log Insight Admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Log Insight Admin Email" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight License Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight License Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Log Insight Notification Emails CSV" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Send Weekly Trace" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Send Weekly Trace" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Sync Time With NTP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Sync Time With NTP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight NTP Servers CSV" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight NTP Servers CSV" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight SMTP Server" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight SMTP Server" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight SMTP Port" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight SMTP Port" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight SMTP SSL" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight SMTP SSL" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight SMTP STARTTLS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight SMTP STARTTLS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Log Insight SMTP Sender" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -3014,70 +3014,70 @@
             <AttachedAttribute Name="Log Insight SMTP Password" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight PAK Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight PAK Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cloud vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Cloud vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_logi_vcenter Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="app_logi_vcenter Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_logi_vcenter Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="app_logi_vcenter Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS admin Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS admin Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Datacenter" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Disk Format" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Log Insight VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Log Insight VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -3132,166 +3132,166 @@
         </ResourceModel>
         <ResourceModel Name="vRealize Operations Manager" ImagePath="vRealize Operations Manager_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="Enable Memory Overcommit" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable Memory Overcommit" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Include Network IO" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Include Network IO" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Include Storage IO" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Include Storage IO" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="OU" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="OU" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="adbind_vrops Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="adbind_vrops Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local EMC VCOPS PAK Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Local EMC VCOPS PAK Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VNX Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VNX Management IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VNX License Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VNX License Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VNX Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VNX Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VNX Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VNX Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local EMC ViPR PAK Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Local EMC ViPR PAK Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS thick thin" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS thick thin" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Datacenter" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Disk Format" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cloud vCenter Administrator Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Cloud vCenter Administrator Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Active Directory Server" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Active Directory Server" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="adbind_vrops Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="adbind_vrops Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vROPS Timezone" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable vSphere Hardening" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable vSphere Hardening" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROM Admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROM Admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vROPS FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS admin Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS admin Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Cluster Master FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Cluster Master FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS NTP Server IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS NTP Server IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ViPR FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ViPR FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ViPR Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ViPR Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ViPR Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ViPR Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local EMC MP for vRA PAK Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Local EMC MP for vRA PAK Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vRA Load Balancer FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vRA Load Balancer FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cloud vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Cloud vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vrops_vra Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="app_vrops_vra Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vrops_vra Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="app_vrops_vra Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vROPS Product Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vROPS Product Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cloud vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Cloud vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vrops_vcenter UPN" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="app_vrops_vcenter UPN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_vrops_vcenter Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="app_vrops_vcenter Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable Health Alerts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable Health Alerts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable Risk Alerts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable Risk Alerts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable Efficiency Alerts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable Efficiency Alerts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable CPU Overcommit" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable CPU Overcommit" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -3374,31 +3374,31 @@
       <Models>
         <ResourceModel Name="OnRack" ImagePath="OnRack_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="ESX DNS1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX DNS1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ESX DNS2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX DNS2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ESX Domain" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ESX Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="DeployTable" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="DeployTable" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="OnRack Address" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="OnRack Address" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="OnRack Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="OnRack Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="OnRack Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="OnRack Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -3430,94 +3430,94 @@
       <Models>
         <ResourceModel Name="Nagios Monitoring" ImagePath="Nagios Monitoring_Model.png" Description="Enable environment monitoring " SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="NagiosResourceName" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NagiosResourceName" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor PING" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor PING" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor Processes" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor Processes" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor Root Partition" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor Root Partition" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor Swap Usage" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor Swap Usage" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor Users" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor Users" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Monitor Memory Usage" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor Uptime" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor Uptime" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor disk space" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor disk space" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Monitor CPU Usage" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Monitor Current Load" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Monitor Current Load" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Disk Format" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios DNS1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios DNS1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios DNS2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios DNS2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Hostname" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Root Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Search Domains" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Search Domains" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Datacenter" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -3574,307 +3574,307 @@
       <Models>
         <ResourceModel Name="NSX Manager" ImagePath="NSX Manager_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="NSX IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_nsx_sso Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_nsx_sso Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_nsx_sso Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_nsx_sso Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="app_nsx_vcenter Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="app_nsx_vcenter Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enterprise Admin Group" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Enterprise Admin Group" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vSphere Administrator Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vSphere Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datacenter Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Datacenter Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool Netmask Bits" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool Gateway" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool DNS Suffix" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool DNS Server1" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool DNS Server2" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool Start IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Controllers IP Pool End IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NSX Controllers IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool Netmask Bits" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool Gateway" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool DNS Suffix" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool DNS Server1" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool DNS Server2" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool Start IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VTEP IP Pool End IP" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VTEP IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Segment ID Number" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Segment ID Number" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Segment Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Segment Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Segment Range Start" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Segment Range Start" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Segment Range End" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Segment Range End" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Controller Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Controller Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Controller Description" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Controller Description" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cluster or Resource Pool" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Cluster or Resource Pool" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Deployment Size Small Medium Large" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Deployment Size Small Medium Large" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Portgroup" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Portgroup" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="New Admin Password" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="New Admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Distributed vSwitch Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VLAN" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="VLAN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Transport Zone Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Transport Zone Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Transport Zone Description" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Transport Zone Description" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NEI Cluster or Resource Pool" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="NEI Cluster or Resource Pool" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Logical Switch Name" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Logical Switch Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Logical Switch Description" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Logical Switch Description" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Deployment Size" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Deployment Size" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX SSO Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX SSO Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX SSO Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX SSO Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Controller Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Controller Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Controller Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Controller Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Controller Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Controller Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Controller Admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Controller Admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX NTP Servers" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX NTP Servers" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Disk Format" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Gateway IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX Gateway IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX DNS Server IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Local NSX OVA Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Local NSX OVA Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Hostname" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Edge IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool DNS Server1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool DNS Server2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool DNS Suffix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool End IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool Netmask Bits" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT IP Pool Start IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute MTU" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute MTU" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Compute VLAN" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT MTU" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT MTU" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="MGMT VLAN" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Edge MTU" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Edge MTU" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Edge VLAN" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Compute Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Compute Distributed vSwitch Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="NSX Search Domain" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="NSX Search Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -4009,19 +4009,19 @@
       <Models>
         <ResourceModel Name="Nagios Registration" ImagePath="Nagios Registration_Model.png" Description="Register a new resource (host) in Nagios" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="Nagios Machine IP Address" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Machine IP Address" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Machine Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Nagios Machine Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Machine Username" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Nagios Machine Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Installation Folder" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Nagios Installation Folder" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Nagios Machine SSH Port" IsOverridable="true" IsLocal="true">
+            <AttachedAttribute Name="Nagios Machine SSH Port" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -4049,70 +4049,70 @@
       <Models>
         <ResourceModel Name="vCloud Director" ImagePath="vCloud Director_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="vCD Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Hostname" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Local OVA Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management DNS1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management DNS1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management DNS2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management DNS2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Management Search Domains" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Management Search Domains" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Root Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD VM Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD VM Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD VM IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD VM IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD VM Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD VM Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD VM Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD VM Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Disk Format" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vCD Proxy Service Cert ext dns" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4127,22 +4127,22 @@
             <AttachedAttribute Name="vCD HTTP Service Cert dname" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD DB Folder" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD DB Folder" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Installation File Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Installation File Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vCD Syslog Server" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD Attached vCenter Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD Attached vCenter Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vCD Contact Email" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4151,16 +4151,16 @@
             <AttachedAttribute Name="vCD Contact Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCD License Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCD License Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vShield Manager Address" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vShield Manager Address" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vShield Manager Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vShield Manager Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vShield Manager Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vShield Manager Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -4227,217 +4227,217 @@
       <Models>
         <ResourceModel Name="ScaleIO" ImagePath="ScaleIO_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="Number of Faultsets" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Number of Faultsets" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Faultset Name PreFix" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Faultset Name PreFix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Data Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Data Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Data2 Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Data2 Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable Background Scanner" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable Background Scanner" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Volume Size" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Volume Size" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Volume Type" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Volume Type" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="MGMT Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="MGMT Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Unified Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Unified Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="OVA Full Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="OVA Full Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ScaleIO Admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ScaleIO Admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ScaleIO System Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ScaleIO System Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ScaleIO Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ScaleIO Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home SMTP Server" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home SMTP Server" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home SMTP Port" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home SMTP Port" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home SMTP Use TLS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home SMTP Use TLS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home SMTP Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home SMTP Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home SMTP Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home SMTP Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home ScaleIO Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home ScaleIO Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home ScaleIO Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home ScaleIO Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Email From" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Email From" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Email To" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Email To" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Customer Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Customer Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Severity Level" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Severity Level" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Syslog Server" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Syslog Server" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Syslog Port" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Syslog Port" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home Syslog Facility" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home Syslog Facility" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home DNS Server 1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home DNS Server 1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Call Home DNS Server 2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Call Home DNS Server 2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Protection Domain Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Protection Domain Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="RAM Read Cache size per SDS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="RAM Read Cache size per SDS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Storage Pool Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Storage Pool Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Enable Zero Padding" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Enable Zero Padding" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ESX Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Host for ScaleIO Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Host for ScaleIO Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Gateway Admin Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Gateway Admin Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="LIA Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="LIA Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SVM Root Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SVM Root Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Management Network Label" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Management Network Label" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Data Network Label" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Data Network Label" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Data2 Network Label" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Data2 Network Label" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Gateway Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Gateway Management IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Gateway Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Gateway Data IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Gateway Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Gateway Data2 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Gateway Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Gateway Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Primary MDM Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Primary MDM Management IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Primary MDM Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Primary MDM Data IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Primary MDM Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Primary MDM Data2 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Primary MDM Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Primary MDM Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Secondary MDM Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Secondary MDM Management IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Secondary MDM Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Secondary MDM Data IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Secondary MDM Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Secondary MDM Data2 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Secondary MDM Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Secondary MDM Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tie Breaker Management IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Tie Breaker Management IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tie Breaker Data IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Tie Breaker Data IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tie Breaker Data2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Tie Breaker Data2 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Tie Breaker Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Tie Breaker Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ScaleIO SVM DiskType" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ScaleIO SVM DiskType" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ScaleIO SVM Name PreFix" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ScaleIO SVM Name PreFix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="ScaleIO Version" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="ScaleIO Version" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDC Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDC Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Exclude ESXs From SDC Role" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Exclude ESXs From SDC Role" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDS Management IPs CSV" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDS Management IPs CSV" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDS Data IPs CSV" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDS Data IPs CSV" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="SDS Data2 IPs CSV" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="SDS Data2 IPs CSV" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -4534,19 +4534,19 @@
       <Models>
         <ResourceModel Name="Versa Director" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="Versa BGP Client NW" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa BGP Client NW" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa CMS UUID" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa CMS UUID" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller LAN IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller LAN IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller WAN IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller WAN IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Versa Customer Name" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4558,247 +4558,247 @@
             <AttachedAttribute Name="Versa DeviceGroup Phone" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa LEF DST IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa LEF DST IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa LEF SRC IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa LEF SRC IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Provider MGMT IKE" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Provider MGMT IKE" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Provider MGMT IPSec" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Provider MGMT IPSec" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Versa Provider Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Staging IPSec" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Staging IPSec" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa TNT MGMT ID" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa TNT MGMT ID" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa TNT MGMT IKE" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa TNT MGMT IKE" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa TNT MGMT IPSec" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa TNT MGMT IPSec" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa VNF Manager IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa VNF Manager IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa WAN Local IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa WAN Local IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI1 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI1 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics NB DNS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics NB DNS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics NB Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics NB Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics NB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics NB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics NB Mask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics NB Mask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics SB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics SB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics SB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics SB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 NB DNS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 NB DNS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 NB Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 NB Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 NB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 NB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 NB Mask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 NB Mask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 NB DNS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 NB DNS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 NB Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 NB Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 NB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 NB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 NB Mask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 NB Mask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Cluster" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Cluster" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller NB DNS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller NB DNS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller NB Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller NB Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller NB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller NB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller NB Mask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller NB Mask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller SB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller SB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller SDWAN IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller SDWAN IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller SDWAN Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller SDWAN Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Datacenter" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Datacenter" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director NB DNS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director NB DNS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director NB Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director NB Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director NB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director NB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director NB Mask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director NB Mask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director Path" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director Path" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director SB IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director SB IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director SB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director SB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Disk Mode" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Disk Mode" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa SB DNS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa SB DNS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 SDWAN IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 SDWAN IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 SDWAN IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 SDWAN IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa SB Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa SB Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 SDWAN Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 SDWAN Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 SDWAN Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 SDWAN Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 Traffic Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 Traffic Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 Traffic Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 Traffic Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Director NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Director NB Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Analytics Logs Port" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Analytics Logs Port" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch Client Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch Client Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch Client Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch Client Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch IPSec Netmask" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch IPSec Netmask" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch IPSec Range" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch IPSec Range" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch PostStaging IPSec Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch PostStaging IPSec Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch PreStaging IPSec Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch PreStaging IPSec Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch Server Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch Server Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch Server Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch Server Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch Staging IPSec Key" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch Staging IPSec Key" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Versa Branch1 Latitude" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4816,28 +4816,28 @@
             <AttachedAttribute Name="Versa Branch1 PreStaging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 SDWAN Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 SDWAN Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 Serial" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 Serial" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI2 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI2 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI2 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI4 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI4 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI4 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI4 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI5 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI5 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI5 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI5 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Versa Branch2 Latitude" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4855,46 +4855,46 @@
             <AttachedAttribute Name="Versa Branch2 PreStaging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 SDWAN Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 SDWAN Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 Serial" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 Serial" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 Staging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 Staging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI1 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI1 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI1 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI1 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI2 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI2 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI2 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI2 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI4 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI4 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI4 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI4 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI5 IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI5 IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch2 TVI5 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch2 TVI5 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Controller LAN Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Controller LAN Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Provider MGMT IKE Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Provider MGMT IKE Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Provider MGMT IPSec Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Provider MGMT IPSec Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="Versa Provider PostStaging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -4906,31 +4906,31 @@
             <AttachedAttribute Name="Versa Provider Staging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa SB Network" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa SB Network" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa SB Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa SB Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa TNT MGMT IKE Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa TNT MGMT IKE Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa TNT MGMT IPSec Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa TNT MGMT IPSec Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa SB VDS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa SB VDS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa SDWAN VDS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa SDWAN VDS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Traffic VDS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Traffic VDS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 Staging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 Staging IPSec ID" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="Versa Branch1 TVI1 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="Versa Branch1 TVI1 IP Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -5102,94 +5102,94 @@
       <Models>
         <ResourceModel Name="vCenter" ImagePath="vCenter_Model.png" Description="" SupportsConcurrentCommands="false">
           <AttachedAttributes>
-            <AttachedAttribute Name="vCenter Cluster4 DRS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster4 DRS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster4 ESXis" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster4 ESXis" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster4 HA" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster4 HA" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster4 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster4 Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster5 DRS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster5 DRS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster5 ESXis" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster5 ESXis" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster5 HA" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster5 HA" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster5 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster5 Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Datacenter Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Datacenter Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter SSO Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter SSO Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Kernel IPs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Kernel Subnet" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Administrator User" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Deployment Size" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Deployment Size" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Disk Format" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Disk Format" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter DNS1" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter DNS1" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter DNS2" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter DNS2" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter ESXi IP" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter ESXi IP" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter ESXi Password" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter ESXi Password" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter ESXi Username" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter ESXi Username" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Gateway" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vCenter Hostname" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -5198,49 +5198,49 @@
             <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter ISO location" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter ISO location" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Portgroup Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Prefix" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Prefix" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter SSO Domain" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter SSO Domain" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter SSO Site Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter SSO Site Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter VM Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter VM Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Datastore" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Datastore" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter NTP Server" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter NTP Server" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS1 Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Version" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Version" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Hosts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Hosts PXE IPs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Hosts PXE IPs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="PXE VNIC" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -5261,127 +5261,127 @@
             <AttachedAttribute Name="VDS5 Hosts VNICS" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS1 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS1 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS2 Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Version" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Version" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Hosts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS2 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS2 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS3 Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Version" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Version" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Hosts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS3 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS3 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS4 Version" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Hosts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS5 Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Version" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Version" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Hosts" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Hosts" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Num Uplink Ports" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Port Group Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Port Group VLAN Type" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS5 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS5 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster1 HA" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster1 HA" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster1 DRS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster1 DRS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster1 ESXis" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster1 ESXis" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster1 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster1 Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster2 DRS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster2 DRS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster2 ESXis" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster2 ESXis" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster2 HA" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster2 HA" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster2 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster2 Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster3 DRS" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster3 DRS" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster3 ESXis" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster3 ESXis" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster3 HA" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster3 HA" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Cluster3 Name" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter Cluster3 Name" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
           </AttachedAttributes>
@@ -5510,6 +5510,14 @@
     <ScriptDescriptor Name="copy_inputs" Description="Sets all service and resource attributes based on Site Manager values" CategoryName="System" Version="1" Alias="Set Inputs">
       <ScriptInputs />
     </ScriptDescriptor>
+
+    <ScriptDescriptor Name="clean_logs" Description="Moves log contents to another file and clears the main log files" CategoryName="System" Version="1" Alias="Clean Logs">
+      <ScriptInputs />
+    </ScriptDescriptor>
+    <ScriptDescriptor Name="attach_logs" Description="Attaches all execution logs to the reservation as a zip file" CategoryName="System" Version="1" Alias="Attach Logs">
+      <ScriptInputs />
+    </ScriptDescriptor>
+
     <ScriptDescriptor Name="set_access_vlan" Description="Set the desire interfaces of the Brocade switch to the desired VLAN ID with access mode." Version="1" Alias="Set Access VLAN On Interfaces">
       <ScriptInputs>
         <ScriptInput Name="InterfaceNames" Description="List of interfaces to set the access vlan on. Separated by colons." />
