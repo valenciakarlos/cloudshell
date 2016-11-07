@@ -82,6 +82,10 @@ pxe_netmask = site_manager_attrs['PXE Network Netmask']
 
 cluster2_name = vcenter_attrs['vCenter Cluster2 Name']
 cluster3_name = vcenter_attrs['vCenter Cluster3 Name']
+
+# todo remove after receiving 5th host
+cluster2_name = cluster3_name
+
 datacenter = vcenter_attrs['vCenter Datacenter Name']
 esx_root_password = vcenter_attrs['vCenter ESXi Password']
 sio_unified_datastore = scaleio_attrs['Unified Datastore']

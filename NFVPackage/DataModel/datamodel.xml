@@ -1785,7 +1785,7 @@
     <AttributeInfo Name="vCenter Gateway" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
-    <AttributeInfo Name="vCenter Hostname" Type="String" DefaultValue="" IsReadOnly="false">
+    <AttributeInfo Name="vCenter FQDN" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
     <AttributeInfo Name="vCenter ISO location" Type="String" DefaultValue="" IsReadOnly="false">
@@ -2726,7 +2726,7 @@
             <AttachedAttribute Name="vRA NTP Servers Comma Separated" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
+            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="NSX Hostname" IsOverridable="true" IsLocal="true" UserInput="false">
@@ -2918,7 +2918,7 @@
             <AttributeValue Name="vCenter Administrator Password" Value="" />
             <AttributeValue Name="vRA Additional Disk Size GB" Value="" />
             <AttributeValue Name="vRA NTP Servers Comma Separated" Value="" />
-            <AttributeValue Name="vCenter Hostname" Value="" />
+            <AttributeValue Name="vCenter FQDN" Value="" />
             <AttributeValue Name="NSX Hostname" Value="" />
             <AttributeValue Name="Email Address" Value="" />
             <AttributeValue Name="SMTP Server" Value="" />
@@ -5191,7 +5191,7 @@
             <AttachedAttribute Name="vCenter Gateway" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="vCenter Hostname" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="vCenter FQDN" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vCenter IP" IsOverridable="true" IsLocal="true" UserInput="true">
@@ -5415,7 +5415,7 @@
             <AttributeValue Name="vCenter ESXi Password" Value="" />
             <AttributeValue Name="vCenter ESXi Username" Value="" />
             <AttributeValue Name="vCenter Gateway" Value="" />
-            <AttributeValue Name="vCenter Hostname" Value="" />
+            <AttributeValue Name="vCenter FQDN" Value="" />
             <AttributeValue Name="vCenter IP" Value="" />
             <AttributeValue Name="vCenter ISO location" Value="" />
             <AttributeValue Name="vCenter Portgroup Name" Value="" />

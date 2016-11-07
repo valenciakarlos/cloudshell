@@ -303,7 +303,7 @@
         <Attribute Name="vCenter ESXi Password" Value="dangerous" />
         <Attribute Name="vCenter ESXi Username" Value="root" />
         <Attribute Name="vCenter Gateway" Value="" />
-        <Attribute Name="vCenter Hostname" Value="" />
+        <Attribute Name="vCenter FQDN" Value="" />
         <Attribute Name="vCenter IP" Value="" />
         <Attribute Name="vCenter ISO location" Value="C:\deploy\VMware-VCSA-all-6.0.0-2800571.iso" />
         <Attribute Name="vCenter Portgroup Name" Value="VM Network" />
@@ -319,7 +319,7 @@
         <Attribute Name="VDS1 Num Uplink Ports" Value="8" />
         <Attribute Name="VDS1 Port Group Name" Value="mgmtportgrp" />
         <Attribute Name="VDS1 Port Group VLAN Type" Value="none" />
-        <Attribute Name="PXE VNIC" Value="vmnic0" />
+        <Attribute Name="PXE VNIC" Value="vmnic4" />
         <Attribute Name="VDS1 Hosts VNICS" Value="vmnic1" />
         <Attribute Name="VDS2 Hosts VNICS" Value="vmnic2" />
         <Attribute Name="VDS3 Hosts VNICS" Value="" />
@@ -491,7 +491,7 @@
         <Attribute Name="vCenter Administrator Password" Value="" />
         <Attribute Name="vRA Additional Disk Size GB" Value="" />
         <Attribute Name="vRA NTP Servers Comma Separated" Value="" />
-        <Attribute Name="vCenter Hostname" Value="" />
+        <Attribute Name="vCenter FQDN" Value="" />
         <Attribute Name="NSX Hostname" Value="" />
         <Attribute Name="Email Address" Value="" />
         <Attribute Name="SMTP Server" Value="" />

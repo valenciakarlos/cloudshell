@@ -25,7 +25,7 @@ vcenter_esx_ip = attrs['vCenter ESXi IP']
 vcenter_esx_username = attrs['vCenter ESXi Username']
 vcenter_esx_password = attrs['vCenter ESXi Password']
 vcenter_datastore = attrs['vCenter Datastore']
-vcenter_hostname = attrs['vCenter Hostname']
+vcenter_hostname = attrs['vCenter FQDN']
 vcenter_dns1 = attrs['vCenter DNS1']
 #vcenter_dns2 = attrs['vCenter DNS2']  #for 6.0.1
 vcenter_gateway = attrs['vCenter Gateway']
@@ -172,7 +172,7 @@ json = '''{
     }
 }'''
 
-# For testing, if you can't set a DNS entry, manually enter the vCenter IP in the vCenter Hostname attribute.
+# For testing, if you can't set a DNS entry, manually enter the vCenter IP in the vCenter FQDN attribute.
 # Change the code for system.name from vcenter_hostname to vcenter_ip if the hostname is not expected to be in DNS in production.
 
 with open(r'c:\deploy\vcsaparams.json', 'w') as j:
