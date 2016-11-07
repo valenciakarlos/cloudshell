@@ -46,7 +46,7 @@
 #
 #
 #
-
+import json
 import os
 from threading import Thread
 from time import sleep
@@ -650,14 +650,14 @@ def go(printmode, include_ranges='', exclude_ranges=''):
     if printmode:
         con_details = helpers.get_connectivity_context_details()
         env_details = helpers.get_reservation_context_details()
-        # token1 = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])['adminAuthToken']
+        token1 = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])['adminAuthToken']
         # pw = con_details.admin_pass
-        pw = 'admin'
+        # pw = 'admin'
         # pw = csapi.DecryptPassword(con_details.admin_pass).Value
         token2 = requests.put('http://%s:%d/API/Auth/Login' % (con_details.server_address, 9000),
-                             headers={'Content-Type': 'application/x-www-form-urlencoded'},
-                             data='username=%s&password=%s&domain=%s' % (con_details.admin_user, pw, env_details.domain)).content
-                             # data = 'token=%s&domain=%s' % (token1, env_details.domain)).content
+                              headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                              # data='username=%s&password=%s&domain=%s' % (con_details.admin_user, pw, env_details.domain)).content
+                              data='token=%s&domain=%s' % (token1, env_details.domain)).content
 
         if token2.startswith('"') and token2.endswith('"'):
             token2 = token2[1:-1]
@@ -680,4 +680,4 @@ def go(printmode, include_ranges='', exclude_ranges=''):
                           })
         # print j.status_code
         # print j.text
-        print 'steps.csv has been attached to the reservation. Reload the page and click the paperclip icon to download the file.'
+        print 'steps.csv has been attached to the reservation.\n\nReload the page and click the paperclip icon to download the file.'

@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NFVPackage/Resource Drivers/OnRack Driver.dll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NFVPackage/Topology Drivers/NFV Environment Driver.dll" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.jpg" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.jpg" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/Phase2.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_attach_vcenter.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_attach_vcenter.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_first_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_first_setup.exe" />
@@ -19,13 +15,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/attach_logs.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/attach_logs.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" afterPath="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create package.cmd" afterPath="$PROJECT_DIR$/create package.cmd" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/attach_logs.py" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/attach_logs.py" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,8 +63,8 @@
       <file leaf-file-name="quali_remote.py" pinned="false" current-in-tab="false">
         <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="88" column="62" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="62" />
+            <state relative-caret-position="289">
+              <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -82,9 +75,11 @@
       <file leaf-file-name="steps.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="648" column="0" selection-start-line="648" selection-start-column="0" selection-end-line="648" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="96">
+              <caret line="639" column="15" selection-start-line="639" selection-start-column="15" selection-end-line="639" selection-end-column="15" />
+              <folding>
+                <element signature="e#314#325#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -99,23 +94,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datamodel.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="datamodel.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="5513" column="165" selection-start-line="5513" selection-start-column="165" selection-end-line="5513" selection-end-column="165" />
+            <state relative-caret-position="355">
+              <caret line="3417" column="20" selection-start-line="3417" selection-start-column="20" selection-end-line="3417" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="attach_logs.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="attach_logs.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/attach_logs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="368">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
-                <element signature="e#0#9#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -212,13 +207,13 @@
         <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" />
         <option value="$PROJECT_DIR$/create package.cmd" />
-        <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py" />
-        <option value="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
         <option value="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-        <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
         <option value="$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.xml" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/clean_logs.py" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/attach_logs.py" />
+        <option value="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
+        <option value="C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py" />
+        <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
       </list>
     </option>
   </component>
@@ -1177,14 +1172,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="648" column="0" selection-start-line="648" selection-start-column="0" selection-end-line="648" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1199,16 +1186,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="845">
           <caret line="415" column="0" selection-start-line="415" selection-start-column="0" selection-end-line="415" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="88" column="62" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="62" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -1231,14 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="5513" column="165" selection-start-line="5513" selection-start-column="165" selection-end-line="5513" selection-end-column="165" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/clean_logs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1251,11 +1220,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/attach_logs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="368">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="639" column="15" selection-start-line="639" selection-start-column="15" selection-end-line="639" selection-end-column="15" />
+          <folding>
+            <element signature="e#314#325#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/quali_remote.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="83" column="21" selection-start-line="83" selection-start-column="21" selection-end-line="83" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="3417" column="20" selection-start-line="3417" selection-start-column="20" selection-end-line="3417" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>

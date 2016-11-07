@@ -1,3 +1,4 @@
+import json
 import os
 
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
@@ -23,14 +24,18 @@ os.remove(zipname)
 
 con_details = helpers.get_connectivity_context_details()
 env_details = helpers.get_reservation_context_details()
-# token1 = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])['adminAuthToken']
+token1 = json.loads(os.environ['QUALICONNECTIVITYCONTEXT'])['adminAuthToken']
+# print token1
 # pw = con_details.admin_pass
-pw = 'admin'
+# print pw
 # pw = csapi.DecryptPassword(con_details.admin_pass).Value
+# print pw
+# pw = 'admin'
+
 token2 = requests.put('http://%s:%d/API/Auth/Login' % (con_details.server_address, 9000),
                       headers={'Content-Type': 'application/x-www-form-urlencoded'},
-                      data='username=%s&password=%s&domain=%s' % (con_details.admin_user, pw, env_details.domain)
-                        # data='token=%s&domain=%s' % (token1, env_details.domain)
+                      # data='username=%s&password=%s&domain=%s' % (con_details.admin_user, pw, env_details.domain)
+                        data='token=%s&domain=%s' % (token1, env_details.domain)
                       ).content
 
 if token2.startswith('"') and token2.endswith('"'):

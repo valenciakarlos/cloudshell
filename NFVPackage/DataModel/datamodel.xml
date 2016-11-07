@@ -3415,7 +3415,6 @@
           </AttributeValues>
           <ParentModels />
           <Drivers>
-            <DriverName>OnRack Driver</DriverName>
           </Drivers>
           <Scripts />
         </ResourceModel>
@@ -5497,10 +5496,8 @@
   </ResourceFamilies>
   <DriverDescriptors>
     <DriverDescriptor Name="NagiosResourceDriver" Description="" DriverType="TestShellDriver" />
-    <DriverDescriptor Name="OnRack Driver" DriverType="TestShellDriver" />
     <DriverDescriptor Name="NagiosServiceDriver" Description="" DriverType="TestShellDriver" />
     <DriverDescriptor Name="NagiosRegistrationDriver" Description="" DriverType="TestShellDriver" />
-    <DriverDescriptor Name="NFV Environment Driver" DriverType="TestShellDriver" />
     <DriverDescriptor Name="Python Setup &amp; Teardown" Description="This driver is used for running Python scripts in the environment setup and teardown. To use this driver, make sure you select a suitable setup and/or teardown script." DriverType="TestShellDriver" />
   </DriverDescriptors>
   <ScriptDescriptors>
