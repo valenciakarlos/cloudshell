@@ -5,7 +5,7 @@
     <Categories />
     <Scripts>
       <Script Name="generate_orchestration_steps_file" />
-      <Script Name="copy_prereq" />
+      <!--<Script Name="copy_prereq" />-->
       <Script Name="run_orchestration_steps" />
       <Script Name="copy_inputs" />
       <Script Name="setup" />
@@ -311,7 +311,8 @@
         <Attribute Name="vCenter SSO Domain" Value="vsphere.local" />
         <Attribute Name="vCenter SSO Site Name" Value="vCenter6Domain" />
         <Attribute Name="vCenter VM Name" Value="vCenter6" />
-        <Attribute Name="vCenter Datastore" Value="Management Datastore" />
+        <Attribute Name="vCenter Datastore" Value="datastore1" />
+        <!-- old: vCenter Datastore = Management Datastore -->
         <Attribute Name="vCenter NTP Server" Value="" />
         <Attribute Name="VDS1 Name" Value="mgmtsw" />
         <Attribute Name="VDS1 Version" Value="6.0.0" />

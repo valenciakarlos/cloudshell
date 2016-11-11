@@ -48,26 +48,26 @@ else:
 
 
 # exit maintenance mode and create datastores before deploying
-powershell('''
-Add-PSSnapin VMware.VimAutomation.Core
-Connect-VIServer ''' + vcenter_esx_ip + ''' -User ''' + vcenter_esx_username + ''' -Password ''' + vcenter_esx_password + '''
-
-Get-VMHost | Set-VMHost -State Connected
-
-$VMHost = Get-VMHost
-$storMgr = Get-View $VMHost.ExtensionData.ConfigManager.DatastoreSystem
-
-# New-VirtualPortGroup -name "''' + vcenter_portgroup + '''" -VirtualSwitch vSwitch1 -ErrorAction SilentlyContinue
-
-$i = 2
-$storMgr.QueryAvailableDisksForVmfs($null) | %{
-  New-Datastore -name "'''+vcenter_datastore+'''" -vmfs -path $_.CanonicalName -ErrorAction SilentlyContinue
-  #$i = $i+1
-  break
-}
-
-
-''')
+# powershell('''
+# Add-PSSnapin VMware.VimAutomation.Core
+# Connect-VIServer ''' + vcenter_esx_ip + ''' -User ''' + vcenter_esx_username + ''' -Password ''' + vcenter_esx_password + '''
+#
+# Get-VMHost | Set-VMHost -State Connected
+#
+# $VMHost = Get-VMHost
+# $storMgr = Get-View $VMHost.ExtensionData.ConfigManager.DatastoreSystem
+#
+# # New-VirtualPortGroup -name "''' + vcenter_portgroup + '''" -VirtualSwitch vSwitch1 -ErrorAction SilentlyContinue
+#
+# $i = 2
+# $storMgr.QueryAvailableDisksForVmfs($null) | %{
+#   New-Datastore -name "'''+vcenter_datastore+'''" -vmfs -path $_.CanonicalName -ErrorAction SilentlyContinue
+#   #$i = $i+1
+#   break
+# }
+#
+#
+# ''')
 
 # extract iso file
 subprocess.check_output(
@@ -124,6 +124,12 @@ subprocess.check_output(
 #json 6.0.0
 ###
 
+# If the vcenter hostname is specified, it must be resolvable in DNS. Otherwise, use the IP.
+
+if not vcenter_hostname:
+    vcenter_hostname = vcenter_ip
+
+
 json = '''{
     "__comments":
     [
@@ -172,7 +178,7 @@ json = '''{
     }
 }'''
 
-# For testing, if you can't set a DNS entry, manually enter the vCenter IP in the vCenter FQDN attribute.
+
 # Change the code for system.name from vcenter_hostname to vcenter_ip if the hostname is not expected to be in DNS in production.
 
 with open(r'c:\deploy\vcsaparams.json', 'w') as j:

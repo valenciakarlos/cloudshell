@@ -1,4 +1,5 @@
 import json
+
 from quali_remote import qs_trace, qs_info
 from time import sleep, time
 
@@ -214,7 +215,7 @@ class OnrackShellDriver (ResourceDriverInterface):
         #     qs_info('Failed to check boot order: ' + str(e), context)
 
         tries = 0
-        maxtries = int(context.resource.attributes['OS Deployment Attempts Limit'])
+        maxtries = int(context.resource.attributes['OS Deployment Attempts'])
         while tries < maxtries:
             tries += 1
             qs_info('Deploying %s on %s: Attempt #%d...' % (os_type, server_attrs['ResourceName'], tries), context)

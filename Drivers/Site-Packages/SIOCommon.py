@@ -3,7 +3,7 @@ import time
 import re
 import paramiko
 from vCenterCommon import invokeScript
-from quali_remote import ssh_upload, powershell
+from quali_remote import ssh_upload, powershell, qs_trace
 import uuid
 
 # SSH Helper

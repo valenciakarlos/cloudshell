@@ -210,11 +210,6 @@
     <AttributeInfo Name="vCenter Administrator User" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
-    <AttributeInfo Name="vCenter FQDN" Type="String" DefaultValue="" IsReadOnly="false">
-      <Rules>
-        <Rule Name="Configuration" />
-      </Rules>
-    </AttributeInfo>
     <AttributeInfo Name="ESX DNS1" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
     </AttributeInfo>
@@ -5501,9 +5496,9 @@
     <DriverDescriptor Name="Python Setup &amp; Teardown" Description="This driver is used for running Python scripts in the environment setup and teardown. To use this driver, make sure you select a suitable setup and/or teardown script." DriverType="TestShellDriver" />
   </DriverDescriptors>
   <ScriptDescriptors>
-    <ScriptDescriptor Name="copy_prereq" Description="Copies script prerequisites to their target folder" CategoryName="Hidden Commands" Version="1" Alias="Copy Prerequisites">
-      <ScriptInputs />
-    </ScriptDescriptor>
+    <!--<ScriptDescriptor Name="copy_prereq" Description="Copies script prerequisites to their target folder" CategoryName="Hidden Commands" Version="1" Alias="Copy Prerequisites">-->
+      <!--<ScriptInputs />-->
+    <!--</ScriptDescriptor>-->
     <ScriptDescriptor Name="copy_inputs" Description="Sets all service and resource attributes based on Site Manager values" CategoryName="System" Version="1" Alias="Set Inputs">
       <ScriptInputs />
     </ScriptDescriptor>

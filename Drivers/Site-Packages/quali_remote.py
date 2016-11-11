@@ -15,7 +15,7 @@ from cloudshell.core.logger.qs_logger import get_qs_logger
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import CloudShellAPISession
 import random
-
+import re
 def qs_log(severity, message, context=None, filename='shells'):
     # os.environ['LOG_PATH'] = 'c:\\ProgramData\\QualiSystems\\Logs'
     # try:
@@ -78,8 +78,15 @@ def qs_log(severity, message, context=None, filename='shells'):
     except:
         pass
 
-    file = traceback.format_stack()[1].split(' ')[1].replace('"', '')
-    function = traceback.format_stack()[1].split(' ')[-1].strip()
+    file, function = 'nofile', 'nofunction'
+    try:
+        for s in traceback.format_stack():
+            if 'quali_remote.py' not in s and 'steps.py' not in s:
+                m = re.match(r'\s*File "([^"]+)", line \d+, in (\S+)\s*', s)
+                file, function = m.groups()
+                file = os.path.basename(file)
+    except Exception as e:
+        file, function = 'nofile', 'nofunction_' + str(e)
 
     for _ in range(5):
         try:
@@ -187,7 +194,7 @@ def quali_exit(fn):
 
     global start_time
     qs_trace('**************************************************************************************')
-    qs_trace('Function completed (' + str(time.time() - start_time))
+    qs_trace('Function completed (%f)' % (time.time() - start_time))
     qs_trace(fn)
     qs_trace('**************************************************************************************')
     qs_info('%s completed' % fn, filename='orchestration')

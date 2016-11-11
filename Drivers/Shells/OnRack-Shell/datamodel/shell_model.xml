@@ -31,7 +31,7 @@
                     <AllowedValues />
                 </AttachedAttribute>
 
-                <AttachedAttribute Name="OS Deployment Attempts Limit" IsOverridable="true" IsLocal="true">
+                <AttachedAttribute Name="OS Deployment Attempts" IsOverridable="true" IsLocal="true">
                     <AllowedValues />
                 </AttachedAttribute>
             </AttachedAttributes>
@@ -45,7 +45,7 @@
 		        <AttributeValue Name="Version" Value="" />
                 <AttributeValue Name="Power Management" Value="False" />
 
-                <AttributeValue Name="OS Deployment Attempts Limit" Value="1" />
+                <AttributeValue Name="OS Deployment Attempts" Value="3" />
               </AttributeValues>
             <ParentModels />
             <Drivers>

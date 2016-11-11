@@ -50,11 +50,30 @@ import json
 import os
 from threading import Thread
 from time import sleep
+import subprocess
+import time
 
 import requests
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import InputNameValue, CloudShellAPISession
+
 from quali_remote import qs_info
+#
+# import zipfile
+#
+#
+# tempdir = os.path.normpath(os.path.dirname(__file__) + '\\..\\temp')
+# os.makedirs(tempdir)
+#
+# with zipfile.ZipFile(os.path.dirname(__file__), "r") as z:
+#     z.extractall(tempdir)
+#
+# #extract the inner zip to site-packages
+# with zipfile.ZipFile((tempdir + "\\sitepack.zip"), "r") as z:
+#     z.extractall("C:\\Program Files (x86)\\QualiSystems\\TestShell\\ExecutionServer\\python\\2.7.10\\Lib\\site-packages\\")
+#
+# print os.path.normpath(tempdir + "\\sitepack.zip") + " unzipped"
+
 
 # copy {Project.LogPath} {strreplace(Project.LogPath,'.log','.' + currenttime2str('yyyy-MM-dd HH-mm-ss') + '.log')}
 # {Project.LogPath} {currenttime2str}: Log file cleared
@@ -111,13 +130,13 @@ class ServiceSleep:
         rv = ''
         for svc in resdetails.Services:
             if self.service_model == svc.ServiceName:
-                if not simulated:
-                    sleep(self.seconds)
                 if self.message:
                     if not simulated:
                         qs_info('Sleeping %d seconds - %s ' % (self.seconds, self.message), filename='orchestration')
                     else:
                         rv += str(self) + '\n'
+                if not simulated:
+                    sleep(self.seconds)
         return rv
 
 
@@ -534,6 +553,7 @@ def go(printmode, include_ranges='', exclude_ranges=''):
         ServiceCommand('ScaleIO', 'scaleio_03_configure_svm'),
         ServiceLiveStatus('ScaleIO', 'Online'),
 
+        ServiceSleep('NSX Manager', 300, 'Waiting for hosts to stabilize after ScaleIO installation...'),
         ServiceLiveStatus('NSX Manager', 'Offline'),
         ServiceCommand('NSX Manager', 'nsx_01_deploy_nsx'),
         ServiceSleep('NSX Manager', 200, 'Waiting for NSX to start...'),
@@ -644,7 +664,7 @@ def go(printmode, include_ranges='', exclude_ranges=''):
                 if printmode:
                     csv += '%d,%s\n' % (i, str(step))
                 else:
-                    qs_info(str(step), filename='orchestration')
+                    qs_info('Step #%d: %s' % (i, str(step)), filename='orchestration')
                     qs_info(result, filename='orchestration')
 
     if printmode:

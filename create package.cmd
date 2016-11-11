@@ -35,23 +35,34 @@ cd ..\..\..\..\
 
 
 rem create environment site-package deploy script
-cd "drivers\site-packages"
-"c:\Program Files\7-Zip\7z.exe" a "..\orchestration\copy prerequisites\sitepack.zip" *
-cd ..\..\
-cd "drivers\orchestration\copy prerequisites"
-"c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\copy_prereq.zip" *
-del *.zip
-cd ..\..\..\
+rem cd "drivers\site-packages"
+rem "c:\Program Files\7-Zip\7z.exe" a "..\orchestration\copy prerequisites\sitepack.zip" *
+rem cd ..\..\
+rem cd "drivers\orchestration\copy prerequisites"
+rem "c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\copy_prereq.zip" *
+rem del *.zip
+rem cd ..\..\..\
 
 copy "drivers\orchestration\Common Scripts\steps.py" "drivers\orchestration\Generate Orchestration Steps File\"
+rem copy "drivers\orchestration\Common Scripts\copy_prereq.py" "drivers\orchestration\Generate Orchestration Steps File\"
+rem copy "drivers\orchestration\Common Scripts\copy_inputs.py" "drivers\orchestration\Generate Orchestration Steps File\"
 cd "drivers\orchestration\Generate Orchestration Steps File\"
 "c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\generate_orchestration_steps_file.zip" *
 cd ..\..\..\
 
 copy "drivers\orchestration\Common Scripts\steps.py" "drivers\orchestration\Run Orchestration Steps\"
+rem copy "drivers\orchestration\Common Scripts\copy_prereq.py" "drivers\orchestration\Run Orchestration Steps\"
+copy "drivers\orchestration\Common Scripts\copy_inputs.py" "drivers\orchestration\Run Orchestration Steps\"
 cd "drivers\orchestration\Run Orchestration Steps\"
 "c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\run_orchestration_steps.zip" *
 cd ..\..\..\
+
+rem copy "drivers\orchestration\Common Scripts\copy_prereq.py" "drivers\orchestration\Setup\"
+rem copy "drivers\orchestration\Common Scripts\copy_inputs.py" "drivers\orchestration\Setup\"
+cd "drivers\orchestration\Setup\"
+"c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\setup.zip" *
+cd ..\..\..\
+
 
 rem rem copy "drivers\orchestration\NFV Environment Scripts\steps.py" "nfvpackage\topology scripts\" /y
 rem rem copy "drivers\orchestration\NFV Environment Scripts\setup.py" "nfvpackage\topology scripts\" /y
@@ -67,7 +78,7 @@ rem rem copy "datamodel-base.xml"       "nfvpackage\Datamodel\datamodel.xml"
 cd drivers\shells\OnRack-Shell
 shellfoundry pack
 cd dist
-copy onrack-shell.zip ..\..\..\..\
+copy onrack-shell.zip ..\..\..\..\installer
 rem "c:\Program Files\7-Zip\7z.exe" x -y onrack-shell.zip
 rem copy "Resource Drivers - Python\OnrackShellDriver.zip"         "..\..\..\..\nfvpackage\Resource Drivers - Python\" /y
 cd ..
@@ -80,7 +91,7 @@ rem rem copy "drivers\shells\OnRack-Shell\dist\Configuration\shellconfig.xml" "n
 cd drivers\shells\SiteManager-Shell
 shellfoundry pack
 cd dist
-copy site_manager_shell.zip ..\..\..\..\
+copy site_manager_shell.zip ..\..\..\..\installer
 rem "c:\Program Files\7-Zip\7z.exe" x -y site_manager_shell.zip
 rem copy "Resource Drivers - Python\SiteManagerShellDriver.zip"    "..\..\..\..\nfvpackage\Resource Drivers - Python\" /y
 cd ..
@@ -93,7 +104,7 @@ rem rem copy "drivers\shells\SiteManager-Shell\dist\Configuration\shellconfig.xm
 cd drivers\shells\Compute-Shell
 shellfoundry pack
 cd dist
-copy compute-shell.zip ..\..\..\..\
+copy compute-shell.zip ..\..\..\..\installer
 rem "c:\Program Files\7-Zip\7z.exe" x -y compute-shell.zip
 rem copy "Resource Drivers - Python\ComputeShellDriver.zip"         "..\..\..\..\nfvpackage\Resource Drivers - Python\" /y
 cd ..
@@ -123,12 +134,18 @@ copy drivers\shells\vrops\*.py "nfvpackage\resource scripts" /y
 
 rem create package
 cd nfvpackage
-del ..\"NFV Build Environment.zip"
-"c:\Program Files\7-Zip\7z.exe" a ..\"NFV Build Environment.zip" *
+del ""..\installer\NFV Build Environment.zip"
+"c:\Program Files\7-Zip\7z.exe" a ..\installer\"NFV Build Environment.zip" *
 cd ..\
 
 
 rem create site-package zip
-rem cd drivers\site-packages
-rem "c:\Program Files\7-Zip\7z.exe" a ..\..\"Python site packages.zip" *
-rem cd ..\..\
+cd drivers\site-packages
+del "..\..\installer\Python site packages.zip"
+"c:\Program Files\7-Zip\7z.exe" a ..\..\installer\"Python site packages.zip" *
+cd ..\..\
+
+cd installer
+set QSPASSWORD=admin
+call install.cmd
+cd ..

@@ -13,4 +13,11 @@ for logname in ['shells', 'orchestration']:
         os.rename(oldname, newname)
         print 'Moved %s to %s' % (oldname, newname)
     except Exception as e:
-        print str(e)
+        pass
+    try:
+        os.mkdir(os.path.dirname(oldname))
+    except:
+        pass
+    with open(oldname, 'a') as f:
+        f.write('')
+

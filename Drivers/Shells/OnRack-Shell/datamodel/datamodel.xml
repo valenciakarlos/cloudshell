@@ -133,7 +133,7 @@
         <Rule Name="Configuration" />
       </Rules>
     </AttributeInfo>
-    <AttributeInfo Name="OS Deployment Attempts Limit" Type="Numeric" DefaultValue="1" IsReadOnly="false">
+    <AttributeInfo Name="OS Deployment Attempts" Type="Numeric" DefaultValue="3" IsReadOnly="false">
       <Rules>
         <Rule Name="Configuration" />
       </Rules>
