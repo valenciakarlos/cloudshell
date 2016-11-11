@@ -11,14 +11,29 @@
             <Attribute Name="Management Start IP" Value="" />
 			<Attribute Name="Management End IP" Value="" />
 			<Attribute Name="Management Netmask" Value="" />
+			<Attribute Name="Management Gateway" Value="" />
+            <Attribute Name="Management Search Domains" Value="" />
+
 			<Attribute Name="Management DNS1" Value="" />
 			<Attribute Name="Management DNS2" Value="" />
 			<Attribute Name="Management NTP" Value="" />
-			<Attribute Name="Management Search Domains" Value="" />
+
 			<Attribute Name="Data Start IP" Value="" />
 			<Attribute Name="Data End IP" Value="" />
 			<Attribute Name="Data Netmask" Value="" />
+			<Attribute Name="Data Gateway" Value="" />
 			<Attribute Name="Data Search Domains" Value="" />
+
+			<Attribute Name="Data2 Start IP" Value="" />
+			<Attribute Name="Data2 End IP" Value="" />
+			<Attribute Name="Data2 Netmask" Value="" />
+			<Attribute Name="Data2 Gateway" Value="" />
+			<Attribute Name="Data2 Search Domains" Value="" />
+
+			<Attribute Name="PXE Network Start IP" Value="" />
+			<Attribute Name="PXE Network End IP" Value="" />
+			<Attribute Name="PXE Network Netmask" Value="" />
+			<Attribute Name="PXE Network Gateway" Value="" />
         </Attributes>
     </ResourceTemplate>    
 </ResourceTemplates>

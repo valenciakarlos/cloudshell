@@ -146,6 +146,8 @@ del "..\..\installer\Python site packages.zip"
 cd ..\..\
 
 cd installer
+del NFVInstaller.zip
+"c:\Program Files\7-Zip\7z.exe" a NFVInstaller.zip *
 set QSPASSWORD=admin
 call install.cmd
 cd ..

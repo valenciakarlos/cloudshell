@@ -2,43 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f823106-0b20-49fe-b9c4-921a02fe9a5b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Installer/onrack-shell.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/setup.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Setup/__main__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Installer/INSTALL.cmd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Installer/worker.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/setup.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_prereq.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/setup.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/onrack-shell.zip" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Copy Prerequisites/__main__.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/copy prerequisites/__main__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/copy_inputs.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/copy_inputs.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/compute-shell.zip" afterPath="$PROJECT_DIR$/Installer/compute-shell.zip" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/site_manager_shell.zip" afterPath="$PROJECT_DIR$/Installer/site_manager_shell.zip" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Installer/Installer.7z" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_05_setup.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_attach_vcenter.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_attach_vcenter.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_first_setup.exe" afterPath="$PROJECT_DIR$/Drivers/Shells/vCD/vcd_autoit/vcd_first_setup.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Installer/compute-shell.zip" afterPath="$PROJECT_DIR$/Installer/compute-shell.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Installer/onrack-shell.zip" afterPath="$PROJECT_DIR$/Installer/onrack-shell.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Installer/site_manager_shell.zip" afterPath="$PROJECT_DIR$/Installer/site_manager_shell.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/generate_orchestration_steps_file.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/generate_orchestration_steps_file.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/run_orchestration_steps.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/run_orchestration_steps.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Generate Orchestration Steps File/steps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/clean_logs.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/clean_logs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/datamodel/datamodel.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/datamodel/datamodel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/datamodel/shell_model.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/datamodel/shell_model.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_01_deploy_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py" afterPath="$PROJECT_DIR$/Drivers/Shells/vCenter/vcenter_02_create_infrastructure.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/SIOCommon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" afterPath="$PROJECT_DIR$/Drivers/Site-Packages/quali_remote.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" afterPath="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_01_deploy_vcenter.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_01_deploy_vcenter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_02_create_infrastructure.py" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcenter_02_create_infrastructure.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.xml" afterPath="$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/clean_logs.py" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/clean_logs.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/copy_inputs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shellconfig.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shellconfig.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create package.cmd" afterPath="$PROJECT_DIR$/create package.cmd" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
@@ -59,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create package.cmd" pinned="false" current-in-tab="false">
+      <file leaf-file-name="create package.cmd" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/create package.cmd">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="817">
-              <caret line="149" column="5" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
+              <caret line="149" column="50" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -75,18 +48,6 @@
             <state relative-caret-position="272">
               <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="onrack.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Python/onrack.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -113,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vCenter vRA.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vCenter vRA.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -135,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="steps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py">
+      <file leaf-file-name="datamodel.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/datamodel.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="-1579">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -155,11 +116,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="driver.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
+      <file leaf-file-name="shell_model.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="-970">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shellconfig.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shellconfig.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -180,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_02_startup_wizard.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vLogInsight/vlog_01_deploy_vlog.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_uninstall.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/vROPS/vrops_01_deploy_vrops.py" />
@@ -227,10 +197,11 @@
         <option value="$PROJECT_DIR$/Drivers/Orchestration/Run Orchestration Steps/steps.py" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/Setup/__main__.py" />
         <option value="$PROJECT_DIR$/Installer/install.cmd" />
-        <option value="$PROJECT_DIR$/create package.cmd" />
         <option value="$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py" />
         <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
         <option value="$PROJECT_DIR$/NFVPackage/Topologies/vCenter vRA.xml" />
+        <option value="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shellconfig.xml" />
+        <option value="$PROJECT_DIR$/create package.cmd" />
       </list>
     </option>
   </component>
@@ -453,6 +424,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vCenter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Drivers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Shells" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SiteManager-Shell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Customer-EMC-NFV-Phase1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Drivers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Shells" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SiteManager-Shell" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="datamodel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -986,13 +1005,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18018967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18018967" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44853738" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44853738" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1146,32 +1165,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/site-packages/cloudshell/core/logger/qs_logger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="74" column="18" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Shells/vCD/vcd_uninstall.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="41" column="34" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
-          <folding>
-            <element signature="e#29#38#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Program Files (x86)/QualiSystems/TestShell/ExecutionServer/python/2.7.10/Lib/site-packages/cloudshell/helpers/scripts/cloudshell_scripts_helpers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="196" column="8" selection-start-line="196" selection-start-column="8" selection-end-line="196" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/drivermetadata.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1371,7 +1364,7 @@
         <state relative-caret-position="33">
           <caret line="158" column="29" selection-start-line="0" selection-start-column="0" selection-end-line="422" selection-end-column="0" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1391,7 +1384,7 @@
         <state relative-caret-position="300">
           <caret line="829" column="25" selection-start-line="829" selection-start-column="25" selection-end-line="829" selection-end-column="25" />
           <folding>
-            <element signature="e#1#12#0" expanded="true" />
+            <element signature="e#1#12#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1411,7 +1404,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1429,7 +1422,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1489,7 +1482,7 @@
         <state relative-caret-position="289">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1544,14 +1537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/create package.cmd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="149" column="5" selection-start-line="149" selection-start-column="5" selection-end-line="149" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/Common Scripts/steps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -1584,6 +1569,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/datamodel.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1579">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-970">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shellconfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/create package.cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="149" column="50" selection-start-line="149" selection-start-column="50" selection-end-line="149" selection-end-column="50" />
           <folding />
         </state>
       </provider>
