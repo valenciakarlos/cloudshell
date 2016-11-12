@@ -8,7 +8,7 @@
       <!--<Script Name="copy_prereq" />-->
       <Script Name="run_orchestration_steps" />
       <Script Name="copy_inputs" />
-      <Script Name="setup" />
+      <Script Name="nfv_setup" />
       <Script Name="attach_logs" />
       <Script Name="clean_logs" />
     </Scripts>
@@ -28,14 +28,14 @@
         <ResourceModel>ComputeShell</ResourceModel>
       </ResourceModels>
     </AbstractResource>
-    <AbstractResource PositionX="866.25" PositionY="346.25" Name="Site Manager" Shared="true" ResourceFamily="Site Manager">
+    <AbstractResource PositionX="834.25" PositionY="138" Name="Site Manager" Shared="true" ResourceFamily="Site Manager">
       <Quantity Published="false" Value="1" />
       <ResourceModels Published="false">
         <ResourceModel>SiteManagerShell</ResourceModel>
       </ResourceModels>
     </AbstractResource>
     <AbstractResource PositionX="297" PositionY="138" Name="Compute" Shared="false" ResourceFamily="Compute Server">
-      <Quantity Published="true" Value="1" />
+      <Quantity Published="true" Value="10" />
       <ResourceModels Published="false">
         <ResourceModel>ComputeShell</ResourceModel>
       </ResourceModels>
@@ -119,7 +119,7 @@
         <Attribute Name="Tie Breaker Data2 IP" Value="" />
       </Attributes>
     </Service>
-    <Service PositionX="582" PositionY="555" Alias="vRealize Operations Manager" ServiceName="vRealize Operations Manager">
+    <Service PositionX="582" PositionY="451" Alias="vRealize Operations Manager" ServiceName="vRealize Operations Manager">
       <Attributes>
         <Attribute Name="Enable Memory Overcommit" Value="True Demand" />
         <Attribute Name="Include Network IO" Value="True" />
@@ -284,15 +284,6 @@
     </Service>
     <Service PositionX="582" PositionY="138" Alias="vCenter" ServiceName="vCenter">
       <Attributes>
-        <Attribute Name="VDS1 Hosts PXE IPs" Value="" />
-        <Attribute Name="VDS1 Kernel IPs" Value="" />
-        <Attribute Name="VDS1 Kernel Subnet" Value="" />
-        <Attribute Name="VDS2 Kernel IPs" Value="" />
-        <Attribute Name="VDS2 Kernel Subnet" Value="" />
-        <Attribute Name="VDS3 Kernel IPs" Value="" />
-        <Attribute Name="VDS3 Kernel Subnet" Value="" />
-        <Attribute Name="VDS4 Kernel IPs" Value="" />
-        <Attribute Name="VDS4 Kernel Subnet" Value="" />
         <Attribute Name="vCenter Administrator Password" Value="Welcome1!" />
         <Attribute Name="vCenter Administrator User" Value="administrator@vsphere.local" />
         <Attribute Name="vCenter Deployment Size" Value="small" />
@@ -314,40 +305,71 @@
         <Attribute Name="vCenter Datastore" Value="datastore1" />
         <!-- old: vCenter Datastore = Management Datastore -->
         <Attribute Name="vCenter NTP Server" Value="" />
+
+        <Attribute Name="VDS1 Hosts PXE IPs" Value="" />
+
+        <Attribute Name="VDS1 Kernel IPs" Value="" />
+        <Attribute Name="VDS2 Kernel IPs" Value="" />
+        <Attribute Name="VDS3 Kernel IPs" Value="" />
+        <Attribute Name="VDS4 Kernel IPs" Value="" />
+        <Attribute Name="VDS5 Kernel IPs" Value="" />
+
+        <Attribute Name="VDS1 Kernel Subnet" Value="" />
+        <Attribute Name="VDS2 Kernel Subnet" Value="" />
+        <Attribute Name="VDS3 Kernel Subnet" Value="" />
+        <Attribute Name="VDS4 Kernel Subnet" Value="" />
+        <Attribute Name="VDS5 Kernel Subnet" Value="" />
+
         <Attribute Name="VDS1 Name" Value="mgmtsw" />
-        <Attribute Name="VDS1 Version" Value="6.0.0" />
-        <Attribute Name="VDS1 Hosts" Value="" />
-        <Attribute Name="VDS1 Num Uplink Ports" Value="8" />
+        <Attribute Name="VDS2 Name" Value="data" />
+        <Attribute Name="VDS3 Name" Value="data2" />
+        <Attribute Name="VDS4 Name" Value="" />
+        <Attribute Name="VDS5 Name" Value="" />
+
         <Attribute Name="VDS1 Port Group Name" Value="mgmtportgrp" />
-        <Attribute Name="VDS1 Port Group VLAN Type" Value="none" />
+        <Attribute Name="VDS2 Port Group Name" Value="dataportgrp" />
+        <Attribute Name="VDS3 Port Group Name" Value="data2portgrp" />
+        <Attribute Name="VDS4 Port Group Name" Value="" />
+        <Attribute Name="VDS5 Port Group Name" Value="" />
+
         <Attribute Name="PXE VNIC" Value="vmnic4" />
         <Attribute Name="VDS1 Hosts VNICS" Value="vmnic1" />
         <Attribute Name="VDS2 Hosts VNICS" Value="vmnic2" />
-        <Attribute Name="VDS3 Hosts VNICS" Value="" />
+        <Attribute Name="VDS3 Hosts VNICS" Value="vmnic3" />
         <Attribute Name="VDS4 Hosts VNICS" Value="" />
-        <Attribute Name="VDS5 Hosts VNICS" Value="vmnic3" />
-        <Attribute Name="VDS1 Port Group VLAN IDs" Value="" />
-        <Attribute Name="VDS2 Name" Value="data" />
-        <Attribute Name="VDS2 Version" Value="6.0.0" />
-        <Attribute Name="VDS2 Hosts" Value="" />
+        <Attribute Name="VDS5 Hosts VNICS" Value="" />
+
+        <Attribute Name="VDS1 Num Uplink Ports" Value="8" />
         <Attribute Name="VDS2 Num Uplink Ports" Value="8" />
-        <Attribute Name="VDS2 Port Group Name" Value="dataportgrp" />
-        <Attribute Name="VDS2 Port Group VLAN Type" Value="none" />
-        <Attribute Name="VDS2 Port Group VLAN IDs" Value="" />
-        <Attribute Name="VDS3 Name" Value="versasw1" />
-        <Attribute Name="VDS3 Version" Value="6.0.0" />
-        <Attribute Name="VDS3 Hosts" Value="" />
-        <Attribute Name="VDS3 Num Uplink Ports" Value="4" />
-        <Attribute Name="VDS3 Port Group Name" Value="versa1portgrp" />
-        <Attribute Name="VDS3 Port Group VLAN Type" Value="trunk" />
-        <Attribute Name="VDS3 Port Group VLAN IDs" Value="130" />
-        <Attribute Name="VDS4 Name" Value="versasw2" />
-        <Attribute Name="VDS4 Version" Value="6.0.0" />
-        <Attribute Name="VDS4 Hosts" Value="" />
+        <Attribute Name="VDS3 Num Uplink Ports" Value="8" />
         <Attribute Name="VDS4 Num Uplink Ports" Value="4" />
-        <Attribute Name="VDS4 Port Group Name" Value="versa2portgrp" />
+        <Attribute Name="VDS5 Num Uplink Ports" Value="4" />
+
+        <Attribute Name="VDS1 Version" Value="6.0.0" />
+        <Attribute Name="VDS2 Version" Value="6.0.0" />
+        <Attribute Name="VDS3 Version" Value="6.0.0" />
+        <Attribute Name="VDS4 Version" Value="6.0.0" />
+        <Attribute Name="VDS5 Version" Value="6.0.0" />
+
+        <Attribute Name="VDS1 Hosts" Value="" />
+        <Attribute Name="VDS2 Hosts" Value="" />
+        <Attribute Name="VDS3 Hosts" Value="" />
+        <Attribute Name="VDS4 Hosts" Value="" />
+        <Attribute Name="VDS5 Hosts" Value="" />
+
+        <Attribute Name="VDS1 Port Group VLAN Type" Value="none" />
+        <Attribute Name="VDS2 Port Group VLAN Type" Value="none" />
+        <Attribute Name="VDS3 Port Group VLAN Type" Value="none" />
         <Attribute Name="VDS4 Port Group VLAN Type" Value="trunk" />
-        <Attribute Name="VDS4 Port Group VLAN IDs" Value="140" />
+        <Attribute Name="VDS5 Port Group VLAN Type" Value="trunk" />
+
+        <Attribute Name="VDS1 Port Group VLAN IDs" Value="" />
+        <Attribute Name="VDS2 Port Group VLAN IDs" Value="" />
+        <Attribute Name="VDS3 Port Group VLAN IDs" Value="" />
+        <Attribute Name="VDS4 Port Group VLAN IDs" Value="130" />
+        <Attribute Name="VDS5 Port Group VLAN IDs" Value="140" />
+
+
         <Attribute Name="vCenter Cluster1 HA" Value="False" />
         <Attribute Name="vCenter Cluster1 DRS" Value="False" />
         <Attribute Name="vCenter Cluster1 ESXis" Value="" />
@@ -363,25 +385,17 @@
         <Attribute Name="vCenter Cluster4 DRS" Value="False" />
         <Attribute Name="vCenter Cluster4 ESXis" Value="" />
         <Attribute Name="vCenter Cluster4 HA" Value="False" />
-        <Attribute Name="vCenter Cluster4 Name" Value="cluster4" />
+        <Attribute Name="vCenter Cluster4 Name" Value="" />
         <Attribute Name="vCenter Cluster5 DRS" Value="False" />
         <Attribute Name="vCenter Cluster5 ESXis" Value="" />
         <Attribute Name="vCenter Cluster5 HA" Value="False" />
-        <Attribute Name="vCenter Cluster5 Name" Value="cluster5" />
+        <Attribute Name="vCenter Cluster5 Name" Value="" />
+
         <Attribute Name="vCenter Datacenter Name" Value="NFVDC" />
         <Attribute Name="vCenter SSO Password" Value="Welcome1!" />
-        <Attribute Name="VDS5 Kernel IPs" Value="" />
-        <Attribute Name="VDS5 Kernel Subnet" Value="" />
-        <Attribute Name="VDS5 Name" Value="data2" />
-        <Attribute Name="VDS5 Version" Value="6.0.0" />
-        <Attribute Name="VDS5 Hosts" Value="" />
-        <Attribute Name="VDS5 Num Uplink Ports" Value="8" />
-        <Attribute Name="VDS5 Port Group Name" Value="data2portgrp" />
-        <Attribute Name="VDS5 Port Group VLAN Type" Value="none" />
-        <Attribute Name="VDS5 Port Group VLAN IDs" Value="" />
       </Attributes>
     </Service>
-    <Service PositionX="582" PositionY="452" Alias="vRealize Log Insight" ServiceName="vRealize Log Insight">
+    <Service PositionX="582" PositionY="555" Alias="vRealize Log Insight" ServiceName="vRealize Log Insight">
       <Attributes>
         <Attribute Name="Log Insight Admin Password" Value="" />
         <Attribute Name="Log Insight Admin Email" Value="" />
@@ -421,7 +435,7 @@
         <Attribute Name="vCenter FQDN" Value="" />
       </Attributes>
     </Service>
-    <Service PositionX="866" PositionY="138" Alias="vRealize Automation" ServiceName="vRealize Automation">
+    <Service PositionX="582" PositionY="662" Alias="vRealize Automation" ServiceName="vRealize Automation">
       <Attributes>
         <Attribute Name="Load Balancer Name" Value="" />
         <Attribute Name="vRA Web Primary IP" Value="" />
@@ -429,13 +443,13 @@
         <Attribute Name="Cluster" Value="" />
         <Attribute Name="vRA Datastore" Value="" />
         <Attribute Name="vRA Disk Format" Value="thin" />
-        <Attribute Name="vRA Hostname" Value="" />
+        <Attribute Name="vRA Hostname" Value="vra1" />
         <Attribute Name="vRA Gateway IP" Value="" />
         <Attribute Name="vRA Netmask" Value="" />
         <Attribute Name="vRA IP" Value="" />
         <Attribute Name="vRA Portgroup Name" Value="" />
-        <Attribute Name="vRA VM Name" Value="" />
-        <Attribute Name="Local vRA OVA Path" Value="" />
+        <Attribute Name="vRA VM Name" Value="vra1" />
+        <Attribute Name="Local vRA OVA Path" Value="C:\deploy\VMware-vR-Appliance-7.1.0.710-4270058_OVF10.ova" />
         <Attribute Name="vRA Web Secondary IP" Value="" />
         <Attribute Name="vRA Manager Primary IP" Value="" />
         <Attribute Name="vRA Manager Secondary IP" Value="" />

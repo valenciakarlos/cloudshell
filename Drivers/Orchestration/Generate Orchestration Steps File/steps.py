@@ -57,7 +57,9 @@ import requests
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
 from cloudshell.api.cloudshell_api import InputNameValue, CloudShellAPISession
 
-from quali_remote import qs_info
+from quali_remote import qs_info, qs_error
+
+
 #
 # import zipfile
 #
@@ -580,7 +582,7 @@ def go(printmode, include_ranges='', exclude_ranges=''):
 
         ServiceLiveStatus('vRealize Operations Manager', 'Offline'),
         ServiceCommand('vRealize Operations Manager', 'vrops_01_deploy_vrops'),
-        ServiceSleep('vRealize Operations Manager', 600, 'Waiting for vROPS VM to respond...'),
+        # ServiceSleep('vRealize Operations Manager', 600, 'Waiting for vROPS VM to respond...'),
         # ServiceCommand('vRealize Operations Manager', 'vrops_02_startup_wizard'),
         # ServiceCommand('vRealize Operations Manager', 'vrops_03_start_service'),
         # ServiceCommand('vRealize Operations Manager', 'vrops_04_license'),
@@ -596,10 +598,10 @@ def go(printmode, include_ranges='', exclude_ranges=''):
         ServiceLiveStatus('vRealize Log Insight', 'Online'),
 
 
-        ServiceLiveStatus('vRealize Appliance', 'Offline'),
-        ServiceCommand('vRealize Appliance', 'vra_01_deploy_vra'),
+        ServiceLiveStatus('vRealize Automation', 'Offline'),
+        ServiceCommand('vRealize Automation', 'vra_01_deploy_vra'),
         # todo vRealize other steps commented
-        ServiceLiveStatus('vRealize Appliance', 'Online'),
+        ServiceLiveStatus('vRealize Automation', 'Online'),
 
         ServiceLiveStatus('Nagios Monitoring', 'Offline'),
         ServiceCommand('Nagios Monitoring', 'nagios_01_deploy_nagios'),
@@ -659,13 +661,18 @@ def go(printmode, include_ranges='', exclude_ranges=''):
     for i, step in enumerate(steps):
         if inranges(i, include_ranges) and not inranges(i, exclude_ranges):
             # print 'included'
-            result = step.execute(csapi, resid, resdetails, printmode)
-            if result:
-                if printmode:
-                    csv += '%d,%s\n' % (i, str(step))
-                else:
-                    qs_info('Step #%d: %s' % (i, str(step)), filename='orchestration')
-                    qs_info(result, filename='orchestration')
+            if not printmode:
+                qs_info('Starting step #%d: %s' % (i, str(step)), filename='orchestration')
+            try:
+                result = step.execute(csapi, resid, resdetails, printmode)
+                if result:
+                    if printmode:
+                        csv += '%d,%s\n' % (i, str(step))
+            except Exception as e:
+                qs_error('Error on step #%d: %s' % (i, str(e)))
+                break
+            if not printmode:
+                qs_info('Finished step #%d: %s' % (i, str(step)), filename='orchestration')
 
     if printmode:
         con_details = helpers.get_connectivity_context_details()

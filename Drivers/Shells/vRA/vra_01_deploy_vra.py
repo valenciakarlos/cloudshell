@@ -49,7 +49,7 @@ command = ' '.join([
     '--machineOutput',
     '--noSSLVerify',
     '--allowExtraConfig',
-    '--powerOn',
+    # '--powerOn',
     '--acceptAllEulas',
     '--datastore="' + datastore + '"',
     '--diskMode=' + thick_thin,
@@ -63,7 +63,7 @@ command = ' '.join([
     '--prop:vami.ip0.VMware_vRealize_Appliance=' + ip,
     '--prop:vami.netmask0.VMware_vRealize_Appliance=' + netmask,
     '"--net:Network 1=' + portgroup + '"',
-    '--X:waitForIp',
+    # '--X:waitForIp',
     '--name="' + name + '"',
     '"' + ova_path + '"',
     '"vi://''' + vcenter_user.replace('@', '%40') + ''':''' + '"' + vcenter_password + '"' + '''@''' + vcenter_ip + '''/''' + datacenter + '''/host/''' + cluster + '/Resources"'

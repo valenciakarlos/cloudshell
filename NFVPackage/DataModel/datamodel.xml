@@ -367,6 +367,7 @@
     </AttributeInfo>
     <AttributeInfo Name="vROPS Timezone" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
+
     </AttributeInfo>
     <AttributeInfo Name="Enable vSphere Hardening" Type="String" DefaultValue="" IsReadOnly="false">
       <Rules><Rule Name="Configuration" /><Rule Name="Setting" /></Rules>
@@ -3215,7 +3216,22 @@
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="vROPS Timezone" IsOverridable="true" IsLocal="true" UserInput="true">
-              <AllowedValues />
+              <AllowedValues>
+                <AllowedValue>America/New_York</AllowedValue>
+                <AllowedValue>America/Los_Angeles</AllowedValue>
+                <AllowedValue>America/Mexico_City</AllowedValue>
+                <AllowedValue>Asia/China</AllowedValue>
+                <AllowedValue>Asia/Dubai</AllowedValue>
+                <AllowedValue>Asia/Istanbul</AllowedValue>
+                <AllowedValue>Asia/Qatar</AllowedValue>
+                <AllowedValue>Asia/Tokyo</AllowedValue>
+                <AllowedValue>Europe/Rome</AllowedValue>
+                <AllowedValue>GMT</AllowedValue>
+                <AllowedValue>US/Pacific</AllowedValue>
+                <AllowedValue>US/Central</AllowedValue>
+                <AllowedValue>US/Eastern</AllowedValue>
+                <AllowedValue>UTC</AllowedValue>
+              </AllowedValues>
             </AttachedAttribute>
             <AttachedAttribute Name="Enable vSphere Hardening" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
@@ -5300,10 +5316,10 @@
             <AttachedAttribute Name="VDS3 Port Group VLAN IDs" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Name" IsOverridable="true" IsLocal="true" UserInput="false">
+            <AttachedAttribute Name="VDS4 Name" IsOverridable="true" IsLocal="true" UserInput="true">
               <AllowedValues />
             </AttachedAttribute>
-            <AttachedAttribute Name="VDS4 Version" IsOverridable="true" IsLocal="true" UserInput="true">
+            <AttachedAttribute Name="VDS4 Version" IsOverridable="true" IsLocal="true" UserInput="false">
               <AllowedValues />
             </AttachedAttribute>
             <AttachedAttribute Name="VDS4 Hosts" IsOverridable="true" IsLocal="true" UserInput="false">
@@ -5705,7 +5721,7 @@
     <ScriptDescriptor Name="onrack_discovery_setup" CategoryName="Hidden Commands" Version="1" Alias="Setup script">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="setup"  Version="1" Alias="Setup script">
+    <ScriptDescriptor Name="nfv_setup" CategoryName="Hidden Commands"  Version="1" Alias="Setup script">
       <ScriptInputs />
     </ScriptDescriptor>
   </ScriptDescriptors>

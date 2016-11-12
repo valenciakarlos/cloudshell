@@ -60,7 +60,7 @@ cd ..\..\..\
 rem copy "drivers\orchestration\Common Scripts\copy_prereq.py" "drivers\orchestration\Setup\"
 rem copy "drivers\orchestration\Common Scripts\copy_inputs.py" "drivers\orchestration\Setup\"
 cd "drivers\orchestration\Setup\"
-"c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\setup.zip" *
+"c:\Program Files\7-Zip\7z.exe" a "..\..\..\nfvpackage\topology scripts\nfv_setup.zip" *
 cd ..\..\..\
 
 

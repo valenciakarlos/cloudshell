@@ -1,12 +1,17 @@
 from cloudshell.core.logger.qs_logger import get_qs_logger
 from cloudshell.helpers.scripts import cloudshell_scripts_helpers as helpers
-from cloudshell.api.cloudshell_api import InputNameValue, CloudShellAPISession, AttributeNameValue, \
-    ResourceAttributesUpdateRequest
+from cloudshell.api.cloudshell_api import InputNameValue, CloudShellAPISession, AttributeNameValue, ResourceAttributesUpdateRequest
 
 csapi = helpers.get_api_session()
 resid = helpers.get_reservation_context_details().id
 
 rd = csapi.GetReservationDetails(resid).ReservationDescription
+
+name2alias = {}
+
+for trd in rd.TopologiesReservedResources:
+    if trd.ResourceModelName == 'ComputeShell':
+        name2alias[trd.Name] = trd.Alias
 
 siteman_details = [r for r in rd.Resources if r.ResourceModelName == 'SiteManagerShell'][0]
 # brocade_details = [r for r in rd.Resources if r.ResourceModelName == 'Brocade NOS Switch'][0]
@@ -180,7 +185,7 @@ host_name2ip172 = {}
 
 pxeoffset = mgmtoffset
 
-
+print name2alias
 
 for i in range(len(esxis_details)):
     # addr = esxis_details[i].Address
@@ -195,15 +200,15 @@ for i in range(len(esxis_details)):
     all_host_ips.append(addr)
     all_host_ips172.append(addr172)
 
-    if i == 0:
+    if name2alias[esxis_details[i].Name] == 'Master' or (len(name2alias)==0 and i == 0):
         sio_master_host_ip = addr
 
     if i in [2, 3]:
         versa_host_ips.append(addr)
 
-    if 1 <= i <= 3:
+    if name2alias[esxis_details[i].Name] == 'SIO' or (len(name2alias)==0 and 1 <= i <= 3):
         sio_mdm_host_ips.append(addr)
-    if i > 3:
+    if name2alias[esxis_details[i].Name] == 'Compute' or (len(name2alias)==0 and i > 3):
         sio_nonmdm_host_ips.append(addr)
 
     sds_host_ips.append(addr)
@@ -297,17 +302,18 @@ aa = [
     ('Service', 'vCenter', 'VDS2 Kernel Subnet', data_netmask),
     ('Service', 'vCenter', 'VDS2 Kernel IPs', ','.join(sdc_data_vmk_ips)),
 
-    ('Service', 'vCenter', 'VDS3 Hosts', ','.join(versa_host_ips)),
-    ('Service', 'vCenter', 'VDS3 Kernel Subnet', ''),
-    ('Service', 'vCenter', 'VDS3 Kernel IPs', ''),
+    ('Service', 'vCenter', 'VDS3 Hosts', ','.join(sdc_host_ips)),
+    ('Service', 'vCenter', 'VDS3 Kernel Subnet', data2_netmask),
+    ('Service', 'vCenter', 'VDS3 Kernel IPs', ','.join(sdc_data2_vmk_ips)),
 
     ('Service', 'vCenter', 'VDS4 Hosts', ','.join(versa_host_ips)),
     ('Service', 'vCenter', 'VDS4 Kernel Subnet', ''),
     ('Service', 'vCenter', 'VDS4 Kernel IPs', ''),
 
-    ('Service', 'vCenter', 'VDS5 Hosts', ','.join(sdc_host_ips)),
-    ('Service', 'vCenter', 'VDS5 Kernel Subnet', data2_netmask),
-    ('Service', 'vCenter', 'VDS5 Kernel IPs', ','.join(sdc_data2_vmk_ips)),
+    ('Service', 'vCenter', 'VDS5 Hosts', ','.join(versa_host_ips)),
+    ('Service', 'vCenter', 'VDS5 Kernel Subnet', ''),
+    ('Service', 'vCenter', 'VDS5 Kernel IPs', ''),
+
 
     ('Service', 'ScaleIO', 'vCenter IP', vcenter_ip),
     ('Service', 'ScaleIO', 'Datacenter', datacenter),
@@ -518,19 +524,24 @@ aa = [
     ('Service', 'Versa Director', 'Versa LEF DST IP', versa_analytics_sb_ip),
     ('Service', 'Versa Director', 'Versa LEF SRC IP', versa_controller_lan_ip),
 
-    ('Service', 'vRealize Appliance', 'Datacenter', datacenter),
-    ('Service', 'vRealize Appliance', 'Cluster', cluster2_name),
-    ('Service', 'vRealize Appliance', 'vRA Datastore', sio_unified_datastore),
-    ('Service', 'vRealize Appliance', 'vRA Disk Format', 'thin'),
-    # ('Service', 'vRealize Appliance', 'vRA Hostname', vra_hostname),
-    # ('Service', 'vRealize Appliance', 'vRA Root Password', vra_root_password),
-    ('Service', 'vRealize Appliance', 'vRA Gateway IP', management_gateway),
-    ('Service', 'vRealize Appliance', 'vRA Netmask', management_netmask),
-    ('Service', 'vRealize Appliance', 'vRA Domain', management_search_domain),
-    ('Service', 'vRealize Appliance', 'vRA DNS Search Path', management_search_domain),
-    ('Service', 'vRealize Appliance', 'vRA DNS Server IP', ','.join([management_dns1, management_dns2])),
-    ('Service', 'vRealize Appliance', 'vRA IP', vra_ip),
-    ('Service', 'vRealize Appliance', 'vRA Portgroup Name', emc_mgmt_portgroup),
+    ('Service', 'vRealize Automation', 'Datacenter', datacenter),
+    ('Service', 'vRealize Automation', 'Cluster', cluster2_name),
+    ('Service', 'vRealize Automation', 'vRA Datastore', sio_unified_datastore),
+    ('Service', 'vRealize Automation', 'vRA Disk Format', 'thin'),
+    # ('Service', 'vRealize Automation', 'vRA Hostname', vra_hostname),
+    # ('Service', 'vRealize Automation', 'vRA Root Password', vra_root_password),
+    ('Service', 'vRealize Automation', 'vRA Gateway IP', management_gateway),
+    ('Service', 'vRealize Automation', 'vRA Netmask', management_netmask),
+    ('Service', 'vRealize Automation', 'Domain', management_search_domain),
+    ('Service', 'vRealize Automation', 'vRA Domain', management_search_domain),
+    ('Service', 'vRealize Automation', 'DNS Suffix', management_search_domain),
+    ('Service', 'vRealize Automation', 'DNS Server IP', ','.join([management_dns1, management_dns2])),
+    ('Service', 'vRealize Automation', 'vRA IP', vra_ip),
+    ('Service', 'vRealize Automation', 'vRA Portgroup Name', emc_mgmt_portgroup),
+
+    ('Service', 'vRealize Automation', 'vCenter Administrator Username', 'administrator@vsphere.local'),
+    ('Service', 'vRealize Automation', 'vCenter IP', vcenter_ip),
+    ('Service', 'vRealize Automation', 'vCenter Administrator Password', vcenter_password),
     # ('Service', 'vRealize Appliance', 'vRA VM Name', vra_vm_name),
 ]
 

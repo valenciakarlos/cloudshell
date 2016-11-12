@@ -46,7 +46,7 @@ def configureSIORoute(eth, gateway, vmname, vcenter_ip, vcenter_username, vcente
 
 def restartService(service, operation, vmname, vcenter_ip, vcenter_username, vcenter_password, vmuser='root', vmpass='admin'):
     script = '"service ' + service + ' ' + operation + '"'
-    invokeScript(script, vmname, vmuser, vmpass, 3, 5, vcenter_ip, vcenter_username, vcenter_password)
+    invokeScript(script, vmname, vmuser, vmpass, 5, 10, vcenter_ip, vcenter_username, vcenter_password)
 
 def sioCommand(role, version, rpmswitch='rpm -i '):
     folder = '/root/install/'
