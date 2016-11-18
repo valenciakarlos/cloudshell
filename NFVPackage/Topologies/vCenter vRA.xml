@@ -28,7 +28,7 @@
         <ResourceModel>ComputeShell</ResourceModel>
       </ResourceModels>
     </AbstractResource>
-    <AbstractResource PositionX="834.25" PositionY="138" Name="Site Manager" Shared="true" ResourceFamily="Site Manager">
+    <AbstractResource PositionX="834.25" PositionY="138" Name="Site Manager" Shared="false" ResourceFamily="Site Manager">
       <Quantity Published="false" Value="1" />
       <ResourceModels Published="false">
         <ResourceModel>SiteManagerShell</ResourceModel>

@@ -122,7 +122,7 @@
 
   </Attributes>
   <ResourceFamilies>
-    <ResourceFamily Name="Site Manager" IsConnectable="false" IsLockedByDefault="false" Description="" IsSearchable="true" ResourceType="Resource">
+    <ResourceFamily Name="Site Manager" IsConnectable="false" IsLockedByDefault="true" Description="" IsSearchable="true" ResourceType="Resource">
       <AttachedAttributes>
       </AttachedAttributes>
       <AttributeValues>

@@ -3,7 +3,7 @@
 <ResourceTemplates>
     <ResourceTemplate Name="Site Network Manager" Model="SiteManagerShell" Driver="SiteManagerShellDriver">
         <Description></Description>
-        <AutoLoad Enable="true">
+        <AutoLoad Enable="false">
             <Description>Please provide the network details for the new site</Description>
         </AutoLoad>
         <Attributes>
