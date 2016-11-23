@@ -15,7 +15,7 @@ for onrack in onracks.Resources:
             csapi.AutoLoad(onrack.FullName)
         except Exception as e:
             csapi.WriteMessageToReservationOutput(reservation_id, "Error: %s (%s): %s" % (str(onrack.Name), str(onrack.Address), str(e)))
-            bad_onracks.append(str(onrack.Name))
+            bad_onracks.append((str(onrack.Name), str(e)))
 
         csapi.IncludeResource(onrack.FullName)
         resources.append(onrack.FullName)
@@ -31,7 +31,9 @@ if not resources:
     raise Exception(s)
 
 if bad_onracks:
-    s = 'OnRack error(s) occurred. Check OnRack connectivity and the log c:\\ProgramData\\QualiSystems\\Logs\\%s\\Shells.log, then re-run Setup here.' % reservation_id
+    s = 'OnRack error(s) occurred. Check OnRack connectivity, the output window, and the log c:\\ProgramData\\QualiSystems\\Logs\\%s\\Shells.log, then re-run Setup here.\n\n%s' % (
+        reservation_id,
+        '\n'.join([str(o) + ': ' + str(e) for o, e in bad_onracks]))
     print s
     csapi.WriteMessageToReservationOutput(reservation_id, s)
     raise Exception(s)

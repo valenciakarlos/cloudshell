@@ -10,21 +10,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Installer/onrack-shell.zip" afterPath="$PROJECT_DIR$/Installer/onrack-shell.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Installer/site_manager_shell.zip" afterPath="$PROJECT_DIR$/Installer/site_manager_shell.zip" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Resource Scripts/vcd_05_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/generate_orchestration_steps_file.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/generate_orchestration_steps_file.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/nfv_setup.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/nfv_setup.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/run_orchestration_steps.zip" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/run_orchestration_steps.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py" afterPath="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/src/requirements.txt" afterPath="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/src/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/requirements.txt" afterPath="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/src/drivermetadata.xml" afterPath="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/src/drivermetadata.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Installer/worker.py" afterPath="$PROJECT_DIR$/Installer/worker.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" afterPath="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NFVPackage/Topology Scripts/onrack_discovery_setup.py" afterPath="$PROJECT_DIR$/NFVPackage/Topology Scripts/onrack_discovery_setup.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.py" afterPath="$PROJECT_DIR$/test.py" />
     </list>
     <ignored path="Customer-EMC-NFV-Phase1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,7 +83,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="driver.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="driver.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
@@ -108,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datamodel.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml">
+      <file leaf-file-name="onrack_discovery_setup.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="197" column="69" selection-start-line="197" selection-start-column="69" selection-end-line="197" selection-end-column="69" />
+            <state relative-caret-position="544">
+              <caret line="33" column="173" selection-start-line="33" selection-start-column="173" selection-end-line="33" selection-end-column="173" />
               <folding />
             </state>
           </provider>
@@ -212,12 +199,12 @@
         <option value="$PROJECT_DIR$/NFVPackage/DataModel/datamodel.xml" />
         <option value="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/src/drivermetadata.xml" />
         <option value="$PROJECT_DIR$/Drivers/Shells/SiteManager-Shell/datamodel/shell_model.xml" />
-        <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml" />
         <option value="$PROJECT_DIR$/Installer/worker.py" />
         <option value="$PROJECT_DIR$/Drivers/Shells/Compute-Shell/src/requirements.txt" />
         <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/requirements.txt" />
         <option value="$PROJECT_DIR$/Drivers/Shells/OnRack-Shell/src/driver.py" />
+        <option value="$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py" />
       </list>
     </option>
   </component>
@@ -1421,14 +1408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="45" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Drivers/Shells/Compute-Shell/datamodel/datamodel.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -1514,6 +1493,14 @@
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Drivers/Orchestration/NFV Environment Scripts/onrack_discovery_setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="33" column="173" selection-start-line="33" selection-start-column="173" selection-end-line="33" selection-end-column="173" />
+          <folding />
         </state>
       </provider>
     </entry>
