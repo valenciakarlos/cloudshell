@@ -1,5 +1,7 @@
 <Driver Description="Describe the purpose of your CloudShell shell" MainClass="driver.SiteManagerShellDriver" Name="SiteManagerShellDriver" Version="1.0.0">
-    <Layout>
-        
+ <Layout>
+        <Category Name="Remote Commands">
+
+        </Category>
     </Layout>
 </Driver>

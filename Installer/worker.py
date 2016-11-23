@@ -4,7 +4,12 @@ import os
 
 password = os.environ['QSPASSWORD']
 
-for fn in ['compute-shell.zip', 'onrack-shell.zip', 'site_manager_shell.zip', 'NFV Build Environment.zip']:
+for fn in [
+    'compute-shell.zip',
+    'onrack-shell.zip',
+    'site_manager_shell.zip',
+    'NFV Build Environment.zip'
+]:
     print "Importing %s..." % fn
     token = requests.put('http://localhost:9000/Api/Auth/Login',
                          {"username": "admin", "password": password, "domain": "Global"}).text.strip().replace('"', '')

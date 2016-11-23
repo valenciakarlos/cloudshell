@@ -7,7 +7,7 @@ import requests
 import subprocess
 from cloudshell.shell.core.resource_driver_interface import ResourceDriverInterface
 from cloudshell.shell.core.driver_context import InitCommandContext, ResourceCommandContext, AutoLoadResource, \
-    AutoLoadDetails, AutoLoadCommandContext
+    AutoLoadDetails, AutoLoadCommandContext, ReservationContextDetails
 import cloudshell.api.cloudshell_api
 from cloudshell.api.cloudshell_api import ResourceInfoDto, ResourceAttributesUpdateRequest, AttributeNameValue, PhysicalConnectionUpdateRequest
 
@@ -212,17 +212,22 @@ class OnrackShellDriver (ResourceDriverInterface):
 
         # except Exception as e:
         #     qs_info('Failed to check boot order: ' + str(e), context)
-
+        onrack_cleanup_message = 'Check OnRack connectivity. You might need to re-run the OnRack Discovery after OnRack is back online. ' \
+                                 'Ensure that all server resources were rediscovered and have been un-excluded.\n\n' \
+                                 'If a clean reset is needed, delete the OnRack resource and associated server resources, recreate the OnRack resource, and ensure that the discovery finds all expected servers.\n\n' \
+                                 'OnRack activity is logged to c:\\ProgramData\\QualiSystems\\Logs\\%s\\Shells.log.' % resid
         tries = 0
         maxtries = int(context.resource.attributes['OS Deployment Attempts'])
         while tries < maxtries:
             tries += 1
             qs_info('Deploying %s on %s: Attempt #%d...' % (os_type, server_attrs['ResourceName'], tries), context)
 
-            token = rest_json('post', 'https://' + onrack_ip + '/login',
-                              {'email': onrack_username, 'password': onrack_password},
-                              '', context)['response']['user']['authentication_token']
-
+            try:
+                token = rest_json('post', 'https://' + onrack_ip + '/login',
+                                  {'email': onrack_username, 'password': onrack_password},
+                                  '', context)['response']['user']['authentication_token']
+            except Exception as e:
+                raise Exception('Could not connect to OnRack %s: %s.\n\n%s' % (onrack_ip, str(e), onrack_cleanup_message))
             # ip172 = rest_json('get', 'http://' + onrack_ip + ':8080/api/1.1/nodes/' + onrack_res_id + '/catalogs/ohai', None, None)['data']['ipaddress']
             # csapi.SetAttributeValue(attrs['ResourceName'], 'ESX PXE Network IP', ip172)
 
@@ -326,7 +331,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         sleep(30*60)
                     sleep(60)
             sleep(30)
-        raise Exception('Failed to install %s on %s in %d tries' % (os_type, server_attrs['ResourceName'], maxtries))
+        raise Exception('Failed to install %s on %s in %d tries. \n\n%s' % (os_type, server_attrs['ResourceName'], maxtries, onrack_cleanup_message))
     
     
     def get_inventory(self, context):
@@ -336,13 +341,21 @@ class OnrackShellDriver (ResourceDriverInterface):
         :return Attribute and sub-resource information for the Shell resource you can return an AutoLoadDetails object
         :rtype: AutoLoadDetails
         """
-
-
+        resid = 'no-reservation'
 
         csapi = cloudshell.api.cloudshell_api.CloudShellAPISession(context.connectivity.server_address,
                                                                    port=context.connectivity.cloudshell_api_port,
                                                                    token_id=context.connectivity.admin_auth_token)
 
+        # add reservation id to context so the logger can find it
+        try:
+            for ra in csapi.GetResourceAvailability([context.resource.name], True).Resources:
+                if ra.Name == context.resource.name:
+                    if ra.Reservations:
+                        resid = ra.Reservations[0].ReservationId
+                        context.__dict__['reservation'] = ReservationContextDetails('noname', 'nopath', 'nodomain', 'nodescr', 'noowner', 'noemail', resid)
+        except:
+            resid = 'no-reservation'
         onrack_ip = context.resource.address
         username = context.resource.attributes['User']
         password = csapi.DecryptPassword(context.resource.attributes['Password']).Value
@@ -404,11 +417,12 @@ class OnrackShellDriver (ResourceDriverInterface):
                     model = name + ' ' + model.strip()
                 else:
                     model = name
-
+                # if out['Id'] == '583320a9bdaab78b075e63ab':
+                #     continue
                 x = {
                     "OnRackID": out['Id'],
                     "ResourceName": out['Name'] + ' ' + out['Oem']['EMC']['VisionID_Chassis'],
-                    "ResourceAddress": out['Id'],
+                    "ResourceAddress": out['Oem']['EMC']['VisionID_Chassis'],  # out['Id'],
                     "ResourceFamily": "Compute Server",
                     "ResourceModel": "ComputeShell",
                     "ResourceFolder": "Compute/" + context.resource.name,
@@ -427,7 +441,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                     "Memory Size": str(out['MemorySummary']['TotalSystemMemoryGiB']),
                     "BIOS Version": str(out['BiosVersion']),
                     "Vendor": out['Manufacturer'],
-                    "Serial Number": out['SerialNumber'] if out['SerialNumber'] else '',
+                    "Serial Number": out['Oem']['EMC']['VisionID_Chassis'],  # out['SerialNumber'] if out['SerialNumber'] else '',
                     "Model": model,
                     "VisionID IP": out['Oem']['EMC']['VisionID_Ip'],
                     "Location": context.resource.attributes['Location'],
@@ -451,32 +465,76 @@ class OnrackShellDriver (ResourceDriverInterface):
         # ]
         guid2currhost = {}
         for host in currhosts:
-            guid2currhost[host['OnRackID']] = host
+            guid2currhost[host['Serial Number']] = host
+            # guid2currhost[host['OnRackID']] = host
 
-        curr_guids = set([host['OnRackID'] for host in currhosts])
+        curr_guids = set([host['Serial Number'] for host in currhosts])
+        # curr_guids = set([host['OnRackID'] for host in currhosts])
 
         me = csapi.GetResourceDetails(resourceFullPath=context.resource.fullname)
 
-        rm_guids = set([r.UniqeIdentifier for r in me.ChildResources])
+        rm_guids = set([r.Address
 
-        guid2rmdetails = dict([(r.UniqeIdentifier, r) for r in me.ChildResources])
+                        # r.UniqeIdentifier
+                       for r in me.ChildResources])
+
+        guid2rmdetails = dict([
+                                  # (r.UniqeIdentifier, r)
+                                  (r.Address, r)
+                                  for r in me.ChildResources])
+
+        deletemode = False
 
         to_delete_guids = rm_guids.difference(curr_guids)  # in rm but not in new
         to_create_guids = curr_guids.difference(rm_guids)  # in new but not in rm
-        reinclude_guids = curr_guids.difference(to_create_guids)  # in rm and new
+        to_reinclude_guids = curr_guids.difference(to_create_guids)  # in rm and new
+
+        to_recreate_root_guids = set([a for a in to_reinclude_guids if len(guid2rmdetails[a].Connections) == 0])
+
+        to_create_guids = to_create_guids.union(to_recreate_root_guids)
+
+        qs_info('Current OnRack contents: %s\nCloudShell inventory: %s\nCloudShell resource updates:\n%s: %s\nCreate: %s\nRefresh: %s\n%s: %s%s' % (
+            ', '.join(sorted(curr_guids)),
+            ', '.join(sorted(rm_guids)),
+            'Delete' if deletemode else 'Exclude',
+            ', '.join(sorted(to_delete_guids)),
+            ', '.join(sorted(to_create_guids)),
+            ', '.join(sorted(to_reinclude_guids)),
+            'Recreate' if deletemode else 'Reinclude',
+            ', '.join(sorted(to_recreate_root_guids)),
+            '\nIf you know an excluded resource has been permanently deleted and will not reappear in OnRack, delete the resource in the Inventory tab in the portal or in Resource Manager.' if to_delete_guids else ''
+        ), context)
+
 
         if len(to_delete_guids) > 0:
-            csapi.ExcludeResources([
-                                       '/'.join(guid2rmdetails[a].Connections[0].FullPath.split('/')[0:-1])
-                                       for a in to_delete_guids
-                                       if len(guid2rmdetails[a].Connections) > 0])
-            # todo if we delete the roots: delete onrack subresources
+            if deletemode:
+                qs_trace('before delete', context)
 
-        if len(reinclude_guids) > 0:
-            csapi.IncludeResources([
-                                       '/'.join(guid2rmdetails[a].Connections[0].FullPath.split('/')[0:-1])
-                                       for a in reinclude_guids
-                                       if len(guid2rmdetails[a].Connections) > 0])
+                todel = [
+                                          '/'.join(guid2rmdetails[a].Connections[0].FullPath.split('/')[0:-1])
+                                          for a in to_delete_guids
+                                          if len(guid2rmdetails[a].Connections) > 0] + [
+
+                    # context.resource.name + '/' +
+                    guid2rmdetails[a].Name
+                    for a in to_delete_guids
+                    ]
+                qs_info('Deleting CloudShell resources no longer in OnRack: ' + str(todel), context)
+                csapi.DeleteResources(todel)
+            else:
+                csapi.ExcludeResources([
+                                           '/'.join(guid2rmdetails[a].Connections[0].FullPath.split('/')[0:-1])
+                                           for a in to_delete_guids
+                                           if len(guid2rmdetails[a].Connections) > 0])
+
+        # # todo if we delete the roots: delete onrack subresources
+
+        if len(to_reinclude_guids) > 0:
+            if not deletemode:
+                csapi.IncludeResources([
+                                           '/'.join(guid2rmdetails[a].Connections[0].FullPath.split('/')[0:-1])
+                                           for a in to_reinclude_guids
+                                           if len(guid2rmdetails[a].Connections) > 0])
 
         if len(to_create_guids) > 0:
             for folder in set([host['ResourceFolder'] for host in currhosts]):
@@ -494,10 +552,13 @@ class OnrackShellDriver (ResourceDriverInterface):
                                                     sub['ResourceDescription']))
                 try:
                     csapi.CreateResources(roots_rootsubs)
+                    qs_info('Imported user-facing resource %s' % guid2currhost[guid]['ResourceName'], context)
                 except:
-                    pass
+                    qs_info('User-facing resource %s already exists - updating OnRack id on existing' % guid2currhost[guid]['ResourceName'], context)
+                    # csapi.UpdateResourceAddress(guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'])
                 # todo sync NICs (added / removed)
 
+            # disabled to add individual try/catch
             # roots = [
             #     ResourceInfoDto('Compute Server', 'ComputeShell', guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'], guid2currhost[guid]['ResourceFolder'], '', guid2currhost[guid]['ResourceDescription'])
             #     for guid in to_create_guids
@@ -508,13 +569,25 @@ class OnrackShellDriver (ResourceDriverInterface):
             #     for sub in guid2currhost[guid]['ResourceSubresources']:
             #         rootsubs.append(ResourceInfoDto(sub['ResourceFamily'], sub['ResourceModel'], sub['ResourceName'], sub['ResourceAddress'], '', guid2currhost[guid]['ResourceName'], sub['ResourceDescription']))
 
-            onracksubs = [
-                ResourceInfoDto('OnRack Discoverable', 'OnRack Discovered Resource', guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'], '', context.resource.fullname, '')
-                for guid in to_create_guids
-                ]
 
-            # csapi.CreateResources(roots + rootsubs + onracksubs)
-            csapi.CreateResources(onracksubs)
+
+            # disabled to add individual try/catch
+            # onracksubs = [
+            #     ResourceInfoDto('OnRack Discoverable', 'OnRack Discovered Resource', guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'], '', context.resource.fullname, '')
+            #     for guid in to_create_guids
+            #     ]
+            #
+            # # csapi.CreateResources(roots + rootsubs + onracksubs)
+            # csapi.CreateResources(onracksubs)
+            for guid in to_create_guids:
+                try:
+                    csapi.CreateResource('OnRack Discoverable', 'OnRack Discovered Resource', guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'], '', context.resource.fullname, '')
+                    qs_info('Imported internal resource %s' % guid2currhost[guid]['ResourceName'], context)
+                except:
+                    qs_info('Internal resource %s already exists' % guid2currhost[guid]['ResourceName'], context)
+                    # csapi.UpdateResourceAddress(guid2currhost[guid]['ResourceName'], guid2currhost[guid]['ResourceAddress'])
+
+
             csapi.UpdatePhysicalConnections([
                                                 PhysicalConnectionUpdateRequest(
                                                     guid2currhost[guid]['ResourceName'] + '/OnRack',
@@ -570,12 +643,12 @@ class OnrackShellDriver (ResourceDriverInterface):
             csapi.SetAttributesValues(roots + rootsubs + onracksubs)
             for host in currhosts:
                 csapi.UpdateResourceDescription(host['ResourceName'], host['ResourceDescription'])
-        
+
         return AutoLoadDetails([
-            AutoLoadResource(model='Compute Server', 
-                             name=host['ResourceName'], 
-                             relative_address=host['ResourceAddress'], 
-                             unique_identifier=host['OnRackID'])
+            AutoLoadResource(model='Compute Server',
+                             name=host['ResourceName'],
+                             relative_address=host['ResourceAddress']
+                             , unique_identifier=host['Serial Number']
+                             )
             for host in currhosts
             ], [])
-

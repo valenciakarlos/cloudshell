@@ -5537,8 +5537,8 @@
     </ScriptDescriptor>
     <ScriptDescriptor Name="run_orchestration_steps" Description="Run all orchestration steps or a subset of available steps" Version="1" CategoryName="System" Alias="Run Orchestration Steps">
       <ScriptInputs>
-        <ScriptInput Name="Include_Ranges" Alias="Include Ranges" Description="Steps to run: 'all', or a comma-separated list of step numbers or ranges, e.g. 1-5,8,10,20-end" />
-        <ScriptInput Name="Exclude_Ranges" Alias="Exclude Ranges" Description="Steps to exclude when running: 'none', or a comma-separated list of step numbers or ranges, e.g. 6-7,9,11-end" />
+        <ScriptInput Name="Include_Ranges" Description="Steps to run: 'all', or a comma-separated list of step numbers or ranges, e.g. 1-5,8,10,20-end" />
+        <ScriptInput Name="Exclude_Ranges" Description="Steps to exclude when running: 'none', or a comma-separated list of step numbers or ranges, e.g. 6-7,9,11-end" />
       </ScriptInputs>
     </ScriptDescriptor>
     <ScriptDescriptor Name="vlog_02_startup_wizard" Description="Configure DNS, SMTP, license, NTP" Version="1" CategoryName="Install" Alias="02 Run Start-up Configuration Wizard">
@@ -5718,10 +5718,10 @@
     <ScriptDescriptor Name="vra_01_deploy_vra" Alias="01 Deploy vRA">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="onrack_discovery_setup" CategoryName="Hidden Commands" Version="1" Alias="Setup script">
+     <ScriptDescriptor Name="onrack_discovery_setup" Description="Add each OnRack resource to the reservation and run autoload on it" Version="1" CategoryName="Hidden Commands" Alias="Setup script">
       <ScriptInputs />
     </ScriptDescriptor>
-    <ScriptDescriptor Name="nfv_setup" CategoryName="Hidden Commands"  Version="1" Alias="Setup script">
+    <ScriptDescriptor Name="nfv_setup" Description="Launch NFV steps"  Version="1" CategoryName="Hidden Commands"  Alias="Setup script">
       <ScriptInputs />
     </ScriptDescriptor>
   </ScriptDescriptors>

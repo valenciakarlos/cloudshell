@@ -104,9 +104,7 @@
                 <AttributeValue Name="PXE Network Gateway" Value="" />
               </AttributeValues>
             <ParentModels />
-            <Drivers>
-                <DriverName></DriverName>
-            </Drivers>
+            <Drivers/>
             <Scripts />
         </ResourceModel>
 

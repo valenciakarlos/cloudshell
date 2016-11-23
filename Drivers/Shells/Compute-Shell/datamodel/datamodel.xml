@@ -179,12 +179,14 @@
       <Rules>
         <Rule Name="Setting" />
         <Rule Name="Admin Only" />
-      </Rules>
+ 	       <Rule Name="Available For Abstract Resources" />
+     </Rules>
     </AttributeInfo>
     <AttributeInfo Name="Number of CPUs" Type="Numeric" DefaultValue="0" IsReadOnly="false">
       <Rules>
         <Rule Name="Setting" />
         <Rule Name="Admin Only" />
+	       <Rule Name="Available For Abstract Resources" />
       </Rules>
     </AttributeInfo>
     <AttributeInfo xsi:type="LookupAttributeDetails" Name="CLI Connection Type" Type="Lookup" DefaultValue="Auto" IsReadOnly="false" IsCommand="false">
