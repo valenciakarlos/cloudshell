@@ -328,7 +328,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                     e.__class__.__name__,
                     str(e)),
                         context)
-                if 'in progress' in str(e).lower():
+                if 'in progress' in str(e).lower() or 'has an active workflow' in str(e).lower():
                     qs_info('Killing in-progress task on %s' % onrack_res_id)
                     # http://localhost:8080/api/common/nodes/$1/workflows/active
                     try:

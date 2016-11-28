@@ -11,7 +11,8 @@ name2alias = {}
 
 for trd in rd.TopologiesReservedResources:
     if trd.ResourceModelName == 'ComputeShell':
-        name2alias[trd.Name] = trd.Alias
+        if trd.Alias:
+            name2alias[trd.Name] = trd.Alias
 
 siteman_details = [r for r in rd.Resources if r.ResourceModelName == 'SiteManagerShell'][0]
 # brocade_details = [r for r in rd.Resources if r.ResourceModelName == 'Brocade NOS Switch'][0]
@@ -200,15 +201,15 @@ for i in range(len(esxis_details)):
     all_host_ips.append(addr)
     all_host_ips172.append(addr172)
 
-    if name2alias[esxis_details[i].Name] == 'Master' or (len(name2alias)==0 and i == 0):
+    if name2alias.get(esxis_details[i].Name, '') == 'Master' or (len(name2alias) == 0 and i == 0):
         sio_master_host_ip = addr
 
     if i in [2, 3]:
         versa_host_ips.append(addr)
 
-    if name2alias[esxis_details[i].Name] == 'SIO' or (len(name2alias)==0 and 1 <= i <= 3):
+    if name2alias.get(esxis_details[i].Name, '') == 'SIO' or (len(name2alias) == 0 and 1 <= i <= 3):
         sio_mdm_host_ips.append(addr)
-    if name2alias[esxis_details[i].Name] == 'Compute' or (len(name2alias)==0 and i > 3):
+    if name2alias.get(esxis_details[i].Name, '') == 'Compute' or (len(name2alias) == 0 and i > 3):
         sio_nonmdm_host_ips.append(addr)
 
     sds_host_ips.append(addr)
