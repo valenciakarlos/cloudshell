@@ -51,6 +51,6 @@ j = requests.post('http://%s:%s/Api/Package/AttachFileToReservation' % (con_deta
                       'saveFileAs': ('saveFileAs', 'logs.zip'),
                       'overwriteIfExists': ('overwriteIfExists', 'True'),
                   })
-# print j.status_code
-# print j.text
+print j.status_code
+print j.text
 print 'logs.zip has been attached to the reservation.\n\nReload the page and click the paperclip icon to download the file.'

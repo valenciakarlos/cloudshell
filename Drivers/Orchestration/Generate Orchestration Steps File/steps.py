@@ -657,7 +657,8 @@ def go(printmode, include_ranges='', exclude_ranges=''):
 
     # print 'getting details'
     resdetails = csapi.GetReservationDetails(resid).ReservationDescription
-
+    csapi.WriteMessageToReservationOutput(resid, 'Log folder: c:\\ProgramData\\QualiSystems\\Logs\\%s' % resid)
+    csapi.WriteMessageToReservationOutput(resid, 'Log folder: file://c:/ProgramData/QualiSystems/Logs/%s' % resid)
     for i, step in enumerate(steps):
         if inranges(i, include_ranges) and not inranges(i, exclude_ranges):
             # print 'included'
@@ -705,6 +706,6 @@ def go(printmode, include_ranges='', exclude_ranges=''):
                               'saveFileAs': ('saveFileAs', 'steps.csv'),
                               'overwriteIfExists': ('overwriteIfExists', 'True'),
                           })
-        # print j.status_code
-        # print j.text
+        print j.status_code
+        print j.text
         print 'steps.csv has been attached to the reservation.\n\nReload the page and click the paperclip icon to download the file.'
