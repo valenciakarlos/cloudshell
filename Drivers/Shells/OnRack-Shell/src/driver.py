@@ -338,7 +338,7 @@ class OnrackShellDriver (ResourceDriverInterface):
                         sleep(30*60)
                     sleep(60)
             sleep(30)
-        raise Exception('Failed to install %s on %s in %d tries. \n\n%s' % (os_type, server_attrs['ResourceName'], maxtries, onrack_cleanup_message))
+        raise Exception('Failed to install %s on %s in %d tries. \n\nCheck the log for details: c:\\ProgramData\\QualiSystems\\Logs\\%s\\Shells.log' % (os_type, server_attrs['ResourceName'], maxtries, resid))
     
     
     def get_inventory(self, context):

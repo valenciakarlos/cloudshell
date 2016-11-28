@@ -658,11 +658,12 @@ def go(printmode, include_ranges='', exclude_ranges=''):
     # print 'getting details'
     resdetails = csapi.GetReservationDetails(resid).ReservationDescription
     csapi.WriteMessageToReservationOutput(resid, 'Log folder: c:\\ProgramData\\QualiSystems\\Logs\\%s' % resid)
-    csapi.WriteMessageToReservationOutput(resid, 'Log folder: file://c:/ProgramData/QualiSystems/Logs/%s' % resid)
+    # csapi.WriteMessageToReservationOutput(resid, 'Log folder: file://c:/ProgramData/QualiSystems/Logs/%s' % resid)
+    haderror = False
     for i, step in enumerate(steps):
         if inranges(i, include_ranges) and not inranges(i, exclude_ranges):
             # print 'included'
-            if not printmode:
+            if not printmode and not isinstance(step, ResourcePrint) and not isinstance(step, ServicePrint):
                 qs_info('Starting step #%d: %s' % (i, str(step)), filename='orchestration')
             try:
                 result = step.execute(csapi, resid, resdetails, printmode)
@@ -671,10 +672,13 @@ def go(printmode, include_ranges='', exclude_ranges=''):
                         csv += '%d,%s\n' % (i, str(step))
             except Exception as e:
                 qs_error('Error on step #%d: %s' % (i, str(e)))
+                haderror = True
                 break
-            if not printmode:
+            if not printmode and not isinstance(step, ResourcePrint) and not isinstance(step, ServicePrint):
                 qs_info('Finished step #%d: %s' % (i, str(step)), filename='orchestration')
-
+    if haderror:
+        print 'Orchestration failed at step %d. Check the Output window for details.' % i
+        exit(1)
     if printmode:
         con_details = helpers.get_connectivity_context_details()
         env_details = helpers.get_reservation_context_details()
