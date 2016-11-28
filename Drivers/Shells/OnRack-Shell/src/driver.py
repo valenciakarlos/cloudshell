@@ -130,7 +130,8 @@ class OnrackShellDriver (ResourceDriverInterface):
                 server_attrs['ResourceName'] = d.Name
 
         vcenter_attrs = {}
-        for s in csapi.GetReservationDetails(context.remote_reservation.reservation_id).ReservationDescription.Services:
+        resid = context.remote_reservation.reservation_id
+        for s in csapi.GetReservationDetails(resid).ReservationDescription.Services:
             if 'vCenter' in s.ServiceName:
                 for a in s.Attributes:
                     vcenter_attrs[a.Name] = a.Value
